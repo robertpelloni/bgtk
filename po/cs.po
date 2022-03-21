@@ -6537,7 +6537,7 @@ msgstr "Zobrazit _všechny"
 
 #: gtk/gtkshortcutsshortcut.c:136
 msgid "Two finger pinch"
-msgstr "Štípnutí dvěma prsty"
+msgstr "Semknutí dvou prstů"
 
 #: gtk/gtkshortcutsshortcut.c:140
 msgid "Two finger stretch"
