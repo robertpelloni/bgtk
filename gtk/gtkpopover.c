@@ -112,6 +112,7 @@
 #include "gtkstylecontextprivate.h"
 #include "gtkprogresstrackerprivate.h"
 #include "gtksettingsprivate.h"
+#include <string.h> /* memset */
 
 #ifdef GDK_WINDOWING_WAYLAND
 #include "wayland/gdkwayland.h"
@@ -2328,7 +2329,7 @@ gtk_popover_set_pointing_to (GtkPopover         *popover,
  * If a rectangle to point to has been set, this function will
  * return %TRUE and fill in @rect with such rectangle, otherwise
  * it will return %FALSE and fill in @rect with the attached
- * widget coordinates.
+ * widget width and height if a widget exists, otherwise it will zero-out @rect.
  *
  * Returns: %TRUE if a rectangle to point to was set.
  **/
@@ -2350,6 +2351,8 @@ gtk_popover_get_pointing_to (GtkPopover   *popover,
           rect->x = rect->y = 0;
         }
     }
+  else
+    memset (rect, 0, sizeof (GdkRectangle));
 
   return priv->has_pointing_to;
 }
