@@ -192,12 +192,23 @@
         }
     }
 }
+static void
+synthesize_configure_event(GdkWindow *window)
+{
+  GdkEvent *event = gdk_event_new (GDK_CONFIGURE);
+
+  event->configure.window = g_object_ref (window);
+  event->configure.x = window->x;
+  event->configure.y = window->y;
+  event->configure.width = window->width;
+  event->configure.height = window->height;
+
+  _gdk_event_queue_append (gdk_display_get_default (), event);
+}
 
 -(void)windowDidMove:(NSNotification *)aNotification
 {
   GdkWindow *window = [[self contentView] gdkWindow];
-  GdkEvent *event;
-
   gboolean maximized = gdk_window_get_state (window) & GDK_WINDOW_STATE_MAXIMIZED;
 
   /* In case the window is changed when maximized remove the maximized state */
@@ -209,16 +220,7 @@
     }
 
   _gdk_quartz_window_update_position (window);
-
-  /* Synthesize a configure event */
-  event = gdk_event_new (GDK_CONFIGURE);
-  event->configure.window = g_object_ref (window);
-  event->configure.x = window->x;
-  event->configure.y = window->y;
-  event->configure.width = window->width;
-  event->configure.height = window->height;
-
-  _gdk_event_queue_append (gdk_display_get_default (), event);
+  synthesize_configure_event(window);
 
   [self checkSendEnterNotify];
 }
@@ -227,7 +229,6 @@
 {
   NSRect content_rect = [self contentRectForFrameRect:[self frame]];
   GdkWindow *window = [[self contentView] gdkWindow];
-  GdkEvent *event;
   gboolean maximized = gdk_window_get_state (window) & GDK_WINDOW_STATE_MAXIMIZED;
 
   /* see same in windowDidMove */
@@ -249,16 +250,7 @@
   [[self contentView] setFrame:NSMakeRect (0, 0, window->width, window->height)];
 
   _gdk_window_update_size (window);
-
-  /* Synthesize a configure event */
-  event = gdk_event_new (GDK_CONFIGURE);
-  event->configure.window = g_object_ref (window);
-  event->configure.x = window->x;
-  event->configure.y = window->y;
-  event->configure.width = window->width;
-  event->configure.height = window->height;
-
-  _gdk_event_queue_append (gdk_display_get_default (), event);
+  synthesize_configure_event (window);
 
   [self checkSendEnterNotify];
 }
