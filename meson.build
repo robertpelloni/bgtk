@@ -1017,7 +1017,7 @@ endif
 if not meson.is_cross_build()
   gnome.post_install(
     glib_compile_schemas: true,
-    bobgui_update_icon_cache: get_option('build-demos'),
+    gtk_update_icon_cache: get_option('build-demos'),
     update_mime_database: os_linux,
   )
 else

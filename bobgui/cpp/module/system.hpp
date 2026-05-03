@@ -9,7 +9,7 @@ namespace system {
   // Re-export the system C++ utilities
   using bobgui::cpp::FileSystemWatcher;
   using bobgui::cpp::LocalServer;
-  
+
   // System submodules will be mapped here as needed
   // e.g., namespace ipc { using bobgui::cpp::ipc::LocalServer; }
 }

@@ -13,3 +13,6 @@ BobguiTimeline * bobgui_timeline_new (void);
 G_END_DECLS
 
 #endif
+void bobgui_timeline_play(BobguiTimeline *self);
+void bobgui_timeline_pause(BobguiTimeline *self);
+void bobgui_timeline_seek(BobguiTimeline *self, double timeSeconds);

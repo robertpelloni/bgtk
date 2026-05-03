@@ -13,3 +13,6 @@ BobguiMapView * bobgui_map_view_new (void);
 G_END_DECLS
 
 #endif
+void bobgui_map_view_set_center(BobguiMapView *self, double lat, double lon);
+void bobgui_map_view_set_zoom(BobguiMapView *self, double zoom);
+void bobgui_map_view_add_marker(BobguiMapView *self, double lat, double lon, const char* title);

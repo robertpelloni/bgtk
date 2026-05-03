@@ -1,0 +1,2138 @@
+ninja: Entering directory `/app/build'
+[1/2397] Generating profile-conf with a custom command (wrapped by meson to capture output)
+[2/2397] Generating gsk/gpu/shaders/gskgpubluropprivate.h with a custom command (wrapped by meson to capture output)
+[3/2397] Generating gsk/gpu/shaders/gskgpublurop.c with a custom command (wrapped by meson to capture output)
+[4/2397] Generating gsk/gpu/shaders/gskgpublurinstance.glsl with a custom command (wrapped by meson to capture output)
+[5/2397] Generating gsk/gpu/shaders/gskgpuborderinstance.glsl with a custom command (wrapped by meson to capture output)
+[6/2397] Generating gsk/gpu/shaders/gskgpublur.glsl with a custom command (wrapped by meson to capture output)
+[7/2397] Generating gsk/gpu/shaders/gskgpuborderop.c with a custom command (wrapped by meson to capture output)
+[8/2397] Generating gsk/gpu/shaders/gskgpuborderopprivate.h with a custom command (wrapped by meson to capture output)
+[9/2397] Generating gsk/gpu/shaders/gskgpublur-clipmask.frag.spv with a custom command
+[10/2397] Generating gsk/gpu/shaders/gskgpublur.frag.spv with a custom command
+[11/2397] Generating gsk/gpu/shaders/gskgpublur.vert.spv with a custom command
+[12/2397] Generating gsk/gpu/shaders/gskgpuborder.glsl with a custom command (wrapped by meson to capture output)
+[13/2397] Generating gsk/gpu/shaders/gskgpuborder.vert.spv with a custom command
+[14/2397] Generating gsk/gpu/shaders/gskgpuborder.frag.spv with a custom command
+[15/2397] Generating gsk/gpu/shaders/gskgpuborder-clipmask.frag.spv with a custom command
+[16/2397] Generating gsk/gpu/shaders/gskgpuboxshadowop.c with a custom command (wrapped by meson to capture output)
+[17/2397] Generating gsk/gpu/shaders/gskgpuboxshadowinstance.glsl with a custom command (wrapped by meson to capture output)
+[18/2397] Generating gsk/gpu/shaders/gskgpuboxshadowopprivate.h with a custom command (wrapped by meson to capture output)
+[19/2397] Generating gsk/gpu/shaders/gskgpucoloropprivate.h with a custom command (wrapped by meson to capture output)
+[20/2397] Generating gsk/gpu/shaders/gskgpucolorop.c with a custom command (wrapped by meson to capture output)
+[21/2397] Generating gsk/gpu/shaders/gskgpuboxshadow.glsl with a custom command (wrapped by meson to capture output)
+[22/2397] Generating gsk/gpu/shaders/gskgpuboxshadow.vert.spv with a custom command
+[23/2397] Generating gsk/gpu/shaders/gskgpuboxshadow-clipmask.frag.spv with a custom command
+[24/2397] Generating gsk/gpu/shaders/gskgpuboxshadow.frag.spv with a custom command
+[25/2397] Generating gsk/gpu/shaders/gskgpucolorizeop.c with a custom command (wrapped by meson to capture output)
+[26/2397] Generating gsk/gpu/shaders/gskgpucolorizeopprivate.h with a custom command (wrapped by meson to capture output)
+[27/2397] Generating gsk/gpu/shaders/gskgpucolorinstance.glsl with a custom command (wrapped by meson to capture output)
+[28/2397] Generating gsk/gpu/shaders/gskgpucolorizeinstance.glsl with a custom command (wrapped by meson to capture output)
+[29/2397] Generating gsk/gpu/shaders/gskgpucolormatrixop.c with a custom command (wrapped by meson to capture output)
+[30/2397] Generating gsk/gpu/shaders/gskgpucolor.glsl with a custom command (wrapped by meson to capture output)
+[31/2397] Generating gsk/gpu/shaders/gskgpucolormatrixopprivate.h with a custom command (wrapped by meson to capture output)
+[32/2397] Generating gsk/gpu/shaders/gskgpucolor.vert.spv with a custom command
+[33/2397] Generating gsk/gpu/shaders/gskgpucolor.frag.spv with a custom command
+[34/2397] Generating gsk/gpu/shaders/gskgpucolor-clipmask.frag.spv with a custom command
+[35/2397] Generating gsk/gpu/shaders/gskgpucolorize.glsl with a custom command (wrapped by meson to capture output)
+[36/2397] Generating gsk/gpu/shaders/gskgpucolorize.vert.spv with a custom command
+[37/2397] Generating gsk/gpu/shaders/gskgpucolorize.frag.spv with a custom command
+[38/2397] Generating gsk/gpu/shaders/gskgpucolorize-clipmask.frag.spv with a custom command
+[39/2397] Generating gsk/gpu/shaders/gskgpucomponenttransferop.c with a custom command (wrapped by meson to capture output)
+[40/2397] Generating gsk/gpu/shaders/gskgpucolormatrixinstance.glsl with a custom command (wrapped by meson to capture output)
+[41/2397] Generating gsk/gpu/shaders/gskgpucompositeop.c with a custom command (wrapped by meson to capture output)
+[42/2397] Generating gsk/gpu/shaders/gskgpucolormatrix.glsl with a custom command (wrapped by meson to capture output)
+[43/2397] Generating gsk/gpu/shaders/gskgpucomponenttransferopprivate.h with a custom command (wrapped by meson to capture output)
+[44/2397] Generating gsk/gpu/shaders/gskgpucomponenttransferinstance.glsl with a custom command (wrapped by meson to capture output)
+[45/2397] Generating gsk/gpu/shaders/gskgpucolormatrix.vert.spv with a custom command
+[46/2397] Generating gsk/gpu/shaders/gskgpucolormatrix-clipmask.frag.spv with a custom command
+[47/2397] Generating gsk/gpu/shaders/gskgpucolormatrix.frag.spv with a custom command
+[48/2397] Generating gsk/gpu/shaders/gskgpucomponenttransfer.vert.spv with a custom command
+[49/2397] Generating gsk/gpu/shaders/gskgpucomponenttransfer.frag.spv with a custom command
+[50/2397] Generating gsk/gpu/shaders/gskgpucomponenttransfer.glsl with a custom command (wrapped by meson to capture output)
+[51/2397] Generating gsk/gpu/shaders/gskgpucompositeopprivate.h with a custom command (wrapped by meson to capture output)
+[52/2397] Generating gsk/gpu/shaders/gskgpucomponenttransfer-clipmask.frag.spv with a custom command
+[53/2397] Generating gsk/gpu/shaders/gskgpucompositeinstance.glsl with a custom command (wrapped by meson to capture output)
+[54/2397] Generating gsk/gpu/shaders/gskgpuconicgradientop.c with a custom command (wrapped by meson to capture output)
+[55/2397] Generating gsk/gpu/shaders/gskgpuconicgradientopprivate.h with a custom command (wrapped by meson to capture output)
+[56/2397] Generating gsk/gpu/shaders/gskgpucomposite.vert.spv with a custom command
+[57/2397] Generating gsk/gpu/shaders/gskgpucomposite.glsl with a custom command (wrapped by meson to capture output)
+[58/2397] Generating gsk/gpu/shaders/gskgpuconicgradientinstance.glsl with a custom command (wrapped by meson to capture output)
+[59/2397] Generating gsk/gpu/shaders/gskgpucomposite-clipmask.frag.spv with a custom command
+[60/2397] Generating gsk/gpu/shaders/gskgpucomposite.frag.spv with a custom command
+[61/2397] Generating gsk/gpu/shaders/gskgpuconicgradient.frag.spv with a custom command
+[62/2397] Generating gsk/gpu/shaders/gskgpuconicgradient.glsl with a custom command (wrapped by meson to capture output)
+[63/2397] Generating gsk/gpu/shaders/gskgpuconvertop.c with a custom command (wrapped by meson to capture output)
+[64/2397] Generating gsk/gpu/shaders/gskgpuconicgradient.vert.spv with a custom command
+[65/2397] Generating gsk/gpu/shaders/gskgpuconicgradient-clipmask.frag.spv with a custom command
+[66/2397] Generating gsk/gpu/shaders/gskgpuconvertinstance.glsl with a custom command (wrapped by meson to capture output)
+[67/2397] Generating gsk/gpu/shaders/gskgpuconvertbuiltinop.c with a custom command (wrapped by meson to capture output)
+[68/2397] Generating gsk/gpu/shaders/gskgpuconvertopprivate.h with a custom command (wrapped by meson to capture output)
+[69/2397] Generating gsk/gpu/shaders/gskgpuconvert.glsl with a custom command (wrapped by meson to capture output)
+[70/2397] Generating gsk/gpu/shaders/gskgpuconvert.vert.spv with a custom command
+[71/2397] Generating gsk/gpu/shaders/gskgpuconvertbuiltinopprivate.h with a custom command (wrapped by meson to capture output)
+[72/2397] Generating gsk/gpu/shaders/gskgpuconvert.frag.spv with a custom command
+[73/2397] Generating gsk/gpu/shaders/gskgpuconvert-clipmask.frag.spv with a custom command
+[74/2397] Generating gsk/gpu/shaders/gskgpuconvertcicpop.c with a custom command (wrapped by meson to capture output)
+[75/2397] Generating gsk/gpu/shaders/gskgpuconvertbuiltininstance.glsl with a custom command (wrapped by meson to capture output)
+[76/2397] Generating gsk/gpu/shaders/gskgpuconvertcicpinstance.glsl with a custom command (wrapped by meson to capture output)
+[77/2397] Generating gsk/gpu/shaders/gskgpuconvertcicpopprivate.h with a custom command (wrapped by meson to capture output)
+[78/2397] Generating gsk/gpu/shaders/gskgpuconvertbuiltin.frag.spv with a custom command
+[79/2397] Generating gsk/gpu/shaders/gskgpuconvertbuiltin.glsl with a custom command (wrapped by meson to capture output)
+[80/2397] Generating gsk/gpu/shaders/gskgpucrossfadeop.c with a custom command (wrapped by meson to capture output)
+[81/2397] Generating gsk/gpu/shaders/gskgpuconvertbuiltin.vert.spv with a custom command
+[82/2397] Generating gsk/gpu/shaders/gskgpuconvertbuiltin-clipmask.frag.spv with a custom command
+[83/2397] Generating gsk/gpu/shaders/gskgpuconvertcicp.glsl with a custom command (wrapped by meson to capture output)
+[84/2397] Generating gsk/gpu/shaders/gskgpuconvertcicp.vert.spv with a custom command
+[85/2397] Generating gsk/gpu/shaders/gskgpuconvertcicp.frag.spv with a custom command
+[86/2397] Generating gsk/gpu/shaders/gskgpuconvertcicp-clipmask.frag.spv with a custom command
+[87/2397] Generating gsk/gpu/shaders/gskgpudisplacementop.c with a custom command (wrapped by meson to capture output)
+[88/2397] Generating gsk/gpu/shaders/gskgpucrossfadeopprivate.h with a custom command (wrapped by meson to capture output)
+[89/2397] Generating gsk/gpu/shaders/gskgpudisplacementopprivate.h with a custom command (wrapped by meson to capture output)
+[90/2397] Generating gsk/gpu/shaders/gskgpucrossfadeinstance.glsl with a custom command (wrapped by meson to capture output)
+[91/2397] Generating gsk/gpu/shaders/gskgpudisplacementinstance.glsl with a custom command (wrapped by meson to capture output)
+[92/2397] Generating gsk/gpu/shaders/gskgpulineargradientop.c with a custom command (wrapped by meson to capture output)
+[93/2397] Generating gsk/gpu/shaders/gskgpulineargradientopprivate.h with a custom command (wrapped by meson to capture output)
+[94/2397] Generating gsk/gpu/shaders/gskgpucrossfade.glsl with a custom command (wrapped by meson to capture output)
+[95/2397] Generating gsk/gpu/shaders/gskgpucrossfade.vert.spv with a custom command
+[96/2397] Generating gsk/gpu/shaders/gskgpucrossfade.frag.spv with a custom command
+[97/2397] Generating gsk/gpu/shaders/gskgpudisplacement.glsl with a custom command (wrapped by meson to capture output)
+[98/2397] Generating gsk/gpu/shaders/gskgpucrossfade-clipmask.frag.spv with a custom command
+[99/2397] Generating gsk/gpu/shaders/gskgpudisplacement.frag.spv with a custom command
+[100/2397] Generating gsk/gpu/shaders/gskgpudisplacement.vert.spv with a custom command
+[101/2397] Generating gsk/gpu/shaders/gskgpulineargradientinstance.glsl with a custom command (wrapped by meson to capture output)
+[102/2397] Generating gsk/gpu/shaders/gskgpudisplacement-clipmask.frag.spv with a custom command
+[103/2397] Generating gsk/gpu/shaders/gskgpumaskop.c with a custom command (wrapped by meson to capture output)
+[104/2397] Generating gsk/gpu/shaders/gskgpumaskopprivate.h with a custom command (wrapped by meson to capture output)
+[105/2397] Generating gsk/gpu/shaders/gskgpulineargradient.vert.spv with a custom command
+[106/2397] Generating gsk/gpu/shaders/gskgpulineargradient.glsl with a custom command (wrapped by meson to capture output)
+[107/2397] Generating gsk/gpu/shaders/gskgpulineargradient.frag.spv with a custom command
+[108/2397] Generating gsk/gpu/shaders/gskgpulineargradient-clipmask.frag.spv with a custom command
+[109/2397] Generating gsk/gpu/shaders/gskgpuradialgradientopprivate.h with a custom command (wrapped by meson to capture output)
+[110/2397] Generating gsk/gpu/shaders/gskgpumaskinstance.glsl with a custom command (wrapped by meson to capture output)
+[111/2397] Generating gsk/gpu/shaders/gskgpuradialgradientop.c with a custom command (wrapped by meson to capture output)
+[112/2397] Generating gsk/gpu/shaders/gskgpuradialgradientinstance.glsl with a custom command (wrapped by meson to capture output)
+[113/2397] Generating gsk/gpu/shaders/gskgpuroundedcolorop.c with a custom command (wrapped by meson to capture output)
+[114/2397] Generating gsk/gpu/shaders/gskgpumask.vert.spv with a custom command
+[115/2397] Generating gsk/gpu/shaders/gskgpumask.glsl with a custom command (wrapped by meson to capture output)
+[116/2397] Generating gsk/gpu/shaders/gskgpumask.frag.spv with a custom command
+[117/2397] Generating gsk/gpu/shaders/gskgpumask-clipmask.frag.spv with a custom command
+[118/2397] Generating gsk/gpu/shaders/gskgpuradialgradient.vert.spv with a custom command
+[119/2397] Generating gsk/gpu/shaders/gskgpuradialgradient.frag.spv with a custom command
+[120/2397] Generating gsk/gpu/shaders/gskgpuradialgradient.glsl with a custom command (wrapped by meson to capture output)
+[121/2397] Generating gsk/gpu/shaders/gskgpuradialgradient-clipmask.frag.spv with a custom command
+[122/2397] Generating gsk/gpu/shaders/gskgpuroundedcolorinstance.glsl with a custom command (wrapped by meson to capture output)
+[123/2397] Generating gsk/gpu/shaders/gskgputextureop.c with a custom command (wrapped by meson to capture output)
+[124/2397] Generating gsk/gpu/shaders/gskgpuroundedcoloropprivate.h with a custom command (wrapped by meson to capture output)
+[125/2397] Generating gsk/gpu/shaders/gskgputextureopprivate.h with a custom command (wrapped by meson to capture output)
+[126/2397] Generating gsk/gpu/shaders/gskgpuroundedcolor.glsl with a custom command (wrapped by meson to capture output)
+[127/2397] Generating gsk/gpu/shaders/gskgpuroundedcolor.vert.spv with a custom command
+[128/2397] Generating gsk/gpu/shaders/gskgpuroundedcolor.frag.spv with a custom command
+[129/2397] Generating bobgui/a11y/atspi/atspi-accessible-hdr with a custom command
+[130/2397] Generating gsk/gpu/shaders/gskgpuroundedcolor-clipmask.frag.spv with a custom command
+[131/2397] Generating bobgui/a11y/atspi/atspi-accessible-src with a custom command
+[132/2397] Generating gsk/gpu/shaders/gskgputextureinstance.glsl with a custom command (wrapped by meson to capture output)
+[133/2397] Generating bobgui/a11y/atspi/atspi-action-src with a custom command
+[134/2397] Generating bobgui/a11y/atspi/atspi-action-hdr with a custom command
+[135/2397] Generating GObject enum file gsk/gskenumtypes.h (wrapped by meson to capture output)
+[136/2397] Generating gsk/gpu/shaders/gskgputexture.vert.spv with a custom command
+[137/2397] Generating gsk/gpu/shaders/gskgputexture.glsl with a custom command (wrapped by meson to capture output)
+[138/2397] Generating gsk/gpu/shaders/gskgputexture.frag.spv with a custom command
+[139/2397] Generating bobgui/a11y/atspi/atspi-application-hdr with a custom command
+[140/2397] Generating gsk/gpu/shaders/gskgputexture-clipmask.frag.spv with a custom command
+[141/2397] Generating bobgui/a11y/atspi/atspi-application-src with a custom command
+[142/2397] Generating gsk/gsk.resources.xml with a custom command
+[143/2397] Generating bobgui/a11y/atspi/atspi-cache-hdr with a custom command
+[144/2397] Generating gsk/gskresources_h with a custom command
+[145/2397] Generating bobgui/a11y/atspi/atspi-cache-src with a custom command
+[146/2397] Generating GObject enum file gsk/gskenumtypes.c (wrapped by meson to capture output)
+[147/2397] Generating bobgui/a11y/atspi/atspi-collection-hdr with a custom command
+[148/2397] Generating bobgui/a11y/atspi/atspi-collection-src with a custom command
+[149/2397] Generating bobgui/a11y/atspi/atspi-component-hdr with a custom command
+[150/2397] Generating bobgui/a11y/atspi/atspi-component-src with a custom command
+[151/2397] Generating bobgui/a11y/atspi/atspi-deviceeventcontroller-hdr with a custom command
+[152/2397] Generating bobgui/a11y/atspi/atspi-deviceeventcontroller-src with a custom command
+[153/2397] Generating bobgui/a11y/atspi/atspi-deviceeventlistener-hdr with a custom command
+[154/2397] Generating bobgui/a11y/atspi/atspi-deviceeventlistener-src with a custom command
+[155/2397] Generating gsk/gskresources_c with a custom command
+[156/2397] Generating bobgui/a11y/atspi/atspi-document-hdr with a custom command
+[157/2397] Generating bobgui/a11y/atspi/atspi-editabletext-hdr with a custom command
+[158/2397] Generating bobgui/a11y/atspi/atspi-document-src with a custom command
+[159/2397] Generating bobgui/a11y/atspi/atspi-editabletext-src with a custom command
+[160/2397] Generating bobgui/a11y/atspi/atspi-event-hdr with a custom command
+[161/2397] Generating bobgui/a11y/atspi/atspi-event-src with a custom command
+[162/2397] Generating bobgui/a11y/atspi/atspi-hyperlink-hdr with a custom command
+[163/2397] Generating bobgui/a11y/atspi/atspi-hypertext-src with a custom command
+[164/2397] Generating bobgui/a11y/atspi/atspi-hyperlink-src with a custom command
+[165/2397] Generating bobgui/a11y/atspi/atspi-hypertext-hdr with a custom command
+[166/2397] Generating bobgui/a11y/atspi/atspi-image-hdr with a custom command
+[167/2397] Generating bobgui/a11y/atspi/atspi-image-src with a custom command
+[168/2397] Generating bobgui/a11y/atspi/atspi-registry-hdr with a custom command
+[169/2397] Generating bobgui/a11y/atspi/atspi-selection-hdr with a custom command
+[170/2397] Generating bobgui/a11y/atspi/atspi-registry-src with a custom command
+[171/2397] Generating bobgui/a11y/atspi/atspi-socket-hdr with a custom command
+[172/2397] Generating bobgui/a11y/atspi/atspi-socket-src with a custom command
+[173/2397] Generating bobgui/a11y/atspi/atspi-selection-src with a custom command
+[174/2397] Generating bobgui/a11y/atspi/atspi-table-hdr with a custom command
+[175/2397] Generating bobgui/a11y/atspi/atspi-table-src with a custom command
+[176/2397] Generating bobgui/a11y/atspi/atspi-text-src with a custom command
+[177/2397] Generating bobgui/a11y/atspi/atspi-tablecell-hdr with a custom command
+[178/2397] Generating bobgui/a11y/atspi/atspi-text-hdr with a custom command
+[179/2397] Generating bobgui/a11y/atspi/atspi-tablecell-src with a custom command
+[180/2397] Generating bobgui/a11y/atspi/atspi-value-hdr with a custom command
+[181/2397] Generating bobgui/a11y/atspi/atspi-value-src with a custom command
+[182/2397] Compiling C object subprojects/libxml2-2.12.6/libxml2.so.2.12.6.p/xmlschemas.c.o
+[183/2397] Linking target subprojects/libxml2-2.12.6/libxml2.so.2.12.6
+[184/2397] Compiling C++ object subprojects/libsass/src/libsass.so.p/ast_supports.cpp.o
+In file included from ../subprojects/libsass/src/ast_supports.cpp:4:
+../subprojects/libsass/src/ast.hpp:90:18: warning: ‘virtual bool Sass::AST_Node::operator==(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   90 |     virtual bool operator== (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:165:18: note:   by ‘virtual bool Sass::Expression::operator==(const Sass::Expression&) const’
+  165 |     virtual bool operator== (const Expression& rhs) const { return false; }
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:96:18: warning: ‘virtual bool Sass::AST_Node::operator!=(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   96 |     virtual bool operator!= (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:167:17: note:   by ‘bool Sass::Expression::operator!=(const Sass::Expression&) const’
+  167 |     inline bool operator!=(const Expression& rhs) const { return !(rhs == *this); }
+      |                 ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:90:18: warning: ‘virtual bool Sass::AST_Node::operator==(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   90 |     virtual bool operator== (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:908:10: note:   by ‘bool Sass::CssMediaRule::operator==(const Sass::CssMediaRule&) const’
+  908 |     bool operator== (const CssMediaRule& rhs) const {
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:96:18: warning: ‘virtual bool Sass::AST_Node::operator!=(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   96 |     virtual bool operator!= (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:911:10: note:   by ‘bool Sass::CssMediaRule::operator!=(const Sass::CssMediaRule&) const’
+  911 |     bool operator!=(const CssMediaRule& rhs) const {
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:90:18: warning: ‘virtual bool Sass::AST_Node::operator==(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   90 |     virtual bool operator== (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:939:10: note:   by ‘bool Sass::CssMediaQuery::operator==(const Sass::CssMediaQuery&) const’
+  939 |     bool operator== (const CssMediaQuery& rhs) const;
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:96:18: warning: ‘virtual bool Sass::AST_Node::operator!=(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   96 |     virtual bool operator!= (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:940:10: note:   by ‘bool Sass::CssMediaQuery::operator!=(const Sass::CssMediaQuery&) const’
+  940 |     bool operator!=(const CssMediaQuery& rhs) const {
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:165:18: warning: ‘virtual bool Sass::Expression::operator==(const Sass::Expression&) const’ was hidden [-Woverloaded-virtual=]
+  165 |     virtual bool operator== (const Expression& rhs) const { return false; }
+      |                  ^~~~~~~~
+In file included from ../subprojects/libsass/src/ast.hpp:14:
+../subprojects/libsass/src/ast_def_macros.hpp:105:16: note:   by ‘virtual bool Sass::Selector::operator==(const Sass::Selector&) const’
+  105 |   virtual bool operator==(const klass& rhs) const = 0; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:56:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+   56 |     ATTACH_VIRTUAL_CMP_OPERATIONS(Selector)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast.hpp:96:18: warning: ‘virtual bool Sass::AST_Node::operator!=(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   96 |     virtual bool operator!= (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: note:   by ‘virtual bool Sass::Selector::operator!=(const Sass::Selector&) const’
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:56:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+   56 |     ATTACH_VIRTUAL_CMP_OPERATIONS(Selector)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::Selector::operator!=(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:56:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+   56 |     ATTACH_VIRTUAL_CMP_OPERATIONS(Selector)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: note:   by ‘virtual bool Sass::SimpleSelector::operator!=(const Sass::SimpleSelector&) const’
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:139:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  139 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SimpleSelector);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../subprojects/libsass/src/ast.hpp:1055:
+../subprojects/libsass/src/ast_selectors.hpp:137:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::CompoundSelector&) const’ was hidden [-Woverloaded-virtual=]
+  137 |     virtual bool operator==(const CompoundSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::PlaceholderSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:157:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  157 |     ATTACH_CMP_OPERATIONS(PlaceholderSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:136:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::ComplexSelector&) const’ was hidden [-Woverloaded-virtual=]
+  136 |     virtual bool operator==(const ComplexSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::PlaceholderSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:157:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  157 |     ATTACH_CMP_OPERATIONS(PlaceholderSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:135:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::SelectorList&) const’ was hidden [-Woverloaded-virtual=]
+  135 |     virtual bool operator==(const SelectorList& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::PlaceholderSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:157:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  157 |     ATTACH_CMP_OPERATIONS(PlaceholderSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:133:10: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  133 |     bool operator==(const Selector& rhs) const final override;
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::PlaceholderSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:157:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  157 |     ATTACH_CMP_OPERATIONS(PlaceholderSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::SimpleSelector::operator!=(const Sass::SimpleSelector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:139:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  139 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SimpleSelector);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::PlaceholderSelector::operator!=(const Sass::PlaceholderSelector&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:157:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  157 |     ATTACH_CMP_OPERATIONS(PlaceholderSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:137:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::CompoundSelector&) const’ was hidden [-Woverloaded-virtual=]
+  137 |     virtual bool operator==(const CompoundSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::TypeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:174:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  174 |     ATTACH_CMP_OPERATIONS(TypeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:136:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::ComplexSelector&) const’ was hidden [-Woverloaded-virtual=]
+  136 |     virtual bool operator==(const ComplexSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::TypeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:174:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  174 |     ATTACH_CMP_OPERATIONS(TypeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:135:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::SelectorList&) const’ was hidden [-Woverloaded-virtual=]
+  135 |     virtual bool operator==(const SelectorList& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::TypeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:174:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  174 |     ATTACH_CMP_OPERATIONS(TypeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:133:10: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  133 |     bool operator==(const Selector& rhs) const final override;
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::TypeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:174:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  174 |     ATTACH_CMP_OPERATIONS(TypeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::SimpleSelector::operator!=(const Sass::SimpleSelector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:139:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  139 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SimpleSelector);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::TypeSelector::operator!=(const Sass::TypeSelector&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:174:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  174 |     ATTACH_CMP_OPERATIONS(TypeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:137:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::CompoundSelector&) const’ was hidden [-Woverloaded-virtual=]
+  137 |     virtual bool operator==(const CompoundSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::ClassSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:188:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  188 |     ATTACH_CMP_OPERATIONS(ClassSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:136:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::ComplexSelector&) const’ was hidden [-Woverloaded-virtual=]
+  136 |     virtual bool operator==(const ComplexSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::ClassSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:188:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  188 |     ATTACH_CMP_OPERATIONS(ClassSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:135:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::SelectorList&) const’ was hidden [-Woverloaded-virtual=]
+  135 |     virtual bool operator==(const SelectorList& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::ClassSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:188:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  188 |     ATTACH_CMP_OPERATIONS(ClassSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:133:10: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  133 |     bool operator==(const Selector& rhs) const final override;
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::ClassSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:188:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  188 |     ATTACH_CMP_OPERATIONS(ClassSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::SimpleSelector::operator!=(const Sass::SimpleSelector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:139:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  139 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SimpleSelector);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::ClassSelector::operator!=(const Sass::ClassSelector&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:188:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  188 |     ATTACH_CMP_OPERATIONS(ClassSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:137:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::CompoundSelector&) const’ was hidden [-Woverloaded-virtual=]
+  137 |     virtual bool operator==(const CompoundSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::IDSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:204:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  204 |     ATTACH_CMP_OPERATIONS(IDSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:136:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::ComplexSelector&) const’ was hidden [-Woverloaded-virtual=]
+  136 |     virtual bool operator==(const ComplexSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::IDSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:204:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  204 |     ATTACH_CMP_OPERATIONS(IDSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:135:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::SelectorList&) const’ was hidden [-Woverloaded-virtual=]
+  135 |     virtual bool operator==(const SelectorList& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::IDSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:204:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  204 |     ATTACH_CMP_OPERATIONS(IDSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:133:10: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  133 |     bool operator==(const Selector& rhs) const final override;
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::IDSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:204:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  204 |     ATTACH_CMP_OPERATIONS(IDSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::SimpleSelector::operator!=(const Sass::SimpleSelector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:139:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  139 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SimpleSelector);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::IDSelector::operator!=(const Sass::IDSelector&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:204:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  204 |     ATTACH_CMP_OPERATIONS(IDSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:137:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::CompoundSelector&) const’ was hidden [-Woverloaded-virtual=]
+  137 |     virtual bool operator==(const CompoundSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::AttributeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:223:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  223 |     ATTACH_CMP_OPERATIONS(AttributeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:136:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::ComplexSelector&) const’ was hidden [-Woverloaded-virtual=]
+  136 |     virtual bool operator==(const ComplexSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::AttributeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:223:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  223 |     ATTACH_CMP_OPERATIONS(AttributeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:135:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::SelectorList&) const’ was hidden [-Woverloaded-virtual=]
+  135 |     virtual bool operator==(const SelectorList& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::AttributeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:223:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  223 |     ATTACH_CMP_OPERATIONS(AttributeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:133:10: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  133 |     bool operator==(const Selector& rhs) const final override;
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::AttributeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:223:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  223 |     ATTACH_CMP_OPERATIONS(AttributeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::SimpleSelector::operator!=(const Sass::SimpleSelector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:139:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  139 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SimpleSelector);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::AttributeSelector::operator!=(const Sass::AttributeSelector&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:223:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  223 |     ATTACH_CMP_OPERATIONS(AttributeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::Selector::operator!=(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:56:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+   56 |     ATTACH_VIRTUAL_CMP_OPERATIONS(Selector)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::ComplexSelector::operator!=(const Sass::ComplexSelector&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:309:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  309 |     ATTACH_CMP_OPERATIONS(ComplexSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::Selector::operator!=(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:56:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+   56 |     ATTACH_VIRTUAL_CMP_OPERATIONS(Selector)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: note:   by ‘virtual bool Sass::SelectorComponent::operator!=(const Sass::SelectorComponent&) const’
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:348:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  348 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SelectorComponent);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::SelectorComponent::operator!=(const Sass::SelectorComponent&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:348:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  348 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SelectorComponent);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::SelectorCombinator::operator!=(const Sass::SelectorCombinator&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:406:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  406 |     ATTACH_CMP_OPERATIONS(SelectorCombinator)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+[185/2397] Generating symbol file subprojects/libxml2-2.12.6/libxml2.so.2.12.6.p/libxml2.so.2.12.6.symbols
+[186/2397] Linking target subprojects/libxml2-2.12.6/xmllint
+[187/2397] Linking target subprojects/libxml2-2.12.6/testdict
+[188/2397] Linking target subprojects/wayland/src/wayland-scanner
+[189/2397] Generating subprojects/wayland/src/wayland_server_protocol_h with a custom command
+[190/2397] Generating subprojects/wayland/src/wayland_server_protocol_core_h with a custom command
+[191/2397] Generating subprojects/wayland/src/wayland_client_protocol_h with a custom command
+[192/2397] Generating subprojects/wayland/src/wayland_client_protocol_core_h with a custom command
+[193/2397] Generating subprojects/wayland/src/protocol source with a custom command
+[194/2397] Compiling C object subprojects/wayland/src/libwayland-server.so.0.24.0.p/meson-generated_.._wayland-protocol.c.o
+[195/2397] Compiling C++ object subprojects/libsass/src/libsass.so.p/ast_sel_cmp.cpp.o
+In file included from ../subprojects/libsass/src/ast_selectors.hpp:7,
+                 from ../subprojects/libsass/src/ast_sel_cmp.cpp:5:
+../subprojects/libsass/src/ast.hpp:90:18: warning: ‘virtual bool Sass::AST_Node::operator==(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   90 |     virtual bool operator== (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:165:18: note:   by ‘virtual bool Sass::Expression::operator==(const Sass::Expression&) const’
+  165 |     virtual bool operator== (const Expression& rhs) const { return false; }
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:96:18: warning: ‘virtual bool Sass::AST_Node::operator!=(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   96 |     virtual bool operator!= (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:167:17: note:   by ‘bool Sass::Expression::operator!=(const Sass::Expression&) const’
+  167 |     inline bool operator!=(const Expression& rhs) const { return !(rhs == *this); }
+      |                 ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:90:18: warning: ‘virtual bool Sass::AST_Node::operator==(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   90 |     virtual bool operator== (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:908:10: note:   by ‘bool Sass::CssMediaRule::operator==(const Sass::CssMediaRule&) const’
+  908 |     bool operator== (const CssMediaRule& rhs) const {
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:96:18: warning: ‘virtual bool Sass::AST_Node::operator!=(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   96 |     virtual bool operator!= (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:911:10: note:   by ‘bool Sass::CssMediaRule::operator!=(const Sass::CssMediaRule&) const’
+  911 |     bool operator!=(const CssMediaRule& rhs) const {
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:90:18: warning: ‘virtual bool Sass::AST_Node::operator==(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   90 |     virtual bool operator== (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:939:10: note:   by ‘bool Sass::CssMediaQuery::operator==(const Sass::CssMediaQuery&) const’
+  939 |     bool operator== (const CssMediaQuery& rhs) const;
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:96:18: warning: ‘virtual bool Sass::AST_Node::operator!=(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   96 |     virtual bool operator!= (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:940:10: note:   by ‘bool Sass::CssMediaQuery::operator!=(const Sass::CssMediaQuery&) const’
+  940 |     bool operator!=(const CssMediaQuery& rhs) const {
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:165:18: warning: ‘virtual bool Sass::Expression::operator==(const Sass::Expression&) const’ was hidden [-Woverloaded-virtual=]
+  165 |     virtual bool operator== (const Expression& rhs) const { return false; }
+      |                  ^~~~~~~~
+In file included from ../subprojects/libsass/src/ast.hpp:14:
+../subprojects/libsass/src/ast_def_macros.hpp:105:16: note:   by ‘virtual bool Sass::Selector::operator==(const Sass::Selector&) const’
+  105 |   virtual bool operator==(const klass& rhs) const = 0; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:56:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+   56 |     ATTACH_VIRTUAL_CMP_OPERATIONS(Selector)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast.hpp:96:18: warning: ‘virtual bool Sass::AST_Node::operator!=(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   96 |     virtual bool operator!= (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: note:   by ‘virtual bool Sass::Selector::operator!=(const Sass::Selector&) const’
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:56:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+   56 |     ATTACH_VIRTUAL_CMP_OPERATIONS(Selector)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::Selector::operator!=(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:56:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+   56 |     ATTACH_VIRTUAL_CMP_OPERATIONS(Selector)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: note:   by ‘virtual bool Sass::SimpleSelector::operator!=(const Sass::SimpleSelector&) const’
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:139:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  139 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SimpleSelector);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:137:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::CompoundSelector&) const’ was hidden [-Woverloaded-virtual=]
+  137 |     virtual bool operator==(const CompoundSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::PlaceholderSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:157:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  157 |     ATTACH_CMP_OPERATIONS(PlaceholderSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:136:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::ComplexSelector&) const’ was hidden [-Woverloaded-virtual=]
+  136 |     virtual bool operator==(const ComplexSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::PlaceholderSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:157:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  157 |     ATTACH_CMP_OPERATIONS(PlaceholderSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:135:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::SelectorList&) const’ was hidden [-Woverloaded-virtual=]
+  135 |     virtual bool operator==(const SelectorList& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::PlaceholderSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:157:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  157 |     ATTACH_CMP_OPERATIONS(PlaceholderSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:133:10: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  133 |     bool operator==(const Selector& rhs) const final override;
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::PlaceholderSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:157:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  157 |     ATTACH_CMP_OPERATIONS(PlaceholderSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::SimpleSelector::operator!=(const Sass::SimpleSelector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:139:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  139 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SimpleSelector);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::PlaceholderSelector::operator!=(const Sass::PlaceholderSelector&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:157:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  157 |     ATTACH_CMP_OPERATIONS(PlaceholderSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:137:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::CompoundSelector&) const’ was hidden [-Woverloaded-virtual=]
+  137 |     virtual bool operator==(const CompoundSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::TypeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:174:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  174 |     ATTACH_CMP_OPERATIONS(TypeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:136:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::ComplexSelector&) const’ was hidden [-Woverloaded-virtual=]
+  136 |     virtual bool operator==(const ComplexSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::TypeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:174:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  174 |     ATTACH_CMP_OPERATIONS(TypeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:135:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::SelectorList&) const’ was hidden [-Woverloaded-virtual=]
+  135 |     virtual bool operator==(const SelectorList& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::TypeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:174:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  174 |     ATTACH_CMP_OPERATIONS(TypeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:133:10: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  133 |     bool operator==(const Selector& rhs) const final override;
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::TypeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:174:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  174 |     ATTACH_CMP_OPERATIONS(TypeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::SimpleSelector::operator!=(const Sass::SimpleSelector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:139:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  139 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SimpleSelector);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::TypeSelector::operator!=(const Sass::TypeSelector&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:174:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  174 |     ATTACH_CMP_OPERATIONS(TypeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:137:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::CompoundSelector&) const’ was hidden [-Woverloaded-virtual=]
+  137 |     virtual bool operator==(const CompoundSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::ClassSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:188:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  188 |     ATTACH_CMP_OPERATIONS(ClassSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:136:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::ComplexSelector&) const’ was hidden [-Woverloaded-virtual=]
+  136 |     virtual bool operator==(const ComplexSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::ClassSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:188:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  188 |     ATTACH_CMP_OPERATIONS(ClassSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:135:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::SelectorList&) const’ was hidden [-Woverloaded-virtual=]
+  135 |     virtual bool operator==(const SelectorList& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::ClassSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:188:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  188 |     ATTACH_CMP_OPERATIONS(ClassSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:133:10: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  133 |     bool operator==(const Selector& rhs) const final override;
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::ClassSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:188:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  188 |     ATTACH_CMP_OPERATIONS(ClassSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::SimpleSelector::operator!=(const Sass::SimpleSelector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:139:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  139 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SimpleSelector);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::ClassSelector::operator!=(const Sass::ClassSelector&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:188:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  188 |     ATTACH_CMP_OPERATIONS(ClassSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:137:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::CompoundSelector&) const’ was hidden [-Woverloaded-virtual=]
+  137 |     virtual bool operator==(const CompoundSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::IDSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:204:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  204 |     ATTACH_CMP_OPERATIONS(IDSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:136:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::ComplexSelector&) const’ was hidden [-Woverloaded-virtual=]
+  136 |     virtual bool operator==(const ComplexSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::IDSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:204:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  204 |     ATTACH_CMP_OPERATIONS(IDSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:135:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::SelectorList&) const’ was hidden [-Woverloaded-virtual=]
+  135 |     virtual bool operator==(const SelectorList& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::IDSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:204:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  204 |     ATTACH_CMP_OPERATIONS(IDSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:133:10: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  133 |     bool operator==(const Selector& rhs) const final override;
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::IDSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:204:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  204 |     ATTACH_CMP_OPERATIONS(IDSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::SimpleSelector::operator!=(const Sass::SimpleSelector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:139:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  139 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SimpleSelector);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::IDSelector::operator!=(const Sass::IDSelector&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:204:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  204 |     ATTACH_CMP_OPERATIONS(IDSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:137:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::CompoundSelector&) const’ was hidden [-Woverloaded-virtual=]
+  137 |     virtual bool operator==(const CompoundSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::AttributeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:223:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  223 |     ATTACH_CMP_OPERATIONS(AttributeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:136:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::ComplexSelector&) const’ was hidden [-Woverloaded-virtual=]
+  136 |     virtual bool operator==(const ComplexSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::AttributeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:223:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  223 |     ATTACH_CMP_OPERATIONS(AttributeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:135:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::SelectorList&) const’ was hidden [-Woverloaded-virtual=]
+  135 |     virtual bool operator==(const SelectorList& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::AttributeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:223:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  223 |     ATTACH_CMP_OPERATIONS(AttributeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:133:10: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  133 |     bool operator==(const Selector& rhs) const final override;
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::AttributeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:223:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  223 |     ATTACH_CMP_OPERATIONS(AttributeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::SimpleSelector::operator!=(const Sass::SimpleSelector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:139:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  139 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SimpleSelector);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::AttributeSelector::operator!=(const Sass::AttributeSelector&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:223:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  223 |     ATTACH_CMP_OPERATIONS(AttributeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::Selector::operator!=(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:56:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+   56 |     ATTACH_VIRTUAL_CMP_OPERATIONS(Selector)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::ComplexSelector::operator!=(const Sass::ComplexSelector&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:309:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  309 |     ATTACH_CMP_OPERATIONS(ComplexSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::Selector::operator!=(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:56:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+   56 |     ATTACH_VIRTUAL_CMP_OPERATIONS(Selector)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: note:   by ‘virtual bool Sass::SelectorComponent::operator!=(const Sass::SelectorComponent&) const’
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:348:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  348 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SelectorComponent);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::SelectorComponent::operator!=(const Sass::SelectorComponent&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:348:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  348 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SelectorComponent);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::SelectorCombinator::operator!=(const Sass::SelectorCombinator&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:406:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  406 |     ATTACH_CMP_OPERATIONS(SelectorCombinator)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+[196/2397] Compiling C object subprojects/wayland/src/libwayland-server.so.0.24.0.p/wayland-shm.c.o
+[197/2397] Compiling C object subprojects/wayland/src/libwayland-server.so.0.24.0.p/wayland-server.c.o
+[198/2397] Compiling C object subprojects/wayland/src/libwayland-server.so.0.24.0.p/event-loop.c.o
+[199/2397] Compiling C object subprojects/wayland/src/libwayland-client.so.0.24.0.p/meson-generated_.._wayland-protocol.c.o
+[200/2397] Linking target subprojects/wayland/src/libwayland-server.so.0.24.0
+[201/2397] Compiling C object subprojects/wayland/cursor/libwayland-cursor.so.0.24.0.p/wayland-cursor.c.o
+[202/2397] Compiling C object subprojects/wayland/cursor/libwayland-cursor.so.0.24.0.p/os-compatibility.c.o
+[203/2397] Compiling C object subprojects/wayland/src/libwayland-client.so.0.24.0.p/wayland-client.c.o
+[204/2397] Linking target subprojects/wayland/src/libwayland-client.so.0.24.0
+[205/2397] Compiling C object subprojects/wayland/cursor/libwayland-cursor.so.0.24.0.p/xcursor.c.o
+[206/2397] Compiling C object subprojects/wayland/egl/libwayland-egl.so.1.24.0.p/wayland-egl.c.o
+[207/2397] Linking target subprojects/wayland/egl/libwayland-egl.so.1.24.0
+[208/2397] Generating symbol file subprojects/wayland/src/libwayland-client.so.0.24.0.p/libwayland-client.so.0.24.0.symbols
+[209/2397] Linking target subprojects/wayland/cursor/libwayland-cursor.so.0.24.0
+[210/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/linux-dmabuf-v1-enum.h with a custom command
+[211/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/presentation-time-enum.h with a custom command
+[212/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/tablet-v2-enum.h with a custom command
+[213/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/viewporter-enum.h with a custom command
+[214/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/xdg-shell-enum.h with a custom command
+[215/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/alpha-modifier-v1-enum.h with a custom command
+[216/2397] Generating symbol file subprojects/wayland/egl/libwayland-egl.so.1.24.0.p/libwayland-egl.so.1.24.0.symbols
+[217/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/color-management-v1-enum.h with a custom command
+[218/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/color-representation-v1-enum.h with a custom command
+[219/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/commit-timing-v1-enum.h with a custom command
+[220/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/content-type-v1-enum.h with a custom command
+[221/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/cursor-shape-v1-enum.h with a custom command
+[222/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/drm-lease-v1-enum.h with a custom command
+[223/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/ext-data-control-v1-enum.h with a custom command
+[224/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/ext-foreign-toplevel-list-v1-enum.h with a custom command
+[225/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/ext-idle-notify-v1-enum.h with a custom command
+[226/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/ext-image-capture-source-v1-enum.h with a custom command
+[227/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/ext-session-lock-v1-enum.h with a custom command
+[228/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/ext-image-copy-capture-v1-enum.h with a custom command
+[229/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/ext-transient-seat-v1-enum.h with a custom command
+[230/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/ext-workspace-v1-enum.h with a custom command
+[231/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/fifo-v1-enum.h with a custom command
+[232/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/fractional-scale-v1-enum.h with a custom command
+[233/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/linux-drm-syncobj-v1-enum.h with a custom command
+[234/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/security-context-v1-enum.h with a custom command
+[235/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/single-pixel-buffer-v1-enum.h with a custom command
+[236/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/tearing-control-v1-enum.h with a custom command
+[237/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/xdg-activation-v1-enum.h with a custom command
+[238/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/xdg-dialog-v1-enum.h with a custom command
+[239/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/xdg-system-bell-v1-enum.h with a custom command
+[240/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/xdg-toplevel-drag-v1-enum.h with a custom command
+[241/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/xdg-toplevel-icon-v1-enum.h with a custom command
+[242/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/xdg-toplevel-tag-v1-enum.h with a custom command
+[243/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/fullscreen-shell-unstable-v1-enum.h with a custom command
+[244/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/idle-inhibit-unstable-v1-enum.h with a custom command
+[245/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/xwayland-shell-v1-enum.h with a custom command
+[246/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/input-method-unstable-v1-enum.h with a custom command
+[247/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/input-timestamps-unstable-v1-enum.h with a custom command
+[248/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/keyboard-shortcuts-inhibit-unstable-v1-enum.h with a custom command
+[249/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/linux-dmabuf-unstable-v1-enum.h with a custom command
+[250/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/linux-explicit-synchronization-unstable-v1-enum.h with a custom command
+[251/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/pointer-constraints-unstable-v1-enum.h with a custom command
+[252/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/pointer-gestures-unstable-v1-enum.h with a custom command
+[253/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/primary-selection-unstable-v1-enum.h with a custom command
+[254/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/tablet-unstable-v1-enum.h with a custom command
+[255/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/relative-pointer-unstable-v1-enum.h with a custom command
+[256/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/tablet-unstable-v2-enum.h with a custom command
+[257/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/text-input-unstable-v1-enum.h with a custom command
+[258/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/text-input-unstable-v3-enum.h with a custom command
+[259/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/xdg-foreign-unstable-v1-enum.h with a custom command
+[260/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/xdg-decoration-unstable-v1-enum.h with a custom command
+[261/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/xdg-foreign-unstable-v2-enum.h with a custom command
+[262/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/xdg-output-unstable-v1-enum.h with a custom command
+[263/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/xdg-shell-unstable-v5-enum.h with a custom command
+[264/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/xdg-shell-unstable-v6-enum.h with a custom command
+[265/2397] Generating subprojects/wayland-protocols/include/wayland-protocols/xwayland-keyboard-grab-unstable-v1-enum.h with a custom command
+[266/2397] Generating gdk/wayland/bobgui-shell-client-protocol with a custom command
+[267/2397] Generating gdk/wayland/bobgui-shell-protocol with a custom command
+[268/2397] Generating gdk/wayland/primary-selection-unstable-v1-protocol with a custom command
+[269/2397] Generating gdk/wayland/primary-selection-unstable-v1-client-protocol with a custom command
+[270/2397] Generating gdk/wayland/pointer-gestures-unstable-v1-protocol with a custom command
+[271/2397] Generating gdk/wayland/pointer-gestures-unstable-v1-client-protocol with a custom command
+[272/2397] Generating gdk/wayland/viewporter-protocol with a custom command
+[273/2397] Generating gdk/wayland/viewporter-client-protocol with a custom command
+[274/2397] Generating gdk/wayland/xdg-shell-unstable-v6-protocol with a custom command
+[275/2397] Generating gdk/wayland/xdg-shell-protocol with a custom command
+[276/2397] Generating gdk/wayland/xdg-shell-unstable-v6-client-protocol with a custom command
+[277/2397] Generating gdk/wayland/xdg-shell-client-protocol with a custom command
+[278/2397] Generating gdk/wayland/xdg-foreign-unstable-v1-protocol with a custom command
+[279/2397] Generating gdk/wayland/xdg-foreign-unstable-v2-protocol with a custom command
+[280/2397] Generating gdk/wayland/xdg-foreign-unstable-v1-client-protocol with a custom command
+[281/2397] Generating gdk/wayland/xdg-foreign-unstable-v2-client-protocol with a custom command
+[282/2397] Generating gdk/wayland/tablet-v2-protocol with a custom command
+[283/2397] Generating gdk/wayland/tablet-v2-client-protocol with a custom command
+[284/2397] Generating gdk/wayland/keyboard-shortcuts-inhibit-unstable-v1-protocol with a custom command
+[285/2397] Generating gdk/wayland/keyboard-shortcuts-inhibit-unstable-v1-client-protocol with a custom command
+[286/2397] Generating gdk/wayland/server-decoration-protocol with a custom command
+[287/2397] Generating gdk/wayland/server-decoration-client-protocol with a custom command
+[288/2397] Generating gdk/wayland/xdg-output-unstable-v1-protocol with a custom command
+[289/2397] Generating gdk/wayland/xdg-output-unstable-v1-client-protocol with a custom command
+[290/2397] Generating gdk/wayland/idle-inhibit-unstable-v1-protocol with a custom command
+[291/2397] Generating gdk/wayland/idle-inhibit-unstable-v1-client-protocol with a custom command
+[292/2397] Generating gdk/wayland/xdg-activation-v1-protocol with a custom command
+[293/2397] Generating gdk/wayland/xdg-activation-v1-client-protocol with a custom command
+[294/2397] Generating gdk/wayland/fractional-scale-v1-protocol with a custom command
+[295/2397] Generating gdk/wayland/fractional-scale-v1-client-protocol with a custom command
+[296/2397] Generating gdk/wayland/linux-dmabuf-unstable-v1-protocol with a custom command
+[297/2397] Generating gdk/wayland/linux-dmabuf-unstable-v1-client-protocol with a custom command
+[298/2397] Generating gdk/wayland/presentation-time-protocol with a custom command
+[299/2397] Generating gdk/wayland/presentation-time-client-protocol with a custom command
+[300/2397] Generating gdk/wayland/single-pixel-buffer-v1-protocol with a custom command
+[301/2397] Generating gdk/wayland/single-pixel-buffer-v1-client-protocol with a custom command
+[302/2397] Generating gdk/wayland/xdg-dialog-v1-client-protocol with a custom command
+[303/2397] Generating gdk/wayland/xdg-dialog-v1-protocol with a custom command
+[304/2397] Generating gdk/wayland/color-management-v1-protocol with a custom command
+[305/2397] Generating gdk/wayland/color-management-v1-client-protocol with a custom command
+[306/2397] Generating gdk/wayland/xdg-system-bell-v1-protocol with a custom command
+[307/2397] Generating gdk/wayland/xdg-system-bell-v1-client-protocol with a custom command
+[308/2397] Generating gdk/wayland/cursor-shape-v1-protocol with a custom command
+[309/2397] Generating gdk/wayland/cursor-shape-v1-client-protocol with a custom command
+[310/2397] Generating gdk/wayland/xdg-toplevel-icon-v1-protocol with a custom command
+[311/2397] Generating gdk/wayland/xdg-toplevel-icon-v1-client-protocol with a custom command
+[312/2397] Generating gdk/wayland/color-representation-v1-protocol with a custom command
+[313/2397] Generating gdk/wayland/xx-session-management-v1-protocol with a custom command
+[314/2397] Generating gdk/wayland/color-representation-v1-client-protocol with a custom command
+[315/2397] Generating gdk/wayland/xx-session-management-v1-client-protocol with a custom command
+[316/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/meson-generated_.._bobgui-shell-protocol.c.o
+[317/2397] Compiling C++ object subprojects/libsass/src/libsass.so.p/ast_sel_unify.cpp.o
+In file included from ../subprojects/libsass/src/ast_sel_unify.cpp:5:
+../subprojects/libsass/src/ast.hpp:90:18: warning: ‘virtual bool Sass::AST_Node::operator==(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   90 |     virtual bool operator== (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:165:18: note:   by ‘virtual bool Sass::Expression::operator==(const Sass::Expression&) const’
+  165 |     virtual bool operator== (const Expression& rhs) const { return false; }
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:96:18: warning: ‘virtual bool Sass::AST_Node::operator!=(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   96 |     virtual bool operator!= (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:167:17: note:   by ‘bool Sass::Expression::operator!=(const Sass::Expression&) const’
+  167 |     inline bool operator!=(const Expression& rhs) const { return !(rhs == *this); }
+      |                 ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:90:18: warning: ‘virtual bool Sass::AST_Node::operator==(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   90 |     virtual bool operator== (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:908:10: note:   by ‘bool Sass::CssMediaRule::operator==(const Sass::CssMediaRule&) const’
+  908 |     bool operator== (const CssMediaRule& rhs) const {
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:96:18: warning: ‘virtual bool Sass::AST_Node::operator!=(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   96 |     virtual bool operator!= (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:911:10: note:   by ‘bool Sass::CssMediaRule::operator!=(const Sass::CssMediaRule&) const’
+  911 |     bool operator!=(const CssMediaRule& rhs) const {
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:90:18: warning: ‘virtual bool Sass::AST_Node::operator==(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   90 |     virtual bool operator== (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:939:10: note:   by ‘bool Sass::CssMediaQuery::operator==(const Sass::CssMediaQuery&) const’
+  939 |     bool operator== (const CssMediaQuery& rhs) const;
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:96:18: warning: ‘virtual bool Sass::AST_Node::operator!=(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   96 |     virtual bool operator!= (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:940:10: note:   by ‘bool Sass::CssMediaQuery::operator!=(const Sass::CssMediaQuery&) const’
+  940 |     bool operator!=(const CssMediaQuery& rhs) const {
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:165:18: warning: ‘virtual bool Sass::Expression::operator==(const Sass::Expression&) const’ was hidden [-Woverloaded-virtual=]
+  165 |     virtual bool operator== (const Expression& rhs) const { return false; }
+      |                  ^~~~~~~~
+In file included from ../subprojects/libsass/src/ast.hpp:14:
+../subprojects/libsass/src/ast_def_macros.hpp:105:16: note:   by ‘virtual bool Sass::Selector::operator==(const Sass::Selector&) const’
+  105 |   virtual bool operator==(const klass& rhs) const = 0; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:56:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+   56 |     ATTACH_VIRTUAL_CMP_OPERATIONS(Selector)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast.hpp:96:18: warning: ‘virtual bool Sass::AST_Node::operator!=(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   96 |     virtual bool operator!= (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: note:   by ‘virtual bool Sass::Selector::operator!=(const Sass::Selector&) const’
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:56:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+   56 |     ATTACH_VIRTUAL_CMP_OPERATIONS(Selector)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::Selector::operator!=(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:56:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+   56 |     ATTACH_VIRTUAL_CMP_OPERATIONS(Selector)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: note:   by ‘virtual bool Sass::SimpleSelector::operator!=(const Sass::SimpleSelector&) const’
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:139:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  139 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SimpleSelector);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../subprojects/libsass/src/ast.hpp:1055:
+../subprojects/libsass/src/ast_selectors.hpp:137:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::CompoundSelector&) const’ was hidden [-Woverloaded-virtual=]
+  137 |     virtual bool operator==(const CompoundSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::PlaceholderSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:157:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  157 |     ATTACH_CMP_OPERATIONS(PlaceholderSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:136:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::ComplexSelector&) const’ was hidden [-Woverloaded-virtual=]
+  136 |     virtual bool operator==(const ComplexSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::PlaceholderSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:157:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  157 |     ATTACH_CMP_OPERATIONS(PlaceholderSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:135:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::SelectorList&) const’ was hidden [-Woverloaded-virtual=]
+  135 |     virtual bool operator==(const SelectorList& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::PlaceholderSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:157:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  157 |     ATTACH_CMP_OPERATIONS(PlaceholderSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:133:10: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  133 |     bool operator==(const Selector& rhs) const final override;
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::PlaceholderSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:157:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  157 |     ATTACH_CMP_OPERATIONS(PlaceholderSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::SimpleSelector::operator!=(const Sass::SimpleSelector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:139:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  139 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SimpleSelector);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::PlaceholderSelector::operator!=(const Sass::PlaceholderSelector&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:157:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  157 |     ATTACH_CMP_OPERATIONS(PlaceholderSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:137:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::CompoundSelector&) const’ was hidden [-Woverloaded-virtual=]
+  137 |     virtual bool operator==(const CompoundSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::TypeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:174:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  174 |     ATTACH_CMP_OPERATIONS(TypeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:136:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::ComplexSelector&) const’ was hidden [-Woverloaded-virtual=]
+  136 |     virtual bool operator==(const ComplexSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::TypeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:174:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  174 |     ATTACH_CMP_OPERATIONS(TypeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:135:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::SelectorList&) const’ was hidden [-Woverloaded-virtual=]
+  135 |     virtual bool operator==(const SelectorList& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::TypeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:174:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  174 |     ATTACH_CMP_OPERATIONS(TypeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:133:10: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  133 |     bool operator==(const Selector& rhs) const final override;
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::TypeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:174:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  174 |     ATTACH_CMP_OPERATIONS(TypeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::SimpleSelector::operator!=(const Sass::SimpleSelector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:139:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  139 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SimpleSelector);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::TypeSelector::operator!=(const Sass::TypeSelector&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:174:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  174 |     ATTACH_CMP_OPERATIONS(TypeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:137:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::CompoundSelector&) const’ was hidden [-Woverloaded-virtual=]
+  137 |     virtual bool operator==(const CompoundSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::ClassSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:188:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  188 |     ATTACH_CMP_OPERATIONS(ClassSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:136:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::ComplexSelector&) const’ was hidden [-Woverloaded-virtual=]
+  136 |     virtual bool operator==(const ComplexSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::ClassSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:188:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  188 |     ATTACH_CMP_OPERATIONS(ClassSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:135:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::SelectorList&) const’ was hidden [-Woverloaded-virtual=]
+  135 |     virtual bool operator==(const SelectorList& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::ClassSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:188:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  188 |     ATTACH_CMP_OPERATIONS(ClassSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:133:10: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  133 |     bool operator==(const Selector& rhs) const final override;
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::ClassSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:188:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  188 |     ATTACH_CMP_OPERATIONS(ClassSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::SimpleSelector::operator!=(const Sass::SimpleSelector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:139:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  139 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SimpleSelector);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::ClassSelector::operator!=(const Sass::ClassSelector&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:188:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  188 |     ATTACH_CMP_OPERATIONS(ClassSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:137:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::CompoundSelector&) const’ was hidden [-Woverloaded-virtual=]
+  137 |     virtual bool operator==(const CompoundSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::IDSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:204:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  204 |     ATTACH_CMP_OPERATIONS(IDSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:136:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::ComplexSelector&) const’ was hidden [-Woverloaded-virtual=]
+  136 |     virtual bool operator==(const ComplexSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::IDSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:204:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  204 |     ATTACH_CMP_OPERATIONS(IDSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:135:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::SelectorList&) const’ was hidden [-Woverloaded-virtual=]
+  135 |     virtual bool operator==(const SelectorList& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::IDSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:204:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  204 |     ATTACH_CMP_OPERATIONS(IDSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:133:10: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  133 |     bool operator==(const Selector& rhs) const final override;
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::IDSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:204:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  204 |     ATTACH_CMP_OPERATIONS(IDSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::SimpleSelector::operator!=(const Sass::SimpleSelector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:139:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  139 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SimpleSelector);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::IDSelector::operator!=(const Sass::IDSelector&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:204:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  204 |     ATTACH_CMP_OPERATIONS(IDSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:137:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::CompoundSelector&) const’ was hidden [-Woverloaded-virtual=]
+  137 |     virtual bool operator==(const CompoundSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::AttributeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:223:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  223 |     ATTACH_CMP_OPERATIONS(AttributeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:136:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::ComplexSelector&) const’ was hidden [-Woverloaded-virtual=]
+  136 |     virtual bool operator==(const ComplexSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::AttributeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:223:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  223 |     ATTACH_CMP_OPERATIONS(AttributeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:135:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::SelectorList&) const’ was hidden [-Woverloaded-virtual=]
+  135 |     virtual bool operator==(const SelectorList& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::AttributeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:223:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  223 |     ATTACH_CMP_OPERATIONS(AttributeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:133:10: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  133 |     bool operator==(const Selector& rhs) const final override;
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::AttributeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:223:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  223 |     ATTACH_CMP_OPERATIONS(AttributeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::SimpleSelector::operator!=(const Sass::SimpleSelector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:139:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  139 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SimpleSelector);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::AttributeSelector::operator!=(const Sass::AttributeSelector&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:223:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  223 |     ATTACH_CMP_OPERATIONS(AttributeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::Selector::operator!=(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:56:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+   56 |     ATTACH_VIRTUAL_CMP_OPERATIONS(Selector)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::ComplexSelector::operator!=(const Sass::ComplexSelector&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:309:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  309 |     ATTACH_CMP_OPERATIONS(ComplexSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::Selector::operator!=(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:56:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+   56 |     ATTACH_VIRTUAL_CMP_OPERATIONS(Selector)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: note:   by ‘virtual bool Sass::SelectorComponent::operator!=(const Sass::SelectorComponent&) const’
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:348:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  348 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SelectorComponent);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::SelectorComponent::operator!=(const Sass::SelectorComponent&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:348:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  348 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SelectorComponent);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::SelectorCombinator::operator!=(const Sass::SelectorCombinator&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:406:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  406 |     ATTACH_CMP_OPERATIONS(SelectorCombinator)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+[318/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/meson-generated_.._primary-selection-unstable-v1-protocol.c.o
+[319/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/meson-generated_.._pointer-gestures-unstable-v1-protocol.c.o
+[320/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/meson-generated_.._viewporter-protocol.c.o
+[321/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/meson-generated_.._xdg-shell-unstable-v6-protocol.c.o
+[322/2397] Compiling C++ object subprojects/libsass/src/libsass.so.p/ast_values.cpp.o
+In file included from ../subprojects/libsass/src/ast_values.cpp:4:
+../subprojects/libsass/src/ast.hpp:90:18: warning: ‘virtual bool Sass::AST_Node::operator==(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   90 |     virtual bool operator== (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:165:18: note:   by ‘virtual bool Sass::Expression::operator==(const Sass::Expression&) const’
+  165 |     virtual bool operator== (const Expression& rhs) const { return false; }
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:96:18: warning: ‘virtual bool Sass::AST_Node::operator!=(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   96 |     virtual bool operator!= (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:167:17: note:   by ‘bool Sass::Expression::operator!=(const Sass::Expression&) const’
+  167 |     inline bool operator!=(const Expression& rhs) const { return !(rhs == *this); }
+      |                 ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:90:18: warning: ‘virtual bool Sass::AST_Node::operator==(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   90 |     virtual bool operator== (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:908:10: note:   by ‘bool Sass::CssMediaRule::operator==(const Sass::CssMediaRule&) const’
+  908 |     bool operator== (const CssMediaRule& rhs) const {
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:96:18: warning: ‘virtual bool Sass::AST_Node::operator!=(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   96 |     virtual bool operator!= (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:911:10: note:   by ‘bool Sass::CssMediaRule::operator!=(const Sass::CssMediaRule&) const’
+  911 |     bool operator!=(const CssMediaRule& rhs) const {
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:90:18: warning: ‘virtual bool Sass::AST_Node::operator==(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   90 |     virtual bool operator== (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:939:10: note:   by ‘bool Sass::CssMediaQuery::operator==(const Sass::CssMediaQuery&) const’
+  939 |     bool operator== (const CssMediaQuery& rhs) const;
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:96:18: warning: ‘virtual bool Sass::AST_Node::operator!=(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   96 |     virtual bool operator!= (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:940:10: note:   by ‘bool Sass::CssMediaQuery::operator!=(const Sass::CssMediaQuery&) const’
+  940 |     bool operator!=(const CssMediaQuery& rhs) const {
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:165:18: warning: ‘virtual bool Sass::Expression::operator==(const Sass::Expression&) const’ was hidden [-Woverloaded-virtual=]
+  165 |     virtual bool operator== (const Expression& rhs) const { return false; }
+      |                  ^~~~~~~~
+In file included from ../subprojects/libsass/src/ast.hpp:14:
+../subprojects/libsass/src/ast_def_macros.hpp:105:16: note:   by ‘virtual bool Sass::Selector::operator==(const Sass::Selector&) const’
+  105 |   virtual bool operator==(const klass& rhs) const = 0; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:56:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+   56 |     ATTACH_VIRTUAL_CMP_OPERATIONS(Selector)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast.hpp:96:18: warning: ‘virtual bool Sass::AST_Node::operator!=(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   96 |     virtual bool operator!= (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: note:   by ‘virtual bool Sass::Selector::operator!=(const Sass::Selector&) const’
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:56:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+   56 |     ATTACH_VIRTUAL_CMP_OPERATIONS(Selector)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::Selector::operator!=(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:56:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+   56 |     ATTACH_VIRTUAL_CMP_OPERATIONS(Selector)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: note:   by ‘virtual bool Sass::SimpleSelector::operator!=(const Sass::SimpleSelector&) const’
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:139:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  139 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SimpleSelector);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../subprojects/libsass/src/ast.hpp:1055:
+../subprojects/libsass/src/ast_selectors.hpp:137:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::CompoundSelector&) const’ was hidden [-Woverloaded-virtual=]
+  137 |     virtual bool operator==(const CompoundSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::PlaceholderSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:157:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  157 |     ATTACH_CMP_OPERATIONS(PlaceholderSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:136:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::ComplexSelector&) const’ was hidden [-Woverloaded-virtual=]
+  136 |     virtual bool operator==(const ComplexSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::PlaceholderSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:157:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  157 |     ATTACH_CMP_OPERATIONS(PlaceholderSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:135:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::SelectorList&) const’ was hidden [-Woverloaded-virtual=]
+  135 |     virtual bool operator==(const SelectorList& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::PlaceholderSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:157:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  157 |     ATTACH_CMP_OPERATIONS(PlaceholderSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:133:10: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  133 |     bool operator==(const Selector& rhs) const final override;
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::PlaceholderSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:157:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  157 |     ATTACH_CMP_OPERATIONS(PlaceholderSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::SimpleSelector::operator!=(const Sass::SimpleSelector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:139:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  139 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SimpleSelector);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::PlaceholderSelector::operator!=(const Sass::PlaceholderSelector&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:157:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  157 |     ATTACH_CMP_OPERATIONS(PlaceholderSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:137:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::CompoundSelector&) const’ was hidden [-Woverloaded-virtual=]
+  137 |     virtual bool operator==(const CompoundSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::TypeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:174:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  174 |     ATTACH_CMP_OPERATIONS(TypeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:136:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::ComplexSelector&) const’ was hidden [-Woverloaded-virtual=]
+  136 |     virtual bool operator==(const ComplexSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::TypeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:174:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  174 |     ATTACH_CMP_OPERATIONS(TypeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:135:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::SelectorList&) const’ was hidden [-Woverloaded-virtual=]
+  135 |     virtual bool operator==(const SelectorList& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::TypeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:174:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  174 |     ATTACH_CMP_OPERATIONS(TypeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:133:10: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  133 |     bool operator==(const Selector& rhs) const final override;
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::TypeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:174:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  174 |     ATTACH_CMP_OPERATIONS(TypeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::SimpleSelector::operator!=(const Sass::SimpleSelector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:139:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  139 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SimpleSelector);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::TypeSelector::operator!=(const Sass::TypeSelector&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:174:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  174 |     ATTACH_CMP_OPERATIONS(TypeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:137:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::CompoundSelector&) const’ was hidden [-Woverloaded-virtual=]
+  137 |     virtual bool operator==(const CompoundSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::ClassSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:188:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  188 |     ATTACH_CMP_OPERATIONS(ClassSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:136:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::ComplexSelector&) const’ was hidden [-Woverloaded-virtual=]
+  136 |     virtual bool operator==(const ComplexSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::ClassSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:188:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  188 |     ATTACH_CMP_OPERATIONS(ClassSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:135:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::SelectorList&) const’ was hidden [-Woverloaded-virtual=]
+  135 |     virtual bool operator==(const SelectorList& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::ClassSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:188:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  188 |     ATTACH_CMP_OPERATIONS(ClassSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:133:10: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  133 |     bool operator==(const Selector& rhs) const final override;
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::ClassSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:188:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  188 |     ATTACH_CMP_OPERATIONS(ClassSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::SimpleSelector::operator!=(const Sass::SimpleSelector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:139:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  139 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SimpleSelector);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::ClassSelector::operator!=(const Sass::ClassSelector&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:188:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  188 |     ATTACH_CMP_OPERATIONS(ClassSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:137:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::CompoundSelector&) const’ was hidden [-Woverloaded-virtual=]
+  137 |     virtual bool operator==(const CompoundSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::IDSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:204:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  204 |     ATTACH_CMP_OPERATIONS(IDSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:136:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::ComplexSelector&) const’ was hidden [-Woverloaded-virtual=]
+  136 |     virtual bool operator==(const ComplexSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::IDSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:204:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  204 |     ATTACH_CMP_OPERATIONS(IDSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:135:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::SelectorList&) const’ was hidden [-Woverloaded-virtual=]
+  135 |     virtual bool operator==(const SelectorList& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::IDSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:204:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  204 |     ATTACH_CMP_OPERATIONS(IDSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:133:10: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  133 |     bool operator==(const Selector& rhs) const final override;
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::IDSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:204:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  204 |     ATTACH_CMP_OPERATIONS(IDSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::SimpleSelector::operator!=(const Sass::SimpleSelector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:139:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  139 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SimpleSelector);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::IDSelector::operator!=(const Sass::IDSelector&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:204:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  204 |     ATTACH_CMP_OPERATIONS(IDSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:137:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::CompoundSelector&) const’ was hidden [-Woverloaded-virtual=]
+  137 |     virtual bool operator==(const CompoundSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::AttributeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:223:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  223 |     ATTACH_CMP_OPERATIONS(AttributeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:136:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::ComplexSelector&) const’ was hidden [-Woverloaded-virtual=]
+  136 |     virtual bool operator==(const ComplexSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::AttributeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:223:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  223 |     ATTACH_CMP_OPERATIONS(AttributeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:135:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::SelectorList&) const’ was hidden [-Woverloaded-virtual=]
+  135 |     virtual bool operator==(const SelectorList& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::AttributeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:223:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  223 |     ATTACH_CMP_OPERATIONS(AttributeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:133:10: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  133 |     bool operator==(const Selector& rhs) const final override;
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::AttributeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:223:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  223 |     ATTACH_CMP_OPERATIONS(AttributeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::SimpleSelector::operator!=(const Sass::SimpleSelector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:139:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  139 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SimpleSelector);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::AttributeSelector::operator!=(const Sass::AttributeSelector&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:223:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  223 |     ATTACH_CMP_OPERATIONS(AttributeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::Selector::operator!=(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:56:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+   56 |     ATTACH_VIRTUAL_CMP_OPERATIONS(Selector)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::ComplexSelector::operator!=(const Sass::ComplexSelector&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:309:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  309 |     ATTACH_CMP_OPERATIONS(ComplexSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::Selector::operator!=(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:56:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+   56 |     ATTACH_VIRTUAL_CMP_OPERATIONS(Selector)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: note:   by ‘virtual bool Sass::SelectorComponent::operator!=(const Sass::SelectorComponent&) const’
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:348:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  348 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SelectorComponent);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::SelectorComponent::operator!=(const Sass::SelectorComponent&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:348:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  348 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SelectorComponent);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::SelectorCombinator::operator!=(const Sass::SelectorCombinator&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:406:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  406 |     ATTACH_CMP_OPERATIONS(SelectorCombinator)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_values.cpp: In member function ‘virtual size_t Sass::Number::hash() const’:
+../subprojects/libsass/src/ast_values.cpp:484:23: warning: loop variable ‘numerator’ creates a copy from type ‘const std::__cxx11::basic_string<char>’ [-Wrange-loop-construct]
+  484 |       for (const auto numerator : numerators)
+      |                       ^~~~~~~~~
+../subprojects/libsass/src/ast_values.cpp:484:23: note: use reference type to prevent copying
+  484 |       for (const auto numerator : numerators)
+      |                       ^~~~~~~~~
+      |                       &
+../subprojects/libsass/src/ast_values.cpp:486:23: warning: loop variable ‘denominator’ creates a copy from type ‘const std::__cxx11::basic_string<char>’ [-Wrange-loop-construct]
+  486 |       for (const auto denominator : denominators)
+      |                       ^~~~~~~~~~~
+../subprojects/libsass/src/ast_values.cpp:486:23: note: use reference type to prevent copying
+  486 |       for (const auto denominator : denominators)
+      |                       ^~~~~~~~~~~
+      |                       &
+[323/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/meson-generated_.._xdg-shell-protocol.c.o
+[324/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/meson-generated_.._xdg-foreign-unstable-v2-protocol.c.o
+[325/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/meson-generated_.._xdg-foreign-unstable-v1-protocol.c.o
+[326/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/meson-generated_.._tablet-v2-protocol.c.o
+[327/2397] Compiling C++ object subprojects/libsass/src/libsass.so.p/ast.cpp.o
+In file included from ../subprojects/libsass/src/ast.cpp:5:
+../subprojects/libsass/src/ast.hpp:90:18: warning: ‘virtual bool Sass::AST_Node::operator==(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   90 |     virtual bool operator== (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:165:18: note:   by ‘virtual bool Sass::Expression::operator==(const Sass::Expression&) const’
+  165 |     virtual bool operator== (const Expression& rhs) const { return false; }
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:96:18: warning: ‘virtual bool Sass::AST_Node::operator!=(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   96 |     virtual bool operator!= (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:167:17: note:   by ‘bool Sass::Expression::operator!=(const Sass::Expression&) const’
+  167 |     inline bool operator!=(const Expression& rhs) const { return !(rhs == *this); }
+      |                 ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:90:18: warning: ‘virtual bool Sass::AST_Node::operator==(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   90 |     virtual bool operator== (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:908:10: note:   by ‘bool Sass::CssMediaRule::operator==(const Sass::CssMediaRule&) const’
+  908 |     bool operator== (const CssMediaRule& rhs) const {
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:96:18: warning: ‘virtual bool Sass::AST_Node::operator!=(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   96 |     virtual bool operator!= (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:911:10: note:   by ‘bool Sass::CssMediaRule::operator!=(const Sass::CssMediaRule&) const’
+  911 |     bool operator!=(const CssMediaRule& rhs) const {
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:90:18: warning: ‘virtual bool Sass::AST_Node::operator==(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   90 |     virtual bool operator== (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:939:10: note:   by ‘bool Sass::CssMediaQuery::operator==(const Sass::CssMediaQuery&) const’
+  939 |     bool operator== (const CssMediaQuery& rhs) const;
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:96:18: warning: ‘virtual bool Sass::AST_Node::operator!=(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   96 |     virtual bool operator!= (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:940:10: note:   by ‘bool Sass::CssMediaQuery::operator!=(const Sass::CssMediaQuery&) const’
+  940 |     bool operator!=(const CssMediaQuery& rhs) const {
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast.hpp:165:18: warning: ‘virtual bool Sass::Expression::operator==(const Sass::Expression&) const’ was hidden [-Woverloaded-virtual=]
+  165 |     virtual bool operator== (const Expression& rhs) const { return false; }
+      |                  ^~~~~~~~
+In file included from ../subprojects/libsass/src/ast.hpp:14:
+../subprojects/libsass/src/ast_def_macros.hpp:105:16: note:   by ‘virtual bool Sass::Selector::operator==(const Sass::Selector&) const’
+  105 |   virtual bool operator==(const klass& rhs) const = 0; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:56:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+   56 |     ATTACH_VIRTUAL_CMP_OPERATIONS(Selector)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast.hpp:96:18: warning: ‘virtual bool Sass::AST_Node::operator!=(const Sass::AST_Node&) const’ was hidden [-Woverloaded-virtual=]
+   96 |     virtual bool operator!= (const AST_Node& rhs) const {
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: note:   by ‘virtual bool Sass::Selector::operator!=(const Sass::Selector&) const’
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:56:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+   56 |     ATTACH_VIRTUAL_CMP_OPERATIONS(Selector)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::Selector::operator!=(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:56:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+   56 |     ATTACH_VIRTUAL_CMP_OPERATIONS(Selector)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: note:   by ‘virtual bool Sass::SimpleSelector::operator!=(const Sass::SimpleSelector&) const’
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:139:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  139 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SimpleSelector);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../subprojects/libsass/src/ast.hpp:1055:
+../subprojects/libsass/src/ast_selectors.hpp:137:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::CompoundSelector&) const’ was hidden [-Woverloaded-virtual=]
+  137 |     virtual bool operator==(const CompoundSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::PlaceholderSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:157:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  157 |     ATTACH_CMP_OPERATIONS(PlaceholderSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:136:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::ComplexSelector&) const’ was hidden [-Woverloaded-virtual=]
+  136 |     virtual bool operator==(const ComplexSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::PlaceholderSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:157:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  157 |     ATTACH_CMP_OPERATIONS(PlaceholderSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:135:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::SelectorList&) const’ was hidden [-Woverloaded-virtual=]
+  135 |     virtual bool operator==(const SelectorList& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::PlaceholderSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:157:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  157 |     ATTACH_CMP_OPERATIONS(PlaceholderSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:133:10: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  133 |     bool operator==(const Selector& rhs) const final override;
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::PlaceholderSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:157:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  157 |     ATTACH_CMP_OPERATIONS(PlaceholderSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::SimpleSelector::operator!=(const Sass::SimpleSelector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:139:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  139 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SimpleSelector);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::PlaceholderSelector::operator!=(const Sass::PlaceholderSelector&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:157:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  157 |     ATTACH_CMP_OPERATIONS(PlaceholderSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:137:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::CompoundSelector&) const’ was hidden [-Woverloaded-virtual=]
+  137 |     virtual bool operator==(const CompoundSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::TypeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:174:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  174 |     ATTACH_CMP_OPERATIONS(TypeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:136:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::ComplexSelector&) const’ was hidden [-Woverloaded-virtual=]
+  136 |     virtual bool operator==(const ComplexSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::TypeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:174:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  174 |     ATTACH_CMP_OPERATIONS(TypeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:135:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::SelectorList&) const’ was hidden [-Woverloaded-virtual=]
+  135 |     virtual bool operator==(const SelectorList& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::TypeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:174:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  174 |     ATTACH_CMP_OPERATIONS(TypeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:133:10: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  133 |     bool operator==(const Selector& rhs) const final override;
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::TypeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:174:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  174 |     ATTACH_CMP_OPERATIONS(TypeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::SimpleSelector::operator!=(const Sass::SimpleSelector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:139:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  139 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SimpleSelector);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::TypeSelector::operator!=(const Sass::TypeSelector&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:174:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  174 |     ATTACH_CMP_OPERATIONS(TypeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:137:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::CompoundSelector&) const’ was hidden [-Woverloaded-virtual=]
+  137 |     virtual bool operator==(const CompoundSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::ClassSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:188:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  188 |     ATTACH_CMP_OPERATIONS(ClassSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:136:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::ComplexSelector&) const’ was hidden [-Woverloaded-virtual=]
+  136 |     virtual bool operator==(const ComplexSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::ClassSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:188:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  188 |     ATTACH_CMP_OPERATIONS(ClassSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:135:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::SelectorList&) const’ was hidden [-Woverloaded-virtual=]
+  135 |     virtual bool operator==(const SelectorList& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::ClassSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:188:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  188 |     ATTACH_CMP_OPERATIONS(ClassSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:133:10: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  133 |     bool operator==(const Selector& rhs) const final override;
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::ClassSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:188:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  188 |     ATTACH_CMP_OPERATIONS(ClassSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::SimpleSelector::operator!=(const Sass::SimpleSelector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:139:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  139 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SimpleSelector);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::ClassSelector::operator!=(const Sass::ClassSelector&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:188:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  188 |     ATTACH_CMP_OPERATIONS(ClassSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:137:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::CompoundSelector&) const’ was hidden [-Woverloaded-virtual=]
+  137 |     virtual bool operator==(const CompoundSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::IDSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:204:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  204 |     ATTACH_CMP_OPERATIONS(IDSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:136:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::ComplexSelector&) const’ was hidden [-Woverloaded-virtual=]
+  136 |     virtual bool operator==(const ComplexSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::IDSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:204:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  204 |     ATTACH_CMP_OPERATIONS(IDSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:135:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::SelectorList&) const’ was hidden [-Woverloaded-virtual=]
+  135 |     virtual bool operator==(const SelectorList& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::IDSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:204:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  204 |     ATTACH_CMP_OPERATIONS(IDSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:133:10: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  133 |     bool operator==(const Selector& rhs) const final override;
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::IDSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:204:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  204 |     ATTACH_CMP_OPERATIONS(IDSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::SimpleSelector::operator!=(const Sass::SimpleSelector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:139:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  139 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SimpleSelector);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::IDSelector::operator!=(const Sass::IDSelector&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:204:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  204 |     ATTACH_CMP_OPERATIONS(IDSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:137:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::CompoundSelector&) const’ was hidden [-Woverloaded-virtual=]
+  137 |     virtual bool operator==(const CompoundSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::AttributeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:223:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  223 |     ATTACH_CMP_OPERATIONS(AttributeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:136:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::ComplexSelector&) const’ was hidden [-Woverloaded-virtual=]
+  136 |     virtual bool operator==(const ComplexSelector& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::AttributeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:223:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  223 |     ATTACH_CMP_OPERATIONS(AttributeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:135:18: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::SelectorList&) const’ was hidden [-Woverloaded-virtual=]
+  135 |     virtual bool operator==(const SelectorList& rhs) const;
+      |                  ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::AttributeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:223:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  223 |     ATTACH_CMP_OPERATIONS(AttributeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:133:10: warning: ‘virtual bool Sass::SimpleSelector::operator==(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  133 |     bool operator==(const Selector& rhs) const final override;
+      |          ^~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:109:16: note:   by ‘Sass::AttributeSelector::operator==’
+  109 |   virtual bool operator==(const klass& rhs) const; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:223:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  223 |     ATTACH_CMP_OPERATIONS(AttributeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::SimpleSelector::operator!=(const Sass::SimpleSelector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:139:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  139 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SimpleSelector);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::AttributeSelector::operator!=(const Sass::AttributeSelector&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:223:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  223 |     ATTACH_CMP_OPERATIONS(AttributeSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::Selector::operator!=(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:56:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+   56 |     ATTACH_VIRTUAL_CMP_OPERATIONS(Selector)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::ComplexSelector::operator!=(const Sass::ComplexSelector&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:309:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  309 |     ATTACH_CMP_OPERATIONS(ComplexSelector)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::Selector::operator!=(const Sass::Selector&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:56:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+   56 |     ATTACH_VIRTUAL_CMP_OPERATIONS(Selector)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: note:   by ‘virtual bool Sass::SelectorComponent::operator!=(const Sass::SelectorComponent&) const’
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:348:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  348 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SelectorComponent);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:106:16: warning: ‘virtual bool Sass::SelectorComponent::operator!=(const Sass::SelectorComponent&) const’ was hidden [-Woverloaded-virtual=]
+  106 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:348:5: note: in expansion of macro ‘ATTACH_VIRTUAL_CMP_OPERATIONS’
+  348 |     ATTACH_VIRTUAL_CMP_OPERATIONS(SelectorComponent);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../subprojects/libsass/src/ast_def_macros.hpp:110:16: note:   by ‘virtual bool Sass::SelectorCombinator::operator!=(const Sass::SelectorCombinator&) const’
+  110 |   virtual bool operator!=(const klass& rhs) const { return !(*this == rhs); }; \
+      |                ^~~~~~~~
+../subprojects/libsass/src/ast_selectors.hpp:406:5: note: in expansion of macro ‘ATTACH_CMP_OPERATIONS’
+  406 |     ATTACH_CMP_OPERATIONS(SelectorCombinator)
+      |     ^~~~~~~~~~~~~~~~~~~~~
+[328/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/meson-generated_.._keyboard-shortcuts-inhibit-unstable-v1-protocol.c.o
+[329/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/meson-generated_.._server-decoration-protocol.c.o
+[330/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/meson-generated_.._idle-inhibit-unstable-v1-protocol.c.o
+[331/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/meson-generated_.._xdg-output-unstable-v1-protocol.c.o
+[332/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/meson-generated_.._fractional-scale-v1-protocol.c.o
+[333/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/meson-generated_.._xdg-activation-v1-protocol.c.o
+[334/2397] Compiling C object gdk/x11/libgdk-x11.a.p/gdkcursor-x11.c.o
+[335/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/meson-generated_.._linux-dmabuf-unstable-v1-protocol.c.o
+[336/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/meson-generated_.._presentation-time-protocol.c.o
+[337/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/meson-generated_.._single-pixel-buffer-v1-protocol.c.o
+[338/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/meson-generated_.._xdg-dialog-v1-protocol.c.o
+[339/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/meson-generated_.._color-management-v1-protocol.c.o
+[340/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/meson-generated_.._xdg-system-bell-v1-protocol.c.o
+[341/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/meson-generated_.._cursor-shape-v1-protocol.c.o
+[342/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/meson-generated_.._xdg-toplevel-icon-v1-protocol.c.o
+[343/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/meson-generated_.._color-representation-v1-protocol.c.o
+[344/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/meson-generated_.._xx-session-management-v1-protocol.c.o
+[345/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/gdkapplaunchcontext-wayland.c.o
+[346/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/gdkclipboard-wayland.c.o
+[347/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/gdkcairocontext-wayland.c.o
+[348/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/gdkcursor-wayland.c.o
+[349/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/gdkdevice-wayland.c.o
+[350/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/gdkdevicepad-wayland.c.o
+[351/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/gdkdmabuf-wayland.c.o
+[352/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/gdkdrag-wayland.c.o
+[353/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/gdkdisplay-wayland.c.o
+[354/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/gdkdragsurface-wayland.c.o
+[355/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/gdkdrop-wayland.c.o
+[356/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/gdkeventsource.c.o
+[357/2397] Compiling C object subprojects/libepoxy/src/libepoxy.so.0.0.0.p/meson-generated_.._gl_generated_dispatch.c.o
+[358/2397] Linking target subprojects/libepoxy/src/libepoxy.so.0.0.0
+[359/2397] Generating symbol file subprojects/libepoxy/src/libepoxy.so.0.0.0.p/libepoxy.so.0.0.0.symbols
+[360/2397] Linking target 'subprojects/libepoxy/test/header guards'
+[361/2397] Linking target 'subprojects/libepoxy/test/misc defines'
+[362/2397] Linking target 'subprojects/libepoxy/test/khronos typedefs'
+[363/2397] Linking target subprojects/libepoxy/test/gl_version
+[364/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/gdkglcontext-wayland.c.o
+[365/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/gdkkeymap-wayland.c.o
+[366/2397] Linking target subprojects/libepoxy/test/egl_has_extension_nocontext
+[367/2397] Linking target subprojects/libepoxy/test/egl_epoxy_api
+[368/2397] Linking target subprojects/libepoxy/test/egl_gles2_without_glx
+[369/2397] Linking target subprojects/libepoxy/test/egl_gles1_without_glx
+[370/2397] Linking target subprojects/libepoxy/test/egl_gl
+[371/2397] Linking target subprojects/libepoxy/test/glx_public_api
+[372/2397] Linking target subprojects/libepoxy/test/glx_beginend
+[373/2397] Linking target subprojects/libepoxy/test/glx_glxgetprocaddress_nocontext
+[374/2397] Linking target subprojects/libepoxy/test/glx_public_api_core
+[375/2397] Linking target subprojects/libepoxy/test/glx_shared_znow
+[376/2397] Linking target subprojects/libepoxy/test/glx_has_extension_nocontext
+[377/2397] Linking target subprojects/libepoxy/test/glx_alias_prefer_same_name
+[378/2397] Linking target subprojects/libepoxy/test/glx_gles2
+[379/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/gdkmonitor-wayland.c.o
+[380/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/gdkprimary-wayland.c.o
+[381/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/gdkseat-wayland.c.o
+FAILED: gdk/wayland/libgdk-wayland.a.p/gdkseat-wayland.c.o
+/usr/bin/ccache cc -Igdk/wayland/libgdk-wayland.a.p -Igdk/wayland -I../gdk/wayland -I. -I.. -Igdk -I../gdk -Isubprojects/gdk-pixbuf -I../subprojects/gdk-pixbuf -Isubprojects/glib -I../subprojects/glib -Isubprojects/glib/glib -I../subprojects/glib/glib -Isubprojects/glib/gobject -I../subprojects/glib/gobject -Isubprojects/glib/gmodule -I../subprojects/glib/gmodule -Isubprojects/glib/gio -I../subprojects/glib/gio -Isubprojects/cairo/src -I../subprojects/cairo/src -Isubprojects/fontconfig -I../subprojects/fontconfig -Isubprojects/fontconfig/fc-lang -I../subprojects/fontconfig/fc-lang -Isubprojects/pixman-0.43.4/pixman -I../subprojects/pixman-0.43.4/pixman -Isubprojects/pango -I../subprojects/pango -Isubprojects/fribidi -I../subprojects/fribidi -Isubprojects/fribidi/lib -I../subprojects/fribidi/lib -Isubprojects/fribidi/gen.tab -I../subprojects/fribidi/gen.tab -Isubprojects/harfbuzz/src -I../subprojects/harfbuzz/src -Isubprojects/cairo/util/cairo-gobject -I../subprojects/cairo/util/cairo-gobject -Isubprojects/graphene/include -I../subprojects/graphene/include -Isubprojects/libepoxy/include -I../subprojects/libepoxy/include -Isubprojects/libepoxy/src -I../subprojects/libepoxy/src -Isubprojects/tiff-4.7.0/libtiff -I../subprojects/tiff-4.7.0/libtiff -Isubprojects/libjpeg-turbo-3.1.1/src -I../subprojects/libjpeg-turbo-3.1.1/src -Isubprojects/wayland -I../subprojects/wayland -Isubprojects/wayland/src -I../subprojects/wayland/src -Isubprojects/wayland-protocols/include -I../subprojects/wayland-protocols/include -Isubprojects/wayland/egl -I../subprojects/wayland/egl -Igdk/version -Isubprojects/gdk-pixbuf/gdk-pixbuf -Isubprojects/pango/pango -Isubprojects/libepoxy/include/epoxy -I/usr/include/libpng16 -I/usr/include/freetype2 -I/usr/include/libdrm -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu11 -O2 -g -DG_LOG_USE_STRUCTURED=1 -DGLIB_VERSION_MIN_REQUIRED=GLIB_VERSION_2_84 -DGLIB_VERSION_MAX_ALLOWED=GLIB_VERSION_2_84 '-DPANGO_VERSION_MIN_REQUIRED=G_ENCODE_VERSION(1,56)' '-DPANGO_VERSION_MAX_ALLOWED=G_ENCODE_VERSION(1,56)' '-DBOBGUI_VERSION="4.23.0"' -D_GNU_SOURCE -DG_ENABLE_DEBUG -fPIC -pthread -DBOBGUI_COMPILATION '-DG_LOG_DOMAIN="Gdk"' -fno-strict-aliasing -Wno-missing-include-dirs -Wduplicated-branches -Wduplicated-cond -Wformat=2 -Wformat-nonliteral -Wformat-security -Wignored-qualifiers -Wimplicit-function-declaration -Wlogical-op -Wmisleading-indentation -Wmissing-format-attribute -Wmissing-include-dirs -Wmissing-noreturn -Wnested-externs -Wold-style-definition -Wpointer-arith -Wshadow -Wstrict-prototypes -Wswitch-default -Wswitch-enum -Wundef -Wuninitialized -Wunused -Werror=address -Werror=array-bounds -Werror=empty-body -Werror=enum-int-mismatch -Werror=implicit -Werror=implicit-fallthrough -Werror=implicit-fallthrough=5 -Werror=init-self -Werror=int-to-pointer-cast -Werror=main -Werror=missing-braces -Werror=missing-declarations -Werror=missing-prototypes -Werror=nonnull -Werror=override-init -Werror=pointer-to-int-cast -Werror=redundant-decls -Werror=return-type -Werror=sequence-point -Werror=trigraphs -Werror=vla -Werror=write-strings -Wcast-align -Wnull-dereference -fvisibility=hidden -MD -MQ gdk/wayland/libgdk-wayland.a.p/gdkseat-wayland.c.o -MF gdk/wayland/libgdk-wayland.a.p/gdkseat-wayland.c.o.d -o gdk/wayland/libgdk-wayland.a.p/gdkseat-wayland.c.o -c ../gdk/wayland/gdkseat-wayland.c
+../gdk/wayland/gdkseat-wayland.c: In function ‘deliver_key_event’:
+../gdk/wayland/gdkseat-wayland.c:1201:76: error: ‘XKB_CONSUMED_MODE_BOBGUI’ undeclared (first use in this function); did you mean ‘XKB_CONSUMED_MODE_GTK’?
+ 1201 |   consumed = modifiers & xkb_state_key_get_consumed_mods2 (xkb_state, key, XKB_CONSUMED_MODE_BOBGUI);
+      |                                                                            ^~~~~~~~~~~~~~~~~~~~~~~~
+      |                                                                            XKB_CONSUMED_MODE_GTK
+../gdk/wayland/gdkseat-wayland.c:1201:76: note: each undeclared identifier is reported only once for each function it appears in
+[382/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/gdksettings-wayland.c.o
+[383/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/gdkshm.c.o
+[384/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/gdksurface-wayland.c.o
+[385/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/gdksubsurface-wayland.c.o
+[386/2397] Compiling C object gdk/wayland/libgdk-wayland.a.p/gdktoplevel-wayland.c.o
+ninja: build stopped: subcommand failed.
+INFO: autodetecting backend as ninja
+INFO: calculating backend command to run: /usr/bin/ninja -C /app/build

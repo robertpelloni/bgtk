@@ -1,0 +1,6 @@
+[submodule "submodules/ultimatepp"]
+	path = submodules/ultimatepp
+	url = https://github.com/ultimatepp/ultimatepp
+[submodule "submodules/juce"]
+	path = submodules/juce
+	url = https://github.com/juce-framework/JUCE

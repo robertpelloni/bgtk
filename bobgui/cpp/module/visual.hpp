@@ -1,29 +1,67 @@
-#ifndef BOBGUI_CPP_MODULE_VISUAL_HPP
-#define BOBGUI_CPP_MODULE_VISUAL_HPP
+#pragma once
 
-// Visual module: Widgets, graphics, layout, workbench, shells, etc.
-// This maps to bobgui/modules/visual/
+#include <bobgui/cpp/module.hpp>
+#include <bobgui/cpp/visual.hpp>
+#include <memory>
+#include <string>
 
-namespace bobgui {
-namespace visual {
-  // Re-export the visual C++ utilities
-  using bobgui::cpp::Widget;
-  using bobgui::cpp::Canvas;
-  using bobgui::cpp::Graphics;
-  using bobgui::cpp::Layout;
-  using bobgui::cpp::Workbench;
-  using bobgui::cpp::AppShell;
-  using bobgui::cpp::StudioShell;
-  using bobgui::cpp::DocumentShell;
-  using bobgui::cpp::DashboardShell;
-  using bobgui::cpp::CommandPalette;
-  using bobgui::cpp::ToolSurface;
-  using bobgui::cpp::ToolSurfaceBuilder;
-  using bobgui::cpp::ToolbarBuilder;
-  
-  // Visual submodules will be mapped here as needed
-  // e.g., namespace commandpalette { /* bobgui::modules::visual::commandpalette::* */ }
-}
-}
+namespace bobtk {
+namespace module {
 
-#endif // BOBGUI_CPP_MODULE_VISUAL_HPP
+// The Visual Pillar interface acts as the service registry for UI, rendering, and window layout frameworks
+class VisualPillar : public Module {
+public:
+    VisualPillar() : Module("Visual", "1.0.0") {}
+
+    // Workbench IDE UI
+    std::shared_ptr<visual::Workbench> createWorkbench(BobguiApplication* app) {
+        return std::make_shared<visual::Workbench>(app);
+    }
+
+    // RHI Renderer
+    std::shared_ptr<visual::RhiDevice> createRhiDevice(BobguiRhiBackend backend) {
+        return std::make_shared<visual::RhiDevice>(backend);
+    }
+
+    // Imgui Direct Integration
+    std::shared_ptr<visual::ImguiContext> createImguiContext() {
+        return std::make_shared<visual::ImguiContext>();
+    }
+
+    // Graph Views
+    std::shared_ptr<visual::GraphView> createGraphView() {
+        return std::make_shared<visual::GraphView>();
+    }
+
+    // Command Palette
+    std::shared_ptr<visual::CommandPalette> createCommandPalette() {
+        return std::make_shared<visual::CommandPalette>();
+    }
+
+    // Docking
+    std::shared_ptr<visual::DockManager> createDockManager(BobguiWindow* mainWindow) {
+        return std::make_shared<visual::DockManager>(mainWindow);
+    }
+
+    // Global Design Tokens
+    std::shared_ptr<visual::DesignSystem> getDesignSystem() {
+        return visual::DesignSystem::getDefault();
+    }
+
+protected:
+    bool onInitialize() override {
+        // Initialize underlying C libraries
+        return true;
+    }
+
+    bool onStart() override {
+        return true;
+    }
+
+    bool onStop() override {
+        return true;
+    }
+};
+
+} // namespace module
+} // namespace bobtk
