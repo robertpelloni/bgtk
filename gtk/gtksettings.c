@@ -2131,6 +2131,28 @@ settings_update_font_values (GtkSettings *settings)
       priv->font_family = g_strdup ("Sans");
     }
 
+  g_free (settings->font_variations);
+  if (desc != NULL &&
+      (pango_font_description_get_set_fields (desc) & PANGO_FONT_MASK_VARIATIONS) != 0)
+    {
+      settings->font_variations = g_strdup (pango_font_description_get_variations (desc));
+    }
+  else
+    {
+      settings->font_variations = NULL;
+    }
+
+  g_free (settings->font_features);
+  if (desc != NULL &&
+      (pango_font_description_get_set_fields (desc) & PANGO_FONT_MASK_FEATURES) != 0)
+    {
+      settings->font_features = g_strdup (pango_font_description_get_features (desc));
+    }
+  else
+    {
+      settings->font_features = NULL;
+    }
+
   if (desc)
     pango_font_description_free (desc);
 }
@@ -3751,4 +3773,20 @@ gtk_settings_get_font_size_is_absolute (GtkSettings *settings)
   settings_update_font_name (settings);
 
   return settings->priv->font_size_absolute;
+}
+
+const char *
+gtk_settings_get_font_variations (GtkSettings *settings)
+{
+  settings_update_font_name (settings);
+
+  return settings->font_variations;
+}
+
+const char *
+gtk_settings_get_font_features (GtkSettings *settings)
+{
+  settings_update_font_name (settings);
+
+  return settings->font_features;
 }
