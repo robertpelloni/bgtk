@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [1.0.1] - 2024-05-19
+### Added
+- Initialized the Go port architecture in the `/go` directory.
+- Created the six-pillar module structure (`core`, `media`, `network`, `system`, `tools`, `visual`) within Go to prepare for CGO bindings.
+- Added basic unit tests for Go module initialization.
+
+### Fixed
+- Addressed C build errors caused by renaming (`XKB_CONSUMED_MODE_BOBGUI` back to `XKB_CONSUMED_MODE_GTK` in `gdk/wayland/gdkseat-wayland.c`).
+- Partially resolved `meson.build` syntax errors caused by "gtk" mass-renaming corruption.
+
 ## [1.0.0] - 2024-04-10
 ### Added
 - Submodule: Ultimate++ (https://github.com/ultimatepp/ultimatepp)

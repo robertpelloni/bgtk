@@ -5,8 +5,8 @@
 - [x] Add Ultimate++ submodule.
 - [x] Add JUCE submodule.
 - [x] Initialize primary documentation files.
-- [ ] Initialize `/go` directory and establish the initial module.
+- [x] Initialize `/go` directory and establish the initial module (6-Pillar framework initialized).
 - [ ] Analyze Ultimate++ utilities for integration points.
 - [ ] Analyze JUCE UI widgets for intermixing capabilities.
 - [ ] Research missing Qt6/Qt7 features compared to the current Bobtk C++ baseline.
-- [ ] Test and resolve any failing builds caused by renaming strings and paths.
+- [ ] Test and resolve any failing builds caused by renaming strings and paths (Meson wrap corruption).
