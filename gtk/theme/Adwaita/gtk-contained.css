@@ -29,6 +29,8 @@
 
 .view:selected:focus, iconview:selected:focus, .view:selected, iconview:selected, .view text:selected:focus, iconview text:selected:focus, textview text:selected:focus, .view text:selected, iconview text:selected, textview text:selected { border-radius: 3px; }
 
+textview:drop(active) { caret-color: #4e9a06; }
+
 textview border { background-color: #fbfafa; }
 
 .rubberband, rubberband, .content-view rubberband, .content-view .rubberband, treeview.view rubberband, flowbox rubberband { border: 1px solid #1b6acb; background-color: rgba(27, 106, 203, 0.2); }
@@ -1550,11 +1552,13 @@ scrolledwindow overshoot.right { background-image: -gtk-gradient(radial, right c
 
 scrolledwindow overshoot.right:backdrop { background-image: -gtk-gradient(radial, right center, 0, right center, 0.5, to(#d5d0cc), to(rgba(213, 208, 204, 0))); background-size: 5% 100%; background-repeat: no-repeat; background-position: right center; background-color: transparent; border: none; box-shadow: none; }
 
-scrolledwindow junction { border-color: transparent; border-image: linear-gradient(to bottom, #cdc7c2 1px, transparent 1px) 0 0 0 1/0 1px stretch; background-color: #cecece; }
+scrolledwindow junction { background: #cdc7c2, linear-gradient(to bottom, transparent 1px, #cecece 1px), linear-gradient(to right, transparent 1px, #cecece 1px); }
 
-scrolledwindow junction:dir(rtl) { border-image-slice: 0 1 0 0; }
+scrolledwindow junction:dir(rtl) { background: #cdc7c2, linear-gradient(to bottom, transparent 1px, #cecece 1px), linear-gradient(to left, transparent 1px, #cecece 1px); }
 
-scrolledwindow junction:backdrop { border-image-source: linear-gradient(to bottom, #d5d0cc 1px, transparent 1px); background-color: #efedec; transition: 200ms ease-out; }
+scrolledwindow junction:backdrop { transition: 200ms ease-out; background: #d5d0cc, linear-gradient(to bottom, transparent 1px, #efedec 1px), linear-gradient(to right, transparent 1px, #efedec 1px); }
+
+scrolledwindow junction:backdrop:dir(rtl) { background: #d5d0cc, linear-gradient(to bottom, transparent 1px, #efedec 1px), linear-gradient(to left, transparent 1px, #efedec 1px); }
 
 separator { background: rgba(0, 0, 0, 0.1); min-width: 1px; min-height: 1px; }
 
