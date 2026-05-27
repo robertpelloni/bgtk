@@ -49,17 +49,12 @@
     <value nick='with-time' value='1'/>
   </enum>
 
-<<<<<<< HEAD:bobgui/org.bobgui.bobgui4.Settings.FileChooser.gschema.xml
   <enum id='org.bobgui.bobgui4.Settings.FileChooser.TypeFormat'>
-=======
-  <enum id='org.gtk.Settings.FileChooser.TypeFormat'>
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/org.gtk.Settings.FileChooser.gschema.xml
     <value nick='mime' value='0'/>
     <value nick='description' value='1'/>
     <value nick='category' value='2'/>
   </enum>
 
-<<<<<<< HEAD:bobgui/org.bobgui.bobgui4.Settings.FileChooser.gschema.xml
   <enum id='org.bobgui.bobgui4.Settings.FileChooser.ViewType'>
     <value nick='list' value='0'/>
     <value nick='grid' value='1'/>
@@ -67,13 +62,6 @@
 
   <schema id='org.bobgui.bobgui4.Settings.FileChooser' path='/org/bobgui/bobgui4/settings/file-chooser/'>
     <key name='location-mode' enum='org.bobgui.bobgui4.Settings.FileChooser.LocationMode'>
-=======
-  <schema id='org.gtk.Settings.FileChooser' path='/org/gtk/settings/file-chooser/'>
-    <key name='last-folder-uri' type='s'>
-      <default>""</default>
-    </key>
-    <key name='location-mode' enum='org.gtk.Settings.FileChooser.LocationMode'>
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/org.gtk.Settings.FileChooser.gschema.xml
       <default>'path-bar'</default>
       <summary>Location mode</summary>
       <description>
@@ -115,11 +103,7 @@
 	Controls whether the file chooser shows a column with file types.
       </description>
     </key>
-<<<<<<< HEAD:bobgui/org.bobgui.bobgui4.Settings.FileChooser.gschema.xml
     <key name='sort-column' enum='org.bobgui.bobgui4.Settings.FileChooser.SortColumn'>
-=======
-    <key name='sort-column' enum='org.gtk.Settings.FileChooser.SortColumn'>
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/org.gtk.Settings.FileChooser.gschema.xml
       <default>'name'</default>
       <summary>Sort column</summary>
       <description>
@@ -179,11 +163,7 @@
         The amount of detail to show in the Modified column.
       </description>
     </key>
-<<<<<<< HEAD:bobgui/org.bobgui.bobgui4.Settings.FileChooser.gschema.xml
     <key name="type-format" enum="org.bobgui.bobgui4.Settings.FileChooser.TypeFormat">
-=======
-    <key name="type-format" enum="org.gtk.Settings.FileChooser.TypeFormat">
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/org.gtk.Settings.FileChooser.gschema.xml
       <default>'category'</default>
       <summary>Type format</summary>
       <description>
@@ -194,7 +174,6 @@
         'category' -> 'Video'
       </description>
     </key>
-<<<<<<< HEAD:bobgui/org.bobgui.bobgui4.Settings.FileChooser.gschema.xml
     <key name="view-type" enum="org.bobgui.bobgui4.Settings.FileChooser.ViewType">
       <default>'list'</default>
       <summary>View type</summary>
@@ -202,8 +181,6 @@
         Whether the files are shown in a list or in a grid.
       </description>
     </key>
-=======
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/org.gtk.Settings.FileChooser.gschema.xml
   </schema>
 
 </schemalist>
