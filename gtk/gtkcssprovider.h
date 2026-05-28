@@ -179,6 +179,5 @@ GtkCssProvider * gtk_css_provider_get_named (const gchar *name,
  */
 #define GTK_CSS_PREFERS_CONTRAST_MORE              "more"
 
-G_END_DECLS
 
 #endif /* __GTK_CSS_PROVIDER_H__ */
