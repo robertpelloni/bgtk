@@ -1876,6 +1876,9 @@ gtk_window_set_property (GObject      *object,
     case PROP_APPLICATION:
       gtk_window_set_application (window, g_value_get_object (value));
       break;
+    case PROP_APPLICATION:
+      gtk_window_set_application (window, g_value_get_object (value));
+      break;
     case PROP_MNEMONICS_VISIBLE:
       gtk_window_set_mnemonics_visible (window, g_value_get_boolean (value));
       break;
@@ -1996,6 +1999,9 @@ gtk_window_get_property (GObject      *object,
       break;
     case PROP_RESIZE_GRIP_VISIBLE:
       g_value_set_boolean (value, FALSE);
+      break;
+    case PROP_APPLICATION:
+      g_value_set_object (value, gtk_window_get_application (window));
       break;
     case PROP_APPLICATION:
       g_value_set_object (value, gtk_window_get_application (window));
@@ -3576,6 +3582,78 @@ gtk_window_set_application (GtkWindow      *window,
       _gtk_window_notify_keys_changed (window);
 
       g_object_notify_by_pspec (G_OBJECT (window), window_props[PROP_APPLICATION]);
+    }
+}
+
+/**
+ * gtk_window_get_application:
+ * @window: a #GtkWindow
+ *
+ * Gets the #GtkApplication associated with the window (if any).
+ *
+ * Return value: a #GtkApplication, or %NULL
+ *
+ * Since: 3.0
+ **/
+GtkApplication *
+gtk_window_get_application (GtkWindow *window)
+{
+  g_return_val_if_fail (GTK_IS_WINDOW (window), NULL);
+
+  return GTK_WINDOW_GET_PRIVATE (window)->application;
+}
+
+static void
+gtk_window_release_application (GtkWindow        *window,
+                                GtkWindowPrivate *priv)
+{
+  if (priv->application)
+    {
+      if (gtk_application_get_default_window (priv->application) == window)
+        gtk_application_set_default_window (priv->application, NULL);
+
+      g_application_release (G_APPLICATION (priv->application));
+      g_object_unref (priv->application);
+
+      priv->application = NULL;
+    }
+}
+
+/**
+ * gtk_window_set_application:
+ * @window: a #GtkWindow
+ * @application: a #GtkApplication, or %NULL
+ *
+ * Sets or unsets the #GtkApplication associated with the window.
+ *
+ * The application will be kept alive for at least as long as the window
+ * is open.
+ *
+ * Since: 3.0
+ **/
+void
+gtk_window_set_application (GtkWindow      *window,
+                            GtkApplication *application)
+{
+  GtkWindowPrivate *priv;
+
+  g_return_if_fail (GTK_IS_WINDOW (window));
+
+  priv = GTK_WINDOW_GET_PRIVATE (window);
+
+  if (priv->application != application)
+    {
+      gtk_window_release_application (window, priv);
+
+      priv->application = application;
+
+      if (priv->application != NULL)
+        {
+          g_application_hold (G_APPLICATION (priv->application));
+          g_object_ref (priv->application);
+        }
+
+      g_object_notify (G_OBJECT (window), "application");
     }
 }
 

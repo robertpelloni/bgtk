@@ -568,10 +568,7 @@ gtk_application_get_property (GObject    *object,
 }
 
 static void
-gtk_application_set_property (GObject      *object,
-                              guint         prop_id,
-                              const GValue *value,
-                              GParamSpec   *pspec)
+gtk_application_quit_mainloop (GApplication *application)
 {
   GtkApplication *application = GTK_APPLICATION (object);
 
