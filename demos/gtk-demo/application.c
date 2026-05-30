@@ -332,7 +332,22 @@ create_window (GApplication *app,
 }
 
 static void
-activate (GApplication *app)
+activate (GApplication *gapp)
+{
+  GtkApplication *app = GTK_APPLICATION (gapp);
+  GtkWindow *window;
+
+  window = gtk_application_get_active_window (app);
+  if (!window)
+    window = create_demo_window (app, NULL);
+
+  gtk_window_present (window);
+}
+
+static void
+restore_window (GtkApplication   *app,
+                GtkRestoreReason  reason,
+                GVariant         *state)
 {
   create_window (app, NULL);
 }
@@ -360,9 +375,11 @@ static void
 demo_application_class_init (DemoApplicationClass *class)
 {
   GApplicationClass *app_class = G_APPLICATION_CLASS (class);
+  GtkApplicationClass *gtk_app_class = GTK_APPLICATION_CLASS (class);
 
   app_class->startup = startup;
   app_class->activate = activate;
+  gtk_app_class->restore_window = restore_window;
 }
 
 static void

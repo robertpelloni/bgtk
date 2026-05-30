@@ -24,6 +24,7 @@
 #endif
 
 #include <gtk/gtkwindow.h>
+#include <gtk/gtkpendingoperation.h>
 #include <gtk/deprecated/gtkshortcutswindow.h>
 
 G_BEGIN_DECLS

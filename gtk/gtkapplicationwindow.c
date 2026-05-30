@@ -526,6 +526,12 @@ enum {
 };
 static GParamSpec *gtk_application_window_properties[N_PROPS];
 
+enum {
+  SAVE_STATE,
+  LAST_SIGNAL
+};
+static guint gtk_application_window_signals[LAST_SIGNAL] = { 0 };
+
 static void
 gtk_application_window_real_get_preferred_height (GtkWidget *widget,
                                                   gint      *minimum_height,
@@ -877,6 +883,49 @@ gtk_application_window_class_init (GtkApplicationWindowClass *class)
                              "menubar at the top of the window"),
                           TRUE, G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS | G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY);
   g_object_class_install_properties (object_class, N_PROPS, gtk_application_window_properties);
+
+  /**
+   * GtkApplicationWindow::save-state:
+   * @window: the window on which the signal is emitted
+   * @dict: a dictionary of type `a{sv}`
+   * @operation: a pending operation
+   *
+   * The handler for this signal should persist any
+   * application-specific state of @window into @dict.
+   *
+   * The application must synchronously populate the @dict, however it can also
+   * start asynchronous work in response to this signal. For instance, a text
+   * editor application might want to save the text buffer to a temporary file.
+   * In this case, the application should defer the @operation for the duration
+   * of the asynchronous work. Beware of an edge-case: due to limitations of
+   * `GApplication`, [signal@Gtk.Application::restore-window] may be emitted
+   * before the @operation is marked as complete!
+   *
+   * Note that window management state such as maximized,
+   * fullscreen, or window size should not be saved as
+   * part of this, they are handled by GTK.
+   *
+   * You must be careful to be robust in the face of app upgrades and downgrades:
+   * the @state might have been created by a previous or occasionally even a future
+   * version of your app. Do not assume that a given key exists in the state.
+   * Apps must try to restore state saved by a previous version, but are free to
+   * discard state if it was written by a future version.
+   *
+   * See [signal@Gtk.Application::restore-window].
+   *
+   * Returns: true to stop stop further handlers from running
+   *
+   * Since: 4.22
+   */
+  gtk_application_window_signals[SAVE_STATE] =
+    g_signal_new (I_("save-state"),
+                  G_TYPE_FROM_CLASS (class),
+                  G_SIGNAL_RUN_LAST,
+                  G_STRUCT_OFFSET (GtkApplicationWindowClass, save_state),
+                  _gtk_boolean_handled_accumulator, NULL,
+                  NULL,
+                  G_TYPE_BOOLEAN,
+                  2, G_TYPE_VARIANT_DICT, GTK_TYPE_PENDING_OPERATION);
 }
 
 /**

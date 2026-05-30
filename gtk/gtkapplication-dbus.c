@@ -320,6 +320,32 @@ drop_restore_request (GtkApplicationImplDBus *dbus)
 }
 
 static void
+drop_restore_request (GtkApplicationImplDBus *dbus)
+{
+  const char *app_id;
+
+  app_id = g_application_get_application_id (G_APPLICATION (dbus->impl.application));
+
+  g_dbus_connection_call_sync (dbus->session,
+                               "org.gnome.SessionManager",
+                               "/org/gnome/SessionManager",
+                               "org.gnome.SessionManager",
+                               "UnregisterRestore",
+                               g_variant_new ("(ss)",
+                                              app_id,
+                                              dbus->instance_id),
+                               NULL,
+                               G_DBUS_CALL_FLAGS_NONE,
+                               -1,
+                               NULL,
+                               NULL);
+
+  dbus->reason = GTK_RESTORE_REASON_LAUNCH;
+  g_clear_pointer (&dbus->instance_id, g_free);
+  dbus->save_restore_registered = FALSE;
+}
+
+static void
 gtk_application_impl_dbus_startup (GtkApplicationImpl *impl,
                                    gboolean            register_session)
 {
