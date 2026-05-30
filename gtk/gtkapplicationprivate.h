@@ -1,3 +1,4 @@
+
 /*
  * Copyright © 2011, 2013 Canonical Limited
  *
@@ -28,6 +29,8 @@
 #include "gtkapplicationaccelsprivate.h"
 
 G_BEGIN_DECLS
+
+typedef void (*GtkApplicationSaveFunc) (GtkApplication*);
 
 void                    gtk_application_window_set_id                   (GtkApplicationWindow     *window,
                                                                          guint                     id);
@@ -77,6 +80,10 @@ typedef struct
   void        (* window_added)              (GtkApplicationImpl          *impl,
                                              GtkWindow                   *window);
   void        (* window_removed)            (GtkApplicationImpl          *impl,
+                                             GtkWindow                   *window);
+  void        (* window_forget_by_state)    (GtkApplicationImpl          *impl,
+                                             GVariant                    *state);
+  void        (* window_unforget)           (GtkApplicationImpl          *impl,
                                              GtkWindow                   *window);
   void        (* active_window_changed)     (GtkApplicationImpl          *impl,
                                              GtkWindow                   *window);
@@ -140,6 +147,12 @@ typedef struct
   guint            state_changed_handler;
   char *           session_id;
   guint            session_state;
+
+  GDBusProxy      *save_restore_proxy;
+  char            *save_restore_session_path;
+  guint            save_restore_handler;
+  char            *instance_id;
+  GtkRestoreReason reason;
 } GtkApplicationImplDBus;
 
 typedef struct
@@ -167,6 +180,10 @@ void                    gtk_application_impl_before_emit                (GtkAppl
 void                    gtk_application_impl_window_added               (GtkApplicationImpl          *impl,
                                                                          GtkWindow                   *window);
 void                    gtk_application_impl_window_removed             (GtkApplicationImpl          *impl,
+                                                                         GtkWindow                   *window);
+void                    gtk_application_impl_window_forget_by_state     (GtkApplicationImpl          *impl,
+                                                                         GVariant                    *state);
+void                    gtk_application_impl_window_unforget            (GtkApplicationImpl          *impl,
                                                                          GtkWindow                   *window);
 void                    gtk_application_impl_active_window_changed      (GtkApplicationImpl          *impl,
                                                                          GtkWindow                   *window);

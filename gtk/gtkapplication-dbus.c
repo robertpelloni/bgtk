@@ -272,6 +272,33 @@ create_monitor_cb (GObject      *source,
 }
 
 static void
+drop_save_restore_portal (GtkApplicationImplDBus *dbus)
+{
+  if (dbus->save_restore_session_path)
+    {
+      g_dbus_connection_call (dbus->session,
+                              PORTAL_BUS_NAME,
+                              dbus->save_restore_session_path,
+                              PORTAL_SESSION_INTERFACE,
+                              "Close",
+                              NULL, NULL, 0, -1, NULL, NULL, NULL);
+      g_clear_pointer (&dbus->save_restore_session_path, g_free);
+    }
+
+  if (dbus->save_restore_handler)
+    {
+      g_dbus_connection_signal_unsubscribe (dbus->session,
+                                            dbus->save_restore_handler);
+      dbus->save_restore_handler = 0;
+    }
+
+  g_clear_object (&dbus->save_restore_proxy);
+
+  dbus->reason = GTK_RESTORE_REASON_LAUNCH;
+  g_clear_pointer (&dbus->instance_id, g_free);
+}
+
+static void
 gtk_application_impl_dbus_startup (GtkApplicationImpl *impl,
                                    gboolean            register_session)
 {
@@ -886,6 +913,8 @@ gtk_application_impl_dbus_finalize (GObject *object)
   if (dbus->state_changed_handler)
     g_dbus_connection_signal_unsubscribe (dbus->session,
                                           dbus->state_changed_handler);
+
+  drop_save_restore_portal (dbus);
 
   g_clear_object (&dbus->inhibit_proxy);
   g_slist_free_full (dbus->inhibit_handles, inhibit_handle_free);

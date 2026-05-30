@@ -22,6 +22,7 @@
 #include "gtkapplicationwindow.h"
 
 #include "gtkapplicationprivate.h"
+#include "gtksave.h"
 #include "gtkwidgetprivate.h"
 #include "gtkwindowprivate.h"
 #include "gtkheaderbar.h"

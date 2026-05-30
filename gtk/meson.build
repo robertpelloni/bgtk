@@ -303,6 +303,7 @@ gtk_sources = files(
   'gtkrendericon.c',
   'gtkrevealer.c',
   'gtkroundedbox.c',
+  'gtksave.c',
   'gtkscale.c',
   'gtkscalebutton.c',
   'gtkscrollable.c',
