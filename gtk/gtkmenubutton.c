@@ -218,6 +218,9 @@ gtk_menu_button_get_property (GObject    *object,
       case PROP_POPOVER:
         g_value_set_object (value, priv->popover);
         break;
+      case PROP_ACTIVE:
+        g_value_set_boolean (value, gtk_menu_button_get_active (GTK_MENU_BUTTON (object)));
+        break;
       default:
         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
     }
