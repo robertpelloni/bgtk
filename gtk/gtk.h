@@ -78,6 +78,8 @@
 #include <gtk/gtkcolorchooser.h>
 #include <gtk/gtkcolorchooserdialog.h>
 #include <gtk/gtkcolorchooserwidget.h>
+#include <gtk/gtkcolordialog.h>
+#include <gtk/gtkcolordialogbutton.h>
 #include <gtk/gtkcolorutils.h>
 #include <gtk/gtkcombobox.h>
 #include <gtk/gtkcomboboxtext.h>
@@ -107,12 +109,15 @@
 #include <gtk/gtkfilechooserdialog.h>
 #include <gtk/gtkfilechoosernative.h>
 #include <gtk/gtkfilechooserwidget.h>
+#include <gtk/gtkfiledialog.h>
 #include <gtk/gtkfilefilter.h>
 #include <gtk/gtkflowbox.h>
 #include <gtk/gtkfontbutton.h>
 #include <gtk/gtkfontchooser.h>
 #include <gtk/gtkfontchooserdialog.h>
 #include <gtk/gtkfontchooserwidget.h>
+#include <gtk/gtkfontdialog.h>
+#include <gtk/gtkfontdialogbutton.h>
 #include <gtk/gtkframe.h>
 #include <gtk/gtkgesture.h>
 #include <gtk/gtkgesturedrag.h>
