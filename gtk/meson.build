@@ -442,6 +442,8 @@ gtk_gir_public_headers = files(
   'gtkcheckmenuitem.h',
   'gtkclipboard.h',
   'gtkcolorbutton.h',
+  'gtkcolorchoice.h',
+  'gtkcolorchoicebutton.h',
   'gtkcolorchooser.h',
   'gtkcolorchooserwidget.h',
   'gtkcolorchooserdialog.h',
