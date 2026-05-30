@@ -21,12 +21,7 @@
 
 G_BEGIN_DECLS
 
-<<<<<<< HEAD:bobgui/bobguipopoverprivate.h
 BobguiWidget *bobgui_popover_get_contents_widget (BobguiPopover *popover);
-=======
-void gtk_popover_update_position (GtkPopover *popover);
-GtkWidget *gtk_popover_get_prev_default (GtkPopover *popover);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkpopoverprivate.h
 
 G_END_DECLS
 

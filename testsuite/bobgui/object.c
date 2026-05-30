@@ -340,18 +340,8 @@ main (int   argc,
   g_setenv ("GSETTINGS_BACKEND", "memory", TRUE);
 
   /* initialize test program */
-<<<<<<< HEAD:testsuite/bobgui/object.c
   bobgui_test_init (&argc, &argv);
   bobgui_test_register_all_types ();
-=======
-  gtk_test_init (&argc, &argv);
-  gtk_test_register_all_types ();
-
-  /* g_test_build_filename must be called after gtk_test_init */
-  schema_dir = g_test_build_filename (G_TEST_BUILT, "", NULL);
-  if (g_getenv ("GTK_TEST_MESON") == NULL)
-    g_setenv ("GSETTINGS_SCHEMA_DIR", schema_dir, TRUE);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:testsuite/gtk/object.c
 
   /* install a property test for each widget type */
   otypes = bobgui_test_list_all_types (NULL);

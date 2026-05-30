@@ -26,13 +26,7 @@
 #include <sys/uio.h>
 #include <unistd.h>
 
-<<<<<<< HEAD:gdk/macos/gdkmacoseventsource.c
 #include "gdkdisplayprivate.h"
-=======
-#include "gdkprivate-quartz.h"
-#include "gdkinternal-quartz.h"
-#include <gdk/gdkdisplayprivate.h>
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gdk/quartz/gdkeventloop-quartz.c
 
 #include "gdkmacoseventsource-private.h"
 #include "gdkmacosdisplay-private.h"
@@ -132,7 +126,7 @@ static guint run_loop_n_pollfds;    /* Number of file descriptors in the array *
  * we need to make sure that the poll function is always called even
  * when there are no file descriptors that need to be polled. To do
  * this, we add a dummy GPollFD to our event source with a file
- * descriptor of “-1”. Then any time that GLib is polling the event
+ * descriptor of “-1�. Then any time that GLib is polling the event
  * source, it will call our poll function.
  */
 static GPollFD event_poll_fd;
@@ -346,23 +340,12 @@ select_thread_func (void *arg)
     }
 }
 
-<<<<<<< HEAD:gdk/macos/gdkmacoseventsource.c
 static void
-=======
-#if MAC_OS_X_VERSION_MIN_REQUIRED < 101200
-#define GDK_QUARTZ_APPLICATION_DEFINED NSApplicationDefined
-#else
-#define GDK_QUARTZ_APPLICATION_DEFINED NSEventTypeApplicationDefined
-#endif
-
-static void 
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gdk/quartz/gdkeventloop-quartz.c
 got_fd_activity (void *info)
 {
   NSEvent *event;
 
   /* Post a message so we'll break out of the message loop */
-<<<<<<< HEAD:gdk/macos/gdkmacoseventsource.c
   event = [NSEvent otherEventWithType: NSEventTypeApplicationDefined
                              location: NSZeroPoint
                         modifierFlags: 0
@@ -372,17 +355,6 @@ got_fd_activity (void *info)
                               subtype: GDK_MACOS_EVENT_SUBTYPE_EVENTLOOP
                                 data1: 0
                                 data2: 0];
-=======
-  event = [NSEvent otherEventWithType: GDK_QUARTZ_APPLICATION_DEFINED
-	                     location: NSZeroPoint
-	                modifierFlags: 0
-	                    timestamp: 0
-	                 windowNumber: 0
-	                      context: nil
-                              subtype: GDK_QUARTZ_EVENT_SUBTYPE_EVENTLOOP
-	                        data1: 0 
-	                        data2: 0];
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gdk/quartz/gdkeventloop-quartz.c
 
   [NSApp postEvent:event atStart:YES];
 }
@@ -808,17 +780,7 @@ static GSourceFuncs event_funcs = {
  *********             Our Poll Function            *********
  ************************************************************/
 
-<<<<<<< HEAD:gdk/macos/gdkmacoseventsource.c
 static int
-=======
-#if MAC_OS_X_VERSION_MIN_REQUIRED < 101200
-#define GDK_QUARTZ_EVENT_MASK_ANY NSAnyEventMask
-#else
-#define GDK_QUARTZ_EVENT_MASK_ANY NSEventMaskAny
-#endif
-
-static gint
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gdk/quartz/gdkeventloop-quartz.c
 poll_func (GPollFD *ufds,
            guint    nfds,
            int      timeout_)
@@ -844,15 +806,9 @@ poll_func (GPollFD *ufds,
     limit_date = [NSDate dateWithTimeIntervalSinceNow:timeout_/1000.0];
 
   getting_events++;
-<<<<<<< HEAD:gdk/macos/gdkmacoseventsource.c
   event = [NSApp nextEventMatchingMask: NSEventMaskAny
                              untilDate: limit_date
                                 inMode: NSDefaultRunLoopMode
-=======
-  event = [NSApp nextEventMatchingMask: GDK_QUARTZ_EVENT_MASK_ANY
-	                     untilDate: limit_date
-	                        inMode: NSDefaultRunLoopMode
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gdk/quartz/gdkeventloop-quartz.c
                                dequeue: YES];
   getting_events--;
 
@@ -868,20 +824,6 @@ poll_func (GPollFD *ufds,
    */
   if (execution_id == execution_count && n_ready < 0)
     n_ready = select_thread_collect_poll (ufds, nfds);
-<<<<<<< HEAD:gdk/macos/gdkmacoseventsource.c
-=======
-      
-  if (event &&
-      [event type] == GDK_QUARTZ_APPLICATION_DEFINED &&
-      [event subtype] == GDK_QUARTZ_EVENT_SUBTYPE_EVENTLOOP)
-    {
-      /* Just used to wake us up; if an event and a FD arrived at the same
-       * time; could have come from a previous iteration in some cases,
-       * but the spurious wake up is harmless if a little inefficient.
-       */
-      event = NULL;
-    }
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gdk/quartz/gdkeventloop-quartz.c
 
   _gdk_macos_event_source_queue_event (event);
 

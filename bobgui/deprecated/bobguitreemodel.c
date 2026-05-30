@@ -63,7 +63,7 @@ G_GNUC_BEGIN_IGNORE_DEPRECATIONS
  * query for the value of a model at a certain node and a certain
  * column on that node. There are two structures used to reference a
  * particular node in a model. They are the [struct@Bobgui.TreePath] and
- * the [struct@Bobgui.TreeIter] (“iter” is short for iterator). Most of the
+ * the [struct@Bobgui.TreeIter] (“iter� is short for iterator). Most of the
  * interface consists of operations on a [struct@Bobgui.TreeIter].
  *
  * A path is essentially a potential node. It is a location on a model
@@ -182,7 +182,7 @@ G_GNUC_BEGIN_IGNORE_DEPRECATIONS
  *    char *str_data;
  *    int    int_data;
  *
- *    // Make sure you terminate calls to bobgui_tree_model_get() with a “-1” value
+ *    // Make sure you terminate calls to bobgui_tree_model_get() with a “-1� value
  *    bobgui_tree_model_get (list_store, &iter,
  *                        STRING_COLUMN, &str_data,
  *                        INT_COLUMN, &int_data,
@@ -371,19 +371,11 @@ bobgui_tree_model_base_init (gpointer g_class)
                       NULL, NULL,
                       _bobgui_marshal_VOID__BOXED_BOXED,
                       G_TYPE_NONE, 2,
-<<<<<<< HEAD:bobgui/deprecated/bobguitreemodel.c
                       BOBGUI_TYPE_TREE_PATH | G_SIGNAL_TYPE_STATIC_SCOPE,
                       BOBGUI_TYPE_TREE_ITER);
       g_signal_set_va_marshaller (tree_model_signals[ROW_CHANGED],
                                   G_TYPE_FROM_CLASS (g_class),
                                   _bobgui_marshal_VOID__BOXED_BOXEDv);
-=======
-                      GTK_TYPE_TREE_PATH | G_SIGNAL_TYPE_STATIC_SCOPE,
-                      GTK_TYPE_TREE_ITER);
-      g_signal_set_va_marshaller (tree_model_signals[ROW_CHANGED],
-                                  G_TYPE_FROM_CLASS (g_class),
-                                  _gtk_marshal_VOID__BOXED_BOXEDv);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtktreemodel.c
 
       /* We need to get notification about structure changes
        * to update row references., so instead of using the
@@ -424,11 +416,7 @@ bobgui_tree_model_base_init (gpointer g_class)
                        row_inserted_params);
       g_signal_set_va_marshaller (tree_model_signals[ROW_INSERTED],
                                   G_TYPE_FROM_CLASS (g_class),
-<<<<<<< HEAD:bobgui/deprecated/bobguitreemodel.c
                                   _bobgui_marshal_VOID__BOXED_BOXEDv);
-=======
-                                  _gtk_marshal_VOID__BOXED_BOXEDv);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtktreemodel.c
 
       /**
        * BobguiTreeModel::row-has-child-toggled:
@@ -447,19 +435,11 @@ bobgui_tree_model_base_init (gpointer g_class)
                       NULL, NULL,
                       _bobgui_marshal_VOID__BOXED_BOXED,
                       G_TYPE_NONE, 2,
-<<<<<<< HEAD:bobgui/deprecated/bobguitreemodel.c
                       BOBGUI_TYPE_TREE_PATH | G_SIGNAL_TYPE_STATIC_SCOPE,
                       BOBGUI_TYPE_TREE_ITER);
       g_signal_set_va_marshaller (tree_model_signals[ROW_HAS_CHILD_TOGGLED],
                                   G_TYPE_FROM_CLASS (g_class),
                                   _bobgui_marshal_VOID__BOXED_BOXEDv);
-=======
-                      GTK_TYPE_TREE_PATH | G_SIGNAL_TYPE_STATIC_SCOPE,
-                      GTK_TYPE_TREE_ITER);
-      g_signal_set_va_marshaller (tree_model_signals[ROW_HAS_CHILD_TOGGLED],
-                                  G_TYPE_FROM_CLASS (g_class),
-                                  _gtk_marshal_VOID__BOXED_BOXEDv);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtktreemodel.c
 
       /**
        * BobguiTreeModel::row-deleted:
@@ -518,11 +498,7 @@ bobgui_tree_model_base_init (gpointer g_class)
                        rows_reordered_params);
       g_signal_set_va_marshaller (tree_model_signals[ROWS_REORDERED],
                                   G_TYPE_FROM_CLASS (g_class),
-<<<<<<< HEAD:bobgui/deprecated/bobguitreemodel.c
                                   _bobgui_marshal_VOID__BOXED_BOXED_POINTERv);
-=======
-                                  _gtk_marshal_VOID__BOXED_BOXED_POINTERv);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtktreemodel.c
       initialized = TRUE;
     }
 }
@@ -652,7 +628,7 @@ bobgui_tree_path_new (void)
  * Creates a new `BobguiTreePath` initialized to @path.
  *
  * @path is expected to be a colon separated list of numbers.
- * For example, the string “10:4:0” would create a path of depth
+ * For example, the string “10:4:0� would create a path of depth
  * 3 pointing to the 11th child of the root node, the 5th
  * child of that 11th child, and the 1st child of that 5th child.
  * If an invalid path string is passed in, %NULL is returned.
@@ -769,8 +745,8 @@ bobgui_tree_path_new_from_indicesv (int *indices,
  *
  * Generates a string representation of the path.
  *
- * This string is a “:” separated list of numbers.
- * For example, “4:10:0:3” would be an acceptable
+ * This string is a “:� separated list of numbers.
+ * For example, “4:10:0:3� would be an acceptable
  * return value for this string. If the path has
  * depth 0, %NULL is returned.
  *
@@ -811,7 +787,7 @@ bobgui_tree_path_to_string (BobguiTreePath *path)
  *
  * Creates a new `BobguiTreePath`.
  *
- * The string representation of this path is “0”.
+ * The string representation of this path is “0�.
  *
  * Returns: A new `BobguiTreePath`
  *
@@ -1404,8 +1380,8 @@ bobgui_tree_model_get_iter_from_string (BobguiTreeModel *tree_model,
  *
  * Generates a string representation of the iter.
  *
- * This string is a “:” separated list of numbers.
- * For example, “4:10:0:3” would be an acceptable
+ * This string is a “:� separated list of numbers.
+ * For example, “4:10:0:3� would be an acceptable
  * return value for this string.
  *
  * Returns: (nullable): a newly-allocated string

@@ -570,7 +570,7 @@ maybe_cache_icon_data (Image       *image,
 }
 
 /*
- * Finds all dir separators and replaces them with “/”.
+ * Finds all dir separators and replaces them with “/�.
  * This makes sure that only /-separated paths are written in cache files,
  * maintaining compatibility with theme index files that use slashes as
  * directory separators on all platforms.
@@ -596,13 +596,8 @@ scan_directory (const char *base_path,
   GHashTable *dir_hash;
   GDir *dir;
   GList *list = NULL, *iterator = NULL;
-<<<<<<< HEAD:tools/updateiconcache.c
   const char *name;
   char *dir_path;
-=======
-  const gchar *name;
-  gchar *dir_path;
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/updateiconcache.c
   gboolean dir_added = FALSE;
   guint dir_index = 0xffff;
 
@@ -626,13 +621,9 @@ scan_directory (const char *base_path,
   list = g_list_sort (list, (GCompareFunc) strcmp);
   for (iterator = list; iterator; iterator = iterator->next)
     {
-<<<<<<< HEAD:tools/updateiconcache.c
       name = iterator->data;
 
       char *path;
-=======
-      gchar *path;
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/updateiconcache.c
       gboolean retval;
       int flags = 0;
       Image *image;
@@ -1766,7 +1757,7 @@ main (int argc, char **argv)
 	}
       else
 	{
-	  g_printerr (_("No theme index file in “%s”.\n"
+	  g_printerr (_("No theme index file in “%s�.\n"
 		    "If you really want to create an icon cache here, use --ignore-theme-index.\n"), path);
 	}
 

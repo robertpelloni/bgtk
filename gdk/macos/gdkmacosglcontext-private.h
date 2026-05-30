@@ -35,7 +35,6 @@ G_BEGIN_DECLS
 
 struct _GdkMacosGLContext
 {
-<<<<<<< HEAD:gdk/macos/gdkmacosglcontext-private.h
   GdkGLContext parent_instance;
 
   G_GNUC_BEGIN_IGNORE_DEPRECATIONS
@@ -47,13 +46,6 @@ struct _GdkMacosGLContext
   GLuint fbo;
 
   guint last_opaque : 1;
-=======
-  GdkDeviceManager parent_object;
-  GdkDevice *core_pointer;
-  GdkDevice *core_keyboard;
-  GList *known_tablet_devices;
-  guint num_active_devices;
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gdk/quartz/gdkdevicemanager-core-quartz.h
 };
 
 struct _GdkMacosGLContextClass

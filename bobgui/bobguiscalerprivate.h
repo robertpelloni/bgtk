@@ -27,11 +27,7 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (BobguiScaler, bobgui_scaler, BOBGUI, SCALER, GObject)
 
-<<<<<<< HEAD:bobgui/bobguiscalerprivate.h
 GdkPaintable *  bobgui_scaler_new                  (GdkPaintable   *paintable,
-=======
-GdkPaintable *  gtk_scaler_new                  (GdkPaintable   *paintable,
->>>>>>> origin/4-14-backports:gtk/gtkscalerprivate.h
                                                  double          scale);
 
 G_END_DECLS

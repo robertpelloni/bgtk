@@ -22,7 +22,6 @@
 #include "bobguifilechoosernativeprivate.h"
 #include "bobguinativedialogprivate.h"
 
-<<<<<<< HEAD:bobgui/bobguifilechoosernativewin32.c
 #include "bobguiprivate.h"
 #include "deprecated/bobguifilechooserdialog.h"
 #include "bobguifilechooserprivate.h"
@@ -37,31 +36,6 @@
 #include "bobguimain.h"
 #include "bobguifilefilterprivate.h"
 #include "bobguinative.h"
-=======
-#include "gtkfilechoosernativeprivate.h"
-#include "gtknativedialogprivate.h"
-
-#include "gtkprivate.h"
-#include "gtkfilechooserdialog.h"
-#include "gtkfilechooserprivate.h"
-#include "gtkfilechooserwidget.h"
-#include "gtkfilechooserwidgetprivate.h"
-#include "gtkfilechooserutils.h"
-#include "gtkfilechooserembed.h"
-#include "gtkfilesystem.h"
-#include "gtksizerequest.h"
-#include "gtktypebuiltins.h"
-#include "gtkintl.h"
-#include "gtksettings.h"
-#include "gtktogglebutton.h"
-#include "gtkstylecontext.h"
-#include "gtkheaderbar.h"
-#include "gtklabel.h"
-#include "gtkmain.h"
-#include "gtkinvisible.h"
-#include "gtkfilechooserentry.h"
-#include "gtkfilefilterprivate.h"
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkfilechoosernativewin32.c
 
 #include "win32/gdkwin32.h"
 #include <shlobj.h>
@@ -70,15 +44,11 @@
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 
 typedef struct {
-<<<<<<< HEAD:bobgui/bobguifilechoosernativewin32.c
   BobguiFileChooserNative *self;
 
   BobguiWidget *grab_widget;
 
   IFileDialogEvents *events;
-=======
-  GtkFileChooserNative *self;
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkfilechoosernativewin32.c
 
   GtkWidget *grab_widget;
 
@@ -94,11 +64,7 @@ typedef struct {
   char *cancel_label;
   char *title;
 
-<<<<<<< HEAD:bobgui/bobguifilechoosernativewin32.c
   GListModel *shortcut_files;
-=======
-  GSList *shortcut_uris;
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkfilechoosernativewin32.c
   GArray *choices_selections;
 
   GFile *current_folder;
@@ -355,13 +321,8 @@ filechooser_win32_thread_data_free (FilechooserWin32ThreadData *data)
 
   if (data->grab_widget)
     {
-<<<<<<< HEAD:bobgui/bobguifilechoosernativewin32.c
       bobgui_grab_remove (data->grab_widget);
       g_object_unref (data->grab_widget);
-=======
-      gtk_grab_remove (data->grab_widget);
-      gtk_widget_destroy (data->grab_widget);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkfilechoosernativewin32.c
     }
 
   g_clear_object (&data->current_folder);
@@ -373,11 +334,7 @@ filechooser_win32_thread_data_free (FilechooserWin32ThreadData *data)
       g_array_free (data->choices_selections, TRUE);
       data->choices_selections = NULL;
     }
-<<<<<<< HEAD:bobgui/bobguifilechoosernativewin32.c
   g_clear_object (&data->shortcut_files);
-=======
-  g_slist_free_full (data->shortcut_uris, g_free);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkfilechoosernativewin32.c
   g_slist_free_full (data->files, g_object_unref);
   g_clear_object (&data->self);
   g_free (data->accept_label);
@@ -390,24 +347,15 @@ static gboolean
 filechooser_win32_thread_done (gpointer _data)
 {
   FilechooserWin32ThreadData *data = _data;
-<<<<<<< HEAD:bobgui/bobguifilechoosernativewin32.c
   BobguiFileChooserNative *self = data->self;
-=======
-  GtkFileChooserNative *self = data->self;
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkfilechoosernativewin32.c
   GSList *l;
 
   self->mode_data = NULL;
 
   for (l = self->choices; l; l = l->next)
     {
-<<<<<<< HEAD:bobgui/bobguifilechoosernativewin32.c
       BobguiFileChooserNativeChoice *choice = (BobguiFileChooserNativeChoice*) l->data;
       int sel = g_array_index (data->choices_selections, int,
-=======
-      GtkFileChooserNativeChoice *choice = (GtkFileChooserNativeChoice*) l->data;
-      gint sel = g_array_index (data->choices_selections, gint,
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkfilechoosernativewin32.c
                                 g_slist_position (self->choices, l));
 
       if (sel >= 0)
@@ -696,27 +644,17 @@ filechooser_win32_thread (gpointer _data)
       hr = IFileDialog_QueryInterface (pfd, &IID_IFileDialogCustomize, (LPVOID *) &pfdc);
       if (SUCCEEDED (hr))
         {
-<<<<<<< HEAD:bobgui/bobguifilechoosernativewin32.c
           GSList *l;
 
           for (l = data->self->choices; l; l = l->next, dialog_control_id++)
             {
               BobguiFileChooserNativeChoice *choice = (BobguiFileChooserNativeChoice*) l->data;
-=======
-          for (l = data->self->choices; l; l = l->next, dialog_control_id++)
-            {
-              GtkFileChooserNativeChoice *choice = (GtkFileChooserNativeChoice*) l->data;
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkfilechoosernativewin32.c
 
               if (choice->options)
                 {
                   gunichar2 *label = g_utf8_to_utf16 (choice->label, -1, NULL, NULL, NULL);
                   DWORD sub_id = 0;
-<<<<<<< HEAD:bobgui/bobguifilechoosernativewin32.c
                   char **option;
-=======
-                  gchar **option;
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkfilechoosernativewin32.c
 
                   IFileDialogCustomize_StartVisualGroup (pfdc, dialog_auxiliary_id++, label);
                   hr = IFileDialogCustomize_AddComboBox (pfdc, dialog_control_id);
@@ -771,11 +709,7 @@ filechooser_win32_thread (gpointer _data)
         }
     }
 
-<<<<<<< HEAD:bobgui/bobguifilechoosernativewin32.c
   data->response = BOBGUI_RESPONSE_CANCEL;
-=======
-  data->response = GTK_RESPONSE_CANCEL;
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkfilechoosernativewin32.c
 
   hr = IFileDialog_Advise (pfd, data->events, &cookie);
   if (FAILED (hr))
@@ -831,17 +765,12 @@ filechooser_win32_thread (gpointer _data)
 
       if (data->choices_selections)
         g_array_free (data->choices_selections, TRUE);
-<<<<<<< HEAD:bobgui/bobguifilechoosernativewin32.c
       data->choices_selections = g_array_sized_new (FALSE, FALSE, sizeof(int),
-=======
-      data->choices_selections = g_array_sized_new (FALSE, FALSE, sizeof(gint),
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkfilechoosernativewin32.c
                                                     g_slist_length (data->self->choices));
 
       hr = IFileDialog_QueryInterface (pfd, &IID_IFileDialogCustomize, (LPVOID *) &pfdc);
       if (SUCCEEDED (hr))
         {
-<<<<<<< HEAD:bobgui/bobguifilechoosernativewin32.c
           GSList *l;
 
           for (l = data->self->choices; l; l = l->next)
@@ -849,13 +778,6 @@ filechooser_win32_thread (gpointer _data)
               BobguiFileChooserNativeChoice *choice = (BobguiFileChooserNativeChoice*) l->data;
               DWORD dialog_item_id = (DWORD) g_slist_position (data->self->choices, l);
               int val = -1;
-=======
-          for (l = data->self->choices; l; l = l->next)
-            {
-              GtkFileChooserNativeChoice *choice = (GtkFileChooserNativeChoice*) l->data;
-              DWORD dialog_item_id = (DWORD) g_slist_position (data->self->choices, l);
-              gint val = -1;
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkfilechoosernativewin32.c
 
               if (choice->options)
                 {
@@ -865,11 +787,7 @@ filechooser_win32_thread (gpointer _data)
                                                                     dialog_item_id,
                                                                     &dialog_sub_item_id);
                   if (SUCCEEDED (hr))
-<<<<<<< HEAD:bobgui/bobguifilechoosernativewin32.c
                     val = (int) dialog_sub_item_id;
-=======
-                    val = (gint) dialog_sub_item_id;
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkfilechoosernativewin32.c
                 }
               else
                 {
@@ -975,26 +893,10 @@ bobgui_file_chooser_native_win32_show (BobguiFileChooserNative *self)
 {
   GThread *thread;
   FilechooserWin32ThreadData *data;
-<<<<<<< HEAD:bobgui/bobguifilechoosernativewin32.c
   BobguiWindow *transient_for;
   BobguiFileChooserAction action;
   GListModel *filters;
   guint n_filters, i;
-=======
-  GtkWindow *transient_for;
-  GtkFileChooserAction action;
-  guint update_preview_signal;
-  GSList *filters, *l;
-  int n_filters, i;
-
-  if (gtk_file_chooser_get_extra_widget (GTK_FILE_CHOOSER (self)) != NULL &&
-      self->choices == NULL)
-    return FALSE;
-
-  update_preview_signal = g_signal_lookup ("update-preview", GTK_TYPE_FILE_CHOOSER);
-  if (g_signal_has_handler_pending (self, update_preview_signal, 0, TRUE))
-    return FALSE;
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkfilechoosernativewin32.c
 
   data = g_new0 (FilechooserWin32ThreadData, 1);
 
@@ -1078,17 +980,10 @@ bobgui_file_chooser_native_win32_show (BobguiFileChooserNative *self)
       return FALSE;
     }
 
-<<<<<<< HEAD:bobgui/bobguifilechoosernativewin32.c
   if (data->modal)
     {
       data->grab_widget = g_object_ref_sink (bobgui_label_new (""));
       bobgui_grab_add (BOBGUI_WIDGET (data->grab_widget));
-=======
-  if (gtk_native_dialog_get_modal (GTK_NATIVE_DIALOG (self)))
-    {
-      data->grab_widget = gtk_invisible_new ();
-      gtk_grab_add (GTK_WIDGET (data->grab_widget));
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkfilechoosernativewin32.c
     }
 
   return TRUE;

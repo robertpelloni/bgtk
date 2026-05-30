@@ -23,15 +23,8 @@ G_BEGIN_DECLS
 
 /* reftest-snapshot.c */
 G_MODULE_EXPORT
-<<<<<<< HEAD:testsuite/reftests/bobgui-reftest.h
 extern void reftest_inhibit_snapshot   (void);
 G_MODULE_EXPORT
 extern void reftest_uninhibit_snapshot (void);
-=======
-void reftest_inhibit_snapshot   (void);
-
-G_MODULE_EXPORT
-void reftest_uninhibit_snapshot (void);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:testsuite/reftests/gtk-reftest.h
 
 G_END_DECLS

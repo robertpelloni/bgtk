@@ -57,7 +57,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-<<<<<<< HEAD:bobgui/bobguitextbtree.c
 #include "bobguitextbufferprivate.h"
 #include "bobguitexttag.h"
 #include "bobguitexttagprivate.h"
@@ -69,18 +68,6 @@
 #include "bobguitextsegmentprivate.h"
 #include "bobguipangoprivate.h"
 #include "gdkprivate.h"
-=======
-#include "gtktextbufferprivate.h"
-#include "gtktexttag.h"
-#include "gtktexttagprivate.h"
-#include "gtktexttagtableprivate.h"
-#include "gtktextlayout.h"
-#include "gtktextiterprivate.h"
-#include "gtkdebug.h"
-#include "gtktextmarkprivate.h"
-#include "gtktextsegment.h"
-#include "gtkpango.h"
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtktextbtree.c
 
 /*
  * Types
@@ -597,13 +584,8 @@ bobgui_text_btree_resolve_bidi (BobguiTextIter *start,
             {
 	      PangoDirection pango_dir;
 
-<<<<<<< HEAD:bobgui/bobguitextbtree.c
               pango_dir = gdk_find_base_dir (seg->body.chars, seg->byte_count);
 
-=======
-              pango_dir = _gtk_pango_find_base_dir (seg->body.chars, seg->byte_count);
-	      
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtktextbtree.c
               if (pango_dir != PANGO_DIRECTION_NEUTRAL)
                 {
                   line->dir_strong = pango_dir;
@@ -2490,20 +2472,7 @@ _bobgui_text_btree_char_is_invisible (const BobguiTextIter *iter)
   BobguiTextBTree *tree;
   int byte_index;
 
-<<<<<<< HEAD:bobgui/bobguitextbtree.c
   tree = _bobgui_text_iter_get_btree (iter);
-=======
-  line = _gtk_text_iter_get_text_line (iter);
-  tree = _gtk_text_iter_get_btree (iter);
-
-  /* Short-circuit if we've never seen a visibility tag within the
-   * tag table (meaning everything must be visible).
-   */
-  if G_LIKELY (!_gtk_text_tag_table_affects_visibility (tree->table))
-    return FALSE;
-
-  byte_index = gtk_text_iter_get_line_index (iter);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtktextbtree.c
 
   /* Short-circuit if we've never seen a visibility tag within the
    * tag table (meaning everything must be visible).

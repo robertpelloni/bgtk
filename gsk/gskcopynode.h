@@ -26,7 +26,6 @@
 
 G_BEGIN_DECLS
 
-<<<<<<< HEAD:gsk/gskcopynode.h
 typedef struct _GskCopyNode                    GskCopyNode;
 
 #define GSK_TYPE_COPY_NODE (gsk_copy_node_get_type())
@@ -38,10 +37,6 @@ GskRenderNode *         gsk_copy_node_new                       (GskRenderNode  
 
 GDK_AVAILABLE_IN_ALL
 GskRenderNode *         gsk_copy_node_get_child                 (const GskRenderNode      *node) G_GNUC_PURE;
-=======
-GDK_AVAILABLE_IN_3_12
-gunichar  gdk_quartz_get_key_equivalent                         (guint           key);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gdk/quartz/gdkquartzutils.h
 
 G_END_DECLS
 

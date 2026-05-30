@@ -26,11 +26,7 @@
 
 #define UPDATE_RATE_SECONDS 1
 
-<<<<<<< HEAD:bobgui/bobguitrashmonitor.c
 struct _BobguiTrashMonitor
-=======
-struct _GtkTrashMonitor
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtktrashmonitor.c
 {
   GObject parent;
 
@@ -38,11 +34,7 @@ struct _GtkTrashMonitor
   gulong file_monitor_changed_id;
 
   gboolean pending;
-<<<<<<< HEAD:bobgui/bobguitrashmonitor.c
   int timeout_id;
-=======
-  gint timeout_id;
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtktrashmonitor.c
 
   guint has_trash : 1;
 };
@@ -87,11 +79,7 @@ bobgui_trash_monitor_dispose (GObject *object)
     g_source_remove (monitor->timeout_id);
   monitor->timeout_id = 0;
 
-<<<<<<< HEAD:bobgui/bobguitrashmonitor.c
   G_OBJECT_CLASS (_bobgui_trash_monitor_parent_class)->dispose (object);
-=======
-  G_OBJECT_CLASS (_gtk_trash_monitor_parent_class)->dispose (object);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtktrashmonitor.c
 }
 
 static void
@@ -107,11 +95,7 @@ _bobgui_trash_monitor_class_init (BobguiTrashMonitorClass *class)
     g_signal_new (I_("trash-state-changed"),
                   G_OBJECT_CLASS_TYPE (gobject_class),
                   G_SIGNAL_RUN_FIRST,
-<<<<<<< HEAD:bobgui/bobguitrashmonitor.c
                   G_STRUCT_OFFSET (BobguiTrashMonitorClass, trash_state_changed),
-=======
-                  G_STRUCT_OFFSET (GtkTrashMonitorClass, trash_state_changed),
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtktrashmonitor.c
                   NULL, NULL,
                   NULL,
                   G_TYPE_NONE, 0);
@@ -119,11 +103,7 @@ _bobgui_trash_monitor_class_init (BobguiTrashMonitorClass *class)
 
 /* Updates the internal has_trash flag and emits the "trash-state-changed" signal */
 static void
-<<<<<<< HEAD:bobgui/bobguitrashmonitor.c
 update_has_trash_and_notify (BobguiTrashMonitor *monitor,
-=======
-update_has_trash_and_notify (GtkTrashMonitor *monitor,
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtktrashmonitor.c
                              gboolean has_trash)
 {
   if (monitor->has_trash == !!has_trash)
@@ -165,20 +145,12 @@ trash_query_info_cb (GObject *source,
   g_object_unref (monitor); /* was reffed in recompute_trash_state() */
 }
 
-<<<<<<< HEAD:bobgui/bobguitrashmonitor.c
 static void recompute_trash_state (BobguiTrashMonitor *monitor);
-=======
-static void recompute_trash_state (GtkTrashMonitor *monitor);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtktrashmonitor.c
 
 static gboolean
 recompute_trash_state_cb (gpointer data)
 {
-<<<<<<< HEAD:bobgui/bobguitrashmonitor.c
   BobguiTrashMonitor *monitor = data;
-=======
-  GtkTrashMonitor *monitor = data;
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtktrashmonitor.c
 
   monitor->timeout_id = 0;
   if (monitor->pending)
@@ -197,11 +169,7 @@ recompute_trash_state (BobguiTrashMonitor *monitor)
   GFile *file;
 
   /* Rate limit the updates to not flood the gvfsd-trash when too many changes
-<<<<<<< HEAD:bobgui/bobguitrashmonitor.c
    * happened in a short time.
-=======
-   * happended in a short time.
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtktrashmonitor.c
   */
   if (monitor->timeout_id > 0)
     {
@@ -219,10 +187,7 @@ recompute_trash_state (BobguiTrashMonitor *monitor)
   monitor->timeout_id = g_timeout_add_seconds (UPDATE_RATE_SECONDS,
                                                recompute_trash_state_cb,
                                                monitor);
-<<<<<<< HEAD:bobgui/bobguitrashmonitor.c
   gdk_source_set_static_name_by_id (monitor->timeout_id, "[bobgui] recompute_trash_state_cb");
-=======
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtktrashmonitor.c
 
   g_object_unref (file);
 }
@@ -235,11 +200,7 @@ file_monitor_changed_cb (GFileMonitor      *file_monitor,
                          GFile             *child,
                          GFile             *other_file,
                          GFileMonitorEvent  event_type,
-<<<<<<< HEAD:bobgui/bobguitrashmonitor.c
                          BobguiTrashMonitor   *monitor)
-=======
-                         GtkTrashMonitor   *monitor)
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtktrashmonitor.c
 {
   recompute_trash_state (monitor);
 }
