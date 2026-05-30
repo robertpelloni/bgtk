@@ -6,3 +6,9 @@
 .toolbar {
   -bobgui-icon-style: symbolic;
 }
+
+.cache-invalidation-test {
+  background-repeat:no-repeat;
+  background-image:-gtk-icontheme('flag');
+  background-position:center center;
+}
