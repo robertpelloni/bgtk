@@ -85,7 +85,7 @@ open_response_cb (GObject *source,
                   gpointer user_data)
 {
   GtkFileDialog *dialog = GTK_FILE_DIALOG (source);
-  GApplication *app = G_APPLICATION (user_data);
+  GtkApplication *app = GTK_APPLICATION (user_data);
   GFile *file;
   GError *error = NULL;
 
@@ -324,6 +324,7 @@ create_window (GApplication *app,
                                                   "application", app,
                                                   "show-menubar", TRUE,
                                                   NULL);
+
   if (content)
     gtk_text_buffer_set_text (window->buffer, content, -1);
 

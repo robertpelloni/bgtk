@@ -85,6 +85,10 @@ typedef struct
                                              GVariant                    *state);
   void        (* window_unforget)           (GtkApplicationImpl          *impl,
                                              GtkWindow                   *window);
+  void        (* window_forget_by_state)    (GtkApplicationImpl          *impl,
+                                             GVariant                    *state);
+  void        (* window_unforget)           (GtkApplicationImpl          *impl,
+                                             GtkWindow                   *window);
   void        (* active_window_changed)     (GtkApplicationImpl          *impl,
                                              GtkWindow                   *window);
   void        (* handle_window_realize)     (GtkApplicationImpl          *impl,
@@ -180,6 +184,10 @@ void                    gtk_application_impl_before_emit                (GtkAppl
 void                    gtk_application_impl_window_added               (GtkApplicationImpl          *impl,
                                                                          GtkWindow                   *window);
 void                    gtk_application_impl_window_removed             (GtkApplicationImpl          *impl,
+                                                                         GtkWindow                   *window);
+void                    gtk_application_impl_window_forget_by_state     (GtkApplicationImpl          *impl,
+                                                                         GVariant                    *state);
+void                    gtk_application_impl_window_unforget            (GtkApplicationImpl          *impl,
                                                                          GtkWindow                   *window);
 void                    gtk_application_impl_window_forget_by_state     (GtkApplicationImpl          *impl,
                                                                          GVariant                    *state);
