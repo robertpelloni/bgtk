@@ -1703,9 +1703,9 @@ gtk_label_buildable_custom_tag_start (GtkBuildable     *buildable,
 
   if (strcmp (tagname, "attributes") == 0)
     {
-      PangoParserData *parser_data;
+      GtkPangoAttributeParserData *parser_data;
 
-      parser_data = g_slice_new0 (PangoParserData);
+      parser_data = g_slice_new0 (GtkPangoAttributeParserData);
       parser_data->builder = g_object_ref (builder);
       parser_data->object = G_OBJECT (g_object_ref (buildable));
       *parser = pango_parser;
@@ -1722,15 +1722,13 @@ gtk_label_buildable_custom_finished (GtkBuildable *buildable,
 				     const gchar  *tagname,
 				     gpointer      user_data)
 {
-  PangoParserData *data;
+  GtkPangoAttributeParserData *data = user_data;
 
   buildable_parent_iface->custom_finished (buildable, builder, child,
 					   tagname, user_data);
 
   if (strcmp (tagname, "attributes") == 0)
     {
-      data = (PangoParserData*)user_data;
-
       if (data->attrs)
 	{
 	  gtk_label_set_attributes (GTK_LABEL (buildable), data->attrs);
@@ -1739,7 +1737,7 @@ gtk_label_buildable_custom_finished (GtkBuildable *buildable,
 
       g_object_unref (data->object);
       g_object_unref (data->builder);
-      g_slice_free (PangoParserData, data);
+      g_slice_free (GtkPangoAttributeParserData, data);
     }
 }
 

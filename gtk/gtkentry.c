@@ -729,8 +729,14 @@ static gboolean gtk_entry_render   (GtkCssGadget        *gadget,
                                     int                  height,
                                     gpointer             data);
 
+static GtkBuildableIface *buildable_parent_iface = NULL;
+
+static void     gtk_entry_buildable_interface_init (GtkBuildableIface *iface);
+
 G_DEFINE_TYPE_WITH_CODE (GtkEntry, gtk_entry, GTK_TYPE_WIDGET,
                          G_ADD_PRIVATE (GtkEntry)
+                         G_IMPLEMENT_INTERFACE (GTK_TYPE_BUILDABLE,
+                                                gtk_entry_buildable_interface_init)
                          G_IMPLEMENT_INTERFACE (GTK_TYPE_EDITABLE,
                                                 gtk_entry_editable_init)
                          G_IMPLEMENT_INTERFACE (GTK_TYPE_CELL_EDITABLE,
