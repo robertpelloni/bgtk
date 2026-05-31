@@ -558,6 +558,10 @@ gtk_application_get_property (GObject    *object,
       g_value_set_object (value, gtk_application_get_app_menu (application));
       break;
 
+    case PROP_APP_MENU:
+      g_value_set_object (value, gtk_application_get_app_menu (application));
+      break;
+
     case PROP_MENUBAR:
       g_value_set_object (value, gtk_application_get_menubar (application));
       break;
@@ -589,6 +593,10 @@ gtk_application_quit_mainloop (GApplication *application)
     {
     case PROP_REGISTER_SESSION:
       application->priv->register_session = g_value_get_boolean (value);
+      break;
+
+    case PROP_APP_MENU:
+      gtk_application_set_app_menu (application, g_value_get_object (value));
       break;
 
     case PROP_APP_MENU:
