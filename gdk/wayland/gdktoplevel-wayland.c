@@ -2552,6 +2552,47 @@ gdk_wayland_toplevel_set_application_id (GdkToplevel *toplevel,
   XDG_SHELL_CALL (xdg_toplevel, set_app_id, wayland_toplevel, application_id);
 }
 
+
+/**
+ * gdk_wayland_toplevel_set_tag:
+ * @toplevel: (type GdkWaylandToplevel): a toplevel to set the tag on
+ * @tag: a preferably human-readable tag
+ *
+ * Sets a tag on the toplevel allowing the compositor to classify it.
+ *
+ * Tags should be short, UTF-8 encoded strings.
+ *
+ * The tag may be shown to the user in a UI, so it's preferable for
+ * it to be human readable. Suitable tags would for example be
+ * “main window”, “settings”, “e-mail composer” or similar.
+ *
+ * The tag does not need to be unique across applications.
+ *
+ * Returns: whether the tag was set
+ *
+ * Since: 4.18
+ */
+gboolean
+gdk_wayland_toplevel_set_tag (GdkToplevel *toplevel,
+                              const char  *tag)
+{
+  GdkWaylandToplevel *wayland_toplevel = GDK_WAYLAND_TOPLEVEL (toplevel);
+  GdkSurface *surface = GDK_SURFACE (toplevel);
+  GdkDisplay *display = gdk_surface_get_display (surface);
+  GdkWaylandDisplay *display_wayland = GDK_WAYLAND_DISPLAY (display);
+
+  if (!display_wayland->xdg_toplevel_tag)
+    {
+      return FALSE;
+    }
+
+  xdg_toplevel_tag_manager_v1_set_toplevel_tag (display_wayland->xdg_toplevel_tag,
+                                                wayland_toplevel->display_server.xdg_toplevel,
+                                                tag);
+
+  return TRUE;
+}
+
 gboolean
 gdk_wayland_toplevel_inhibit_idle (GdkToplevel *toplevel)
 {
