@@ -145,7 +145,7 @@ g_ptr_array_insert_sorted (GPtrArray *array,
 {
   gint i;
 
-  for (i = 0; i < array->len; i++)
+  for (i = 0; i < gtk_css_selector_matches_get_size (matches); i++)
     {
       if (data == array->pdata[i])
         return;
@@ -1823,6 +1823,7 @@ subdivide_infos (GByteArray *array, GList *infos, gint32 parent_offset)
     }
   else
     res = GTK_CSS_SELECTOR_TREE_EMPTY_OFFSET;
+  gtk_css_selector_matches_clear (&exact_matches);
   get_tree (array, tree_offset)->matches_offset = res;
 
   res = subdivide_infos (array, matched, tree_offset);

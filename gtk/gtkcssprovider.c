@@ -676,7 +676,7 @@ verify_tree_match_results (GtkCssProvider *provider,
 
       ruleset = &g_array_index (priv->rulesets, GtkCssRuleset, i);
 
-      for (j = 0; j < tree_rules->len; j++)
+      for (j = 0; j < gtk_css_selector_matches_get_size (tree_rules); j++)
 	{
 	  if (ruleset == tree_rules->pdata[j])
 	    {
@@ -909,6 +909,7 @@ gtk_css_style_provider_lookup (GtkStyleProviderPrivate *provider,
 
       g_ptr_array_free (tree_rules, TRUE);
     }
+  gtk_css_selector_matches_clear (&tree_rules);
 
   if (change)
     {
