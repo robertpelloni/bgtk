@@ -779,7 +779,9 @@ gtk_check_button_new (void)
 GtkWidget*
 gtk_check_button_new_with_label (const char *label)
 {
-  return g_object_new (GTK_TYPE_CHECK_BUTTON, "label", label, NULL);
+  return g_object_new (GTK_TYPE_CHECK_BUTTON,
+                       "label", label,
+                       NULL);
 }
 
 /**
