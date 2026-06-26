@@ -1,3 +1,3 @@
-module github.com/bobtk/bobtk
+module github.com/robertpelloni/bobtk/go
 
-go 1.24.3
+go 1.20
