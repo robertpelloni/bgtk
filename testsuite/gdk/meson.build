@@ -6,6 +6,12 @@ clipboard_client = executable('clipboard-client',
   install: false,
 )
 
+extra_yuv_sources = []
+
+if avif_dep.found()
+  extra_yuv_sources += ['../../gdk/loaders/gdkavif.c']
+endif
+
 tests = [
   { 'name': 'array' },
   { 'name': 'cairo' },
@@ -22,7 +28,11 @@ tests = [
   { 'name': 'texture-threads' },
   { 'name': 'toplevellayout' },
   { 'name': 'popuplayout' },
+  { 'name': 'yuv',
+    'sources': [ 'yuv.c', '../reftests/reftest-compare.c' ] + extra_yuv_sources,
+  },
 ]
+
 
 if x11_enabled
   tests += [

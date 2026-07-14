@@ -236,7 +236,7 @@ bobgui_css_section_get_end_location (const BobguiCssSection *section)
 /**
  * bobgui_css_section_print:
  * @section: a section
- * @string: a `GString` to print to
+ * @string: (out caller-allocates): a `GString` to print to
  *
  * Prints the `section` into `string` in a human-readable form.
  *

@@ -319,6 +319,7 @@ typedef struct
   gchar *title;     /* the title attribute, used as tooltip */
 
   GtkCssNode *cssnode;
+  GtkAccessibleHyperlink *accessible;
 
   gboolean visited; /* get set when the link is activated; this flag
                      * gets preserved over later set_markup() calls
@@ -1703,9 +1704,9 @@ gtk_label_buildable_custom_tag_start (GtkBuildable     *buildable,
 
   if (strcmp (tagname, "attributes") == 0)
     {
-      PangoParserData *parser_data;
+      GtkPangoAttributeParserData *parser_data;
 
-      parser_data = g_slice_new0 (PangoParserData);
+      parser_data = g_slice_new0 (GtkPangoAttributeParserData);
       parser_data->builder = g_object_ref (builder);
       parser_data->object = G_OBJECT (g_object_ref (buildable));
       *parser = pango_parser;
@@ -1722,15 +1723,13 @@ gtk_label_buildable_custom_finished (GtkBuildable *buildable,
 				     const gchar  *tagname,
 				     gpointer      user_data)
 {
-  PangoParserData *data;
+  GtkPangoAttributeParserData *data = user_data;
 
   buildable_parent_iface->custom_finished (buildable, builder, child,
 					   tagname, user_data);
 
   if (strcmp (tagname, "attributes") == 0)
     {
-      data = (PangoParserData*)user_data;
-
       if (data->attrs)
 	{
 	  gtk_label_set_attributes (GTK_LABEL (buildable), data->attrs);
@@ -1739,7 +1738,7 @@ gtk_label_buildable_custom_finished (GtkBuildable *buildable,
 
       g_object_unref (data->object);
       g_object_unref (data->builder);
-      g_slice_free (PangoParserData, data);
+      g_slice_free (GtkPangoAttributeParserData, data);
     }
 }
 
@@ -4826,6 +4825,16 @@ gtk_label_grab_focus (GtkWidget *widget)
     }
 }
 
+static void
+set_link_focus (GtkLabelLink *link,
+                gboolean      focused)
+{
+  if (link->accessible)
+    gtk_accessible_hyperlink_set_platform_state (link->accessible,
+                                                 GTK_ACCESSIBLE_PLATFORM_STATE_FOCUSED,
+                                                 focused);
+}
+
 static gboolean
 gtk_label_focus (GtkWidget        *widget,
                  GtkDirectionType  direction)
@@ -4869,6 +4878,10 @@ gtk_label_focus (GtkWidget        *widget,
 
       if (info->selection_anchor != info->selection_end)
         goto out;
+
+      focus_link = gtk_label_get_focus_link (self, NULL);
+      if (focus_link)
+        set_link_focus (focus_link, FALSE);
 
       index = info->selection_anchor;
 
@@ -5868,7 +5881,7 @@ gtk_label_new (const char *str)
 
 /**
  * gtk_label_new_with_mnemonic:
- * @str: (nullable): The text of the label, with an underscore in front of the
+ * @str: The text of the label, with an underscore in front of the
  *   mnemonic character
  *
  * Creates a new `GtkLabel`, containing the text in @str.
@@ -6516,13 +6529,18 @@ start_element_handler (GMarkupParseContext  *context,
         }
 
       if (!pdata->links)
-        pdata->links = g_array_new (FALSE, TRUE, sizeof (GtkLabelLink));
+        {
+          pdata->links = g_array_new (FALSE, TRUE, sizeof (GtkLabelLink));
+          g_array_set_clear_func (pdata->links, clear_label_link);
+        }
 
       link.uri = g_strdup (uri);
       link.title = g_strdup (title);
+      link.accessible = NULL;
 
       widget_node = gtk_widget_get_css_node (GTK_WIDGET (pdata->label));
       link.cssnode = gtk_css_node_new ();
+
       gtk_css_node_set_name (link.cssnode, g_quark_from_static_string ("link"));
       gtk_css_node_set_parent (link.cssnode, widget_node);
       if (class)
@@ -6580,6 +6598,7 @@ end_element_handler (GMarkupParseContext  *context,
   if (!strcmp (element_name, "a"))
     {
       GtkLabelLink *link = &g_array_index (pdata->links, GtkLabelLink, pdata->links->len - 1);
+
       link->end = pdata->text_len;
     }
   else

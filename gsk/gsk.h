@@ -66,6 +66,7 @@
 #include <gsk/gsktransformnode.h>
 #include <gsk/gskglshader.h>
 
+#include <gsk/gl/gskglrenderer.h>
 #include <gsk/gskcairorenderer.h>
 #include <gsk/gpu/gskvulkanrenderer.h>
 #include <gsk/gpu/gskglrenderer.h>

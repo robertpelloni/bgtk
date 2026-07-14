@@ -91,6 +91,12 @@ gdk_sources = files(
   'loaders/gdkjpeg.c',
 ])
 
+if avif_dep.found()
+  gdk_public_sources += [
+    'loaders/gdkavif.c'
+  ]
+endif
+
 gdk_public_headers = files([
   'gdk.h',
   'gdkapplaunchcontext.h',

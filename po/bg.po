@@ -8875,3 +8875,17 @@ msgstr ""
 "В „%s“ не е открит индексен файл за тема.\n"
 "Ако наистина искате да създадете временен файл за икони тук, използвайте "
 "опцията „--ignore-theme-index“.\n"
+
+#, c-format
+#~ msgid "cicp: Narrow range or YUV not supported"
+#~ msgstr "cicp: тесен диапазон или YUV не се поддържат"
+
+#~ msgid "Theme is hardcoded by GTK_THEME"
+#~ msgstr "Темата е изрично зададена чрез „GTK_THEME“"
+
+#~ msgid "Dark Variant"
+#~ msgstr "Тъмен вариант"
+
+#, c-format
+#~ msgid "Can’t close stream"
+#~ msgstr "Потокът не може да бъде затворен"

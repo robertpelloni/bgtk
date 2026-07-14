@@ -25,7 +25,7 @@
 #include "gtkcomboboxtext.h"
 #include "gtkdebug.h"
 #include "gtkprivate.h"
-#include "gtksettings.h"
+#include "gtksettingsprivate.h"
 #include "gtkswitch.h"
 #include "gtkscale.h"
 #include "gtkwindow.h"
@@ -50,6 +50,8 @@ struct _GtkInspectorVisualPrivate
   GtkWidget *visual_box;
   GtkWidget *theme_combo;
   GtkWidget *dark_switch;
+  GtkWidget *colorscheme_combo;
+  GtkWidget *contrast_combo;
   GtkWidget *icon_combo;
   GtkWidget *cursor_combo;
   GtkWidget *cursor_size_spin;
@@ -446,6 +448,93 @@ init_dark (GtkInspectorVisual *vis)
       gtk_widget_set_sensitive (vis->priv->dark_switch, FALSE);
       gtk_widget_set_tooltip_text (vis->priv->dark_switch, _("Theme is hardcoded by GTK_THEME"));
     }
+}
+
+static const char *colorscheme_values[] = { "light", "dark" };
+
+static void
+colorscheme_changed (GtkDropDown        *dropdown,
+                     GParamSpec         *pspec,
+                     GtkInspectorVisual *vis)
+{
+  GtkCssProvider *provider;
+  guint pos;
+  const char *features[] = { "prefers-color-scheme", };
+  const char *values[1];
+
+  pos = gtk_drop_down_get_selected (dropdown);
+  values[0] = colorscheme_values[pos];
+
+  provider = gtk_settings_get_theme_provider (vis->settings);
+  gtk_css_provider_update_discrete_media_features (provider, 1, features, values);
+}
+
+static guint
+g_strv_find (const char **values,
+             const char  *value)
+{
+  for (guint i = 0; values[i]; i++)
+    {
+      if (strcmp (values[i], value) == 0)
+        return i;
+    }
+
+  return G_MAXUINT;
+}
+
+static void
+init_colorscheme (GtkInspectorVisual *vis)
+{
+  GtkCssProvider *provider;
+  const char *value;
+  guint pos;
+
+  provider = gtk_settings_get_theme_provider (vis->settings);
+  value = gtk_css_provider_get_discrete_media_feature (provider, "prefers-color-scheme");
+
+  pos = g_strv_find (colorscheme_values, value);
+  g_assert (pos < G_MAXUINT);
+  gtk_drop_down_set_selected (GTK_DROP_DOWN (vis->colorscheme_combo), pos);
+
+  g_signal_connect (vis->colorscheme_combo, "notify::selected",
+                    G_CALLBACK (colorscheme_changed), vis);
+}
+
+static const char *contrast_values[] = { "no-preference", "less", "more", "custom" };
+
+static void
+contrast_changed (GtkDropDown        *dropdown,
+                  GParamSpec         *pspec,
+                  GtkInspectorVisual *vis)
+{
+  GtkCssProvider *provider;
+  guint pos;
+  const char *features[] = { "prefers-contrast", };
+  const char *values[1];
+
+  pos = gtk_drop_down_get_selected (dropdown);
+  values[0] = contrast_values[pos];
+
+  provider = gtk_settings_get_theme_provider (vis->settings);
+  gtk_css_provider_update_discrete_media_features (provider, 1, features, values);
+}
+
+static void
+init_contrast (GtkInspectorVisual *vis)
+{
+  GtkCssProvider *provider;
+  const char *value;
+  guint pos;
+
+  provider = gtk_settings_get_theme_provider (vis->settings);
+  value = gtk_css_provider_get_discrete_media_feature (provider, "prefers-contrast");
+
+  pos = g_strv_find (contrast_values, value);
+  g_assert (pos < G_MAXUINT);
+  gtk_drop_down_set_selected (GTK_DROP_DOWN (vis->contrast_combo), pos);
+
+  g_signal_connect (vis->contrast_combo, "notify::selected",
+                    G_CALLBACK (contrast_changed), vis);
 }
 
 static void

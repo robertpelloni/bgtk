@@ -18,14 +18,7 @@
 
 #pragma once
 
-<<<<<<< HEAD:bobgui/bobguifilechoosernativeprivate.h
 #include <bobgui/deprecated/bobguifilechoosernative.h>
-=======
-#include <gtk/gtkfilechoosernative.h>
-#ifdef GDK_WINDOWING_QUARTZ
-#include <AvailabilityMacros.h>
-#endif
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkfilechoosernativeprivate.h
 
 G_BEGIN_DECLS
 
@@ -64,15 +57,8 @@ struct _BobguiFileChooserNative
 gboolean bobgui_file_chooser_native_win32_show (BobguiFileChooserNative *self);
 void bobgui_file_chooser_native_win32_hide (BobguiFileChooserNative *self);
 
-<<<<<<< HEAD:bobgui/bobguifilechoosernativeprivate.h
 gboolean bobgui_file_chooser_native_quartz_show (BobguiFileChooserNative *self);
 void bobgui_file_chooser_native_quartz_hide (BobguiFileChooserNative *self);
-=======
-#if defined GDK_WINDOWING_QUARTZ && MAC_OS_X_VERSION_MAX_ALLOWED >= 1060
-gboolean gtk_file_chooser_native_quartz_show (GtkFileChooserNative *self);
-void gtk_file_chooser_native_quartz_hide (GtkFileChooserNative *self);
-#endif
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkfilechoosernativeprivate.h
 
 gboolean bobgui_file_chooser_native_android_show (BobguiFileChooserNative *self);
 void bobgui_file_chooser_native_android_hide (BobguiFileChooserNative *self);

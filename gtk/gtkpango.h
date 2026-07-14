@@ -28,6 +28,7 @@
 
 #include <pango/pangocairo.h>
 #include <atk/atk.h>
+#include  "gtkbuildable.h"
 
 G_BEGIN_DECLS
 

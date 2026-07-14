@@ -594,6 +594,14 @@ gdk_win32_gl_context_wgl_init_basic (GdkWin32Display  *display_win32,
   return TRUE;
 }
 
+static bool
+check_vendor_is_nvidia (void)
+{
+  const char *vendor = (const char *) glGetString (GL_VENDOR);
+
+  return g_ascii_strncasecmp (vendor, "NVIDIA", strlen ("NVIDIA")) == 0;
+}
+
 GdkGLContext *
 gdk_win32_display_init_wgl (GdkDisplay  *display,
                             GError     **error)

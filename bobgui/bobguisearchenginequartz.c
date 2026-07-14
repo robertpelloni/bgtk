@@ -85,11 +85,7 @@ G_DEFINE_TYPE_WITH_PRIVATE (BobguiSearchEngineQuartz, _bobgui_search_engine_quar
       id result = [ns_query resultAtIndex:i];
       const char *result_path;
       GFile *file;
-<<<<<<< HEAD:bobgui/bobguisearchenginequartz.c
       BobguiSearchHit *hit;
-=======
-      GtkSearchHit *hit;
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtksearchenginequartz.c
 
       result_path = [[result valueForAttribute:@"kMDItemPath"] UTF8String];
 
@@ -98,24 +94,15 @@ G_DEFINE_TYPE_WITH_PRIVATE (BobguiSearchEngineQuartz, _bobgui_search_engine_quar
 
       file = g_file_new_for_path (result_path);
 
-<<<<<<< HEAD:bobgui/bobguisearchenginequartz.c
       hit = g_new (BobguiSearchHit, 1);
-=======
-      hit = g_new (GtkSearchHit, 1);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtksearchenginequartz.c
       hit->file = file;
       hit->info = NULL;
 
       hits = g_list_prepend (hits, hit);
     }
 
-<<<<<<< HEAD:bobgui/bobguisearchenginequartz.c
   _bobgui_search_engine_hits_added (engine, hits);
   g_list_free_full (hits, (GDestroyNotify) _bobgui_search_hit_free);
-=======
-  _gtk_search_engine_hits_added (engine, hits);
-  g_list_free_full (hits, (GDestroyNotify) _gtk_search_hit_free);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtksearchenginequartz.c
 
   if (max_iter >= max_hits)
     [ns_query stopQuery];
@@ -143,11 +130,7 @@ G_DEFINE_TYPE_WITH_PRIVATE (BobguiSearchEngineQuartz, _bobgui_search_engine_quar
 
   [self submitHits:ns_query];
 
-<<<<<<< HEAD:bobgui/bobguisearchenginequartz.c
   _bobgui_search_engine_finished (engine, submitted_hits > 0);
-=======
-  _gtk_search_engine_finished (engine, submitted_hits > 0);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtksearchenginequartz.c
   submitted_hits = 0;
 }
 
@@ -212,11 +195,7 @@ static void
 bobgui_search_engine_quartz_set_query (BobguiSearchEngine *engine, 
 				    BobguiQuery        *query)
 {
-<<<<<<< HEAD:bobgui/bobguisearchenginequartz.c
   BobguiSearchEngineQuartz *quartz;
-=======
-  GtkSearchEngineQuartz *quartz;
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtksearchenginequartz.c
   const char* path = NULL;
   GFile *location = NULL;
 
@@ -231,11 +210,7 @@ bobgui_search_engine_quartz_set_query (BobguiSearchEngine *engine,
     g_object_unref (quartz->priv->query);
 
   quartz->priv->query = query;
-<<<<<<< HEAD:bobgui/bobguisearchenginequartz.c
   location = bobgui_query_get_location (query);
-=======
-  location = gtk_query_get_location (query);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtksearchenginequartz.c
 
   if (location)
     path = g_file_peek_path (location);

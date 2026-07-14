@@ -30,10 +30,6 @@
  * The replacement is to use the Job Ticket API, but that requires
  * a larger refactoring of this backend.
  */
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
-=======
-#define _PPD_DEPRECATED
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
 
 #include <cups/cups.h>
 #include <cups/language.h>
@@ -69,15 +65,7 @@
 #include <colord.h>
 #endif
 
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
 typedef struct _BobguiPrintBackendCupsClass BobguiPrintBackendCupsClass;
-=======
-#if ((CUPS_VERSION_MAJOR == 2 && CUPS_VERSION_MINOR >= 2) || CUPS_VERSION_MAJOR > 2)
-#define HAVE_CUPS_2_2
-#endif
-
-typedef struct _GtkPrintBackendCupsClass GtkPrintBackendCupsClass;
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
 
 #define BOBGUI_PRINT_BACKEND_CUPS_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), BOBGUI_TYPE_PRINT_BACKEND_CUPS, BobguiPrintBackendCupsClass))
 #define BOBGUI_IS_PRINT_BACKEND_CUPS_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), BOBGUI_TYPE_PRINT_BACKEND_CUPS))
@@ -281,11 +269,7 @@ static gboolean             is_address_local                        (const char 
 static gboolean             request_auth_info                       (gpointer                          data);
 static void                 lookup_auth_info                        (gpointer                          data);
 
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
 static void                 avahi_request_printer_list              (BobguiPrintBackendCups              *cups_backend);
-=======
-static void                 avahi_request_printer_list              (GtkPrintBackendCups              *cups_backend);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
 
 static void                 secrets_service_appeared_cb             (GDBusConnection *connection,
                                                                      const char *name,
@@ -295,62 +279,13 @@ static void                 secrets_service_vanished_cb             (GDBusConnec
                                                                      const char *name,
                                                                      gpointer user_data);
 
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
 BOBGUI_DEFINE_BUILTIN_MODULE_TYPE_WITH_CODE (BobguiPrintBackendCups, bobgui_print_backend_cups, BOBGUI_TYPE_PRINT_BACKEND,
                          g_io_extension_point_implement (BOBGUI_PRINT_BACKEND_EXTENSION_POINT_NAME,
                                                          g_define_type_id,
                                                          "cups",
                                                          20))
-=======
-#ifdef HAVE_CUPS_2_2
-static void                 create_temporary_queue                  (GtkPrintBackendCups *backend,
-                                                                     const gchar         *printer_name,
-                                                                     const gchar         *printer_uri,
-                                                                     const gchar         *device_uri);
-#endif
-
-static void
-gtk_print_backend_cups_register_type (GTypeModule *module)
-{
-  const GTypeInfo print_backend_cups_info =
-  {
-    sizeof (GtkPrintBackendCupsClass),
-    NULL,		/* base_init */
-    NULL,		/* base_finalize */
-    (GClassInitFunc) gtk_print_backend_cups_class_init,
-    NULL,		/* class_finalize */
-    NULL,		/* class_data */
-    sizeof (GtkPrintBackendCups),
-    0,	          	/* n_preallocs */
-    (GInstanceInitFunc) gtk_print_backend_cups_init
-  };
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
 
 
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
-=======
-G_MODULE_EXPORT void
-pb_module_init (GTypeModule *module)
-{
-  GTK_NOTE (PRINTING,
-            g_print ("CUPS Backend: Initializing the CUPS print backend module\n"));
-
-  gtk_print_backend_cups_register_type (module);
-  gtk_printer_cups_register_type (module);
-}
-
-G_MODULE_EXPORT void
-pb_module_exit (void)
-{
-
-}
-
-G_MODULE_EXPORT GtkPrintBackend *
-pb_module_create (void)
-{
-  return gtk_print_backend_cups_new ();
-}
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
 /*
  * BobguiPrintBackendCups
  */
@@ -622,15 +557,9 @@ cups_print_cb (BobguiPrintBackendCups *print_backend,
 }
 
 typedef struct {
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
   BobguiCupsRequest *request;
   BobguiPageSetup *page_setup;
   BobguiPrinterCups *printer;
-=======
-  GtkCupsRequest *request;
-  GtkPageSetup *page_setup;
-  GtkPrinterCups *printer;
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
 } CupsOptionsData;
 
 #define UNSIGNED_FLOAT_REGEX "([0-9]+([.,][0-9]*)?|[.,][0-9]+)([e][+-]?[0-9]+)?"
@@ -661,12 +590,9 @@ add_cups_options (const char *key,
 
   key = key + strlen ("cups-");
 
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
 #if CUPS_VERSION_MAJOR < 3
   G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 
-=======
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
   if (printer && printer->ppd_file && !g_str_has_prefix (value, "Custom."))
     {
       ppd_coption_t *coption;
@@ -704,13 +630,8 @@ add_cups_options (const char *key,
                           custom_value = TRUE;
                           new_value =
                             g_strdup_printf ("Custom.%.2fx%.2fmm",
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
                                              bobgui_paper_size_get_width (bobgui_page_setup_get_paper_size (data->page_setup), BOBGUI_UNIT_MM),
                                              bobgui_paper_size_get_height (bobgui_page_setup_get_paper_size (data->page_setup), BOBGUI_UNIT_MM));
-=======
-                                             gtk_paper_size_get_width (gtk_page_setup_get_paper_size (data->page_setup), GTK_UNIT_MM),
-                                             gtk_paper_size_get_height (gtk_page_setup_get_paper_size (data->page_setup), GTK_UNIT_MM));
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
                         }
                     }
                 }
@@ -747,14 +668,11 @@ add_cups_options (const char *key,
                           custom_value = TRUE;
                           break;
 
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
 #if (CUPS_VERSION_MAJOR >= 3) || \
     (CUPS_VERSION_MAJOR == 2 && CUPS_VERSION_MINOR >= 3) || \
     (CUPS_VERSION_MAJOR == 2 && CUPS_VERSION_MINOR == 2 && CUPS_VERSION_PATCH >= 12)
                         case PPD_CUSTOM_UNKNOWN:
 #endif
-=======
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
                         default :
                           custom_value = FALSE;
                         }
@@ -772,11 +690,7 @@ add_cups_options (const char *key,
     {
       if (new_value == NULL)
         new_value = g_strdup_printf ("Custom.%s", value);
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
       bobgui_cups_request_encode_option (request, key, new_value);
-=======
-      gtk_cups_request_encode_option (request, key, new_value);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
       g_free (new_value);
     }
   else
@@ -794,17 +708,10 @@ bobgui_print_backend_cups_print_stream (BobguiPrintBackend         *print_backen
   BobguiPrinterCups *cups_printer;
   CupsPrintStreamData *ps;
   CupsOptionsData *options_data;
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
   BobguiPageSetup *page_setup;
   BobguiCupsRequest *request = NULL;
   BobguiPrintSettings *settings;
   const char *title;
-=======
-  GtkPageSetup *page_setup;
-  GtkCupsRequest *request = NULL;
-  GtkPrintSettings *settings;
-  const gchar *title;
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
   char  printer_absolute_uri[HTTP_MAX_URI];
   http_t *http = NULL;
 
@@ -815,11 +722,7 @@ bobgui_print_backend_cups_print_stream (BobguiPrintBackend         *print_backen
 
   if (cups_printer->avahi_browsed)
     {
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
       http = _httpConnect (cups_printer->hostname, cups_printer->port,
-=======
-      http = httpConnect2 (cups_printer->hostname, cups_printer->port,
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
                            NULL, AF_UNSPEC,
                            HTTP_ENCRYPTION_IF_REQUESTED,
                            1, 30000,
@@ -919,11 +822,7 @@ bobgui_print_backend_cups_print_stream (BobguiPrintBackend         *print_backen
   options_data->request = request;
   options_data->printer = cups_printer;
   options_data->page_setup = page_setup;
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
   bobgui_print_settings_foreach (settings, add_cups_options, options_data);
-=======
-  gtk_print_settings_foreach (settings, add_cups_options, options_data);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
   g_clear_object (&page_setup);
   g_free (options_data);
 
@@ -1061,11 +960,7 @@ bobgui_print_backend_cups_finalize (GObject *object)
 static void
 bobgui_print_backend_cups_dispose (GObject *object)
 {
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
   BobguiPrintBackendCups *backend_cups;
-=======
-  GtkPrintBackendCups *backend_cups;
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
   int i;
 
   BOBGUI_DEBUG (PRINTING, "CUPS Backend: %s", G_STRFUNC);
@@ -1295,13 +1190,13 @@ request_password (gpointer data)
         {
           case IPP_OP_PRINT_JOB:
             if (job_title != NULL && printer_name != NULL)
-              prompt = g_strdup_printf ( _("Authentication is required to print document “%s” on printer %s"), job_title, printer_name);
+              prompt = g_strdup_printf ( _("Authentication is required to print document “%s� on printer %s"), job_title, printer_name);
             else
               prompt = g_strdup_printf ( _("Authentication is required to print a document on %s"), hostname);
             break;
           case IPP_OP_GET_JOB_ATTRIBUTES:
             if (job_title != NULL)
-              prompt = g_strdup_printf ( _("Authentication is required to get attributes of job “%s”"), job_title);
+              prompt = g_strdup_printf ( _("Authentication is required to get attributes of job “%s�"), job_title);
             else
               prompt = g_strdup ( _("Authentication is required to get attributes of a job"));
             break;
@@ -1585,9 +1480,9 @@ request_auth_info (gpointer user_data)
   if (job_title != NULL)
     {
       if (printer_name != NULL)
-        prompt = g_strdup_printf ( _("Authentication is required to print document “%s” on printer %s"), job_title, printer_name);
+        prompt = g_strdup_printf ( _("Authentication is required to print document “%s� on printer %s"), job_title, printer_name);
       else
-        prompt = g_strdup_printf ( _("Authentication is required to print document “%s”"), job_title);
+        prompt = g_strdup_printf ( _("Authentication is required to print document “%s�"), job_title);
     }
   else
     {
@@ -1864,11 +1759,6 @@ cups_request_job_info_cb (BobguiPrintBackendCups *print_backend,
 
   response = bobgui_cups_result_get_response (result);
 
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
-=======
-  state = 0;
-
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
   attr = ippFindAttribute (response, "job-state", IPP_TAG_ENUM);
   state = ippGetInteger (attr, 0);
 
@@ -1977,17 +1867,12 @@ static void
 mark_printer_inactive (BobguiPrinter      *printer,
                        BobguiPrintBackend *backend)
 {
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
   BobguiPrinterCups *cups_printer = BOBGUI_PRINTER_CUPS (printer);
-=======
-  GtkPrinterCups *cups_printer = GTK_PRINTER_CUPS (printer);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
   GList          *iter;
 
   if (cups_printer->is_temporary)
     {
       /* Do not recreate printers which disappeared from Avahi. */
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
       iter = g_list_find_custom (BOBGUI_PRINT_BACKEND_CUPS (backend)->temporary_queues_removed,
                                  bobgui_printer_get_name (printer), (GCompareFunc) g_strcmp0);
       if (iter == NULL)
@@ -1997,28 +1882,11 @@ mark_printer_inactive (BobguiPrinter      *printer,
                                   bobgui_printer_get_name (printer),
                                   cups_printer->printer_uri,
                                   cups_printer->temporary_queue_device_uri);
-=======
-      iter = g_list_find_custom (GTK_PRINT_BACKEND_CUPS (backend)->temporary_queues_removed,
-                                 gtk_printer_get_name (printer), (GCompareFunc) g_strcmp0);
-      if (iter == NULL)
-        {
-          /* Recreate temporary queue since they are created for 60 seconds only. */
-#ifdef HAVE_CUPS_2_2
-          create_temporary_queue (GTK_PRINT_BACKEND_CUPS (backend),
-                                  gtk_printer_get_name (printer),
-                                  cups_printer->printer_uri,
-                                  cups_printer->temporary_queue_device_uri);
-#endif
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
         }
     }
   else
     {
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
       bobgui_printer_set_is_active (printer, FALSE);
-=======
-      gtk_printer_set_is_active (printer, FALSE);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
       g_signal_emit_by_name (backend, "printer-removed", printer);
     }
 }
@@ -2146,15 +2014,9 @@ typedef struct
   gboolean got_printer_type;
   gboolean remote_printer;
   gboolean avahi_printer;
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
   char    *avahi_resource_path;
   char   **auth_info_required;
   int      default_number_up;
-=======
-  gchar   *avahi_resource_path;
-  gchar  **auth_info_required;
-  gint     default_number_up;
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
   guchar   ipp_version_major;
   guchar   ipp_version_minor;
   gboolean supports_copies;
@@ -2174,11 +2036,7 @@ typedef struct
   int       number_of_covers;
   char     *output_bin_default;
   GList    *output_bin_supported;
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
   char     *original_device_uri;
-=======
-  gchar    *original_device_uri;
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
   gboolean  is_temporary;
 } PrinterSetupInfo;
 
@@ -2599,11 +2457,7 @@ cups_create_printer (BobguiPrintBackendCups *cups_backend,
 					 backend,
 					 NULL);
   else
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
     cups_printer = bobgui_printer_cups_new (info->printer_name,
-=======
-    cups_printer = gtk_printer_cups_new (info->printer_name,
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
 					 backend,
 					 cups_backend->colord_client);
 #else
@@ -2725,55 +2579,55 @@ get_reason_msg_desc (guint i,
   switch (i)
     {
       case 0:
-        reason_msg_desc = g_strdup_printf (_("Printer “%s” is low on toner."),
+        reason_msg_desc = g_strdup_printf (_("Printer “%s� is low on toner."),
                                            printer_name);
         break;
       case 1:
-        reason_msg_desc = g_strdup_printf (_("Printer “%s” has no toner left."),
+        reason_msg_desc = g_strdup_printf (_("Printer “%s� has no toner left."),
                                            printer_name);
         break;
       case 2:
         /* Translators: "Developer" like on photo development context */
-        reason_msg_desc = g_strdup_printf (_("Printer “%s” is low on developer."),
+        reason_msg_desc = g_strdup_printf (_("Printer “%s� is low on developer."),
                                            printer_name);
         break;
       case 3:
         /* Translators: "Developer" like on photo development context */
-        reason_msg_desc = g_strdup_printf (_("Printer “%s” is out of developer."),
+        reason_msg_desc = g_strdup_printf (_("Printer “%s� is out of developer."),
                                            printer_name);
         break;
       case 4:
         /* Translators: "marker" is one color bin of the printer */
-        reason_msg_desc = g_strdup_printf (_("Printer “%s” is low on at least one marker supply."),
+        reason_msg_desc = g_strdup_printf (_("Printer “%s� is low on at least one marker supply."),
                                            printer_name);
         break;
       case 5:
         /* Translators: "marker" is one color bin of the printer */
-        reason_msg_desc = g_strdup_printf (_("Printer “%s” is out of at least one marker supply."),
+        reason_msg_desc = g_strdup_printf (_("Printer “%s� is out of at least one marker supply."),
                                            printer_name);
         break;
       case 6:
-        reason_msg_desc = g_strdup_printf (_("The cover is open on printer “%s”."),
+        reason_msg_desc = g_strdup_printf (_("The cover is open on printer “%s�."),
                                            printer_name);
         break;
       case 7:
-        reason_msg_desc = g_strdup_printf (_("The door is open on printer “%s”."),
+        reason_msg_desc = g_strdup_printf (_("The door is open on printer “%s�."),
                                            printer_name);
         break;
       case 8:
-        reason_msg_desc = g_strdup_printf (_("Printer “%s” is low on paper."),
+        reason_msg_desc = g_strdup_printf (_("Printer “%s� is low on paper."),
                                            printer_name);
         break;
       case 9:
-        reason_msg_desc = g_strdup_printf (_("Printer “%s” is out of paper."),
+        reason_msg_desc = g_strdup_printf (_("Printer “%s� is out of paper."),
                                            printer_name);
         break;
       case 10:
-        reason_msg_desc = g_strdup_printf (_("Printer “%s” is currently offline."),
+        reason_msg_desc = g_strdup_printf (_("Printer “%s� is currently offline."),
                                            printer_name);
         break;
       case 11:
-        reason_msg_desc = g_strdup_printf (_("There is a problem on printer “%s”."),
+        reason_msg_desc = g_strdup_printf (_("There is a problem on printer “%s�."),
                                            printer_name);
         break;
       default:
@@ -2873,27 +2727,10 @@ set_default_printer (BobguiPrintBackendCups *cups_backend,
 }
 
 typedef struct {
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
   BobguiPrinterCups *printer;
   http_t         *http;
 } RequestPrinterInfoData;
 
-=======
-  GtkPrinterCups *printer;
-  http_t         *http;
-} RequestPrinterInfoData;
-
-static void
-request_printer_info_data_free (RequestPrinterInfoData *data)
-{
-  GTK_NOTE (PRINTING,
-            g_print ("CUPS Backend: %s\n", G_STRFUNC));
-  httpClose (data->http);
-  g_object_unref (data->printer);
-  g_free (data);
-}
-
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
 static void
 request_printer_info_data_free (RequestPrinterInfoData *data)
 {
@@ -2909,17 +2746,10 @@ cups_request_printer_info_cb (BobguiPrintBackendCups *cups_backend,
                               gpointer             user_data)
 {
   RequestPrinterInfoData *data = (RequestPrinterInfoData *) user_data;
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
   PrinterSetupInfo       *info = g_new0 (PrinterSetupInfo, 1);
   BobguiPrintBackend        *backend = BOBGUI_PRINT_BACKEND (cups_backend);
   ipp_attribute_t        *attr;
   BobguiPrinter             *printer = g_object_ref (BOBGUI_PRINTER (data->printer));
-=======
-  PrinterSetupInfo       *info = g_slice_new0 (PrinterSetupInfo);
-  GtkPrintBackend        *backend = GTK_PRINT_BACKEND (cups_backend);
-  ipp_attribute_t        *attr;
-  GtkPrinter             *printer = g_object_ref (GTK_PRINTER (data->printer));
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
   gboolean                status_changed = FALSE;
   ipp_t                  *response;
 
@@ -2993,15 +2823,9 @@ cups_request_printer_info_cb (BobguiPrintBackendCups *cups_backend,
           BOBGUI_PRINTER_CUPS (printer)->output_bin_default = info->output_bin_default;
           BOBGUI_PRINTER_CUPS (printer)->output_bin_supported = info->output_bin_supported;
 
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
           BOBGUI_PRINTER_CUPS (printer)->is_temporary = info->is_temporary;
 
           bobgui_printer_set_has_details (printer, TRUE);
-=======
-          GTK_PRINTER_CUPS (printer)->is_temporary = info->is_temporary;
-
-          gtk_printer_set_has_details (printer, TRUE);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
           g_signal_emit_by_name (printer, "details-acquired", TRUE);
 
           if (status_changed)
@@ -3024,7 +2848,6 @@ done:
 }
 
 static void
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
 cups_request_printer_info (BobguiPrinterCups *printer)
 {
   RequestPrinterInfoData *data;
@@ -3036,31 +2859,15 @@ cups_request_printer_info (BobguiPrinterCups *printer)
     http = _httpConnect (cupsGetServer (), ippGetPort (), NULL, AF_UNSPEC, HTTP_ENCRYPTION_IF_REQUESTED, 1, 30000, NULL);
   else
     http = _httpConnect (printer->hostname, printer->port, NULL, AF_UNSPEC, HTTP_ENCRYPTION_IF_REQUESTED, 1, 30000, NULL);
-=======
-cups_request_printer_info (GtkPrinterCups *printer)
-{
-  RequestPrinterInfoData *data;
-  GtkPrintBackendCups    *backend = GTK_PRINT_BACKEND_CUPS (gtk_printer_get_backend (GTK_PRINTER (printer)));
-  GtkCupsRequest         *request;
-  http_t                 *http;
-
-  http = httpConnect2 (printer->hostname, printer->port, NULL, AF_UNSPEC, HTTP_ENCRYPTION_IF_REQUESTED, 1, 30000, NULL);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
   if (http)
     {
       data = g_new0 (RequestPrinterInfoData, 1);
       data->http = http;
       data->printer = g_object_ref (printer);
 
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
       request = bobgui_cups_request_new_with_username (http,
                                                     BOBGUI_CUPS_POST,
                                                     IPP_OP_GET_PRINTER_ATTRIBUTES,
-=======
-      request = gtk_cups_request_new_with_username (http,
-                                                    GTK_CUPS_POST,
-                                                    IPP_GET_PRINTER_ATTRIBUTES,
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
                                                     NULL,
                                                     NULL,
                                                     NULL,
@@ -3068,11 +2875,7 @@ cups_request_printer_info (GtkPrinterCups *printer)
 
       bobgui_cups_request_set_ipp_version (request, 1, 1);
 
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
       bobgui_cups_request_ipp_add_string (request, IPP_TAG_OPERATION, IPP_TAG_URI,
-=======
-      gtk_cups_request_ipp_add_string (request, IPP_TAG_OPERATION, IPP_TAG_URI,
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
                                        "printer-uri", NULL, printer->printer_uri);
 
       bobgui_cups_request_ipp_add_strings (request, IPP_TAG_OPERATION, IPP_TAG_KEYWORD,
@@ -3081,11 +2884,7 @@ cups_request_printer_info (GtkPrinterCups *printer)
 
       cups_request_execute (backend,
                             request,
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
                             (BobguiPrintCupsResponseCallbackFunc) cups_request_printer_info_cb,
-=======
-                            (GtkPrintCupsResponseCallbackFunc) cups_request_printer_info_cb,
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
                             data,
                             (GDestroyNotify) request_printer_info_data_free);
     }
@@ -3093,7 +2892,6 @@ cups_request_printer_info (GtkPrinterCups *printer)
 
 typedef struct
 {
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
   char                *printer_uri;
   char                *device_uri;
   char                *location;
@@ -3103,17 +2901,6 @@ typedef struct
   char                *printer_name;
   char                *name;
   char                *resource_path;
-=======
-  gchar               *printer_uri;
-  gchar               *device_uri;
-  gchar               *location;
-  gchar               *address;
-  gchar               *hostname;
-  gint                 port;
-  gchar               *printer_name;
-  gchar               *name;
-  gchar               *resource_path;
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
   gboolean             got_printer_type;
   guint                printer_type;
   gboolean             got_printer_state;
@@ -3167,13 +2954,8 @@ find_printer_by_uuid (BobguiPrintBackendCups *backend,
 }
 
 static void
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
 cups_create_local_printer_cb (BobguiPrintBackendCups *print_backend,
                               BobguiCupsResult       *result,
-=======
-cups_create_local_printer_cb (GtkPrintBackendCups *print_backend,
-                              GtkCupsResult       *result,
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
                               gpointer             user_data)
 {
   ipp_attribute_t *attr;
@@ -3181,37 +2963,21 @@ cups_create_local_printer_cb (GtkPrintBackendCups *print_backend,
   ipp_t           *response;
   GList           *iter;
 
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
   response = bobgui_cups_result_get_response (result);
 
   if (ippGetStatusCode (response) <= IPP_STATUS_OK_CONFLICTING)
-=======
-  response = gtk_cups_result_get_response (result);
-
-  if (ippGetStatusCode (response) <= IPP_OK_CONFLICT)
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
     {
       if ((attr = ippFindAttribute (response, "printer-uri-supported", IPP_TAG_URI)) != NULL)
         {
           printer_name = g_strdup (g_strrstr (ippGetString (attr, 0, NULL), "/") + 1);
         }
 
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
       BOBGUI_DEBUG (PRINTING, "CUPS Backend: Created local printer %s", printer_name);
     }
   else
     {
       BOBGUI_DEBUG (PRINTING, "CUPS Backend: Creating of local printer failed: %d",
                            ippGetStatusCode (response));
-=======
-      GTK_NOTE (PRINTING,
-                g_print ("CUPS Backend: Created local printer %s\n", printer_name));
-    }
-  else
-    {
-      GTK_NOTE (PRINTING,
-                g_print ("CUPS Backend: Creating of local printer failed: %d\n", ippGetStatusCode (response)));
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
     }
 
   iter = g_list_find_custom (print_backend->temporary_queues_in_construction, printer_name, (GCompareFunc) g_strcmp0);
@@ -3224,54 +2990,6 @@ cups_create_local_printer_cb (GtkPrintBackendCups *print_backend,
   g_free (printer_name);
 }
 
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
-=======
-/*
- *  Create CUPS temporary queue.
- */
-#ifdef HAVE_CUPS_2_2
-static void
-create_temporary_queue (GtkPrintBackendCups *backend,
-                        const gchar         *printer_name,
-                        const gchar         *printer_uri,
-                        const gchar         *device_uri)
-{
-  GtkCupsRequest *request;
-  GList          *iter;
-
-  /* There can be several queues with the same name (ipp and ipps versions of the same printer) */
-  iter = g_list_find_custom (backend->temporary_queues_in_construction, printer_name, (GCompareFunc) g_strcmp0);
-  if (iter != NULL)
-    return;
-
-  GTK_NOTE (PRINTING,
-            g_print ("CUPS Backend: Creating local printer %s\n", printer_name));
-
-  backend->temporary_queues_in_construction = g_list_prepend (backend->temporary_queues_in_construction, g_strdup (printer_name));
-
-  request = gtk_cups_request_new_with_username (NULL,
-                                                GTK_CUPS_POST,
-                                                IPP_OP_CUPS_CREATE_LOCAL_PRINTER,
-                                                NULL,
-                                                NULL,
-                                                NULL,
-                                                NULL);
-
-  gtk_cups_request_ipp_add_string (request, IPP_TAG_OPERATION, IPP_TAG_URI,
-                                   "printer-uri", NULL, printer_uri);
-  gtk_cups_request_ipp_add_string (request, IPP_TAG_PRINTER, IPP_TAG_NAME,
-                                   "printer-name", NULL, printer_name);
-  gtk_cups_request_ipp_add_string (request, IPP_TAG_PRINTER, IPP_TAG_URI,
-                                   "device-uri", NULL, device_uri);
-
-  cups_request_execute (backend,
-                        request,
-                        (GtkPrintCupsResponseCallbackFunc) cups_create_local_printer_cb,
-                        NULL,
-                        NULL);
-}
-#endif
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
 /*
  *  Create CUPS temporary queue.
  */
@@ -3324,11 +3042,7 @@ create_cups_printer_from_avahi_data (AvahiConnectionTestData *data)
   PrinterSetupInfo *info;
   BobguiPrinter       *printer;
 
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
   printer = bobgui_print_backend_find_printer (BOBGUI_PRINT_BACKEND (data->backend), data->printer_name);
-=======
-  printer = gtk_print_backend_find_printer (GTK_PRINT_BACKEND (data->backend), data->printer_name);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
   if (printer != NULL)
     {
       /* A printer with this name is already present in this backend. It is probably the same printer
@@ -3337,10 +3051,7 @@ create_cups_printer_from_avahi_data (AvahiConnectionTestData *data)
       return;
     }
 
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
   info = g_new0 (PrinterSetupInfo, 1);
-=======
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
   info->avahi_printer = TRUE;
   info->printer_name = data->printer_name;
   info->printer_uri = data->printer_uri;
@@ -3380,12 +3091,8 @@ create_cups_printer_from_avahi_data (AvahiConnectionTestData *data)
 
   set_info_state_message (info);
 
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
   printer = bobgui_print_backend_find_printer (BOBGUI_PRINT_BACKEND (data->backend), data->printer_name);
 
-=======
-  printer = gtk_print_backend_find_printer (GTK_PRINT_BACKEND (data->backend), data->printer_name);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
   if (printer == NULL && data->UUID != NULL)
     printer = find_printer_by_uuid (data->backend, data->UUID);
 
@@ -3406,7 +3113,6 @@ create_cups_printer_from_avahi_data (AvahiConnectionTestData *data)
       if (data->got_printer_state)
         BOBGUI_PRINTER_CUPS (printer)->state = info->state;
 
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
       BOBGUI_PRINTER_CUPS (printer)->avahi_name = g_strdup (data->name);
       BOBGUI_PRINTER_CUPS (printer)->avahi_type = g_strdup (data->type);
       BOBGUI_PRINTER_CUPS (printer)->avahi_domain = g_strdup (data->domain);
@@ -3417,18 +3123,6 @@ create_cups_printer_from_avahi_data (AvahiConnectionTestData *data)
       BOBGUI_PRINTER_CUPS (printer)->port = data->port;
       bobgui_printer_set_location (printer, data->location);
       bobgui_printer_set_state_message (printer, info->state_msg);
-=======
-      GTK_PRINTER_CUPS (printer)->avahi_name = g_strdup (data->name);
-      GTK_PRINTER_CUPS (printer)->avahi_type = g_strdup (data->type);
-      GTK_PRINTER_CUPS (printer)->avahi_domain = g_strdup (data->domain);
-      GTK_PRINTER_CUPS (printer)->printer_uri = g_strdup (data->printer_uri);
-      GTK_PRINTER_CUPS (printer)->temporary_queue_device_uri = g_strdup (data->device_uri);
-      g_free (GTK_PRINTER_CUPS (printer)->hostname);
-      GTK_PRINTER_CUPS (printer)->hostname = g_strdup (data->hostname);
-      GTK_PRINTER_CUPS (printer)->port = data->port;
-      gtk_printer_set_location (printer, data->location);
-      gtk_printer_set_state_message (printer, info->state_msg);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
 
       set_printer_icon_name_from_info (printer, info);
 
@@ -3474,16 +3168,9 @@ avahi_connection_test_cb (GObject      *source_object,
     }
   else
     {
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
       BOBGUI_DEBUG (PRINTING, "CUPS Backend: Can not connect to %s: %s",
                            data->address,
                            error->message);
-=======
-      GTK_NOTE (PRINTING,
-                g_warning ("CUPS Backend: Can not connect to %s: %s\n",
-                           data->address,
-                           error->message));
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
       g_error_free (error);
     }
 
@@ -3533,21 +3220,12 @@ avahi_service_resolver_cb (GObject      *source_object,
                            gpointer      user_data)
 {
   AvahiConnectionTestData *data;
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
   BobguiPrintBackendCups     *backend;
   const char              *name;
   const char              *hostname;
   const char              *type;
   const char              *domain;
   const char              *address;
-=======
-  GtkPrintBackendCups     *backend;
-  const gchar             *name;
-  const gchar             *hostname;
-  const gchar             *type;
-  const gchar             *domain;
-  const gchar             *address;
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
   GVariant                *output;
   GVariant                *txt;
   GVariant                *child;
@@ -3555,7 +3233,6 @@ avahi_service_resolver_cb (GObject      *source_object,
   guint16                  port;
   GError                  *error = NULL;
   GList                   *iter;
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
   char                    *tmp;
   char                    *printer_name;
   char                   **printer_name_strv;
@@ -3568,20 +3245,6 @@ avahi_service_resolver_cb (GObject      *source_object,
   int                      protocol;
   int                      aprotocol;
   int                      i, j;
-=======
-  gchar                   *tmp;
-  gchar                   *printer_name;
-  gchar                  **printer_name_strv;
-  gchar                  **printer_name_compressed_strv;
-  gchar                   *endptr;
-  gchar                   *key;
-  gchar                   *value;
-  gsize                    length;
-  gint                     interface;
-  gint                     protocol;
-  gint                     aprotocol;
-  gint                     i, j;
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
 
   output = g_dbus_connection_call_finish (G_DBUS_CONNECTION (source_object),
                                           res,
@@ -3681,17 +3344,10 @@ avahi_service_resolver_cb (GObject      *source_object,
 
           data->printer_name = g_strjoinv ("_", printer_name_compressed_strv);
 
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
 
           g_strfreev (printer_name_strv);
           g_free (printer_name_compressed_strv);
           g_free (printer_name);
-=======
-          g_strfreev (printer_name_strv);
-          g_free (printer_name_compressed_strv);
-          g_free (printer_name);
-
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
           iter = g_list_find_custom (backend->temporary_queues_removed, data->printer_name, (GCompareFunc) g_strcmp0);
           if (iter != NULL)
             {
@@ -3826,11 +3482,7 @@ avahi_service_browser_signal_handler (GDBusConnection *connection,
                     g_clear_pointer (&backend->avahi_default_printer, g_free);
 
                   backend->temporary_queues_removed = g_list_prepend (backend->temporary_queues_removed,
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
                     g_strdup (bobgui_printer_get_name (BOBGUI_PRINTER (printer))));
-=======
-                    g_strdup (gtk_printer_get_name (GTK_PRINTER (printer))));
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
 
                   g_signal_emit_by_name (backend, "printer-removed", printer);
                   bobgui_print_backend_remove_printer (BOBGUI_PRINT_BACKEND (backend),
@@ -3848,11 +3500,7 @@ avahi_service_browser_signal_handler (GDBusConnection *connection,
 static gboolean
 unsubscribe_general_subscription_cb (gpointer user_data)
 {
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
   BobguiPrintBackendCups *cups_backend = user_data;
-=======
-  GtkPrintBackendCups *cups_backend = user_data;
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
 
   g_dbus_connection_signal_unsubscribe (cups_backend->dbus_connection,
                                         cups_backend->avahi_service_browser_subscription_id);
@@ -4010,7 +3658,6 @@ avahi_request_printer_list (BobguiPrintBackendCups *cups_backend)
   cups_backend->avahi_cancellable = g_cancellable_new ();
   g_bus_get (G_BUS_TYPE_SYSTEM, cups_backend->avahi_cancellable, avahi_create_browsers, cups_backend);
 }
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
 
 /*
  * Print backend can be disposed together with all its printers
@@ -4024,8 +3671,6 @@ backend_finalized_cb (gpointer  data,
 
   *backend_finalized = TRUE;
 }
-=======
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
 
 static void
 cups_request_printer_list_cb (BobguiPrintBackendCups *cups_backend,
@@ -4072,17 +3717,11 @@ cups_request_printer_list_cb (BobguiPrintBackendCups *cups_backend,
    */
   removed_printer_checklist = bobgui_print_backend_get_printer_list (backend);
 
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
   g_object_weak_ref (G_OBJECT (backend), backend_finalized_cb, &backend_finalized);
 
   response = bobgui_cups_result_get_response (result);
   for (attr = ippGetFirstAttribute (response); attr != NULL;
        attr = ippGetNextAttribute (response))
-=======
-  response = gtk_cups_result_get_response (result);
-  for (attr = ippFirstAttribute (response); attr != NULL;
-       attr = ippNextAttribute (response))
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
     {
       BobguiPrinter *printer;
       gboolean status_changed = FALSE;
@@ -4095,32 +3734,21 @@ cups_request_printer_list_cb (BobguiPrintBackendCups *cups_backend,
         attr = ippGetNextAttribute (response);
 
       if (attr == NULL)
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
         {
           printer_setup_info_free (info);
           break;
         }
-=======
-        break;
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
 
       while (attr != NULL && ippGetGroupTag (attr) == IPP_TAG_PRINTER)
         {
           cups_printer_handle_attribute (cups_backend, attr, info);
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
           attr = ippGetNextAttribute (response);
-=======
-          attr = ippNextAttribute (response);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
         }
 
       if (info->printer_name == NULL ||
 	  (info->printer_uri == NULL && info->member_uris == NULL))
         {
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
           printer_setup_info_free (info);
-=======
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
           if (attr == NULL)
             break;
           else
@@ -4128,7 +3756,6 @@ cups_request_printer_list_cb (BobguiPrintBackendCups *cups_backend,
         }
 
       /* Do not show printer for queue which was removed from Avahi. */
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
       iter = g_list_find_custom (BOBGUI_PRINT_BACKEND_CUPS (backend)->temporary_queues_removed,
                                  info->printer_name, (GCompareFunc) g_strcmp0);
       if (iter != NULL)
@@ -4136,12 +3763,6 @@ cups_request_printer_list_cb (BobguiPrintBackendCups *cups_backend,
           printer_setup_info_free (info);
           continue;
         }
-=======
-      iter = g_list_find_custom (GTK_PRINT_BACKEND_CUPS (backend)->temporary_queues_removed,
-                                 info->printer_name, (GCompareFunc) g_strcmp0);
-      if (iter != NULL)
-        continue;
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
 
       if (info->got_printer_type)
         {
@@ -4178,40 +3799,22 @@ cups_request_printer_list_cb (BobguiPrintBackendCups *cups_backend,
 	  printer = cups_create_printer (cups_backend, info);
 	  list_has_changed = TRUE;
 	}
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
       else if (BOBGUI_PRINTER_CUPS (printer)->avahi_browsed && info->is_temporary)
         {
           /*
            * A temporary queue was created for a printer found via Avahi.
            * We modify the placeholder BobguiPrinter to point to the temporary queue
            * instead of removing the placeholder BobguiPrinter and creating new BobguiPrinter.
-=======
-      else if (GTK_PRINTER_CUPS (printer)->avahi_browsed && info->is_temporary)
-        {
-          /*
-           * A temporary queue was created for a printer found via Avahi.
-           * We modify the placeholder GtkPrinter to point to the temporary queue
-           * instead of removing the placeholder GtkPrinter and creating new GtkPrinter.
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
            */
 
           g_object_ref (printer);
 
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
           BOBGUI_PRINTER_CUPS (printer)->avahi_browsed = FALSE;
           BOBGUI_PRINTER_CUPS (printer)->is_temporary = TRUE;
           g_free (BOBGUI_PRINTER_CUPS (printer)->device_uri);
           BOBGUI_PRINTER_CUPS (printer)->device_uri = g_strdup_printf ("/printers/%s",
                                                                     info->printer_name);
           bobgui_printer_set_has_details (printer, FALSE);
-=======
-          GTK_PRINTER_CUPS (printer)->avahi_browsed = FALSE;
-          GTK_PRINTER_CUPS (printer)->is_temporary = TRUE;
-          g_free (GTK_PRINTER_CUPS (printer)->device_uri);
-          GTK_PRINTER_CUPS (printer)->device_uri = g_strdup_printf ("/printers/%s",
-                                                                    info->printer_name);
-          gtk_printer_set_has_details (printer, FALSE);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
           cups_printer_request_details (printer);
         }
       else
@@ -4239,7 +3842,6 @@ cups_request_printer_list_cb (BobguiPrintBackendCups *cups_backend,
 	  bobgui_printer_set_is_new (printer, FALSE);
         }
 
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
       BOBGUI_PRINTER_CUPS (printer)->state = info->state;
       BOBGUI_PRINTER_CUPS (printer)->ipp_version_major = info->ipp_version_major;
       BOBGUI_PRINTER_CUPS (printer)->ipp_version_minor = info->ipp_version_minor;
@@ -4253,20 +3855,6 @@ cups_request_printer_list_cb (BobguiPrintBackendCups *cups_backend,
       status_changed = bobgui_printer_set_job_count (printer, info->job_count);
       status_changed |= bobgui_printer_set_location (printer, info->location);
       status_changed |= bobgui_printer_set_description (printer,
-=======
-      GTK_PRINTER_CUPS (printer)->state = info->state;
-      GTK_PRINTER_CUPS (printer)->ipp_version_major = info->ipp_version_major;
-      GTK_PRINTER_CUPS (printer)->ipp_version_minor = info->ipp_version_minor;
-      GTK_PRINTER_CUPS (printer)->supports_copies = info->supports_copies;
-      GTK_PRINTER_CUPS (printer)->supports_collate = info->supports_collate;
-      GTK_PRINTER_CUPS (printer)->supports_number_up = info->supports_number_up;
-      GTK_PRINTER_CUPS (printer)->number_of_covers = info->number_of_covers;
-      GTK_PRINTER_CUPS (printer)->covers = g_strdupv (info->covers);
-      GTK_PRINTER_CUPS (printer)->is_temporary = info->is_temporary;
-      status_changed = gtk_printer_set_job_count (printer, info->job_count);
-      status_changed |= gtk_printer_set_location (printer, info->location);
-      status_changed |= gtk_printer_set_description (printer,
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
 						     info->description);
 
       set_info_state_message (info);
@@ -4296,11 +3884,7 @@ cups_request_printer_list_cb (BobguiPrintBackendCups *cups_backend,
          as inactive if it is in the list, emitting a printer_removed signal */
       if (removed_printer_checklist != NULL)
         {
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
           for (iter = removed_printer_checklist; iter; iter = iter->next)
-=======
-          if (!GTK_PRINTER_CUPS (iter->data)->avahi_browsed)
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
             {
               if (!BOBGUI_PRINTER_CUPS (iter->data)->avahi_browsed)
                 {
@@ -4319,12 +3903,7 @@ done:
       if (list_has_changed)
         g_signal_emit_by_name (backend, "printer-list-changed");
 
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
       bobgui_print_backend_set_list_done (backend);
-=======
-  if (!cups_backend->got_default_printer && cups_backend->avahi_default_printer != NULL)
-    set_default_printer (cups_backend, cups_backend->avahi_default_printer);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
 
       if (!cups_backend->got_default_printer && remote_default_printer != NULL)
         {
@@ -4460,15 +4039,10 @@ cups_request_ppd_cb (BobguiPrintBackendCups *print_backend,
   BOBGUI_PRINTER_CUPS (printer)->reading_ppd = FALSE;
   print_backend->reading_ppds--;
 
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
   if (!bobgui_cups_result_is_error (result))
     {
       G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 
-=======
-  if (!gtk_cups_result_is_error (result))
-    {
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
       /* let ppdOpenFd take over the ownership of the open file */
       g_io_channel_seek_position (data->ppd_io, 0, G_SEEK_SET, NULL);
       data->printer->ppd_file = ppdOpenFd (dup (g_io_channel_unix_get_fd (data->ppd_io)));
@@ -4490,48 +4064,7 @@ cups_request_ppd_cb (BobguiPrintBackendCups *print_backend,
        ((bobgui_cups_result_get_error_type (result) == BOBGUI_CUPS_ERROR_HTTP) &&
          (bobgui_cups_result_get_error_status (result) == HTTP_NOT_FOUND))))
     {
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
       BobguiPrinterCups *cups_printer = BOBGUI_PRINTER_CUPS (printer);
-=======
-      GtkPrinterCups *cups_printer = GTK_PRINTER_CUPS (printer);
-
-      /* Try to get the PPD from original host if it is not
-       * available on current CUPS server.
-       */
-      if (!cups_printer->avahi_browsed &&
-          (gtk_cups_result_is_error (result) &&
-           ((gtk_cups_result_get_error_type (result) == GTK_CUPS_ERROR_HTTP) &&
-            (gtk_cups_result_get_error_status (result) == HTTP_NOT_FOUND))) &&
-          cups_printer->remote &&
-          !cups_printer->request_original_uri &&
-          cups_printer->original_device_uri != NULL &&
-          (g_str_has_prefix (cups_printer->original_device_uri, "ipp://") ||
-           g_str_has_prefix (cups_printer->original_device_uri, "ipps://")))
-        {
-          cups_printer->request_original_uri = TRUE;
-
-          gtk_cups_connection_test_free (cups_printer->remote_cups_connection_test);
-          g_clear_handle_id (&cups_printer->get_remote_ppd_poll, g_source_remove);
-          cups_printer->get_remote_ppd_attempts = 0;
-
-          cups_printer->remote_cups_connection_test =
-            gtk_cups_connection_test_new (cups_printer->original_hostname,
-                                          cups_printer->original_port);
-
-          if (cups_request_ppd (printer))
-            {
-              cups_printer->get_remote_ppd_poll = g_timeout_add (50, (GSourceFunc) cups_request_ppd, printer);
-              g_source_set_name_by_id (cups_printer->get_remote_ppd_poll, "[gtk] cups_request_ppd");
-            }
-        }
-      else
-        {
-          if (cups_printer->request_original_uri)
-            cups_printer->request_original_uri = FALSE;
-
-          cups_request_printer_info (cups_printer);
-        }
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
 
       /* Try to get the PPD from original host if it is not
        * available on current CUPS server.
@@ -4589,13 +4122,8 @@ cups_request_ppd (BobguiPrinter *printer)
   http_t *http;
   GetPPDData *data;
   int fd;
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
   const char *hostname;
   int port;
-=======
-  const gchar *hostname;
-  gint port;
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
 
   cups_printer = BOBGUI_PRINTER_CUPS (printer);
 
@@ -4646,20 +4174,12 @@ cups_request_ppd (BobguiPrinter *printer)
   else
     {
       if (cups_printer->is_temporary)
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
         hostname = cupsGetServer ();
-=======
-        hostname = cupsServer ();
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
       else
         hostname = cups_printer->hostname;
       port = cups_printer->port;
       resource = g_strdup_printf ("/printers/%s.ppd",
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
                                   bobgui_printer_cups_get_ppd_name (BOBGUI_PRINTER_CUPS (printer)));
-=======
-                                  gtk_printer_cups_get_ppd_name (GTK_PRINTER_CUPS (printer)));
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
     }
 
   http = httpConnect2 (hostname, port,
@@ -4697,13 +4217,9 @@ cups_request_ppd (BobguiPrinter *printer)
   g_io_channel_set_encoding (data->ppd_io, NULL, NULL);
   g_io_channel_set_close_on_unref (data->ppd_io, TRUE);
 
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
   data->printer = (BobguiPrinterCups *) g_object_ref (printer);
 
   print_backend = bobgui_printer_get_backend (printer);
-=======
-  data->printer = (GtkPrinterCups *) g_object_ref (printer);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
 
   request = bobgui_cups_request_new_with_username (data->http,
                                                 BOBGUI_CUPS_GET,
@@ -4976,11 +4492,7 @@ cups_request_default_printer_cb (BobguiPrintBackendCups *print_backend,
 
   if (print_backend->default_printer != NULL)
     {
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
       printer = bobgui_print_backend_find_printer (BOBGUI_PRINT_BACKEND (print_backend),
-=======
-      printer = gtk_print_backend_find_printer (GTK_PRINT_BACKEND (print_backend),
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
                                                 print_backend->default_printer);
       if (printer != NULL)
         {
@@ -5030,7 +4542,6 @@ cups_printer_request_details (BobguiPrinter *printer)
 {
   BobguiPrinterCups *cups_printer;
 
-<<<<<<< HEAD:bobgui/print/backends/bobguiprintbackendcups.c
   cups_printer = BOBGUI_PRINTER_CUPS (printer);
 
   if (cups_printer->avahi_browsed)
@@ -5043,21 +4554,6 @@ cups_printer_request_details (BobguiPrinter *printer)
 #if CUPS_VERSION_MAJOR < 3
   else if (!cups_printer->reading_ppd &&
            bobgui_printer_cups_get_ppd (cups_printer) == NULL)
-=======
-  cups_printer = GTK_PRINTER_CUPS (printer);
-
-  if (cups_printer->avahi_browsed)
-    {
-#ifdef HAVE_CUPS_2_2
-      create_temporary_queue (GTK_PRINT_BACKEND_CUPS (gtk_printer_get_backend (printer)),
-                              gtk_printer_get_name (printer),
-                              cups_printer->printer_uri,
-                              cups_printer->temporary_queue_device_uri);
-#endif
-    }
-  else if (!cups_printer->reading_ppd &&
-           gtk_printer_cups_get_ppd (cups_printer) == NULL)
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkprintbackendcups.c
     {
       if (cups_printer->remote && !cups_printer->avahi_browsed)
         {

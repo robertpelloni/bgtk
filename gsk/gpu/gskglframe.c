@@ -229,6 +229,31 @@ gsk_gl_frame_upload_texture (GskGpuFrame  *frame,
                                             &semaphore_id);
       if (tex_id)
         {
+          GskGpuImageFlags flags = 0;
+
+          if (external)
+            flags |= GSK_GPU_IMAGE_EXTERNAL | GSK_GPU_IMAGE_NO_BLIT;
+
+#if defined (HAVE_DMABUF) && defined (HAVE_EGL)
+          switch (color_space_hint)
+            {
+            case EGL_ITU_REC709_EXT:
+              flags |= GSK_GPU_IMAGE_BT709;
+              break;
+            case EGL_ITU_REC601_EXT:
+              flags |= GSK_GPU_IMAGE_BT601;
+              break;
+            case EGL_ITU_REC2020_EXT:
+              flags |= GSK_GPU_IMAGE_BT2020;
+              break;
+            default:
+              break;
+            }
+
+          if (range_hint == EGL_YUV_NARROW_RANGE_EXT)
+            flags |= GSK_GPU_IMAGE_NARROW_RANGE;
+#endif
+
           return gsk_gl_image_new_for_texture (GSK_GL_DEVICE (gsk_gpu_frame_get_device (frame)),
                                                texture,
                                                1,

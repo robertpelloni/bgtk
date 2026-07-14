@@ -37,6 +37,8 @@ typedef enum {
   GSK_GPU_IMAGE_DOWNLOADABLE   = (1 << 7),
 } GskGpuImageFlags;
 
+#define GSK_GPU_IMAGE_YUV (GSK_GPU_IMAGE_BT2020)
+
 typedef enum {
   GSK_GPU_CONVERSION_NONE,
   GSK_GPU_CONVERSION_SRGB,

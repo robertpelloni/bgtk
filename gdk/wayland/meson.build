@@ -194,8 +194,8 @@ proto_sources = [
     'version': 1,
   },
   {
-    'name': 'xx-session-management',
-    'stability': 'private',
+    'name': 'xdg-session-management',
+    'stability': 'staging',
     'version': 1,
   },
   wlcursordep,

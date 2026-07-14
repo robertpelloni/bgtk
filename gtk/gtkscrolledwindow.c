@@ -277,6 +277,7 @@ struct _GtkScrolledWindowPrivate
   guint                  in_drag                   : 1;
 
   guint                  deceleration_id;
+  GdkModifierType        scrolling_modifiers;
 
   gdouble                x_velocity;
   gdouble                y_velocity;
@@ -1898,7 +1899,7 @@ gtk_scrolled_window_measure (GtkCssGadget   *gadget,
    * Now add to the requisition any additional space for surrounding scrollbars
    * and the special scrollable border.
    */
-  if (policy_may_be_visible (priv->hscrollbar_policy))
+  if (orientation == GTK_ORIENTATION_HORIZONTAL && policy_may_be_visible (priv->hscrollbar_policy))
     {
       int vscrollbar_extra_size;
 

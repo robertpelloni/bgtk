@@ -89,6 +89,7 @@ enum {
   ENTER,
   LEAVE,
   ACTIVATE,
+  TOGGLED,
   LAST_SIGNAL
 };
 
@@ -117,6 +118,7 @@ enum {
 
 static void gtk_button_finalize       (GObject            *object);
 static void gtk_button_dispose        (GObject            *object);
+static void gtk_button_finalize       (GObject            *object);
 static void gtk_button_set_property   (GObject            *object,
                                        guint               prop_id,
                                        const GValue       *value,
@@ -244,6 +246,7 @@ gtk_button_class_init (GtkButtonClass *klass)
   gobject_class->finalize     = gtk_button_finalize;
   gobject_class->set_property = gtk_button_set_property;
   gobject_class->get_property = gtk_button_get_property;
+  gobject_class->finalize     = gtk_button_finalize;
 
   widget_class->get_preferred_width = gtk_button_get_preferred_width;
   widget_class->get_preferred_height = gtk_button_get_preferred_height;
@@ -506,6 +509,15 @@ gtk_button_class_init (GtkButtonClass *klass)
 		  NULL,
 		  G_TYPE_NONE, 0);
   widget_class->activate_signal = button_signals[ACTIVATE];
+
+  button_signals[TOGGLED] =
+    g_signal_new (I_("toggled"),
+                  G_OBJECT_CLASS_TYPE (gobject_class),
+                  G_SIGNAL_RUN_FIRST,
+                  G_STRUCT_OFFSET (GtkButtonClass, toggled),
+                  NULL, NULL,
+                  _gtk_marshal_VOID__VOID,
+                  G_TYPE_NONE, 0);
 
   /**
    * GtkButton:default-border:
@@ -834,6 +846,7 @@ gtk_button_dispose (GObject *object)
       G_GNUC_END_IGNORE_DEPRECATIONS;
       priv->action = NULL;
     }
+
   G_OBJECT_CLASS (gtk_button_parent_class)->dispose (object);
 }
 
@@ -911,6 +924,19 @@ G_GNUC_END_IGNORE_DEPRECATIONS
     case PROP_IMAGE_POSITION:
       gtk_button_set_image_position (button, g_value_get_enum (value));
       break;
+    case PROP_ACTION:
+      if (g_value_get_object (value) != NULL)
+        gtk_button_set_action (button, g_value_get_object (value));
+      break;
+    case PROP_INDICATOR_STYLE:
+      gtk_button_set_indicator_style (button, g_value_get_enum (value));
+      break;
+    case PROP_ACTIVE:
+      gtk_button_set_active (button, g_value_get_boolean (value));
+      break;
+    case PROP_INCONSISTENT:
+      gtk_button_set_inconsistent (button, g_value_get_boolean (value));
+      break;
     case PROP_ACTIVATABLE_RELATED_ACTION:
       gtk_button_set_related_action (button, g_value_get_object (value));
       break;
@@ -966,6 +992,18 @@ gtk_button_get_property (GObject         *object,
       break;
     case PROP_IMAGE_POSITION:
       g_value_set_enum (value, priv->image_position);
+      break;
+    case PROP_ACTION:
+      g_value_set_object (value, priv->g_action);
+      break;
+    case PROP_INDICATOR_STYLE:
+      g_value_set_enum (value, priv->indicator_style);
+      break;
+    case PROP_ACTIVE:
+      g_value_set_boolean (value, priv->active);
+      break;
+    case PROP_INCONSISTENT:
+      g_value_set_boolean (value, priv->inconsistent);
       break;
     case PROP_ACTIVATABLE_RELATED_ACTION:
       g_value_set_object (value, priv->action);
@@ -1177,6 +1215,32 @@ gtk_button_sync_action_properties (GtkActivatable *activatable,
     }
 
   gtk_button_set_always_show_image (button, always_show_image);
+}
+
+GAction *
+gtk_button_get_action (GtkButton *button)
+{
+  g_return_val_if_fail (GTK_IS_BUTTON (button), NULL);
+
+  return button->priv->g_action;
+}
+
+void
+gtk_button_set_action (GtkButton *button,
+                       GAction   *action)
+{
+  g_return_if_fail (GTK_IS_BUTTON (button));
+  g_return_if_fail (G_IS_ACTION (action));
+
+  if (button->priv->g_action != action)
+    {
+      g_object_freeze_notify (G_OBJECT (button));
+      gtk_button_release_action (button);
+      button->priv->g_action = g_object_ref (action);
+      gtk_button_setup_action (button);
+      g_object_notify (G_OBJECT (button), "action");
+      g_object_thaw_notify (G_OBJECT (button));
+    }
 }
 
 static void
@@ -1921,6 +1985,7 @@ gtk_real_button_pressed (GtkButton *button)
 
   priv->button_down = TRUE;
   gtk_button_update_state (button);
+  gtk_widget_queue_draw (GTK_WIDGET (button));
 }
 
 static gboolean
@@ -1976,6 +2041,9 @@ gtk_real_button_clicked (GtkButton *button)
 
   if (priv->action)
     gtk_action_activate (priv->action);
+
+  if (priv->g_action)
+    g_action_activate (priv->g_action, NULL);
 }
 
 static gboolean
@@ -2426,7 +2494,7 @@ gtk_button_update_state (GtkButton *button)
   if (priv->activate_timeout)
     depressed = TRUE;
   else
-    depressed = priv->in_button && priv->button_down;
+    depressed = button->priv->active;
 
   new_state = gtk_widget_get_state_flags (GTK_WIDGET (button)) &
     ~(GTK_STATE_FLAG_PRELIGHT | GTK_STATE_FLAG_ACTIVE);
@@ -2727,4 +2795,121 @@ gtk_button_get_event_window (GtkButton *button)
   g_return_val_if_fail (GTK_IS_BUTTON (button), NULL);
 
   return button->priv->event_window;
+}
+
+void
+gtk_button_set_indicator_style (GtkButton         *button,
+                                GtkIndicatorStyle  style)
+{
+  GtkButtonPrivate *priv;
+
+  g_return_if_fail (GTK_IS_BUTTON (button));
+
+  priv = button->priv;
+
+  if (priv->indicator_style != style)
+    {
+      priv->indicator_style = style;
+
+      gtk_widget_queue_resize (GTK_WIDGET (button));
+
+      g_object_notify (G_OBJECT (button), "indicator-style");
+    }
+}
+
+GtkIndicatorStyle
+gtk_button_get_indicator_style (GtkButton *button)
+{
+  g_return_val_if_fail (GTK_IS_BUTTON (button), GTK_INDICATOR_STYLE_PLAIN);
+
+  return button->priv->indicator_style;
+}
+
+void
+_gtk_button_set_active (GtkButton *button,
+                        gboolean   active)
+{
+  g_warning ("this is broken...");
+  button->priv->active = active;
+}
+
+void
+gtk_button_set_active (GtkButton *button,
+                       gboolean   active)
+{
+  g_return_if_fail (GTK_IS_BUTTON (button));
+
+  active = active != FALSE;
+
+  if (button->priv->active != active)
+    gtk_button_clicked (button);
+}
+
+gboolean
+gtk_button_get_active (GtkButton *button)
+{
+  g_return_val_if_fail (GTK_IS_BUTTON (button), FALSE);
+
+  return button->priv->active;
+}
+
+/**
+ * gtk_button_set_inconsistent:
+ * @button: a #GtkButton
+ * @inconsistent: %TRUE if state is inconsistent
+ *
+ * If the user has selected a range of elements (such as some text or
+ * spreadsheet cells) that are affected by a toggle button, and the
+ * current values in that range are inconsistent, you may want to
+ * display the toggle in an "in between" state. This function turns on
+ * "in between" display.  Normally you would turn off the inconsistent
+ * state again if the user toggles the toggle button. This has to be
+ * done manually, gtk_toggle_button_set_inconsistent() only affects
+ * visual appearance, it doesn't affect the semantics of the button.
+ **/
+
+void
+gtk_button_set_inconsistent (GtkButton *button,
+                             gboolean   inconsistent)
+{
+  GtkButtonPrivate *priv;
+
+  g_return_if_fail (GTK_IS_BUTTON (button));
+
+  priv = button->priv;
+
+  inconsistent = inconsistent != FALSE;
+
+  if (priv->inconsistent != inconsistent)
+    {
+      priv->inconsistent = inconsistent;
+
+      gtk_button_update_state (GTK_BUTTON (button));
+      gtk_widget_queue_draw (GTK_WIDGET (button));
+
+      g_object_notify (G_OBJECT (button), "inconsistent");
+    }
+}
+
+/**
+ * gtk_button_get_inconsistent:
+ * @button: a #GtkButton
+ * 
+ * Gets the value set by gtk_button_set_inconsistent().
+ * 
+ * Return value: %TRUE if the button is displayed as inconsistent,
+ *     %FALSE otherwise
+ **/
+gboolean
+gtk_button_get_inconsistent (GtkButton *button)
+{
+  g_return_val_if_fail (GTK_IS_BUTTON (button), FALSE);
+
+  return button->priv->inconsistent;
+}
+
+void
+gtk_button_toggled (GtkButton *button)
+{
+  g_signal_emit (button, button_signals[TOGGLED], 0);
 }

@@ -89,7 +89,7 @@ main (int argc, char *argv[])
     {
       g_printerr (_("Error parsing commandline options: %s\n"), error->message);
       g_printerr ("\n");
-      g_printerr (_("Try “%s --help” for more information."), g_get_prgname ());
+      g_printerr (_("Try “%s --help� for more information."), g_get_prgname ());
       g_printerr ("\n");
       g_error_free (error);
       return 1;
@@ -110,7 +110,7 @@ main (int argc, char *argv[])
       /* means the user is calling bobgui-launch without any argument.  */
       g_printerr (_("%s: missing application name"), g_get_prgname ());
       g_printerr ("\n");
-      g_printerr (_("Try “%s --help” for more information."), g_get_prgname ());
+      g_printerr (_("Try “%s --help� for more information."), g_get_prgname ());
       g_printerr ("\n");
       return 1;
     }
@@ -136,12 +136,6 @@ main (int argc, char *argv[])
   info = G_APP_INFO (g_desktop_app_info_new (desktop_file_name));
   g_free (desktop_file_name);
 #else
-<<<<<<< HEAD:tools/bobgui-launch.c
-=======
-  #ifndef _MSC_VER
-    #warning Please add support for creating AppInfo from id for your OS
-  #endif
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtk-launch.c
   g_printerr (_("Creating AppInfo from id not supported on non unix operating systems"));
 #endif
   args++;

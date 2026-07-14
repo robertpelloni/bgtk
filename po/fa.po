@@ -851,7 +851,7 @@ msgstr "نتوانست دادهٔ تخته‌گیره را تنظیم کند. م
 #, c-format
 msgid "Cannot get clipboard data. Clipboard data changed before we could get it."
 msgstr ""
-"نتوانست دادهٔ تخته‌گیره را بگیرد. داده‌ّای تخته‌گیره پیش از این که بتوانیم بگیریمشان "
+"نتوانست دادهٔ تخته‌گیره را بگیرد. داده‌های تخته‌گیره پیش از این که بتوانیم بگیریمشان "
 "عوض شدند."
 
 #: gdk/win32/gdkclipdrop-win32.c:930

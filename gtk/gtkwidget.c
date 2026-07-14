@@ -5843,7 +5843,7 @@ gtk_widget_queue_resize_no_redraw (GtkWidget *widget)
  * clock, but won’t necessarily repaint any widgets. To repaint a
  * widget, you have to use gtk_widget_queue_draw() which invalidates
  * the widget (thus scheduling it to receive a draw on the next
- * frame). gtk_widget_queue_draw() will also end up requesting a frame
+ * frame). [method@Gtk.Widget.queue_draw] will also end up requesting a frame
  * on the appropriate frame clock.
  *
  * A widget’s frame clock will not change while the widget is
@@ -13990,7 +13990,7 @@ gtk_widget_set_vexpand (GtkWidget      *widget,
  * gtk_widget_get_vexpand_set:
  * @widget: the widget
  *
- * Gets whether gtk_widget_set_vexpand() has been used to
+ * Gets whether [method@Gtk.Widget.set_vexpand] has been used to
  * explicitly set the expand flag on this widget.
  *
  * See gtk_widget_get_hexpand_set() for more detail.

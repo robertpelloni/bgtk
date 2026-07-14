@@ -31,7 +31,7 @@ do_pickers (GtkWidget *do_widget)
 
     gtk_container_set_border_width (GTK_CONTAINER (table), 10);
 
-    label = gtk_label_new ("Color:");
+    label = gtk_label_new_with_mnemonic ("_Color:");
     gtk_widget_set_halign (label, GTK_ALIGN_START);
     gtk_widget_set_valign (label, GTK_ALIGN_CENTER);
     gtk_widget_set_hexpand (label, TRUE);
@@ -39,7 +39,7 @@ do_pickers (GtkWidget *do_widget)
     gtk_grid_attach (GTK_GRID (table), label, 0, 0, 1, 1);
     gtk_grid_attach (GTK_GRID (table), picker, 1, 0, 1, 1);
 
-    label = gtk_label_new ("Font:");
+    label = gtk_label_new_with_mnemonic ("_Font:");
     gtk_widget_set_halign (label, GTK_ALIGN_START);
     gtk_widget_set_valign (label, GTK_ALIGN_CENTER);
     gtk_widget_set_hexpand (label, TRUE);
@@ -47,7 +47,7 @@ do_pickers (GtkWidget *do_widget)
     gtk_grid_attach (GTK_GRID (table), label, 0, 1, 1, 1);
     gtk_grid_attach (GTK_GRID (table), picker, 1, 1, 1, 1);
 
-    label = gtk_label_new ("File:");
+    label = gtk_label_new_with_mnemonic ("_File:");
     gtk_widget_set_halign (label, GTK_ALIGN_START);
     gtk_widget_set_valign (label, GTK_ALIGN_CENTER);
     gtk_widget_set_hexpand (label, TRUE);

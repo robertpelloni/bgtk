@@ -94,7 +94,22 @@ GdkTexture *
 load_image_file (const char *filename)
 {
   GError *error = NULL;
-  GdkTexture *texture;
+  GdkTexture *texture = NULL;
+  char *data;
+  gsize size;
+  GBytes *bytes;
+
+  if (g_file_get_contents (filename, &data, &size, &error))
+    {
+      bytes = g_bytes_new_take (data, size);
+
+#ifdef HAVE_AVIF
+      if (gdk_is_avif (bytes))
+        texture = gdk_load_avif (bytes, &error);
+      else
+#endif
+        texture = gdk_texture_new_from_bytes (bytes, &error);
+    }
 
   if (g_str_has_suffix (filename, ".node"))
     {
@@ -121,7 +136,37 @@ load_image_file (const char *filename)
       exit (1);
     }
 
+  g_bytes_unref (bytes);
+
   return texture;
+}
+
+gboolean
+save_texture (GdkTexture *texture,
+              const char *filename)
+{
+  if (g_str_has_suffix (filename, ".png"))
+    return gdk_texture_save_to_png (texture, filename);
+  else if (g_str_has_suffix (filename, ".tiff"))
+    return gdk_texture_save_to_tiff (texture, filename);
+#ifdef HAVE_AVIF
+  else if (g_str_has_suffix (filename, ".avif"))
+    {
+      GBytes *bytes;
+      gboolean result;
+
+      bytes = gdk_save_avif (texture);
+      result = g_file_set_contents (filename,
+                                    g_bytes_get_data (bytes, NULL),
+                                    g_bytes_get_size (bytes),
+                                    NULL);
+      g_bytes_unref (bytes);
+
+      return result;
+    }
+#endif
+
+  return FALSE;
 }
 
 gboolean
@@ -228,6 +273,17 @@ find_color_state_by_name (const char *name)
 
       color_state = gdk_cicp_params_build_color_state (params, &error);
     }
+  else if (g_strcmp0 (name, "jpeg") == 0)
+    {
+      params = gdk_cicp_params_new ();
+
+      gdk_cicp_params_set_color_primaries (params, 1);
+      gdk_cicp_params_set_transfer_function (params, 13);
+      gdk_cicp_params_set_matrix_coefficients (params, 6);
+      gdk_cicp_params_set_range (params, GDK_CICP_RANGE_FULL);
+
+      color_state = gdk_cicp_params_build_color_state (params, &error);
+    }
   else if (g_strcmp0 (name, "bt709") == 0)
     {
       params = gdk_cicp_params_new ();
@@ -258,7 +314,7 @@ get_color_state_names (void)
   static const char *names[] = {
     "srgb", "srgb-linear", "display-p3", "rec2020",
     "rec2100-pq", "rec2100-linear", "rec2100-hlg",
-    "yuv", "bt601", "bt709",
+    "yuv", "jpeg", "bt601", "bt709",
     NULL,
   };
 

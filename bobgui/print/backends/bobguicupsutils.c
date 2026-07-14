@@ -117,15 +117,9 @@ static BobguiCupsRequestStateFunc get_states[] = {
   _get_read_data
 };
 
-<<<<<<< HEAD:bobgui/print/backends/bobguicupsutils.c
 static void G_GNUC_PRINTF (5, 6)
 bobgui_cups_result_set_error (BobguiCupsResult    *result,
                            BobguiCupsErrorType  error_type,
-=======
-static void
-gtk_cups_result_set_error (GtkCupsResult    *result,
-                           GtkCupsErrorType  error_type,
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkcupsutils.c
                            int               error_status,
                            int               error_code,
                            const char       *error_msg,
@@ -187,15 +181,9 @@ bobgui_cups_request_new_with_username (http_t             *connection,
     }
   else
     {
-<<<<<<< HEAD:bobgui/print/backends/bobguicupsutils.c
       request->http = _httpConnect (request->server, ippGetPort (),
                                     NULL, AF_UNSPEC,
                                     cupsGetEncryption (),
-=======
-      request->http = httpConnect2 (request->server, ippPort (),
-                                    NULL, AF_UNSPEC,
-                                    cupsEncryption (),
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkcupsutils.c
                                     1, 30000, NULL);
 
       if (request->http)
@@ -713,15 +701,9 @@ _connect (BobguiCupsRequest *request)
 
   if (request->http == NULL)
     {
-<<<<<<< HEAD:bobgui/print/backends/bobguicupsutils.c
       request->http = _httpConnect (request->server, ippGetPort (),
                                     NULL, AF_UNSPEC,
                                     cupsGetEncryption (),
-=======
-      request->http = httpConnect2 (request->server, ippPort (),
-                                    NULL, AF_UNSPEC,
-                                    cupsEncryption (),
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkcupsutils.c
                                     1, 30000, NULL);
       if (request->http == NULL)
         request->attempts++;
@@ -772,15 +754,7 @@ _post_send (BobguiCupsRequest *request)
   if (!httpWriteRequest (request->http, "POST", request->resource))
 #endif
     {
-<<<<<<< HEAD:bobgui/print/backends/bobguicupsutils.c
       if (!httpConnectAgain (request->http, 30000, NULL))
-=======
-      int res;
-
-      res = httpReconnect2 (request->http, 30000, NULL);
-
-      if (res)
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkcupsutils.c
         {
           request->state = BOBGUI_CUPS_POST_DONE;
           request->poll_state = BOBGUI_CUPS_HTTP_IDLE;
@@ -1087,11 +1061,7 @@ _post_check (BobguiCupsRequest *request)
         }
 
       if (auth_result ||
-<<<<<<< HEAD:bobgui/print/backends/bobguicupsutils.c
           !httpConnectAgain (request->http, 30000, NULL))
-=======
-          httpReconnect2 (request->http, 30000, NULL))
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkcupsutils.c
         {
           /* if the password has been used, reset password_state
            * so that we ask for a new one next time around
@@ -1150,15 +1120,11 @@ _post_check (BobguiCupsRequest *request)
       request->state = BOBGUI_CUPS_POST_CONNECT;
 
       /* Reconnect... */
-<<<<<<< HEAD:bobgui/print/backends/bobguicupsutils.c
       if (httpConnectAgain (request->http, 30000, NULL))
         {
           /* Upgrade with encryption... */
           httpSetEncryption (request->http, HTTP_ENCRYPTION_REQUIRED);
         }
-=======
-      httpReconnect2 (request->http, 30000, NULL);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkcupsutils.c
 
       request->attempts++;
       goto again;
@@ -1279,14 +1245,7 @@ _get_send (BobguiCupsRequest *request)
   if (!httpWriteRequest (request->http, "GET", request->resource))
 #endif
     {
-<<<<<<< HEAD:bobgui/print/backends/bobguicupsutils.c
       if (!httpConnectAgain (request->http, 30000, NULL))
-=======
-      int reconnect;
-
-      reconnect = httpReconnect2 (request->http, 30000, NULL);
-      if (reconnect)
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkcupsutils.c
         {
           request->state = BOBGUI_CUPS_GET_DONE;
           request->poll_state = BOBGUI_CUPS_HTTP_IDLE;
@@ -1398,11 +1357,7 @@ _get_check (BobguiCupsRequest *request)
         }
 
       if (auth_result ||
-<<<<<<< HEAD:bobgui/print/backends/bobguicupsutils.c
           !httpConnectAgain (request->http, 30000, NULL))
-=======
-          httpReconnect2 (request->http, 30000, NULL))
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkcupsutils.c
         {
           /* if the password has been used, reset password_state
            * so that we ask for a new one next time around
@@ -1434,15 +1389,11 @@ _get_check (BobguiCupsRequest *request)
       request->state = BOBGUI_CUPS_GET_CONNECT;
 
       /* Reconnect... */
-<<<<<<< HEAD:bobgui/print/backends/bobguicupsutils.c
       if (httpConnectAgain (request->http, 30000, NULL))
         {
           /* Upgrade with encryption... */
           httpSetEncryption (request->http, HTTP_ENCRYPTION_REQUIRED);
         }
-=======
-      httpReconnect2 (request->http, 30000, NULL);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:modules/printbackends/cups/gtkcupsutils.c
 
       request->attempts++;
       goto again;

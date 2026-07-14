@@ -107,22 +107,6 @@
  */
 
 
-#define DEFAULT_LEFT_POS  4
-#define DEFAULT_TOP_POS   4
-#define DEFAULT_SPACING   7
-
-struct _GtkToggleButtonPrivate
-{
-  guint active         : 1;
-  guint draw_indicator : 1;
-  guint inconsistent   : 1;
-};
-
-enum {
-  TOGGLED,
-  LAST_SIGNAL
-};
-
 enum {
   PROP_0,
   PROP_ACTIVE,
@@ -137,9 +121,9 @@ static gboolean gtk_toggle_button_mnemonic_activate  (GtkWidget            *widg
                                                       gboolean              group_cycling);
 static void gtk_toggle_button_clicked       (GtkButton            *button);
 static void gtk_toggle_button_set_property  (GObject              *object,
-					     guint                 prop_id,
-					     const GValue         *value,
-					     GParamSpec           *pspec);
+                                             guint                 prop_id,
+                                             const GValue         *value,
+                                             GParamSpec           *pspec);
 static void gtk_toggle_button_get_property  (GObject              *object,
 					     guint                 prop_id,
 					     GValue               *value,
@@ -147,14 +131,13 @@ static void gtk_toggle_button_get_property  (GObject              *object,
 
 
 static void gtk_toggle_button_activatable_interface_init (GtkActivatableIface  *iface);
-static void gtk_toggle_button_update         	     (GtkActivatable       *activatable,
-					 	      GtkAction            *action,
-						      const gchar          *property_name);
+static void gtk_toggle_button_update                 (GtkActivatable       *activatable,
+                                                      GtkAction            *action,
+                                                      const gchar          *property_name);
 static void gtk_toggle_button_sync_action_properties (GtkActivatable       *activatable,
-						      GtkAction            *action);
+                                                      GtkAction            *action);
 
 static GtkActivatableIface *parent_activatable_iface;
-static guint                toggle_button_signals[LAST_SIGNAL] = { 0 };
 
 G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
 G_DEFINE_TYPE_WITH_CODE (GtkToggleButton, gtk_toggle_button, GTK_TYPE_BUTTON,
@@ -249,8 +232,8 @@ gtk_toggle_button_activatable_interface_init (GtkActivatableIface *iface)
 
 static void
 gtk_toggle_button_update (GtkActivatable *activatable,
-			  GtkAction      *action,
-			  const gchar    *property_name)
+                          GtkAction      *action,
+                          const gchar    *property_name)
 {
   GtkToggleButton *button;
 
@@ -271,7 +254,7 @@ gtk_toggle_button_update (GtkActivatable *activatable,
 
 static void
 gtk_toggle_button_sync_action_properties (GtkActivatable *activatable,
-				          GtkAction      *action)
+                                          GtkAction      *action)
 {
   GtkToggleButton *button;
   gboolean is_toggle_action;
@@ -318,7 +301,9 @@ gtk_toggle_button_new (void)
 GtkWidget*
 gtk_toggle_button_new_with_label (const gchar *label)
 {
-  return g_object_new (GTK_TYPE_TOGGLE_BUTTON, "label", label, NULL);
+  return g_object_new (GTK_TYPE_TOGGLE_BUTTON,
+                       "label", label,
+                       NULL);
 }
 
 /**
@@ -353,14 +338,11 @@ gtk_toggle_button_set_property (GObject      *object,
 
   switch (prop_id)
     {
-    case PROP_ACTIVE:
-      gtk_toggle_button_set_active (tb, g_value_get_boolean (value));
-      break;
-    case PROP_INCONSISTENT:
-      gtk_toggle_button_set_inconsistent (tb, g_value_get_boolean (value));
-      break;
     case PROP_DRAW_INDICATOR:
-      gtk_toggle_button_set_mode (tb, g_value_get_boolean (value));
+      gtk_button_set_indicator_style (GTK_BUTTON (tb),
+                                      g_value_get_boolean (value)
+                                              ? GTK_INDICATOR_STYLE_CHECK
+                                              : GTK_INDICATOR_STYLE_PLAIN);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -370,23 +352,14 @@ gtk_toggle_button_set_property (GObject      *object,
 
 static void
 gtk_toggle_button_get_property (GObject      *object,
-				guint         prop_id,
-				GValue       *value,
-				GParamSpec   *pspec)
+                                guint         prop_id,
+                                GValue       *value,
+                                GParamSpec   *pspec)
 {
-  GtkToggleButton *tb = GTK_TOGGLE_BUTTON (object);
-  GtkToggleButtonPrivate *priv = tb->priv;
-
   switch (prop_id)
     {
-    case PROP_ACTIVE:
-      g_value_set_boolean (value, priv->active);
-      break;
-    case PROP_INCONSISTENT:
-      g_value_set_boolean (value, priv->inconsistent);
-      break;
     case PROP_DRAW_INDICATOR:
-      g_value_set_boolean (value, priv->draw_indicator);
+      g_value_set_boolean (value, gtk_button_get_indicator_style (GTK_BUTTON (object)) != GTK_INDICATOR_STYLE_PLAIN);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -396,7 +369,7 @@ gtk_toggle_button_get_property (GObject      *object,
 
 /**
  * gtk_toggle_button_set_mode:
- * @toggle_button: a #GtkToggleButton
+ * @button: a #GtkToggleButton
  * @draw_indicator: if %TRUE, draw the button as a separate indicator
  * and label; if %FALSE, draw the button like a normal button
  *
@@ -410,12 +383,14 @@ gtk_toggle_button_get_property (GObject      *object,
  * This function only affects instances of classes like #GtkCheckButton
  * and #GtkRadioButton that derive from #GtkToggleButton,
  * not instances of #GtkToggleButton itself.
+ *
+ * Deprecated:3.0: Use gtk_button_set_indicator_style() instead
  */
 void
-gtk_toggle_button_set_mode (GtkToggleButton *toggle_button,
-			    gboolean         draw_indicator)
+gtk_toggle_button_set_mode (GtkToggleButton *button,
+                            gboolean         draw_indicator)
 {
-  GtkToggleButtonPrivate *priv;
+  g_return_if_fail (GTK_IS_TOGGLE_BUTTON (button));
 
   g_return_if_fail (GTK_IS_TOGGLE_BUTTON (toggle_button));
 
@@ -436,20 +411,22 @@ gtk_toggle_button_set_mode (GtkToggleButton *toggle_button,
 
 /**
  * gtk_toggle_button_get_mode:
- * @toggle_button: a #GtkToggleButton
+ * @button: a #GtkToggleButton
  *
  * Retrieves whether the button is displayed as a separate indicator
  * and label. See gtk_toggle_button_set_mode().
  *
  * Returns: %TRUE if the togglebutton is drawn as a separate indicator
  *   and label.
+ *
+ * Deprecated:3.0: Use gtk_button_get_indicator_style() instead
  **/
 gboolean
-gtk_toggle_button_get_mode (GtkToggleButton *toggle_button)
+gtk_toggle_button_get_mode (GtkToggleButton *button)
 {
-  g_return_val_if_fail (GTK_IS_TOGGLE_BUTTON (toggle_button), FALSE);
+  g_return_val_if_fail (GTK_IS_TOGGLE_BUTTON (button), FALSE);
 
-  return toggle_button->priv->draw_indicator;
+  return gtk_button_get_indicator_style (GTK_BUTTON (button)) != GTK_INDICATOR_STYLE_PLAIN;
 }
 
 /**
@@ -463,10 +440,10 @@ gtk_toggle_button_get_mode (GtkToggleButton *toggle_button)
  * #GtkButton::clicked signal to be emitted.
  */
 void
-gtk_toggle_button_set_active (GtkToggleButton *toggle_button,
+gtk_toggle_button_set_active (GtkToggleButton *button,
 			      gboolean         is_active)
 {
-  GtkToggleButtonPrivate *priv;
+  g_return_if_fail (GTK_IS_TOGGLE_BUTTON (button));
 
   g_return_if_fail (GTK_IS_TOGGLE_BUTTON (toggle_button));
 
@@ -504,11 +481,11 @@ _gtk_toggle_button_set_active (GtkToggleButton *toggle_button,
  * Returns: a #gboolean value.
  */
 gboolean
-gtk_toggle_button_get_active (GtkToggleButton *toggle_button)
+gtk_toggle_button_get_active (GtkToggleButton *button)
 {
-  g_return_val_if_fail (GTK_IS_TOGGLE_BUTTON (toggle_button), FALSE);
+  g_return_val_if_fail (GTK_IS_TOGGLE_BUTTON (button), FALSE);
 
-  return toggle_button->priv->active;
+  return gtk_button_get_active (GTK_BUTTON (button));
 }
 
 /**
@@ -520,17 +497,17 @@ gtk_toggle_button_get_active (GtkToggleButton *toggle_button)
  * application ever to call this function.
  */
 void
-gtk_toggle_button_toggled (GtkToggleButton *toggle_button)
+gtk_toggle_button_toggled (GtkToggleButton *button)
 {
-  g_return_if_fail (GTK_IS_TOGGLE_BUTTON (toggle_button));
+  g_return_if_fail (GTK_IS_TOGGLE_BUTTON (button));
 
-  g_signal_emit (toggle_button, toggle_button_signals[TOGGLED], 0);
+  gtk_button_toggled (GTK_BUTTON (button));
 }
 
 /**
  * gtk_toggle_button_set_inconsistent:
- * @toggle_button: a #GtkToggleButton
- * @setting: %TRUE if state is inconsistent
+ * @button: a #GtkToggleButton
+ * @is_inconsistent: %TRUE if state is inconsistent
  *
  * If the user has selected a range of elements (such as some text or
  * spreadsheet cells) that are affected by a toggle button, and the
@@ -543,8 +520,8 @@ gtk_toggle_button_toggled (GtkToggleButton *toggle_button)
  * 
  **/
 void
-gtk_toggle_button_set_inconsistent (GtkToggleButton *toggle_button,
-                                    gboolean         setting)
+gtk_toggle_button_set_inconsistent (GtkToggleButton *button,
+                                    gboolean         is_inconsistent)
 {
   GtkToggleButtonPrivate *priv;
   GtkToggleButtonPrivate *priv = gtk_toggle_button_get_instance_private (toggle_button);
@@ -590,18 +567,240 @@ gtk_toggle_button_set_inconsistent (GtkToggleButton *toggle_button,
 
 /**
  * gtk_toggle_button_get_inconsistent:
- * @toggle_button: a #GtkToggleButton
+ * @button: a #GtkToggleButton
  * 
  * Gets the value set by gtk_toggle_button_set_inconsistent().
  * 
  * Returns: %TRUE if the button is displayed as inconsistent, %FALSE otherwise
  **/
 gboolean
-gtk_toggle_button_get_inconsistent (GtkToggleButton *toggle_button)
+gtk_toggle_button_get_inconsistent (GtkToggleButton *button)
 {
-  g_return_val_if_fail (GTK_IS_TOGGLE_BUTTON (toggle_button), FALSE);
+  g_return_val_if_fail (GTK_IS_TOGGLE_BUTTON (button), FALSE);
 
-  return toggle_button->priv->inconsistent;
+  return gtk_button_get_inconsistent (GTK_BUTTON (button));
+}
+
+static void
+gtk_toggle_button_get_preferred_width (GtkWidget *widget,
+                                       gint      *minimum,
+                                       gint      *natural)
+{
+  if (gtk_button_get_indicator_style (GTK_BUTTON (widget)) != GTK_INDICATOR_STYLE_PLAIN)
+    {
+      GtkWidget *child;
+      gint indicator_size;
+      gint indicator_spacing;
+      gint focus_width;
+      gint focus_pad;
+      guint border_width;
+
+      border_width = gtk_container_get_border_width (GTK_CONTAINER (widget));
+
+      gtk_widget_style_get (GTK_WIDGET (widget),
+                            "focus-line-width", &focus_width,
+                            "focus-padding", &focus_pad,
+                            "indicator-size", &indicator_size,
+                            "indicator-spacing", &indicator_spacing,
+                            NULL);
+      *minimum = 2 * border_width;
+      *natural = 2 * border_width;
+
+      child = gtk_bin_get_child (GTK_BIN (widget));
+      if (child && gtk_widget_get_visible (child))
+        {
+          gint child_min, child_nat;
+
+          gtk_widget_get_preferred_width (child, &child_min, &child_nat);
+
+          *minimum += child_min + indicator_spacing;
+          *natural += child_nat + indicator_spacing;
+        }
+
+      *minimum += (indicator_size + indicator_spacing * 2 + 2 * (focus_width + focus_pad));
+      *natural += (indicator_size + indicator_spacing * 2 + 2 * (focus_width + focus_pad));
+    }
+  else
+    GTK_WIDGET_CLASS (gtk_toggle_button_parent_class)->get_preferred_width (widget, minimum, natural);
+}
+
+static void
+gtk_toggle_button_get_preferred_height (GtkWidget *widget,
+                                        gint      *minimum,
+                                        gint      *natural)
+{
+  if (gtk_button_get_indicator_style (GTK_BUTTON (widget)) != GTK_INDICATOR_STYLE_PLAIN)
+    {
+      GtkWidget *child;
+      gint temp;
+      gint indicator_size;
+      gint indicator_spacing;
+      gint focus_width;
+      gint focus_pad;
+      guint border_width;
+
+      border_width = gtk_container_get_border_width (GTK_CONTAINER (widget));
+
+      gtk_widget_style_get (GTK_WIDGET (widget),
+                            "focus-line-width", &focus_width,
+                            "focus-padding", &focus_pad,
+                            "indicator-size", &indicator_size,
+                            "indicator-spacing", &indicator_spacing,
+                            NULL);
+
+      *minimum = border_width * 2;
+      *natural = border_width * 2;
+
+      child = gtk_bin_get_child (GTK_BIN (widget));
+      if (child && gtk_widget_get_visible (child))
+        {
+          gint child_min, child_nat;
+
+          gtk_widget_get_preferred_height (child, &child_min, &child_nat);
+
+          *minimum += child_min;
+          *natural += child_nat;
+        }
+
+      temp = indicator_size + indicator_spacing * 2;
+      *minimum = MAX (*minimum, temp) + 2 * (focus_width + focus_pad);
+      *natural = MAX (*natural, temp) + 2 * (focus_width + focus_pad);
+    }
+  else
+    GTK_WIDGET_CLASS (gtk_toggle_button_parent_class)->get_preferred_height (widget, minimum, natural);
+}
+
+static void
+gtk_toggle_button_size_allocate (GtkWidget     *widget,
+                                 GtkAllocation *allocation)
+{
+  GtkAllocation child_allocation;
+
+  if (gtk_button_get_indicator_style (GTK_BUTTON (widget)) != GTK_INDICATOR_STYLE_PLAIN)
+    {
+      GtkWidget *child;
+      gint indicator_size;
+      gint indicator_spacing;
+      gint focus_width;
+      gint focus_pad;
+
+      gtk_widget_style_get (widget,
+                            "focus-line-width", &focus_width,
+                            "focus-padding", &focus_pad,
+                            "indicator-size", &indicator_size,
+                            "indicator-spacing", &indicator_spacing,
+                            NULL);
+
+      gtk_widget_set_allocation (widget, allocation);
+
+      if (gtk_widget_get_realized (widget))
+        gdk_window_move_resize (gtk_button_get_event_window (GTK_BUTTON (widget)),
+                                allocation->x, allocation->y,
+                                allocation->width, allocation->height);
+
+      child = gtk_bin_get_child (GTK_BIN (widget));
+      if (child && gtk_widget_get_visible (child))
+        {
+          GtkRequisition child_requisition;
+          guint border_width = gtk_container_get_border_width (GTK_CONTAINER (widget));
+
+          gtk_widget_get_preferred_size (child, &child_requisition, NULL);
+          child_allocation.width = MIN (child_requisition.width,
+                                        allocation->width -
+                                        ((border_width + focus_width + focus_pad) * 2
+                                        + indicator_size + indicator_spacing * 3));
+          child_allocation.width = MAX (child_allocation.width, 1);
+
+          child_allocation.height = MIN (child_requisition.height,
+                                         allocation->height - (border_width + focus_width + focus_pad) * 2);
+          child_allocation.height = MAX (child_allocation.height, 1);
+
+          child_allocation.x = (border_width + indicator_size + indicator_spacing * 3 +
+                                allocation->x + focus_width + focus_pad);
+          child_allocation.y = allocation->y + (allocation->height - child_allocation.height) / 2;
+
+          if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
+            child_allocation.x = allocation->x + allocation->width
+              - (child_allocation.x - allocation->x + child_allocation.width);
+
+          gtk_widget_size_allocate (child, &child_allocation);
+        }
+    }
+  else
+    GTK_WIDGET_CLASS (gtk_toggle_button_parent_class)->size_allocate (widget, allocation);
+}
+
+static void
+gtk_toggle_button_draw_indicator (GtkButton *button,
+                                  cairo_t         *cr)
+{
+  GtkWidget *widget = GTK_WIDGET (button);
+  GtkWidget *child;
+  GtkStateType state_type;
+  GtkShadowType shadow_type;
+  gint x, y;
+  gint indicator_size;
+  gint indicator_spacing;
+  gint focus_width;
+  gint focus_pad;
+  guint border_width;
+  gboolean interior_focus;
+
+  gtk_widget_style_get (widget,
+                        "interior-focus", &interior_focus,
+                        "focus-line-width", &focus_width,
+                        "focus-padding", &focus_pad,
+                        "indicator-size", &indicator_size,
+                        "indicator-spacing", &indicator_spacing,
+                        NULL);
+
+  border_width = gtk_container_get_border_width (GTK_CONTAINER (widget));
+
+  x = indicator_spacing + border_width;
+  y = (gtk_widget_get_allocated_height (widget) - indicator_size) / 2;
+
+  child = gtk_bin_get_child (GTK_BIN (widget));
+  if (!interior_focus || !(child && gtk_widget_get_visible (child)))
+    x += focus_width + focus_pad;
+
+  if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
+    x = gtk_widget_get_allocated_width (widget) - (indicator_size + x);
+
+  if (gtk_button_get_inconsistent (button))
+    shadow_type = GTK_SHADOW_ETCHED_IN;
+  else if (gtk_button_get_active (button))
+    shadow_type = GTK_SHADOW_IN;
+  else
+    shadow_type = GTK_SHADOW_OUT;
+
+  if (GTK_BUTTON (widget)->priv->activate_timeout ||
+      (GTK_BUTTON (widget)->priv->button_down && GTK_BUTTON (widget)->priv->in_button))
+    state_type = GTK_STATE_ACTIVE;
+  else if (GTK_BUTTON (widget)->priv->in_button)
+    state_type = GTK_STATE_PRELIGHT;
+  else if (!gtk_widget_is_sensitive (widget))
+    state_type = GTK_STATE_INSENSITIVE;
+  else
+    state_type = GTK_STATE_NORMAL;
+
+  if (gtk_widget_get_state (widget) == GTK_STATE_PRELIGHT)
+    gtk_paint_flat_box (gtk_widget_get_style (widget), cr, GTK_STATE_PRELIGHT,
+                        GTK_SHADOW_ETCHED_OUT,
+                        widget, "checkbutton",
+                        border_width, border_width,
+                        gtk_widget_get_allocated_width (widget) - (2 * border_width),
+                        gtk_widget_get_allocated_height (widget) - (2 * border_width));
+
+  if (gtk_button_get_indicator_style (GTK_BUTTON (widget)) == GTK_INDICATOR_STYLE_CHECK)
+    gtk_paint_check (gtk_widget_get_style (widget), cr,
+                     state_type, shadow_type,
+                     widget, "checkbutton",
+                     x, y, indicator_size, indicator_size);
+  else
+    gtk_paint_option (gtk_widget_get_style (widget), cr,
+                      state_type, shadow_type,
+                      widget, "radiobutton",
+                      x, y, indicator_size, indicator_size);
 }
 
 static gboolean

@@ -426,24 +426,16 @@ BobguiTextLineSegment*
 _bobgui_toggle_segment_new (BobguiTextTagInfo *info, gboolean on)
 {
   /* gcc-11 issues a diagnostic here because the size allocated
-<<<<<<< HEAD:bobgui/bobguitextsegment.c
      for SEG does not cover the entire size of a BobguiTextLineSegment
-=======
-     for SEG does not cover the entire size of a GtkTextLineSegment
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtktextsegment.c
      and gcc has no way to know that the union will only be used
      for limited types and the additional space is not needed.  */
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Warray-bounds"
-<<<<<<< HEAD:bobgui/bobguitextsegment.c
 #if defined (__clang_major__) && __clang_major__ >= 22
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Walloc-size"
 #endif
   BobguiTextLineSegment *seg;
-=======
-  GtkTextLineSegment *seg;
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtktextsegment.c
 
   seg = g_malloc (TSEG_SIZE);
 
@@ -458,12 +450,9 @@ _bobgui_toggle_segment_new (BobguiTextTagInfo *info, gboolean on)
   seg->body.toggle.inNodeCounts = 0;
 
   return seg;
-<<<<<<< HEAD:bobgui/bobguitextsegment.c
 #if defined (__clang_major__) && __clang_major__ >= 22
 #pragma clang diagnostic pop
 #endif
-=======
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtktextsegment.c
 #pragma GCC diagnostic pop
 }
 

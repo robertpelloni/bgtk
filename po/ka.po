@@ -4206,7 +4206,7 @@ msgstr "თავშია"
 msgid "Child Visible"
 msgstr "ხილული შვილი"
 
-#: gtk/inspector/prop-editor.c:702
+#: gtk/inspector/prop-editor.c:748
 #, c-format
 msgid "Pointer: %p"
 msgstr "მაჩვენებელი: %p"
@@ -4214,7 +4214,7 @@ msgstr "მაჩვენებელი: %p"
 #. Translators: %s is a type name, for example
 #. * GtkPropertyExpression with value \"2.5\"
 #.
-#: gtk/inspector/prop-editor.c:827
+#: gtk/inspector/prop-editor.c:873
 #, c-format
 msgid "%s with value \"%s\""
 msgstr "%s მნიშვნელობით \"%s\""
@@ -4222,7 +4222,7 @@ msgstr "%s მნიშვნელობით \"%s\""
 #. Translators: Both %s are type names, for example
 #. * GtkPropertyExpression with type GObject
 #.
-#: gtk/inspector/prop-editor.c:838
+#: gtk/inspector/prop-editor.c:884
 #, c-format
 msgid "%s with type %s"
 msgstr "%s ტიპით %s"
@@ -4230,7 +4230,7 @@ msgstr "%s ტიპით %s"
 #. Translators: Both %s are type names, for example
 #. * GtkObjectExpression for GtkStringObject 0x23456789
 #.
-#: gtk/inspector/prop-editor.c:851
+#: gtk/inspector/prop-editor.c:897
 #, c-format
 msgid "%s for %s %p"
 msgstr "%s %s-თვის %p"
@@ -4238,71 +4238,71 @@ msgstr "%s %s-თვის %p"
 #. Translators: Both %s are type names, for example
 #. * GtkPropertyExpression with value type: gchararray
 #.
-#: gtk/inspector/prop-editor.c:881
+#: gtk/inspector/prop-editor.c:927
 #, c-format
 msgid "%s with value type %s"
 msgstr "%s მნიშვნელობის ტიპით %s"
 
-#: gtk/inspector/prop-editor.c:1230
+#: gtk/inspector/prop-editor.c:1288
 #, c-format
 msgid "Uneditable property type: %s"
 msgstr "თვისების არაჩასწორებადი ტიპი: %s"
 
-#: gtk/inspector/prop-editor.c:1388
+#: gtk/inspector/prop-editor.c:1446
 msgctxt "column number"
 msgid "None"
 msgstr "არაფერი"
 
-#: gtk/inspector/prop-editor.c:1425
+#: gtk/inspector/prop-editor.c:1483
 msgid "Attribute:"
 msgstr "ატრიბუტი:"
 
-#: gtk/inspector/prop-editor.c:1428
+#: gtk/inspector/prop-editor.c:1486
 msgid "Model"
 msgstr "მოდელი"
 
-#: gtk/inspector/prop-editor.c:1433
+#: gtk/inspector/prop-editor.c:1491
 msgid "Column:"
 msgstr "სვეტი:"
 
 #. Translators: %s is a type name, for example
 #. * Action from 0x2345678 (GtkApplicationWindow)
 #.
-#: gtk/inspector/prop-editor.c:1532
+#: gtk/inspector/prop-editor.c:1590
 #, c-format
 msgid "Action from: %p (%s)"
 msgstr "ქმედების საწყისი: %p(%s)"
 
-#: gtk/inspector/prop-editor.c:1587
+#: gtk/inspector/prop-editor.c:1645
 msgid "Reset"
 msgstr "განულება"
 
-#: gtk/inspector/prop-editor.c:1595
+#: gtk/inspector/prop-editor.c:1653
 msgctxt "GtkSettings source"
 msgid "Default"
 msgstr "ნაგულისხმევი"
 
-#: gtk/inspector/prop-editor.c:1598
+#: gtk/inspector/prop-editor.c:1656
 msgctxt "GtkSettings source"
 msgid "Theme"
 msgstr "გაფორმების თემა"
 
-#: gtk/inspector/prop-editor.c:1601
+#: gtk/inspector/prop-editor.c:1659
 msgctxt "GtkSettings source"
 msgid "XSettings"
 msgstr "XSettings"
 
-#: gtk/inspector/prop-editor.c:1605
+#: gtk/inspector/prop-editor.c:1663
 msgctxt "GtkSettings source"
 msgid "Application"
 msgstr "აპლიკაცია"
 
-#: gtk/inspector/prop-editor.c:1608
+#: gtk/inspector/prop-editor.c:1666
 msgctxt "GtkSettings source"
 msgid "Unknown"
 msgstr "უცნობი"
 
-#: gtk/inspector/prop-editor.c:1611
+#: gtk/inspector/prop-editor.c:1669
 msgid "Source:"
 msgstr "წყარო:"
 

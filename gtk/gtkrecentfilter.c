@@ -71,6 +71,64 @@
  * ]|
  */
 
+/**
+ * SECTION:gtkrecentfilter
+ * @Short_Description: A filter for selecting a subset of recently used files
+ * @Title: GtkRecentFilter
+ *
+ * A #GtkRecentFilter can be used to restrict the files being shown
+ * in a #GtkRecentChooser.  Files can be filtered based on their name
+ * (with gtk_recent_filter_add_pattern()), on their mime type (with
+ * gtk_file_filter_add_mime_type()), on the application that has
+ * registered them (with gtk_recent_filter_add_application()), or by
+ * a custom filter function (with gtk_recent_filter_add_custom()).
+ *
+ * Filtering by mime type handles aliasing and subclassing of mime
+ * types; e.g. a filter for text/plain also matches a file with mime
+ * type application/rtf, since application/rtf is a subclass of text/plain.
+ * Note that #GtkRecentFilter allows wildcards for the subtype of a
+ * mime type, so you can e.g. filter for image/*.
+ *
+ * Normally, filters are used by adding them to a #GtkRecentChooser,
+ * see gtk_recent_chooser_add_filter(), but it is also possible to
+ * manually use a filter on a file with gtk_recent_filter_filter().
+ *
+ * Recently used files are supported since GTK+ 2.10.
+ *
+ * <refsect2 id="GtkRecentFilter-BUILDER-UI">
+ * <title>GtkRecentFilter as GtkBuildable</title>
+ * <para>
+ * The GtkRecentFilter implementation of the GtkBuildable interface
+ * supports adding rules using the &lt;mime-types&gt, &lt;patterns&gt and
+ * &lt;applications&gt elements and listing the rules within. Specifying
+ * a &lt;mime-type&gt, &lt;pattern&gt or &lt;application&gt is the same
+ * as calling gtk_recent_filter_add_mime_type(), gtk_recent_filter_add_pattern()
+ * or gtk_recent_filter_add_application().
+ *
+ * <example>
+ * <title>A UI definition fragment specifying GtkRecentFilter rules</title>
+ * <programlisting><![CDATA[
+ * <object class="GtkRecentFilter">
+ *   <mime-types>
+ *     <mime-type>text/plain</mime-type>
+ *     <mime-type>image/*</mime-type>
+ *   </mime-types>
+ *   <patterns>
+ *     <pattern>*.txt</pattern>
+ *     <pattern>*.png</pattern>
+ *   </patterns>
+ *   <applications>
+ *     <application>gimp</application>
+ *     <application>gedit</application>
+ *     <application>glade</application>
+ *   </applications>
+ * </object>
+ * ]]></programlisting>
+ * </example>
+ * </para>
+ * </refsect2>
+ */
+
 #include "config.h"
 #include <string.h>
 

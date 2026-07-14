@@ -22,17 +22,7 @@
 #import <AppKit/AppKit.h>
 #import <Foundation/Foundation.h>
 
-<<<<<<< HEAD:gdk/macos/GdkMacosBaseView.h
 #include <gdk/gdk.h>
-=======
-/* Text Input Client */
-#define TIC_MARKED_TEXT "tic-marked-text"
-#define TIC_SELECTED_POS  "tic-selected-pos"
-#define TIC_SELECTED_LEN  "tic-selected-len"
-#define TIC_INSERT_TEXT "tic-insert-text"
-#define TIC_INSERT_TEXT_REPLACE_LEN "tic-insert-text-replace-len"
-#define TIC_IN_KEY_DOWN "tic-in-key-down"
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gdk/quartz/GdkQuartzView.h
 
 #include "gdkmacosdisplay.h"
 #include "gdkmacossurface.h"

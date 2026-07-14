@@ -1025,7 +1025,6 @@ gsk_gpu_lookup_texture (GskGpuFrame    *frame,
                         GdkColorState **out_image_cs)
 {
   GskGpuCache *cache;
-  GdkColorState *image_cs;
   GskGpuImage *image;
 
   cache = gsk_gpu_device_get_cache (gsk_gpu_frame_get_device (frame));
@@ -1033,7 +1032,7 @@ gsk_gpu_lookup_texture (GskGpuFrame    *frame,
   image = gsk_gpu_cache_lookup_texture_image (cache, texture, ccs);
   if (image)
     {
-      *out_image_cs = ccs;
+      *out_image_cs = gdk_color_state_ref (ccs);
       return image;
     }
 
@@ -1049,7 +1048,9 @@ gsk_gpu_lookup_texture (GskGpuFrame    *frame,
                                                    gsk_gpu_image_get_conversion (image));
   g_assert (image_cs);
 
-  *out_image_cs = image_cs;
+  *out_image_cs = gsk_gpu_image_adjust_color_state (image,
+                                                    gdk_texture_get_color_state (texture));
+
   return image;
 }
 
@@ -1083,7 +1084,6 @@ gsk_gpu_node_processor_draw_texture_tiles (GskGpuRenderPass    *self,
   GskGpuCache *cache;
   GskGpuDevice *device;
   GskGpuImage *tile;
-  GdkColorState *tile_cs;
   GskGpuSampler sampler;
   gboolean need_mipmap;
   GdkMemoryTexture *memtex;
@@ -1119,6 +1119,8 @@ gsk_gpu_node_processor_draw_texture_tiles (GskGpuRenderPass    *self,
     {
       for (x = 0; x < n_width; x++)
         {
+          GdkColorState *tile_cs = NULL;
+
           graphene_rect_t tile_rect = GRAPHENE_RECT_INIT (texture_bounds->origin.x + scaled_tile_width * x,
                                                           texture_bounds->origin.y + scaled_tile_height * y,
                                                           scaled_tile_width,
@@ -1175,6 +1177,7 @@ gsk_gpu_node_processor_draw_texture_tiles (GskGpuRenderPass    *self,
                                            &tile_rect,
                                            &tile_rect);
 
+          gdk_color_state_unref (tile_cs);
           g_object_unref (tile);
         }
     }
@@ -1348,6 +1351,7 @@ gsk_gpu_get_texture_node_as_image (GskGpuFrame           *frame,
 
   gdk_color_state_unref (image_cs);
   *out_bounds = node->bounds;
+  gdk_color_state_unref (image_cs);
   return image;
 }
 

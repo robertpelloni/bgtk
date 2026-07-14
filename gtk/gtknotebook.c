@@ -4851,6 +4851,15 @@ gtk_notebook_real_insert_page (GtkNotebook *notebook,
       gtk_widget_set_parent (tab_label, GTK_WIDGET (notebook));
     }
 
+  stack_page = gtk_stack_get_page (GTK_STACK (notebook->stack_widget), page->child);
+  gtk_accessible_update_relation (GTK_ACCESSIBLE (page->tab_widget),
+                                  GTK_ACCESSIBLE_RELATION_CONTROLS, g_list_append (NULL, stack_page),
+                                  -1);
+
+  gtk_accessible_update_state (GTK_ACCESSIBLE (page->tab_widget),
+                               GTK_ACCESSIBLE_STATE_SELECTED, FALSE,
+                               -1);
+
   gtk_notebook_update_labels (notebook);
 
   if (!priv->first_tab)

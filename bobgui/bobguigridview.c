@@ -749,13 +749,8 @@ bobgui_grid_view_size_allocate (BobguiWidget *widget,
                              int        height,
                              int        baseline)
 {
-<<<<<<< HEAD:bobgui/bobguigridview.c
   BobguiGridView *self = BOBGUI_GRID_VIEW (widget);
   BobguiListTile *tile, *start, *footer;
-=======
-  GtkGridView *self = GTK_GRID_VIEW (widget);
-  GtkListTile *tile, *start, *footer;
->>>>>>> origin/4-14-backports:gtk/gtkgridview.c
   GArray *heights;
   int min_row_height, unknown_row_height, row_height, col_min, col_nat;
   BobguiOrientation orientation;
@@ -892,7 +887,6 @@ bobgui_grid_view_size_allocate (BobguiWidget *widget,
           i = 0;
         }
     }
-<<<<<<< HEAD:bobgui/bobguigridview.c
   footer = bobgui_list_item_manager_get_last (self->item_manager);
   g_assert (bobgui_list_tile_is_footer (footer));
   /* Make the footer tile fill the empty space in the bottom right */
@@ -900,15 +894,6 @@ bobgui_grid_view_size_allocate (BobguiWidget *widget,
     {
       tile = bobgui_rb_tree_node_get_previous (footer);
       bobgui_list_tile_set_area_position (self->item_manager,
-=======
-  footer = gtk_list_item_manager_get_last (self->item_manager);
-  g_assert (gtk_list_tile_is_footer (footer));
-  /* Make the footer tile fill the empty space in the bottom right */
-  if (i > 0)
-    {
-      tile = gtk_rb_tree_node_get_previous (footer);
-      gtk_list_tile_set_area_position (self->item_manager,
->>>>>>> origin/4-14-backports:gtk/gtkgridview.c
                                        footer,
                                        column_start (self, xspacing, i),
                                        y);
@@ -919,22 +904,14 @@ bobgui_grid_view_size_allocate (BobguiWidget *widget,
     }
   else
     {
-<<<<<<< HEAD:bobgui/bobguigridview.c
       bobgui_list_tile_set_area_size (self->item_manager,
-=======
-      gtk_list_tile_set_area_size (self->item_manager,
->>>>>>> origin/4-14-backports:gtk/gtkgridview.c
                                    footer,
                                    0,
                                    0);
     }
 
   /* step 5: allocate the rest */
-<<<<<<< HEAD:bobgui/bobguigridview.c
   bobgui_list_base_allocate (BOBGUI_LIST_BASE (self));
-=======
-  gtk_list_base_allocate (GTK_LIST_BASE (self));
->>>>>>> origin/4-14-backports:gtk/gtkgridview.c
 }
 
 static void

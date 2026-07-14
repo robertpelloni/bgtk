@@ -23,6 +23,9 @@
 
 #include <gtk/gtk.h>
 #include "gtkstack.h"
+#include "gtkenums.h"
+#include "gtkaccessibleprivate.h"
+#include "gtkatcontextprivate.h"
 #include "gtkprivate.h"
 #include "gtkintl.h"
 #include "gtkcsscustomgadgetprivate.h"

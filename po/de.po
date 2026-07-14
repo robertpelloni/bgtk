@@ -7172,7 +7172,7 @@ msgstr "Statistiken mit GOBJECT_DEBUG=instance-count einschalten"
 msgid "Remove %s"
 msgstr "Entfernen %s"
 
-#: gtk/inspector/strv-editor.c:115
+#: gtk/inspector/strv-editor.c:114
 msgid "Add"
 msgstr "Hinzufügen"
 
@@ -16370,6 +16370,7 @@ msgstr ""
 "Befehle:\n"
 "  benchmark    Darstellung eines Knotens auf ihre Leistung vergleichen\n"
 "  compare      Knoten oder Bilder vergleichen\n"
+"  convert      In Knoten umwandeln\r\n"
 "  extract      Datenadressen extrahieren\n"
 "  info         Informationen über den Knoten bereitstellen\n"
 "  show         Knoten anzeigen\n"

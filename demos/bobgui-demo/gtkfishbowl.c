@@ -525,7 +525,6 @@ gtk_fishbowl_do_update (GtkFishbowl *fishbowl)
   if (fps <= 0.0)
     return;
 
-<<<<<<< HEAD:demos/bobgui-demo/gtkfishbowl.c
   start_timestamp = gdk_frame_timings_get_presentation_time (start);
   end_timestamp = gdk_frame_timings_get_presentation_time (end);
   if (start_timestamp == 0 || end_timestamp == 0)
@@ -536,9 +535,6 @@ gtk_fishbowl_do_update (GtkFishbowl *fishbowl)
 
   n_frames = end_counter - start_counter;
   priv->framerate = ((double) n_frames) * G_USEC_PER_SEC / (end_timestamp - start_timestamp);
-=======
-  priv->framerate = fps;
->>>>>>> origin/4-14-backports:demos/gtk-demo/gtkfishbowl.c
   g_object_notify_by_pspec (G_OBJECT (fishbowl), props[PROP_FRAMERATE]);
 
   if (!priv->benchmark)

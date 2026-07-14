@@ -2606,7 +2606,9 @@ location_entry_changed_cb (GtkEditable          *editable,
         switch_to_home_dir (impl);
     }
 
-  if (priv->action != GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER)
+  if (priv->action == GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER)
+    g_signal_emit_by_name (impl, "selection-changed", 0);
+  else
     reset_location_timeout (impl);
     /* Reset location timeout */
     if (impl->location_changed_id > 0)
@@ -5362,6 +5364,10 @@ set_list_model (GtkFileChooserWidget  *impl,
 
   g_signal_connect (priv->browse_files_model, "row-changed",
                     G_CALLBACK (browse_files_model_row_changed_cb), impl);
+
+  g_signal_connect_data (priv->browse_files_model, "rows-reordered",
+                         G_CALLBACK (browse_files_center_selected_row),
+                         impl, NULL, G_CONNECT_AFTER | G_CONNECT_SWAPPED);
 
   _gtk_file_system_model_set_filter (priv->browse_files_model, priv->current_filter);
 

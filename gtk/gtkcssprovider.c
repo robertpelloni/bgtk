@@ -125,21 +125,42 @@ struct _GtkCssProviderPrivate
 {
   GScanner *scanner;
 
+  GArray *media_features;
+
   GHashTable *symbolic_colors;
   GHashTable *keyframes;
 
   GArray *rulesets;
   GtkCssSelectorTree *tree;
+
+  GBytes *source;
+
   GResource *resource;
   gchar *path;
 };
+
+typedef struct {
+  const char  *feature_name;
+  gsize        n_feature_values;
+  const char **feature_values;
+} _GtkCssDefinedMediaFeature;
 
 enum {
   PARSING_ERROR,
   LAST_SIGNAL
 };
 
+enum {
+   PROP_0,
+   PROP_PREFERS_COLOR_SCHEME,
+   PROP_PREFERS_CONTRAST,
+   NUM_PROPERTIES
+};
+
 static gboolean gtk_keep_css_sections = FALSE;
+
+/* An append-only list of supported media features. */
+static GArray *defined_media_features = NULL;
 
 static guint css_provider_signals[LAST_SIGNAL] = { 0 };
 
@@ -211,8 +232,18 @@ gtk_css_provider_class_init (GtkCssProviderClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
+  gtk_css_provider_define_discrete_media_feature ("prefers-color-scheme", 2, (const char *[]) { "light", "dark" });
+  gtk_css_provider_define_discrete_media_feature ("prefers-contrast", 4, (const char *[]) { "no-preference", "less", "more", "custom" });
+
   if (g_getenv ("GTK_CSS_DEBUG"))
     gtk_css_provider_set_keep_css_sections ();
+
+  object_class->finalize = gtk_css_provider_finalize;
+  object_class->get_property = gtk_css_provider_get_property;
+  object_class->set_property = gtk_css_provider_set_property;
+  object_class->notify = gtk_css_provider_notify;
+
+  klass->parsing_error = gtk_css_provider_parsing_error;
 
   /**
    * GtkCssProvider::parsing-error:
@@ -241,9 +272,60 @@ gtk_css_provider_class_init (GtkCssProviderClass *klass)
                   _gtk_marshal_VOID__BOXED_BOXED,
                   G_TYPE_NONE, 2, GTK_TYPE_CSS_SECTION, G_TYPE_ERROR);
 
-  object_class->finalize = gtk_css_provider_finalize;
+  /**
+   * GtkCssProvider:prefers-color-scheme:
+   *
+   * Define the color scheme used for rendering the user interface.
+   *
+   * The UI can be set to either [enum@Gtk.InterfaceColorScheme.LIGHT],
+   * or [enum@Gtk.InterfaceColorScheme.DARK] mode.
+   *
+   * This setting is be available for media queries in CSS:
+   *
+   * ```css
+   * @media (prefers-color-scheme: dark) {
+   *   // some dark mode styling
+   * }
+   * ```
+   *
+   * Changing this setting will cause a re-render of the style sheet.
+   *
+   * Since: 4.20
+   */
+  pspecs[PROP_PREFERS_COLOR_SCHEME] = g_param_spec_enum ("prefers-color-scheme", NULL, NULL,
+                                                         GTK_TYPE_INTERFACE_COLOR_SCHEME,
+                                                         GTK_INTERFACE_COLOR_SCHEME_LIGHT,
+                                                         GTK_PARAM_READWRITE);
 
-  klass->parsing_error = gtk_css_provider_parsing_error;
+  /**
+   * GtkCssProvider:prefers-contrast:
+   *
+   * Define the contrast mode to use for the user interface.
+   *
+   * When set to [enum@Gtk.InterfaceContrast.MORE], the UI is rendered in
+   * high contrast.
+   *
+   * When set to [enum@Gtk.InterfaceContrast.NO_PREFERENCE] (the default),
+   * the user interface will be rendered in default mode.
+   *
+   * This setting is be available for media queries in CSS:
+   *
+   * ```css
+   * @media (prefers-contrast: more) {
+   *   // some style with high contrast
+   * }
+   * ```
+   *
+   * Changing this setting will cause a re-render of the style sheet.
+   *
+   * Since: 4.20
+   */
+  pspecs[PROP_PREFERS_CONTRAST] = g_param_spec_enum ("prefers-contrast", NULL, NULL,
+                                                     GTK_TYPE_INTERFACE_CONTRAST,
+                                                     GTK_INTERFACE_CONTRAST_NO_PREFERENCE,
+                                                     GTK_PARAM_READWRITE);
+
+  g_object_class_install_properties (object_class, NUM_PROPERTIES, pspecs);
 }
 
 static void
@@ -441,6 +523,17 @@ gtk_css_scanner_parser_error (GtkCssParser *parser,
   gtk_css_provider_emit_error (scanner->provider, scanner, error);
 }
 
+static const char *
+enum_to_nick (GType type,
+               int   value)
+{
+  GEnumClass *class = g_type_class_ref (type);
+  GEnumValue *v = g_enum_get_value (class, value);
+  g_type_class_unref (class);
+
+  return v->value_nick;
+}
+
 static GtkCssScanner *
 gtk_css_scanner_new (GtkCssProvider *provider,
                      GtkCssScanner  *parent,
@@ -449,6 +542,7 @@ gtk_css_scanner_new (GtkCssProvider *provider,
                      const gchar    *text)
 {
   GtkCssScanner *scanner;
+  GtkCssDiscreteMediaFeature feature;
 
   scanner = g_slice_new0 (GtkCssScanner);
 
@@ -462,6 +556,27 @@ gtk_css_scanner_new (GtkCssProvider *provider,
                                          file,
                                          gtk_css_scanner_parser_error,
                                          scanner);
+
+  if (parent == NULL)
+    {
+      GtkCssProviderPrivate *priv = gtk_css_provider_get_instance_private (provider);
+
+      scanner->media_features = g_array_sized_new (FALSE, FALSE, sizeof (GtkCssDiscreteMediaFeature), 2);
+
+      feature.name = "prefers-color-scheme";
+      feature.value = enum_to_nick (GTK_TYPE_INTERFACE_COLOR_SCHEME, priv->prefers_color_scheme);
+
+      if (strcmp (feature.value, "default") == 0)
+        feature.value = "light";
+
+      g_array_append_vals (scanner->media_features, &feature, 1);
+
+      feature.name = "prefers-contrast";
+      feature.value = enum_to_nick (GTK_TYPE_INTERFACE_CONTRAST, priv->prefers_contrast);
+      g_array_append_vals (scanner->media_features, &feature, 1);
+    }
+  else
+    scanner->media_features = g_array_ref (parent->media_features);
 
   return scanner;
 }
@@ -480,6 +595,17 @@ gtk_css_scanner_would_recurse (GtkCssScanner *scanner,
     }
 
   return FALSE;
+}
+
+static gboolean
+gtk_css_scanner_should_commit (GtkCssScanner *scanner)
+{
+  gboolean commit = (scanner->skip_count == 0);
+
+  if (scanner->parent)
+    commit &= gtk_css_scanner_should_commit (scanner->parent);
+
+  return commit;
 }
 
 static void
@@ -522,6 +648,7 @@ gtk_css_provider_init (GtkCssProvider *css_provider)
 
   priv = css_provider->priv = gtk_css_provider_get_instance_private (css_provider);
 
+  priv->media_features = g_array_sized_new (FALSE, FALSE, sizeof (GtkCssDiscreteMediaFeature), 4);
   priv->rulesets = g_array_new (FALSE, FALSE, sizeof (GtkCssRuleset));
 
   priv->symbolic_colors = g_hash_table_new_full (g_str_hash, g_str_equal,
@@ -549,7 +676,7 @@ verify_tree_match_results (GtkCssProvider *provider,
 
       ruleset = &g_array_index (priv->rulesets, GtkCssRuleset, i);
 
-      for (j = 0; j < tree_rules->len; j++)
+      for (j = 0; j < gtk_css_selector_matches_get_size (tree_rules); j++)
 	{
 	  if (ruleset == tree_rules->pdata[j])
 	    {
@@ -782,6 +909,7 @@ gtk_css_style_provider_lookup (GtkStyleProviderPrivate *provider,
 
       g_ptr_array_free (tree_rules, TRUE);
     }
+  gtk_css_selector_matches_clear (&tree_rules);
 
   if (change)
     {
@@ -822,6 +950,8 @@ gtk_css_provider_finalize (GObject *object)
   g_hash_table_destroy (priv->symbolic_colors);
   g_hash_table_destroy (priv->keyframes);
 
+  g_clear_pointer (&priv->source, g_bytes_unref);
+
   if (priv->resource)
     {
       g_resources_unregister (priv->resource);
@@ -832,6 +962,93 @@ gtk_css_provider_finalize (GObject *object)
   g_free (priv->path);
 
   G_OBJECT_CLASS (gtk_css_provider_parent_class)->finalize (object);
+}
+
+static void
+gtk_css_provider_get_property (GObject         *object,
+                               guint            prop_id,
+                               GValue          *value,
+                               GParamSpec      *pspec)
+{
+  GtkCssProviderPrivate *priv = gtk_css_provider_get_instance_private (GTK_CSS_PROVIDER (object));
+
+  switch (prop_id)
+    {
+    case PROP_PREFERS_COLOR_SCHEME:
+      g_value_set_enum (value, priv->prefers_color_scheme);
+      break;
+    case PROP_PREFERS_CONTRAST:
+      g_value_set_enum (value, priv->prefers_contrast);
+      break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+    }
+}
+
+static void
+gtk_css_provider_set_property (GObject         *object,
+                               guint            prop_id,
+                               const GValue    *value,
+                               GParamSpec      *pspec)
+{
+  GtkCssProviderPrivate *priv = gtk_css_provider_get_instance_private (GTK_CSS_PROVIDER (object));
+  int enum_value;
+
+  switch (prop_id)
+    {
+    case PROP_PREFERS_COLOR_SCHEME:
+      enum_value = g_value_get_enum (value);
+      if (priv->prefers_color_scheme != enum_value)
+        {
+          priv->prefers_color_scheme = enum_value;
+          priv->needs_rerender = TRUE;
+        }
+      break;
+    case PROP_PREFERS_CONTRAST:
+      enum_value = g_value_get_enum (value);
+      if (priv->prefers_contrast != enum_value)
+        {
+          priv->prefers_contrast = enum_value;
+          priv->needs_rerender = TRUE;
+        }
+      break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+    }
+}
+
+static void
+maybe_rerender_style_sheet (GtkCssProvider *css_provider)
+{
+  GtkCssProviderPrivate *priv = gtk_css_provider_get_instance_private (css_provider);
+
+  if (priv->needs_rerender && priv->source != NULL)
+    {
+      GBytes *source = g_bytes_ref (priv->source);
+      gtk_css_provider_load_from_bytes (css_provider, source);
+      g_bytes_unref (source);
+    }
+
+  priv->needs_rerender = FALSE;
+}
+
+static void
+gtk_css_provider_notify (GObject    *object,
+                         GParamSpec *pspec)
+{
+  GtkCssProvider *css_provider = GTK_CSS_PROVIDER (object);
+
+  switch (pspec->param_id)
+    {
+    case PROP_PREFERS_COLOR_SCHEME:
+    case PROP_PREFERS_CONTRAST:
+      maybe_rerender_style_sheet (css_provider);
+      break;
+    default:
+      break;
+    }
 }
 
 /**
@@ -1037,6 +1254,14 @@ parse_import (GtkCssScanner *scanner)
       gtk_css_provider_invalid_token (scanner->provider, scanner, "semicolon");
       _gtk_css_parser_resync (scanner->parser, TRUE, 0);
     }
+  else if (!gtk_css_scanner_should_commit (scanner))
+    {
+      /* nothing to do */
+    }
+  else if (!gtk_css_scanner_should_commit (scanner))
+    {
+      /* nothing to do */
+    }
   else if (gtk_css_scanner_would_recurse (scanner, file))
     {
        char *path = g_file_get_path (file);
@@ -1061,6 +1286,79 @@ parse_import (GtkCssScanner *scanner)
 
   gtk_css_scanner_pop_section (scanner, GTK_CSS_SECTION_IMPORT);
   _gtk_css_parser_skip_whitespace (scanner->parser);
+
+  return TRUE;
+}
+
+static gboolean
+parse_media_block (GtkCssScanner *scanner)
+{
+  gboolean is_match = TRUE;
+
+  if (!gtk_css_parser_try_at_keyword (scanner->parser, "media"))
+    return FALSE;
+
+  if (!gtk_css_parser_has_token (scanner->parser, GTK_CSS_TOKEN_OPEN_CURLY))
+    {
+      GtkCssProviderPrivate *priv = gtk_css_provider_get_instance_private (scanner->provider);
+      is_match = gtk_css_media_query_parse (scanner->parser, priv->media_features);
+    }
+
+  if (!gtk_css_parser_has_token (scanner->parser, GTK_CSS_TOKEN_OPEN_CURLY))
+    {
+      gtk_css_parser_error_syntax (scanner->parser, "Expected '{' after @media query");
+      return FALSE;
+    }
+
+  gtk_css_parser_start_block (scanner->parser);
+
+  if (!is_match)
+    scanner->skip_count += 1;
+
+  while (!gtk_css_parser_has_token (scanner->parser, GTK_CSS_TOKEN_CLOSE_CURLY) &&
+         !gtk_css_parser_has_token (scanner->parser, GTK_CSS_TOKEN_EOF))
+    parse_statement (scanner);
+
+  if (!is_match)
+    scanner->skip_count -= 1;
+
+  gtk_css_parser_end_block (scanner->parser);
+
+  return TRUE;
+}
+
+static gboolean
+parse_media_block (GtkCssScanner *scanner)
+{
+  gboolean is_match = TRUE;
+
+  if (!gtk_css_parser_try_at_keyword (scanner->parser, "media"))
+    return FALSE;
+
+  if (!gtk_css_parser_has_token (scanner->parser, GTK_CSS_TOKEN_OPEN_CURLY))
+    {
+      is_match = gtk_css_media_query_parse (scanner->parser, scanner->media_features);
+    }
+
+  if (!gtk_css_parser_has_token (scanner->parser, GTK_CSS_TOKEN_OPEN_CURLY))
+    {
+      gtk_css_parser_error_syntax (scanner->parser, "Expected '{' after @media query");
+      return FALSE;
+    }
+
+  gtk_css_parser_start_block (scanner->parser);
+
+  if (!is_match)
+    scanner->skip_count += 1;
+
+  while (!gtk_css_parser_has_token (scanner->parser, GTK_CSS_TOKEN_CLOSE_CURLY) &&
+         !gtk_css_parser_has_token (scanner->parser, GTK_CSS_TOKEN_EOF))
+    parse_statement (scanner);
+
+  if (!is_match)
+    scanner->skip_count -= 1;
+
+  gtk_css_parser_end_block (scanner->parser);
 
   return TRUE;
 }
@@ -1784,7 +2082,7 @@ gtk_css_provider_load_internal (GtkCssProvider *css_provider,
                                      file,
                                      text);
 
-      parse_stylesheet (scanner);
+  gtk_css_scanner_destroy (scanner);
 
       gtk_css_scanner_destroy (scanner);
 
@@ -2132,13 +2430,25 @@ _gtk_css_provider_load_named (GtkCssProvider *provider,
 
   gtk_css_provider_reset (provider);
 
+  if (variant != NULL && (g_strrstr(variant, "dark") != NULL))
+    prefers_color_scheme = GTK_CSS_PREFERS_COLOR_SCHEME_DARK;
+  else
+    prefers_color_scheme = GTK_CSS_PREFERS_COLOR_SCHEME_LIGHT;
+
+  if (variant != NULL && (g_strrstr(variant, "hc") != NULL))
+    prefers_contrast = GTK_CSS_PREFERS_CONTRAST_MORE;
+  else
+    prefers_contrast = GTK_CSS_PREFERS_CONTRAST_NO_PREFERENCE;
+
+  gtk_css_provider_update_discrete_media_features (provider,
+                                                   2,
+                                                   (const char *[]) { GTK_CSS_PREFERS_COLOR_SCHEME, GTK_CSS_PREFERS_CONTRAST },
+                                                   (const char *[]) { prefers_color_scheme, prefers_contrast });
+
   /* try loading the resource for the theme. This is mostly meant for built-in
    * themes.
    */
-  if (variant)
-    resource_path = g_strdup_printf ("/org/gtk/libgtk/theme/%s/gtk-%s.css", name, variant);
-  else
-    resource_path = g_strdup_printf ("/org/gtk/libgtk/theme/%s/gtk.css", name);
+  resource_path = g_strdup_printf ("/org/gtk/libgtk/theme/%s/gtk.css", name);
 
   if (g_resources_get_info (resource_path, 0, NULL, NULL, NULL))
     {

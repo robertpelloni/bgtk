@@ -6708,7 +6708,7 @@ msgstr ""
 msgid "\"%s\" is not a valid value for attribute \"%s\""
 msgstr "«%s» не является допустимым значением атрибута «%s»"
 
-#: gtk/gtktextbufferserialize.c:1291
+#: ../gtk/gtktextbufferserialize.c:1291
 #, c-format
 msgid "Tag \"%s\" already defined"
 msgstr "Тег «%s» уже определён"

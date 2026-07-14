@@ -147,6 +147,13 @@ struct _GtkKeySnooperData
 static gint  gtk_invoke_key_snoopers     (GtkWidget          *grab_widget,
                                           GdkEvent           *event);
 
+#define GTK_VECTOR_ELEMENT_TYPE GtkWidget *
+#define GTK_VECTOR_TYPE_NAME GtkWidgetStack
+#define GTK_VECTOR_NAME gtk_widget_stack
+#define GTK_VECTOR_FREE_FUNC g_object_unref
+#define GTK_VECTOR_PREALLOC 16
+#include "gtkvectorimpl.c"
+
 static GtkWindowGroup *gtk_main_get_window_group (GtkWidget   *widget);
 
 static guint gtk_main_loop_level = 0;

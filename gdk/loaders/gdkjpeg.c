@@ -155,37 +155,39 @@ gdk_load_jpeg (GBytes  *input_bytes,
                 g_bytes_get_size (input_bytes));
 
   jpeg_read_header (&info, TRUE);
+
+  if (info.jpeg_color_space == JCS_GRAYSCALE)
+    {
+      color_state = GDK_COLOR_STATE_SRGB;
+      info.out_color_space = JCS_GRAYSCALE;
+      format = GDK_MEMORY_G8;
+    }
+  else if (info.jpeg_color_space == JCS_YCbCr)
+    {
+      color_state = GDK_COLOR_STATE_JPEG;
+      info.out_color_space = JCS_YCbCr;
+      format = GDK_MEMORY_R8G8B8;
+    }
+  else if (info.jpeg_color_space == JCS_CMYK)
+    {
+      color_state = GDK_COLOR_STATE_SRGB;
+      info.out_color_space = JCS_CMYK;
+      format = GDK_MEMORY_R8G8B8A8_PREMULTIPLIED;
+    }
+  else
+    {
+      color_state = GDK_COLOR_STATE_SRGB;
+      info.out_color_space = JCS_RGB;
+      format = GDK_MEMORY_R8G8B8;
+    }
+
   jpeg_start_decompress (&info);
 
   width = info.output_width;
   height = info.output_height;
+  stride = gdk_memory_format_bytes_per_pixel (format) * width;
 
-  color_state = GDK_COLOR_STATE_SRGB;
-
-  switch ((int)info.out_color_space)
-    {
-    case JCS_GRAYSCALE:
-      stride = width;
-      data = g_try_malloc_n (stride, height);
-      format = GDK_MEMORY_G8;
-      break;
-    case JCS_RGB:
-      stride = 3 * width;
-      data = g_try_malloc_n (stride, height);
-      format = GDK_MEMORY_R8G8B8;
-      break;
-    case JCS_CMYK:
-      stride = 4 * width;
-      data = g_try_malloc_n (stride, height);
-      format = GDK_MEMORY_R8G8B8A8_PREMULTIPLIED;
-      break;
-    default:
-      g_set_error (error,
-                   GDK_TEXTURE_ERROR, GDK_TEXTURE_ERROR_UNSUPPORTED_CONTENT,
-                   _("Unsupported JPEG colorspace (%d)"), info.out_color_space);
-      jpeg_destroy_decompress (&info);
-      return NULL;
-    }
+  data = g_try_malloc_n (stride, height);
 
   if (!data)
     {
@@ -221,7 +223,6 @@ gdk_load_jpeg (GBytes  *input_bytes,
 
   texture = gdk_memory_texture_builder_build (builder);
 
-  gdk_color_state_unref (color_state);
   g_object_unref (builder);
   g_bytes_unref (bytes);
 
@@ -249,6 +250,7 @@ gdk_save_jpeg (GdkTexture *texture)
   gsize texstride;
   guchar *row;
   int width, height;
+  GdkColorState *color_state;
 
   width = gdk_texture_get_width (texture);
   height = gdk_texture_get_height (texture);
@@ -278,13 +280,24 @@ gdk_save_jpeg (GdkTexture *texture)
   jpeg_set_defaults (&info);
   jpeg_set_quality (&info, 75, TRUE);
 
+  color_state = gdk_texture_get_color_state (texture);
+  if (gdk_color_state_equal (color_state, GDK_COLOR_STATE_JPEG))
+    {
+      info.in_color_space = JCS_YCbCr;
+    }
+  else
+    {
+      info.in_color_space = JCS_RGB;
+      color_state = GDK_COLOR_STATE_SRGB;
+    }
+
   info.mem->max_memory_to_use = 300 * 1024 * 1024;
 
   jpeg_mem_dest (&info, &data, &size);
 
   gdk_texture_downloader_init (&downloader, texture);
   gdk_texture_downloader_set_format (&downloader, GDK_MEMORY_R8G8B8);
-  gdk_texture_downloader_set_color_state (&downloader, GDK_COLOR_STATE_SRGB);
+  gdk_texture_downloader_set_color_state (&downloader, color_state);
   texbytes = gdk_texture_downloader_download_bytes (&downloader, &texstride);
   gdk_texture_downloader_finish (&downloader);
   texdata = g_bytes_get_data (texbytes, NULL);

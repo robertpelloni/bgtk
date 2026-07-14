@@ -209,6 +209,20 @@ static void gtk_popover_multipress_gesture_pressed (GtkGestureMultiPress *gestur
 G_DEFINE_TYPE_WITH_PRIVATE (GtkPopover, gtk_popover, GTK_TYPE_BIN)
 
 static void
+gtk_popover_click_gesture_pressed (GtkGestureClick *gesture,
+                                   gint             n_press,
+                                   gdouble          widget_x,
+                                   gdouble          widget_y,
+                                   GtkPopover      *popover)
+{
+  GtkPopoverPrivate *priv = gtk_popover_get_instance_private (popover);
+  GtkWindow *rel_window = GTK_WINDOW (gtk_widget_get_root (priv->relative_to));
+
+  if (!gtk_window_is_active (rel_window) && gtk_widget_is_drawable (GTK_WIDGET (popover)))
+    gtk_window_present_with_time (rel_window, gtk_get_current_event_time ());
+}
+
+static void
 gtk_popover_init (GtkPopover *popover)
 {
   GtkWidget *widget;

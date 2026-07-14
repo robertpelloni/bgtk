@@ -1180,7 +1180,7 @@ update_places (BobguiPlacesSidebar *sidebar)
                    */
                   start_icon = g_volume_get_symbolic_icon (volume);
                   name = g_volume_get_name (volume);
-                  tooltip = g_strdup_printf (_("Mount and open “%s”"), name);
+                  tooltip = g_strdup_printf (_("Mount and open “%s�"), name);
 
                   add_place (sidebar, BOBGUI_PLACES_MOUNTED_VOLUME,
                              BOBGUI_PLACES_SECTION_MOUNTS,
@@ -1208,7 +1208,7 @@ update_places (BobguiPlacesSidebar *sidebar)
                */
               start_icon = g_drive_get_symbolic_icon (drive);
               name = g_drive_get_name (drive);
-              tooltip = g_strdup_printf (_("Mount and open “%s”"), name);
+              tooltip = g_strdup_printf (_("Mount and open “%s�"), name);
 
               add_place (sidebar, BOBGUI_PLACES_BUILT_IN,
                          BOBGUI_PLACES_SECTION_MOUNTS,
@@ -1408,7 +1408,7 @@ update_places (BobguiPlacesSidebar *sidebar)
         {
           start_icon = g_volume_get_symbolic_icon (volume);
           name = g_volume_get_name (volume);
-          tooltip = g_strdup_printf (_("Mount and open “%s”"), name);
+          tooltip = g_strdup_printf (_("Mount and open “%s�"), name);
 
           add_place (sidebar, BOBGUI_PLACES_MOUNTED_VOLUME,
                      BOBGUI_PLACES_SECTION_MOUNTS,
@@ -1839,7 +1839,6 @@ drag_drop_callback (BobguiDropTarget    *target,
       if (sidebar->row_placeholder != NULL)
         g_object_get (sidebar->row_placeholder, "order-index", &target_order_index, NULL);
 
-<<<<<<< HEAD:bobgui/bobguiplacessidebar.c
       reorder_bookmarks (sidebar, BOBGUI_SIDEBAR_ROW (source_row), target_order_index);
       result = TRUE;
     }
@@ -1862,10 +1861,6 @@ drag_drop_callback (BobguiDropTarget    *target,
           g_object_unref (dest_file);
         }
       result = TRUE;
-=======
-      reorder_bookmarks (sidebar, GTK_SIDEBAR_ROW (*source_row), target_order_index);
-      success = TRUE;
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkplacessidebar.c
     }
   else
     {
@@ -1968,7 +1963,7 @@ drive_start_from_bookmark_cb (GObject      *source_object,
       if (error->code != G_IO_ERROR_FAILED_HANDLED)
         {
           name = g_drive_get_name (G_DRIVE (source_object));
-          primary = g_strdup_printf (_("Unable to start “%s”"), name);
+          primary = g_strdup_printf (_("Unable to start “%s�"), name);
           g_free (name);
           emit_show_error_message (sidebar, primary, error->message);
           g_free (primary);
@@ -2004,9 +1999,9 @@ volume_mount_cb (GObject      *source_object,
             /* Translators: This means that unlocking an encrypted storage
              * device failed. %s is the name of the device.
              */
-            primary = g_strdup_printf (_("Error unlocking “%s”"), name);
+            primary = g_strdup_printf (_("Error unlocking “%s�"), name);
           else
-            primary = g_strdup_printf (_("Unable to access “%s”"), name);
+            primary = g_strdup_printf (_("Unable to access “%s�"), name);
           g_free (name);
           emit_show_error_message (sidebar, primary, error->message);
           g_free (primary);
@@ -2529,7 +2524,7 @@ unmount_mount_cb (GObject      *source_object,
           char *primary;
 
           name = g_mount_get_name (mount);
-          primary = g_strdup_printf (_("Unable to unmount “%s”"), name);
+          primary = g_strdup_printf (_("Unable to unmount “%s�"), name);
           g_free (name);
           emit_show_error_message (sidebar, primary, error->message);
           g_free (primary);
@@ -2705,7 +2700,7 @@ drive_stop_cb (GObject      *source_object,
       if (error->code != G_IO_ERROR_FAILED_HANDLED)
         {
           name = g_drive_get_name (G_DRIVE (source_object));
-          primary = g_strdup_printf (_("Unable to stop “%s”"), name);
+          primary = g_strdup_printf (_("Unable to stop “%s�"), name);
           g_free (name);
           emit_show_error_message (sidebar, primary, error->message);
           g_free (primary);
@@ -2734,7 +2729,7 @@ drive_eject_cb (GObject      *source_object,
       if (error->code != G_IO_ERROR_FAILED_HANDLED)
         {
           name = g_drive_get_name (G_DRIVE (source_object));
-          primary = g_strdup_printf (_("Unable to eject “%s”"), name);
+          primary = g_strdup_printf (_("Unable to eject “%s�"), name);
           g_free (name);
           emit_show_error_message (sidebar, primary, error->message);
           g_free (primary);
@@ -2940,7 +2935,7 @@ drive_poll_for_media_cb (GObject      *source_object,
       if (error->code != G_IO_ERROR_FAILED_HANDLED)
         {
           name = g_drive_get_name (G_DRIVE (source_object));
-          primary = g_strdup_printf (_("Unable to poll “%s” for media changes"), name);
+          primary = g_strdup_printf (_("Unable to poll “%s� for media changes"), name);
           g_free (name);
           emit_show_error_message (sidebar, primary, error->message);
           g_free (primary);
@@ -2988,7 +2983,7 @@ drive_start_cb (GObject      *source_object,
       if (error->code != G_IO_ERROR_FAILED_HANDLED)
         {
           name = g_drive_get_name (G_DRIVE (source_object));
-          primary = g_strdup_printf (_("Unable to start “%s”"), name);
+          primary = g_strdup_printf (_("Unable to start “%s�"), name);
           g_free (name);
           emit_show_error_message (sidebar, primary, error->message);
           g_free (primary);
@@ -4050,10 +4045,6 @@ bobgui_places_sidebar_dispose (GObject *object)
     }
   g_list_free_full (sidebar->unready_accounts, g_object_unref);
   sidebar->unready_accounts = NULL;
-<<<<<<< HEAD:bobgui/bobguiplacessidebar.c
-=======
-
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkplacessidebar.c
   if (sidebar->cloud_manager)
     {
       g_signal_handlers_disconnect_by_data (sidebar->cloud_manager, sidebar);
@@ -4073,7 +4064,6 @@ bobgui_places_sidebar_dispose (GObject *object)
 static void
 bobgui_places_sidebar_finalize (GObject *object)
 {
-<<<<<<< HEAD:bobgui/bobguiplacessidebar.c
   BobguiPlacesSidebar *sidebar = BOBGUI_PLACES_SIDEBAR (object);
 
   g_clear_object (&sidebar->row_actions);
@@ -4081,9 +4071,6 @@ bobgui_places_sidebar_finalize (GObject *object)
   g_clear_pointer (&sidebar->swin, bobgui_widget_unparent);
 
   G_OBJECT_CLASS (bobgui_places_sidebar_parent_class)->finalize (object);
-=======
-  G_OBJECT_CLASS (gtk_places_sidebar_parent_class)->finalize (object);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkplacessidebar.c
 }
 
 static void
@@ -4438,19 +4425,19 @@ bobgui_places_sidebar_new (void)
  *
  * Sets the way in which the calling application can open new locations from
  * the places sidebar.  For example, some applications only open locations
- * “directly” into their main view, while others may support opening locations
+ * “directly� into their main view, while others may support opening locations
  * in a new notebook tab or a new window.
  *
  * This function is used to tell the places @sidebar about the ways in which the
  * application can open new locations, so that the sidebar can display (or not)
- * the “Open in new tab” and “Open in new window” menu items as appropriate.
+ * the “Open in new tab� and “Open in new window� menu items as appropriate.
  *
  * When the BobguiPlacesSidebar::open-location signal is emitted, its flags
  * argument will be set to one of the @flags that was passed in
  * bobgui_places_sidebar_set_open_flags().
  *
  * Passing 0 for @flags will cause BOBGUI_PLACES_OPEN_NORMAL to always be sent
- * to callbacks for the “open-location” signal.
+ * to callbacks for the “open-location� signal.
  */
 void
 bobgui_places_sidebar_set_open_flags (BobguiPlacesSidebar   *sidebar,
@@ -4717,7 +4704,7 @@ bobgui_places_sidebar_set_show_enter_location (BobguiPlacesSidebar *sidebar,
  *
  * Returns the value previously set with bobgui_places_sidebar_set_show_enter_location()
  *
- * Returns: %TRUE if the sidebar will display an “Enter Location” item.
+ * Returns: %TRUE if the sidebar will display an “Enter Location� item.
  */
 gboolean
 bobgui_places_sidebar_get_show_enter_location (BobguiPlacesSidebar *sidebar)
@@ -4762,7 +4749,7 @@ bobgui_places_sidebar_set_show_other_locations (BobguiPlacesSidebar *sidebar,
  *
  * Returns the value previously set with bobgui_places_sidebar_set_show_other_locations()
  *
- * Returns: %TRUE if the sidebar will display an “Other Locations” item.
+ * Returns: %TRUE if the sidebar will display an “Other Locations� item.
  */
 gboolean
 bobgui_places_sidebar_get_show_other_locations (BobguiPlacesSidebar *sidebar)
@@ -4800,7 +4787,7 @@ bobgui_places_sidebar_set_show_trash (BobguiPlacesSidebar *sidebar,
  *
  * Returns the value previously set with bobgui_places_sidebar_set_show_trash()
  *
- * Returns: %TRUE if the sidebar will display a “Trash” item.
+ * Returns: %TRUE if the sidebar will display a “Trash� item.
  */
 gboolean
 bobgui_places_sidebar_get_show_trash (BobguiPlacesSidebar *sidebar)
@@ -4817,8 +4804,8 @@ bobgui_places_sidebar_get_show_trash (BobguiPlacesSidebar *sidebar)
  *
  * Applications may want to present some folders in the places sidebar if
  * they could be immediately useful to users.  For example, a drawing
- * program could add a “/usr/share/clipart” location when the sidebar is
- * being used in an “Insert Clipart” dialog box.
+ * program could add a “/usr/share/clipart� location when the sidebar is
+ * being used in an “Insert Clipart� dialog box.
  *
  * This function adds the specified @location to a special place for immutable
  * shortcuts.  The shortcuts are application-specific; they are not shared
@@ -4900,7 +4887,7 @@ bobgui_places_sidebar_get_shortcuts (BobguiPlacesSidebar *sidebar)
  *
  * This function queries the bookmarks added by the user to the places sidebar,
  * and returns one of them.  This function is used by BobguiFileChooser to implement
- * the “Alt-1”, “Alt-2”, etc. shortcuts, which activate the corresponding bookmark.
+ * the “Alt-1�, “Alt-2�, etc. shortcuts, which activate the corresponding bookmark.
  *
  * Returns: (nullable) (transfer full): The bookmark specified by the index @n, or
  * %NULL if no such index exist.  Note that the indices start at 0, even though

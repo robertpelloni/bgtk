@@ -31,7 +31,7 @@ gdk_macos_sources = gdk_macos_public_sources + files([
   'GdkMacosTile.c',
   'GdkMacosView.c',
   'GdkMacosWindow.c',
-])
+]
 
 gdk_macos_public_headers = files([
   'gdkmacosdevice.h',

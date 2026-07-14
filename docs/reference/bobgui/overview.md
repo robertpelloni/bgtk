@@ -58,7 +58,6 @@ BOBGUI is divided into three parts:
    storage types for efficient use in GUI applications, and much more.
 
 [gnu-lgpl]: https://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html
-<<<<<<< HEAD:docs/reference/bobgui/overview.md
 [glib]: https://docs.bobgui.org/glib/
 [gobject]: https://docs.bobgui.org/gobject/
 [gio]: https://docs.bobgui.org/gio/
@@ -67,14 +66,4 @@ BOBGUI is divided into three parts:
 [vulkan]: https://www.vulkan.org/
 [pango]: https://docs.bobgui.org/Pango/
 [gdkpixbuf]: https://docs.bobgui.org/gdk-pixbuf/
-=======
-[glib]: https://docs.gtk.org/glib/
-[gobject]: https://docs.gtk.org/gobject/
-[gio]: https://docs.gtk.org/gio/
-[cairo]: https://www.cairographics.org/manual/
-[opengl]: https://www.opengl.org/about/
-[vulkan]: https://www.vulkan.org/
-[pango]: https://docs.gtk.org/pango/
-[gdkpixbuf]: https://docs.gtk.org/gdk-pixbuf/
->>>>>>> origin/4-14-backports:docs/reference/gtk/overview.md
 [graphene]: https://ebassi.github.io/graphene/

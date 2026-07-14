@@ -24,6 +24,8 @@
 
 #include "gtkgstpaintableprivate.h"
 
+#include "gdk/gdkdmabuffourccprivate.h"
+
 #if GST_GL_HAVE_WINDOW_X11 && (GST_GL_HAVE_PLATFORM_GLX || GST_GL_HAVE_PLATFORM_EGL) && defined (GDK_WINDOWING_X11)
 #define HAVE_GST_X11_SUPPORT
 #include <gdk/x11/gdkx.h>
@@ -61,6 +63,8 @@ enum {
   PROP_0,
   PROP_PAINTABLE,
   PROP_GL_CONTEXT,
+  PROP_USES_GL,
+  PROP_DISPLAY,
 
   N_PROPS,
 };
@@ -70,7 +74,17 @@ GST_DEBUG_CATEGORY (gtk_debug_gst_sink);
 
 #define FORMATS "{ BGRA, ARGB, RGBA, ABGR, RGB, BGR }"
 
-#define NOGL_CAPS GST_VIDEO_CAPS_MAKE (FORMATS)
+#define MEMORY_TEXTURE_CAPS GST_VIDEO_CAPS_MAKE (FORMATS)
+
+#define GL_TEXTURE_CAPS \
+                     "video/x-raw(" GST_CAPS_FEATURE_MEMORY_GL_MEMORY "), " \
+                     "format = (string) RGBA, " \
+                     "width = " GST_VIDEO_SIZE_RANGE ", " \
+                     "height = " GST_VIDEO_SIZE_RANGE ", " \
+                     "framerate = " GST_VIDEO_FPS_RANGE ", " \
+                     "texture-target = (string) 2D"
+
+#define DMABUF_TEXTURE_CAPS GST_VIDEO_DMA_DRM_CAPS_MAKE
 
 #ifdef HAVE_GSTREAMER_DRM
 # define GST_VIDEO_DMA_DRM_CAPS_MAKE_STR GST_VIDEO_DMA_DRM_CAPS_MAKE "; "
@@ -171,8 +185,7 @@ gtk_gst_sink_get_caps (GstBaseSink *bsink,
                        GstCaps     *filter)
 {
   GtkGstSink *self = GTK_GST_SINK (bsink);
-  GstCaps *tmp;
-  GstCaps *result;
+  GstCaps *unfiltered, *tmp, *result;
 
   if (self->gst_context)
     {
@@ -189,20 +202,37 @@ gtk_gst_sink_get_caps (GstBaseSink *bsink,
     }
   else
     {
-      tmp = gst_caps_from_string (NOGL_CAPS);
+      GdkDmabufFormats *formats = gdk_display_get_dmabuf_formats (self->gdk_display);
+
+      if (formats)
+        {
+          tmp = gst_caps_from_string (DMABUF_TEXTURE_CAPS);
+          add_drm_formats_and_modifiers (tmp, formats);
+          gst_caps_append (unfiltered, tmp);
+        }
     }
-  GST_DEBUG_OBJECT (self, "advertising own caps %" GST_PTR_FORMAT, tmp);
+
+  if (self->gdk_context)
+    {
+      tmp = gst_caps_from_string (GL_TEXTURE_CAPS);
+      gst_caps_append (unfiltered, tmp);
+    }
+
+  tmp = gst_caps_from_string (MEMORY_TEXTURE_CAPS);
+  gst_caps_append (unfiltered, tmp);
+
+  GST_DEBUG_OBJECT (self, "advertising own caps %" GST_PTR_FORMAT, unfiltered);
 
   if (filter)
     {
       GST_DEBUG_OBJECT (self, "intersecting with filter caps %" GST_PTR_FORMAT, filter);
 
-      result = gst_caps_intersect_full (filter, tmp, GST_CAPS_INTERSECT_FIRST);
-      gst_caps_unref (tmp);
+      result = gst_caps_intersect_full (filter, unfiltered, GST_CAPS_INTERSECT_FIRST);
+      gst_caps_unref (unfiltered);
     }
   else
     {
-      result = tmp;
+      result = unfiltered;
     }
 
   GST_DEBUG_OBJECT (self, "returning caps: %" GST_PTR_FORMAT, result);
@@ -266,9 +296,6 @@ gtk_gst_sink_propose_allocation (GstBaseSink *bsink,
   gboolean need_pool;
   GstVideoInfo info;
 
-  if (!self->gst_context)
-    return FALSE;
-
   gst_query_parse_allocation (query, &caps, &need_pool);
 
   if (caps == NULL)
@@ -285,47 +312,49 @@ gtk_gst_sink_propose_allocation (GstBaseSink *bsink,
     }
 #endif
 
-  if (!gst_caps_features_contains (gst_caps_get_features (caps, 0), GST_CAPS_FEATURE_MEMORY_GL_MEMORY))
-    return FALSE;
-
-  if (!gst_video_info_from_caps (&info, caps))
+  if (gst_caps_features_contains (gst_caps_get_features (caps, 0), GST_CAPS_FEATURE_MEMORY_GL_MEMORY))
     {
-      GST_DEBUG_OBJECT (self, "invalid caps specified");
-      return FALSE;
-    }
-
-  /* the normal size of a frame */
-  size = info.size;
-
-  if (need_pool)
-    {
-      GST_DEBUG_OBJECT (self, "create new pool");
-      pool = gst_gl_buffer_pool_new (self->gst_context);
-
-      config = gst_buffer_pool_get_config (pool);
-      gst_buffer_pool_config_set_params (config, caps, size, 0, 0);
-      gst_buffer_pool_config_add_option (config, GST_BUFFER_POOL_OPTION_GL_SYNC_META);
-
-      if (!gst_buffer_pool_set_config (pool, config))
+      if (!gst_video_info_from_caps (&info, caps))
         {
-          GST_DEBUG_OBJECT (bsink, "failed setting config");
-          gst_object_unref (pool);
+          GST_DEBUG_OBJECT (self, "invalid caps specified");
           return FALSE;
         }
+
+      /* the normal size of a frame */
+      size = info.size;
+
+      if (need_pool)
+        {
+          GST_DEBUG_OBJECT (self, "create new pool");
+          pool = gst_gl_buffer_pool_new (self->gst_context);
+
+          config = gst_buffer_pool_get_config (pool);
+          gst_buffer_pool_config_set_params (config, caps, size, 0, 0);
+          gst_buffer_pool_config_add_option (config, GST_BUFFER_POOL_OPTION_GL_SYNC_META);
+
+          if (!gst_buffer_pool_set_config (pool, config))
+            {
+              GST_DEBUG_OBJECT (bsink, "failed setting config");
+              gst_object_unref (pool);
+              return FALSE;
+            }
+        }
+
+      /* we need at least 2 buffer because we hold on to the last one */
+      gst_query_add_allocation_pool (query, pool, size, 2, 0);
+      if (pool)
+        gst_object_unref (pool);
+
+      /* we also support various metadata */
+      gst_query_add_allocation_meta (query, GST_VIDEO_META_API_TYPE, 0);
+
+      if (self->gst_context->gl_vtable->FenceSync)
+        gst_query_add_allocation_meta (query, GST_GL_SYNC_META_API_TYPE, 0);
+
+      return TRUE;
     }
 
-  /* we need at least 2 buffer because we hold on to the last one */
-  gst_query_add_allocation_pool (query, pool, size, 2, 0);
-  if (pool)
-    gst_object_unref (pool);
-
-  /* we also support various metadata */
-  gst_query_add_allocation_meta (query, GST_VIDEO_META_API_TYPE, 0);
-
-  if (self->gst_context->gl_vtable->FenceSync)
-    gst_query_add_allocation_meta (query, GST_GL_SYNC_META_API_TYPE, 0);
-
-  return TRUE;
+  return FALSE;
 }
 
 static GdkMemoryFormat
@@ -388,11 +417,10 @@ gtk_gst_sink_texture_from_buffer (GtkGstSink      *self,
       g_clear_pointer (&frame, g_free);
 
       g_return_val_if_fail (vmeta, NULL);
-      g_return_val_if_fail (self->gdk_context, NULL);
       g_return_val_if_fail (self->drm_info.drm_fourcc != DRM_FORMAT_INVALID, NULL);
 
       builder = gdk_dmabuf_texture_builder_new ();
-      gdk_dmabuf_texture_builder_set_display (builder, gdk_gl_context_get_display (self->gdk_context));
+      gdk_dmabuf_texture_builder_set_display (builder, self->gdk_display);
       gdk_dmabuf_texture_builder_set_fourcc (builder, self->drm_info.drm_fourcc);
       gdk_dmabuf_texture_builder_set_modifier (builder, self->drm_info.drm_modifier);
       gdk_dmabuf_texture_builder_set_width (builder, vmeta->width);
@@ -740,6 +768,11 @@ gtk_gst_sink_set_property (GObject      *object,
       self->gdk_context = g_value_dup_object (value);
       if (self->gdk_context != NULL && !gtk_gst_sink_initialize_gl (self))
         g_clear_object (&self->gdk_context);
+      self->uses_gl = self->gdk_context != NULL;
+      break;
+
+    case PROP_DISPLAY:
+      self->gdk_display = g_value_dup_object (value);
       break;
 
     default:
@@ -761,8 +794,17 @@ gtk_gst_sink_get_property (GObject    *object,
     case PROP_PAINTABLE:
       g_value_set_object (value, self->paintable);
       break;
+
     case PROP_GL_CONTEXT:
       g_value_set_object (value, self->gdk_context);
+      break;
+
+    case PROP_DISPLAY:
+      g_value_set_object (value, self->gdk_display);
+      break;
+
+    case PROP_USES_GL:
+      g_value_set_boolean (value, self->uses_gl);
       break;
 
     default:
@@ -780,6 +822,7 @@ gtk_gst_sink_dispose (GObject *object)
   g_clear_object (&self->gst_gdk_context);
   g_clear_object (&self->gst_display);
   g_clear_object (&self->gdk_context);
+  g_clear_object (&self->gdk_display);
 
   G_OBJECT_CLASS (gtk_gst_sink_parent_class)->dispose (object);
 }
@@ -823,6 +866,16 @@ gtk_gst_sink_class_init (GtkGstSinkClass * klass)
     g_param_spec_object ("gl-context", NULL, NULL,
                          GDK_TYPE_GL_CONTEXT,
                          G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS);
+
+  properties[PROP_DISPLAY] =
+    g_param_spec_object ("display", NULL, NULL,
+                         GDK_TYPE_DISPLAY,
+                         G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS);
+
+  properties[PROP_USES_GL] =
+    g_param_spec_boolean ("uses-gl", NULL, NULL,
+                          TRUE,
+                          G_PARAM_READABLE | G_PARAM_STATIC_STRINGS);
 
   g_object_class_install_properties (gobject_class, N_PROPS, properties);
 

@@ -1768,6 +1768,7 @@ gtk_path_bar_get_info_callback (GCancellable *cancellable,
                                        file_info->file,
 				       file_info->first_directory, is_hidden);
   g_clear_object (&file_info->file);
+  g_object_unref (info);
 
   file_info->new_buttons = g_list_prepend (file_info->new_buttons, button_data);
 

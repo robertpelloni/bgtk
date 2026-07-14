@@ -51,6 +51,8 @@ struct _GtkButtonPrivate
 
   GtkPositionType        image_position;
 
+  guint          active                : 1;
+  guint          inconsistent          : 1;
   guint          align_set             : 1;
   guint          button_down           : 1;
   guint          constructed           : 1;

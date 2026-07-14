@@ -37,7 +37,7 @@
 #include <wayland/xdg-shell-unstable-v6-client-protocol.h>
 #include <wayland/xdg-foreign-unstable-v2-client-protocol.h>
 #include <wayland/xdg-dialog-v1-client-protocol.h>
-#include <wayland/xx-session-management-v1-client-protocol.h>
+#include <wayland/xdg-session-management-v1-client-protocol.h>
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -137,7 +137,7 @@ struct _GdkWaylandToplevel
   struct wl_output *initial_fullscreen_output;
 
   struct wp_presentation_feedback *feedback;
-  struct xx_toplevel_session_v1 *toplevel_session;
+  struct xdg_toplevel_session_v1 *toplevel_session;
 
   struct {
     GdkToplevelState unset_flags;
@@ -959,14 +959,14 @@ attempt_restore_toplevel (GdkWaylandToplevel *wayland_toplevel)
   GdkDisplay *display = gdk_surface_get_display (GDK_SURFACE (wayland_toplevel));
   GdkWaylandDisplay *display_wayland = GDK_WAYLAND_DISPLAY (display);
 
-  if (display_wayland->xx_session &&
+  if (display_wayland->xdg_session &&
       wayland_toplevel->session_id &&
       wayland_toplevel->display_server.xdg_toplevel)
     {
       wayland_toplevel->toplevel_session =
-        xx_session_v1_restore_toplevel (display_wayland->xx_session,
-                                        wayland_toplevel->display_server.xdg_toplevel,
-                                        wayland_toplevel->session_id);
+        xdg_session_v1_restore_toplevel (display_wayland->xdg_session,
+                                         wayland_toplevel->display_server.xdg_toplevel,
+                                         wayland_toplevel->session_id);
     }
 }
 
@@ -1603,7 +1603,7 @@ gdk_wayland_toplevel_finalize (GObject *object)
   g_free (self->application.unique_bus_name);
 
   g_free (self->session_id);
-  g_clear_pointer (&self->toplevel_session, xx_toplevel_session_v1_destroy);
+  g_clear_pointer (&self->toplevel_session, xdg_toplevel_session_v1_destroy);
 
   g_free (self->title);
   g_clear_pointer (&self->shortcuts_inhibitors, g_hash_table_unref);
@@ -2552,6 +2552,47 @@ gdk_wayland_toplevel_set_application_id (GdkToplevel *toplevel,
   XDG_SHELL_CALL (xdg_toplevel, set_app_id, wayland_toplevel, application_id);
 }
 
+
+/**
+ * gdk_wayland_toplevel_set_tag:
+ * @toplevel: (type GdkWaylandToplevel): a toplevel to set the tag on
+ * @tag: a preferably human-readable tag
+ *
+ * Sets a tag on the toplevel allowing the compositor to classify it.
+ *
+ * Tags should be short, UTF-8 encoded strings.
+ *
+ * The tag may be shown to the user in a UI, so it's preferable for
+ * it to be human readable. Suitable tags would for example be
+ * “main window”, “settings”, “e-mail composer” or similar.
+ *
+ * The tag does not need to be unique across applications.
+ *
+ * Returns: whether the tag was set
+ *
+ * Since: 4.18
+ */
+gboolean
+gdk_wayland_toplevel_set_tag (GdkToplevel *toplevel,
+                              const char  *tag)
+{
+  GdkWaylandToplevel *wayland_toplevel = GDK_WAYLAND_TOPLEVEL (toplevel);
+  GdkSurface *surface = GDK_SURFACE (toplevel);
+  GdkDisplay *display = gdk_surface_get_display (surface);
+  GdkWaylandDisplay *display_wayland = GDK_WAYLAND_DISPLAY (display);
+
+  if (!display_wayland->xdg_toplevel_tag)
+    {
+      return FALSE;
+    }
+
+  xdg_toplevel_tag_manager_v1_set_toplevel_tag (display_wayland->xdg_toplevel_tag,
+                                                wayland_toplevel->display_server.xdg_toplevel,
+                                                tag);
+
+  return TRUE;
+}
+
 gboolean
 gdk_wayland_toplevel_inhibit_idle (GdkToplevel *toplevel)
 {
@@ -2868,18 +2909,37 @@ gdk_wayland_toplevel_get_session_id (GdkToplevel *toplevel)
 }
 
 void
+gdk_wayland_toplevel_ensure_in_session (GdkToplevel *toplevel)
+{
+  GdkWaylandToplevel *wayland_toplevel = GDK_WAYLAND_TOPLEVEL (toplevel);
+  GdkDisplay *display = gdk_surface_get_display (GDK_SURFACE (toplevel));
+  GdkWaylandDisplay *display_wayland = GDK_WAYLAND_DISPLAY (display);
+
+  if (wayland_toplevel->toplevel_session)
+    return;
+
+  if (display_wayland->xdg_session && wayland_toplevel->display_server.xdg_toplevel)
+    {
+      wayland_toplevel->toplevel_session =
+        xdg_session_v1_add_toplevel (display_wayland->xdg_session,
+                                     wayland_toplevel->display_server.xdg_toplevel,
+                                     wayland_toplevel->session_id);
+    }
+}
+
+void
 gdk_wayland_toplevel_restore_from_session (GdkToplevel *toplevel)
 {
   GdkWaylandToplevel *wayland_toplevel = GDK_WAYLAND_TOPLEVEL (toplevel);
   GdkDisplay *display = gdk_surface_get_display (GDK_SURFACE (toplevel));
   GdkWaylandDisplay *display_wayland = GDK_WAYLAND_DISPLAY (display);
 
-  if (display_wayland->xx_session && wayland_toplevel->display_server.xdg_toplevel)
+  if (display_wayland->xdg_session && wayland_toplevel->display_server.xdg_toplevel)
     {
       wayland_toplevel->toplevel_session =
-        xx_session_v1_restore_toplevel (display_wayland->xx_session,
-                                        wayland_toplevel->display_server.xdg_toplevel,
-                                        wayland_toplevel->session_id);
+        xdg_session_v1_restore_toplevel (display_wayland->xdg_session,
+                                         wayland_toplevel->display_server.xdg_toplevel,
+                                         wayland_toplevel->session_id);
     }
 }
 
@@ -2890,10 +2950,12 @@ gdk_wayland_toplevel_remove_from_session (GdkToplevel *toplevel)
   GdkDisplay *display = gdk_surface_get_display (GDK_SURFACE (toplevel));
   GdkWaylandDisplay *display_wayland = GDK_WAYLAND_DISPLAY (display);
 
-  if (display_wayland->xx_session && wayland_toplevel->toplevel_session)
+  if (display_wayland->xdg_session && wayland_toplevel->toplevel_session)
     {
-      xx_toplevel_session_v1_remove (wayland_toplevel->toplevel_session);
-      wayland_toplevel->toplevel_session = NULL;
+      xdg_session_v1_remove_toplevel (display_wayland->xdg_session,
+                                      wayland_toplevel->session_id);
+      g_clear_pointer (&wayland_toplevel->toplevel_session,
+                       xdg_toplevel_session_v1_destroy);
     }
 }
 

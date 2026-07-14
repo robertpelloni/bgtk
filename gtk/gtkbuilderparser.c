@@ -894,8 +894,11 @@ parse_custom (GMarkupParseContext  *context,
       object = ((ObjectInfo*)child_info->parent)->object;
       child  = child_info->object;
     }
-  else
-    return FALSE;
+  else if (parent_info->tag_type == TAG_PROPERTY)
+    {
+      g_print ("custom markup in <property>\n");
+      return FALSE;
+    }
 
   if (!gtk_buildable_custom_tag_start (GTK_BUILDABLE (object),
                                        data->builder,
@@ -1141,7 +1144,7 @@ end_element (GMarkupParseContext  *context,
       g_set_error (error,
                    GTK_BUILDER_ERROR,
                    GTK_BUILDER_ERROR_UNHANDLED_TAG,
-                   "Unhandled tag: <%s>", element_name);
+                   "Unhandled end tag: </%s>", element_name);
       _gtk_builder_prefix_error (data->builder, context, error);
     }
 }

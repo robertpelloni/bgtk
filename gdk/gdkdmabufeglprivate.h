@@ -21,6 +21,11 @@ gsize                       gdk_dmabuf_egl_import_dmabuf_multiplane
                                                                  const GdkDmabuf                *dmabuf,
                                                                  guint                           out_tex_id[3]);
 
+void                        gdk_dmabuf_get_egl_yuv_hints        (const GdkDmabuf                *dmabuf,
+                                                                 GdkColorState                  *color_state,
+                                                                 int                            *color_space_hint,
+                                                                 int                            *range_hint);
+
 #endif  /* HAVE_DMABUF && HAVE_EGL */
 
 void                        gdk_dmabuf_egl_init                 (GdkDisplay                     *display);

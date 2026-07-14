@@ -7109,7 +7109,7 @@ msgstr "Setting is hardcoded by GTK_TEST_TOUCHSCREEN"
 msgid "Remove %s"
 msgstr "Remove %s"
 
-#: gtk/inspector/strv-editor.c:115
+#: gtk/inspector/strv-editor.c:114
 msgid "Add"
 msgstr "Add"
 

@@ -486,6 +486,22 @@ public class ToplevelActivity extends Activity {
 		});
 	}
 
+	@Keep
+	@GlibContext.GtkThread
+	private void attachToplevelSurface() {
+		if (this.view.toplevel != null)
+			this.view.toplevel.drop();
+		this.view.toplevel = this.view.new Surface(this.nativeIdentifier);
+		runOnUiThread(() -> {
+			this.view.addView(this.view.toplevel, this.view.new LayoutParams(
+					0, 0,
+					ViewGroup.LayoutParams.MATCH_PARENT,
+					ViewGroup.LayoutParams.MATCH_PARENT
+			));
+			this.view.requestLayout();
+		});
+	}
+
 	private void updateToplevelState() {
 		boolean has_focus = hasWindowFocus();
 		boolean is_fullscreen = this.fullscreenState;

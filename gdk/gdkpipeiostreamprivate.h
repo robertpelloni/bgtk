@@ -28,27 +28,6 @@ GIOStream *             gdk_pipe_io_stream_new                          (void);
 NSArray * _gtk_file_filter_get_as_pattern_nsstrings (GtkFileFilter *filter);
 #endif
 
-<<<<<<< HEAD:gdk/gdkpipeiostreamprivate.h
-=======
-  /* Origin of "root window" in AppKit coordinates */
-  gint orig_x;
-  gint orig_y;
-
-  gint width;
-  gint height;
-  gint mm_width;
-  gint mm_height;
-
-  guint screen_changed_id;
-
-  guint emit_monitors_changed : 1;
-};
-
-struct _GdkQuartzScreenClass
-{
-  GdkScreenClass parent_class;
-};
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gdk/quartz/gdkscreen-quartz.h
 
 G_END_DECLS
 

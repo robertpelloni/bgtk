@@ -269,6 +269,7 @@ gdk_dmabuf_egl_create_image (GdkDisplay      *display,
   EGLint attribs[64];
   int i;
   EGLImage image;
+  gboolean is_yuv;
 
   g_return_val_if_fail (width > 0, 0);
   g_return_val_if_fail (height > 0, 0);
@@ -279,6 +280,25 @@ gdk_dmabuf_egl_create_image (GdkDisplay      *display,
       GDK_DISPLAY_DEBUG (display, DMABUF,
                          "Can't import dmabufs into GL, missing EGL or EGL_EXT_image_dma_buf_import_modifiers");
       return EGL_NO_IMAGE;
+    }
+
+  if (gdk_dmabuf_fourcc_is_yuv (dmabuf->fourcc, &is_yuv) && is_yuv)
+    {
+      if (color_space_hint == 0 || range_hint == 0)
+        {
+          GDK_DISPLAY_DEBUG (display, DMABUF,
+                             "Can't import yuv dmabuf into GL without color space hints");
+          return EGL_NO_IMAGE;
+        }
+    }
+  else
+    {
+      if (color_space_hint != 0 || range_hint != 0)
+        {
+          GDK_DISPLAY_DEBUG (display, DMABUF,
+                             "Can't import non-yuv dmabuf into GL with color space hints");
+          return EGL_NO_IMAGE;
+        }
     }
 
   GDK_DISPLAY_DEBUG (display, DMABUF,

@@ -738,6 +738,9 @@ struct _GdkCicpColorState
   const float *from_yuv;
   const float *to_yuv;
 
+  const float *from_yuv;
+  const float *to_yuv;
+
   GdkCicp cicp;
 };
 
@@ -986,6 +989,46 @@ GdkColorStateClass GDK_CICP_COLOR_STATE_CLASS = {
   .get_cicp = gdk_cicp_color_state_get_cicp,
 };
 
+GdkCicpColorState gdk_color_state_bt601_narrow = {
+  .parent = {
+    .klass = &GDK_CICP_COLOR_STATE_CLASS,
+    .ref_count = 1,
+    .depth = GDK_MEMORY_FLOAT16,
+    .rendering_color_state = GDK_COLOR_STATE_REC2100_LINEAR,
+  },
+  .name = "cicp-1/13/6/0",
+  .no_srgb = NULL,
+  .cicp = { 1, 13, 6, 0 },
+  .eotf = srgb_eotf,
+  .oetf = srgb_oetf,
+  .to_yuv = rgb_to_bt601,
+  .from_yuv = bt601_to_rgb,
+  .to_srgb = IDENTITY,
+  .to_rec2020 = (float *) srgb_to_rec2020,
+  .from_srgb = IDENTITY,
+  .from_rec2020 = (float *) rec2020_to_srgb,
+};
+
+GdkCicpColorState gdk_color_state_bt601_full = {
+  .parent = {
+    .klass = &GDK_CICP_COLOR_STATE_CLASS,
+    .ref_count = 1,
+    .depth = GDK_MEMORY_FLOAT16,
+    .rendering_color_state = GDK_COLOR_STATE_REC2100_LINEAR,
+  },
+  .name = "cicp-1/13/6/1",
+  .no_srgb = NULL,
+  .cicp = { 1, 13, 6, 1 },
+  .eotf = srgb_eotf,
+  .oetf = srgb_oetf,
+  .to_yuv = rgb_to_bt601,
+  .from_yuv = bt601_to_rgb,
+  .to_srgb = IDENTITY,
+  .to_rec2020 = (float *) srgb_to_rec2020,
+  .from_srgb = IDENTITY,
+  .from_rec2020 = (float *) rec2020_to_srgb,
+};
+
 static inline float *
 multiply (float       res[9],
           const float m1[9],
@@ -1028,6 +1071,12 @@ gdk_color_state_new_for_cicp (const GdkCicp  *cicp,
       if (gdk_cicp_equal (cicp, &gdk_default_color_states[i].cicp))
         return (GdkColorState *) &gdk_default_color_states[i];
     }
+
+  if (gdk_cicp_equal (cicp, &gdk_color_state_bt601_narrow.cicp))
+    return gdk_color_state_ref ((GdkColorState *) &gdk_color_state_bt601_narrow);
+
+  if (gdk_cicp_equal (cicp, &gdk_color_state_bt601_full.cicp))
+    return gdk_color_state_ref ((GdkColorState *) &gdk_color_state_bt601_full);
 
   switch (cicp->transfer_function)
     {

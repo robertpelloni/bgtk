@@ -119,6 +119,65 @@ GDK_AVAILABLE_IN_ALL
 GtkCssProvider * gtk_css_provider_get_named (const gchar *name,
                                              const gchar *variant);
 
-G_END_DECLS
+/**
+ * GTK_CSS_PREFERS_COLOR_SCHEME:
+ *
+ * Value for the `prefers-color-scheme` media feature.
+ *
+ * Possible values are:
+ *
+ * - [const@Gtk.CSS_PREFERS_COLOR_SCHEME_LIGHT]
+ * - [const@Gtk.CSS_PREFERS_COLOR_SCHEME_DARK]
+ *
+ * Since: 4.20
+ */
+#define GTK_CSS_PREFERS_COLOR_SCHEME               "prefers-color-scheme"
+/**
+ * GTK_CSS_PREFERS_COLOR_SCHEME_LIGHT:
+ *
+ * Prefer a light color theme for media feature [const@Gtk.CSS_PREFERS_COLOR_SCHEME].
+ *
+ * Since: 4.20
+ */
+#define GTK_CSS_PREFERS_COLOR_SCHEME_LIGHT         "light"
+/**
+ * GTK_CSS_PREFERS_COLOR_SCHEME_DARK:
+ *
+ * Prefer a dark color theme for media feature [const@Gtk.CSS_PREFERS_COLOR_SCHEME].
+ *
+ * Since: 4.20
+ */
+#define GTK_CSS_PREFERS_COLOR_SCHEME_DARK         "dark"
+
+/**
+ * GTK_CSS_PREFERS_CONTRAST:
+ *
+ * Value for the `prefers-contrast` media feature.
+ *
+ * Possible values are:
+ *
+ * - [const@Gtk.CSS_PREFERS_CONTRAST_NO_PREFERENCE]
+ * - [const@Gtk.CSS_PREFERS_CONTRAST_MORE]
+ *
+ * Since: 4.20
+ */
+#define GTK_CSS_PREFERS_CONTRAST                   "prefers-contrast"
+/**
+ * GTK_CSS_PREFERS_CONTRAST_NO_PREFERENCE:
+ *
+ * Prefer normal contrast theme for media feature [const@Gtk.CSS_PREFERS_CONTRAST].
+ *
+ * Since: 4.20
+ */
+#define GTK_CSS_PREFERS_CONTRAST_NO_PREFERENCE     "no-preference"
+/**
+ * GTK_CSS_PREFERS_CONTRAST_MORE:
+ *
+ * Prefer high contrast theme for media feature [const@Gtk.CSS_PREFERS_CONTRAST].
+ *
+ * Since: 4.20
+ */
+#define GTK_CSS_PREFERS_CONTRAST_MORE              "more"
+
 
 #endif /* __GTK_CSS_PROVIDER_H__ */

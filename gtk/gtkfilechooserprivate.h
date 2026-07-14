@@ -32,6 +32,7 @@
 #include "gtktreestore.h"
 #include "gtktreeview.h"
 #include "gtkbox.h"
+#include "gtkiconview.h"
 
 G_BEGIN_DECLS
 

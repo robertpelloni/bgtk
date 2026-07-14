@@ -311,8 +311,7 @@ gtk_revealer_get_child_allocation (GtkRevealer   *revealer,
   GtkBorder padding;
   gint vertical_padding, horizontal_padding;
 
-  g_return_if_fail (revealer != NULL);
-  g_return_if_fail (allocation != NULL);
+  g_return_if_fail (child != NULL);
 
   /* See explanation on gtk_revealer_real_size_allocate */
   gtk_revealer_get_padding (revealer, &padding);
@@ -425,19 +424,29 @@ gtk_revealer_real_unrealize (GtkWidget *widget)
   GTK_WIDGET_CLASS (gtk_revealer_parent_class)->unrealize (widget);
 }
 
-static void
-gtk_revealer_real_add (GtkContainer *container,
-                       GtkWidget    *child)
+static double
+get_child_size_scale (GtkRevealer    *revealer,
+                      GtkOrientation  orientation)
 {
-  GtkRevealer *revealer = GTK_REVEALER (container);
   GtkRevealerPrivate *priv = gtk_revealer_get_instance_private (revealer);
 
-  g_return_if_fail (child != NULL);
+  switch (effective_transition (revealer))
+    {
+    case GTK_REVEALER_TRANSITION_TYPE_SLIDE_RIGHT:
+    case GTK_REVEALER_TRANSITION_TYPE_SLIDE_LEFT:
+      if (orientation == GTK_ORIENTATION_HORIZONTAL)
+        return priv->current_pos;
+      else
+        return 1.0;
 
   gtk_widget_set_parent_window (child, priv->bin_window);
   gtk_widget_set_child_visible (child, priv->current_pos != 0.0);
 
-  GTK_CONTAINER_CLASS (gtk_revealer_parent_class)->add (container, child);
+    case GTK_REVEALER_TRANSITION_TYPE_NONE:
+    case GTK_REVEALER_TRANSITION_TYPE_CROSSFADE:
+    default:
+      return 1.0;
+    }
 }
 
 static void

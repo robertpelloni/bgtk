@@ -1,9 +1,5 @@
 window {
-<<<<<<< HEAD
   background-image: -bobgui-icontheme("edit-delete");
-=======
-  background-image: -gtk-icontheme("edit-delete");
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
   background-repeat: no-repeat;
 }
 

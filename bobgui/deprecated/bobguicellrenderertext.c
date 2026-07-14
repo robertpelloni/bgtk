@@ -545,13 +545,7 @@ bobgui_cell_renderer_text_class_init (BobguiCellRendererTextClass *class)
 		  G_TYPE_STRING);
   g_signal_set_va_marshaller (text_cell_renderer_signals [EDITED],
                               G_OBJECT_CLASS_TYPE (object_class),
-<<<<<<< HEAD:bobgui/deprecated/bobguicellrenderertext.c
                               _bobgui_marshal_VOID__STRING_STRINGv);
-=======
-                              _gtk_marshal_VOID__STRING_STRINGv);
-
-  gtk_cell_renderer_class_set_accessible_type (cell_class, GTK_TYPE_TEXT_CELL_ACCESSIBLE);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkcellrenderertext.c
 }
 
 static void
@@ -1304,7 +1298,7 @@ bobgui_cell_renderer_text_set_property (GObject      *object,
  * object properties. Object properties can be
  * set globally (with g_object_set()). Also, with `BobguiTreeViewColumn`,
  * you can bind a property to a value in a `BobguiTreeModel`. For example,
- * you can bind the “text” property on the cell renderer to a string
+ * you can bind the “text� property on the cell renderer to a string
  * value in the model, thus rendering a different string in each row
  * of the `BobguiTreeView`.
  *
@@ -1764,8 +1758,8 @@ bobgui_cell_renderer_text_start_editing (BobguiCellRenderer      *cell,
  * @renderer: A `BobguiCellRendererText`
  * @number_of_rows: Number of rows of text each cell renderer is allocated, or -1
  *
- * Sets the height of a renderer to explicitly be determined by the “font” and
- * “y_pad” property set on it.  Further changes in these properties do not
+ * Sets the height of a renderer to explicitly be determined by the “font� and
+ * “y_pad� property set on it.  Further changes in these properties do not
  * affect the height, so they must be accompanied by a subsequent call to this
  * function.  Using this function is inflexible, and should really only be used
  * if calculating the size of a cell is too slow (ie, a massive number of cells

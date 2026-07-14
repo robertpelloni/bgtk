@@ -79,7 +79,7 @@ foreach tool: bobgui_tools
   exe = executable(tool_name,
     sources: tool_srcs,
     include_directories: [confinc],
-    c_args: common_cflags + [ '-DBUILD_TOOLS' ],
+    c_args: common_cflags + [ '-DBUILD_TOOLS', '-DAVIF_DEBUG' ],
     dependencies: tool_deps,
     install: true,
   )

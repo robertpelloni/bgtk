@@ -14992,6 +14992,15 @@ msgstr ""
 "Se você realmente quiser criar um cache de ícones aqui, use --ignore-theme-"
 "index.\n"
 
+#~ msgid "record.record-events"
+#~ msgstr "record.record-events"
+
+#~ msgid "record.debug-nodes"
+#~ msgstr "record.debug-nodes"
+
+#~ msgid "record.highlight-sequences"
+#~ msgstr "record.highlight-sequences"
+
 #, c-format
 #~ msgid "cicp: Narrow range or YUV not supported"
 #~ msgstr "cicp: faixa estreita ou YUV não suportado"

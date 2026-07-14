@@ -1894,6 +1894,14 @@ settings_init_style (GtkSettings *settings)
       gchar *css_path;
 
       css_provider = gtk_css_provider_new ();
+
+      g_object_bind_property (settings, "gtk-interface-color-scheme",
+                              css_provider, "prefers-color-scheme",
+                              G_BINDING_SYNC_CREATE);
+      g_object_bind_property (settings, "gtk-interface-contrast",
+                              css_provider, "prefers-contrast",
+                              G_BINDING_SYNC_CREATE);
+
       css_path = g_build_filename (g_get_user_config_dir (),
                                    "gtk-3.0",
                                    "gtk.css",
@@ -1907,6 +1915,7 @@ settings_init_style (GtkSettings *settings)
     }
 
   cascade = _gtk_settings_get_style_cascade (settings, 1);
+
   _gtk_style_cascade_add_provider (cascade,
                                    GTK_STYLE_PROVIDER (css_provider),
                                    GTK_STYLE_PROVIDER_PRIORITY_USER);
@@ -2129,6 +2138,28 @@ settings_update_font_values (GtkSettings *settings)
   else
     {
       priv->font_family = g_strdup ("Sans");
+    }
+
+  g_free (settings->font_variations);
+  if (desc != NULL &&
+      (pango_font_description_get_set_fields (desc) & PANGO_FONT_MASK_VARIATIONS) != 0)
+    {
+      settings->font_variations = g_strdup (pango_font_description_get_variations (desc));
+    }
+  else
+    {
+      settings->font_variations = NULL;
+    }
+
+  g_free (settings->font_features);
+  if (desc != NULL &&
+      (pango_font_description_get_set_fields (desc) & PANGO_FONT_MASK_FEATURES) != 0)
+    {
+      settings->font_features = g_strdup (pango_font_description_get_features (desc));
+    }
+  else
+    {
+      settings->font_features = NULL;
     }
 
   if (desc)
@@ -3281,6 +3312,7 @@ get_theme_name (GtkSettings  *settings,
                 gchar       **theme_name,
                 gchar       **theme_variant)
 {
+  GtkInterfaceContrast prefers_contrast;
   gboolean prefer_dark;
 
   *theme_name = NULL;
@@ -3309,7 +3341,15 @@ get_theme_name (GtkSettings  *settings,
                 "gtk-application-prefer-dark-theme", &prefer_dark,
                 NULL);
 
-  if (prefer_dark)
+  g_object_get (settings->theme_provider, "prefers-contrast", &prefers_contrast, NULL);
+  if (prefers_contrast == GTK_INTERFACE_CONTRAST_MORE)
+    {
+      if (prefer_dark)
+        *theme_variant = g_strdup ("hc-dark");
+      else
+        *theme_variant = g_strdup ("hc");
+    }
+  else if (prefer_dark)
     *theme_variant = g_strdup ("dark");
 
   if (*theme_name && **theme_name)
@@ -3751,4 +3791,26 @@ gtk_settings_get_font_size_is_absolute (GtkSettings *settings)
   settings_update_font_name (settings);
 
   return settings->priv->font_size_absolute;
+}
+
+const char *
+gtk_settings_get_font_variations (GtkSettings *settings)
+{
+  settings_update_font_name (settings);
+
+  return settings->font_variations;
+}
+
+const char *
+gtk_settings_get_font_features (GtkSettings *settings)
+{
+  settings_update_font_name (settings);
+
+  return settings->font_features;
+}
+
+GtkCssProvider *
+gtk_settings_get_theme_provider (GtkSettings *settings)
+{
+  return settings->theme_provider;
 }

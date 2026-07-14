@@ -341,6 +341,9 @@ video_timer_SOURCES = 	\
 testboxcss_SOURCES =	\
 	testboxcss.c
 
+autotestfilesystem_SOURCES =	\
+	autotestfilesystem.c
+
 testentrycompletion_SOURCES = 	\
 	testentrycompletion.c
 

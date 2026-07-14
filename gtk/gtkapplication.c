@@ -137,6 +137,9 @@ enum {
   WINDOW_ADDED,
   WINDOW_REMOVED,
   QUERY_END,
+  SAVE_STATE,
+  RESTORE_STATE,
+  RESTORE_WINDOW,
   LAST_SIGNAL
 };
 
@@ -149,6 +152,8 @@ enum {
   PROP_APP_MENU,
   PROP_MENUBAR,
   PROP_ACTIVE_WINDOW,
+  PROP_SUPPORT_SAVE,
+  PROP_AUTOSAVE_INTERVAL,
   NUM_PROPERTIES
 };
 
@@ -553,12 +558,24 @@ gtk_application_get_property (GObject    *object,
       g_value_set_object (value, gtk_application_get_app_menu (application));
       break;
 
+    case PROP_APP_MENU:
+      g_value_set_object (value, gtk_application_get_app_menu (application));
+      break;
+
     case PROP_MENUBAR:
       g_value_set_object (value, gtk_application_get_menubar (application));
       break;
 
     case PROP_ACTIVE_WINDOW:
       g_value_set_object (value, gtk_application_get_active_window (application));
+      break;
+
+    case PROP_SUPPORT_SAVE:
+      g_value_set_boolean (value, priv->support_save);
+      break;
+
+    case PROP_AUTOSAVE_INTERVAL:
+      g_value_set_uint (value, priv->autosave_interval);
       break;
 
     default:
@@ -568,10 +585,7 @@ gtk_application_get_property (GObject    *object,
 }
 
 static void
-gtk_application_set_property (GObject      *object,
-                              guint         prop_id,
-                              const GValue *value,
-                              GParamSpec   *pspec)
+gtk_application_quit_mainloop (GApplication *application)
 {
   GtkApplication *application = GTK_APPLICATION (object);
 
@@ -585,8 +599,20 @@ gtk_application_set_property (GObject      *object,
       gtk_application_set_app_menu (application, g_value_get_object (value));
       break;
 
+    case PROP_APP_MENU:
+      gtk_application_set_app_menu (application, g_value_get_object (value));
+      break;
+
     case PROP_MENUBAR:
       gtk_application_set_menubar (application, g_value_get_object (value));
+      break;
+
+    case PROP_SUPPORT_SAVE:
+      priv->support_save = g_value_get_boolean (value);
+      break;
+
+    case PROP_AUTOSAVE_INTERVAL:
+      priv->autosave_interval = g_value_get_uint (value);
       break;
 
     default:
@@ -834,6 +860,101 @@ gtk_application_class_init (GtkApplicationClass *class)
                   NULL,
                   G_TYPE_NONE, 0);
   /**
+   * GtkApplication::restore-window:
+   * @application: the `GtkApplication` which emitted the signal
+   * @reason: the reason this window is restored
+   * @state: an "a{sv}" `GVariant` with state to restore, as saved by a [signal@Gtk.ApplicationWindow::save-state] handler
+   *
+   * Emitted when an application's per-window state is restored.
+   *
+   * In response to this signal, you should create a new application
+   * window, add it to @application, apply the provided @state, and present it.
+   * The application can use the @reason to determine how much of the state
+   * should be restored.
+   *
+   * You must be careful to be robust in the face of app upgrades and downgrades:
+   * the @state might have been created by a previous or occasionally even a future
+   * version of your app. Do not assume that a given key exists in the state.
+   * Apps must try to restore state saved by a previous version, but are free to
+   * discard state if it was written by a future version.
+   *
+   * GTK will remember which window the user was using most recently, and will
+   * emit this signal for that window first. Thus, if you decide that the provided
+   * @reason means that only one window should be restored, you can reliably
+   * ignore emissions if a window already exists
+   *
+   * Note that this signal is not emitted only during the app's initial launch.
+   * If all windows are closed but the app keeps running, the signal will be
+   * emitted the next time a new window is opened.
+   *
+   * Since: 4.22
+   */
+  gtk_application_signals[RESTORE_WINDOW] =
+    g_signal_new (I_("restore-window"), GTK_TYPE_APPLICATION, G_SIGNAL_RUN_FIRST,
+                  G_STRUCT_OFFSET (GtkApplicationClass, restore_window),
+                  NULL, NULL,
+                  NULL,
+                  G_TYPE_NONE, 2,
+                  GTK_TYPE_RESTORE_REASON,
+                  G_TYPE_VARIANT);
+
+  /**
+   * GtkApplication::save-state:
+   * @application: the `GtkApplication` which emitted the signal
+   * @dict: a `GVariantDict`
+   *
+   * Emitted when the application is saving global state.
+   *
+   * The handler for this signal should persist any
+   * global state of @application into @dict.
+   *
+   * See [signal@Gtk.Application::restore-state] for how to
+   * restore global state, and [signal@Gtk.ApplicationWindow::save-state]
+   * and [signal@Gtk.Application::restore-window] for handling
+   * per-window state.
+   *
+   * Returns: true to stop further handlers from running
+   *
+   * Since: 4.22
+   */
+  gtk_application_signals[SAVE_STATE] =
+    g_signal_new (I_("save-state"),
+                  G_TYPE_FROM_CLASS (class),
+                  G_SIGNAL_RUN_LAST,
+                  G_STRUCT_OFFSET (GtkApplicationClass, save_state),
+                  _gtk_boolean_handled_accumulator, NULL,
+                  NULL,
+                  G_TYPE_BOOLEAN, 1,
+                  G_TYPE_VARIANT_DICT);
+
+  /**
+   * GtkApplication::restore-state:
+   * @application: the `GtkApplication` which emitted the signal
+   * @reason: the reason for restoring state
+   * @state: an "a{sv}" `GVariant` with state to restore
+   *
+   * Emitted when application global state is restored.
+   *
+   * The handler for this signal should do the opposite of what the
+   * corresponding handler for [signal@Gtk.Application::save-state]
+   * does.
+   *
+   * Returns: true to stop further handlers from running
+   *
+   * Since: 4.22
+   */
+  gtk_application_signals[RESTORE_STATE] =
+    g_signal_new (I_("restore-state"),
+                  G_TYPE_FROM_CLASS (class),
+                  G_SIGNAL_RUN_LAST,
+                  G_STRUCT_OFFSET (GtkApplicationClass, restore_state),
+                  _gtk_boolean_handled_accumulator, NULL,
+                  NULL,
+                  G_TYPE_BOOLEAN, 2,
+                  GTK_TYPE_RESTORE_REASON,
+                  G_TYPE_VARIANT);
+
+  /**
    * GtkApplication:register-session:
    *
    * Set this property to %TRUE to register with the session manager.
@@ -885,6 +1006,32 @@ gtk_application_class_init (GtkApplicationClass *class)
                          P_("The window which most recently had focus"),
                          GTK_TYPE_WINDOW,
                          G_PARAM_READABLE|G_PARAM_STATIC_STRINGS);
+
+  /**
+   * GtkApplication:support-save:
+   *
+   * Set this property to true if the application supports
+   * state saving and restoring.
+   *
+   * Since: 4.22
+   */
+  gtk_application_props[PROP_SUPPORT_SAVE] =
+    g_param_spec_boolean ("support-save", NULL, NULL,
+                          FALSE,
+                          G_PARAM_READWRITE|G_PARAM_STATIC_STRINGS|G_PARAM_DEPRECATED);
+
+  /**
+   * GtkApplication:autosave-interval:
+   *
+   * The number of seconds between automatic state saves. Defaults to 15.
+   * A value of 0 will opt out of automatic state saving.
+   *
+   * Since: 4.22
+   */
+  gtk_application_props[PROP_AUTOSAVE_INTERVAL] =
+    g_param_spec_uint ("autosave-interval", NULL, NULL,
+                       0, G_MAXUINT, 15,
+                       G_PARAM_READWRITE|G_PARAM_STATIC_STRINGS);
 
   g_object_class_install_properties (object_class, NUM_PROPERTIES, gtk_application_props);
 }

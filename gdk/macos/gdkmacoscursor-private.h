@@ -17,14 +17,7 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-<<<<<<< HEAD:gdk/macos/gdkmacoscursor-private.h
 #pragma once
-=======
-#ifndef __GDK_QUARTZ_DND__
-#define __GDK_QUARTZ_DND__
-
-#include <gdkdndprivate.h>
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gdk/quartz/gdkdnd-quartz.h
 
 #include <AppKit/AppKit.h>
 #include <gdk/gdk.h>

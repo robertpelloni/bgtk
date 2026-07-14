@@ -46,6 +46,7 @@ GskGpuImage *           gsk_vulkan_image_new_dmabuf                     (GskVulk
 GskGpuImage *           gsk_vulkan_image_new_for_dmabuf                 (GskVulkanDevice        *device,
                                                                          gsize                   width,
                                                                          gsize                   height,
+                                                                         GdkColorState          *color_state,
                                                                          const GdkDmabuf        *dmabuf,
                                                                          gboolean                premultiplied,
                                                                          GskGpuConversion        conv);

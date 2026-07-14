@@ -102,12 +102,7 @@ typedef struct {
   BobguiWidget *embed_widget;
 } BobguiPrintOperationWin32;
 
-<<<<<<< HEAD:bobgui/print/bobguiprintoperation-win32.c
 static void win32_poll_status (BobguiPrintOperation *op);
-=======
-static void win32_poll_status (GtkPrintOperation *op);
-static GtkPageSetup *create_page_setup (GtkPrintOperation *op);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkprintoperation-win32.c
 
 static const GUID myIID_IPrintDialogCallback  = {0x5852a2c3,0x6530,0x11d1,{0xb6,0xa3,0x0,0x0,0xf8,0x75,0x7b,0xf9}};
 
@@ -455,24 +450,7 @@ paper_size_to_win32 (BobguiPaperSize *paper_size)
   return 0;
 }
 
-<<<<<<< HEAD:bobgui/print/bobguiprintoperation-win32.c
 static char *
-=======
-static gboolean
-page_setup_is_equal (GtkPageSetup *a,
-                     GtkPageSetup *b)
-{
-  return
-    gtk_paper_size_is_equal (gtk_page_setup_get_paper_size (a),
-                             gtk_page_setup_get_paper_size (b)) &&
-    gtk_page_setup_get_top_margin (a, GTK_UNIT_MM) == gtk_page_setup_get_top_margin (b, GTK_UNIT_MM) &&
-    gtk_page_setup_get_bottom_margin (a, GTK_UNIT_MM) == gtk_page_setup_get_bottom_margin (b, GTK_UNIT_MM) &&
-    gtk_page_setup_get_left_margin (a, GTK_UNIT_MM) == gtk_page_setup_get_left_margin (b, GTK_UNIT_MM) &&
-    gtk_page_setup_get_right_margin (a, GTK_UNIT_MM) == gtk_page_setup_get_right_margin (b, GTK_UNIT_MM);
-}
-
-static gchar*
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkprintoperation-win32.c
 get_default_printer (void)
 {
   wchar_t *win32_printer_name = NULL;
@@ -962,13 +940,7 @@ dialog_to_print_settings (BobguiPrintOperation *op,
 			  LPPRINTDLGEXW printdlgex)
 {
   guint i;
-<<<<<<< HEAD:bobgui/print/bobguiprintoperation-win32.c
   BobguiPrintSettings *settings;
-=======
-  GtkPrintSettings *settings;
-  GtkPageSetup *default_page_setup;
-  GtkPageSetup *page_setup;
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkprintoperation-win32.c
 
   settings = bobgui_print_settings_new ();
 
@@ -1002,7 +974,6 @@ dialog_to_print_settings (BobguiPrintOperation *op,
 
   if (printdlgex->hDevMode != NULL)
     devmode_to_settings (settings, printdlgex->hDevMode);
-<<<<<<< HEAD:bobgui/print/bobguiprintoperation-win32.c
   
   bobgui_print_operation_set_print_settings (op, settings);
 }
@@ -1010,25 +981,6 @@ dialog_to_print_settings (BobguiPrintOperation *op,
 static HANDLE
 devmode_from_settings (BobguiPrintSettings *settings,
 		       BobguiPageSetup *page_setup,
-=======
-
-  gtk_print_operation_set_print_settings (op, settings);
-
-  /* Uses op->print_settings internally, which we just set above */
-  page_setup = create_page_setup (op);
-  default_page_setup = gtk_print_operation_get_default_page_setup (op);
-
-  if (default_page_setup == NULL ||
-      !page_setup_is_equal (default_page_setup, page_setup))
-    gtk_print_operation_set_default_page_setup (op, page_setup);
-
-  g_object_unref (page_setup);
-}
-
-static HANDLE
-devmode_from_settings (GtkPrintSettings *settings,
-		       GtkPageSetup *page_setup,
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkprintoperation-win32.c
 		       HANDLE hDevModeParam)
 {
   HANDLE hDevMode = hDevModeParam;
@@ -1048,17 +1000,9 @@ devmode_from_settings (GtkPrintSettings *settings,
     }
   else
     {
-<<<<<<< HEAD:bobgui/print/bobguiprintoperation-win32.c
       extras = NULL;
       extras_len = 0;
       extras_base64 = bobgui_print_settings_get (settings, BOBGUI_PRINT_SETTINGS_WIN32_DRIVER_EXTRA);
-=======
-      const char *saved_printer_name;
-      gunichar2 *device_name;
-      extras = NULL;
-      extras_len = 0;
-      extras_base64 = gtk_print_settings_get (settings, GTK_PRINT_SETTINGS_WIN32_DRIVER_EXTRA);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkprintoperation-win32.c
       if (extras_base64)
         extras = g_base64_decode (extras_base64, &extras_len);
   
@@ -1072,23 +1016,11 @@ devmode_from_settings (GtkPrintSettings *settings,
       devmode->dmSpecVersion = DM_SPECVERSION;
       devmode->dmSize = sizeof (DEVMODEW);
   
-<<<<<<< HEAD:bobgui/print/bobguiprintoperation-win32.c
       device_name = g_utf8_to_utf16 (bobgui_print_settings_get (settings, "win32-devmode-name"), -1, NULL, &device_name_len, NULL);
       if (device_name && device_name_len)
         memcpy (devmode->dmDeviceName, device_name, MIN (device_name_len, CCHDEVICENAME) * sizeof (gunichar2));
       g_free (device_name);
 
-=======
-      memset (devmode->dmDeviceName, 0, CCHDEVICENAME * sizeof (wchar_t));
-      saved_printer_name = gtk_print_settings_get (settings, "win32-devmode-name");
-      if (saved_printer_name)
-        {
-          device_name = g_utf8_to_utf16 (saved_printer_name, -1, NULL, NULL, NULL);
-          if (device_name)
-            wcsncpy (devmode->dmDeviceName, device_name, MIN (CCHDEVICENAME - 1, wcslen (device_name)));
-          g_free (device_name);
-        }
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkprintoperation-win32.c
 
       devmode->dmDriverExtra = 0;
       if (extras && extras_len > 0)
@@ -1097,17 +1029,10 @@ devmode_from_settings (GtkPrintSettings *settings,
           memcpy (((char *)devmode) + sizeof (DEVMODEW), extras, extras_len);
         }
       g_free (extras);
-<<<<<<< HEAD:bobgui/print/bobguiprintoperation-win32.c
   
       if (bobgui_print_settings_has_key (settings, BOBGUI_PRINT_SETTINGS_WIN32_DRIVER_VERSION))
         {
           devmode->dmDriverVersion = bobgui_print_settings_get_int (settings, BOBGUI_PRINT_SETTINGS_WIN32_DRIVER_VERSION);
-=======
-
-      if (gtk_print_settings_has_key (settings, GTK_PRINT_SETTINGS_WIN32_DRIVER_VERSION))
-        {
-          devmode->dmDriverVersion = gtk_print_settings_get_int (settings, GTK_PRINT_SETTINGS_WIN32_DRIVER_VERSION);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkprintoperation-win32.c
         }
     }
   
@@ -1365,17 +1290,10 @@ dialog_from_print_settings (BobguiPrintOperation *op,
     }
   
   /* If we have a printer saved, restore our settings */
-<<<<<<< HEAD:bobgui/print/bobguiprintoperation-win32.c
   printer = bobgui_print_settings_get_printer (settings);
   if (printer)
     {
       printdlgex->hDevNames = bobgui_print_win32_devnames_to_win32_from_printer_name (printer);
-=======
-  printer = gtk_print_settings_get_printer (settings);
-  if (printer)
-    {
-      printdlgex->hDevNames = gtk_print_win32_devnames_to_win32_from_printer_name (printer);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkprintoperation-win32.c
   
       printdlgex->hDevMode = devmode_from_settings (settings,
 						  op->priv->default_page_setup, NULL);
@@ -1539,16 +1457,7 @@ pageDlgProc (HWND wnd, UINT message, WPARAM wparam, LPARAM lparam)
     }
   else 
     {
-<<<<<<< HEAD:bobgui/print/bobguiprintoperation-win32.c
       op = BOBGUI_PRINT_OPERATION (GetWindowLongPtrW (wnd, GWLP_USERDATA));
-=======
-      gpointer user_data = (void *)GetWindowLongPtrW (wnd, GWLP_USERDATA);
-
-      if (!user_data)
-        return FALSE;
-
-      op = GTK_PRINT_OPERATION (user_data);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkprintoperation-win32.c
       op_win32 = op->priv->platform_data;
 
       /* TODO: We don't have BobguiWin32EmbedWidgets anymore, but it is not currently clear
@@ -1567,16 +1476,8 @@ pageDlgProc (HWND wnd, UINT message, WPARAM wparam, LPARAM lparam)
   return FALSE;
 }
 
-<<<<<<< HEAD:bobgui/print/bobguiprintoperation-win32.c
 static HPROPSHEETPAGE
 create_application_page (BobguiPrintOperation *op)
-=======
-static INT_PTR CALLBACK
-measure_dialog_procedure (HWND hwnd,
-                          UINT uMsg,
-                          WPARAM wParam,
-                          LPARAM lParam)
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkprintoperation-win32.c
 {
   return FALSE;
 }
@@ -1591,7 +1492,6 @@ create_application_page (GtkPrintOperation *op,
   int dbu_y = HIWORD (DBU_DEFAULT);
   HWND measure_dialog = NULL;
   HGLOBAL htemplate;
-<<<<<<< HEAD:bobgui/print/bobguiprintoperation-win32.c
   LONG base_units;
   WORD baseunitX, baseunitY;
   WORD *array;
@@ -1601,65 +1501,6 @@ create_application_page (GtkPrintOperation *op,
   /* Make the template the size of the custom widget size request */
   bobgui_widget_get_preferred_size (op->priv->custom_widget,
                                  &requisition, NULL);
-=======
-  DLGTEMPLATEEX *template;
-  PROPSHEETPAGEW page;
-  HPROPSHEETPAGE hpage;
-  GtkRequisition requisition;
-  const char *tab_label = NULL;
-
-  /* Widget must be visible to measure its size */
-  gtk_widget_show (op->priv->custom_widget);
-  gtk_widget_get_preferred_size (op->priv->custom_widget, &requisition, NULL);
-
-  htemplate = GlobalAlloc (GMEM_MOVEABLE | GMEM_ZEROINIT, sizeof (DLGTEMPLATEEX));
-  template = GlobalLock (htemplate);
-  template->dlgVer = 1;
-  template->signature = 0xFFFF;
-  template->helpID = 0;
-  template->exStyle = 0;
-  template->style = DS_SHELLFONT;
-  template->cDlgItems = 0;
-  template->x = 0;
-  template->y = 0;
-  template->cx = 10;
-  template->cy = 10;
-  template->menu = 0;
-  template->windowClass = 0;
-  template->title = 0;
-  template->pointsize = 8;
-  template->weight = FW_NORMAL;
-  template->italic = FALSE;
-  template->charset = DEFAULT_CHARSET;
-  wcscpy_s (template->typeface, LF_FACESIZE, L"MS Shell Dlg");
-
-  /* Create an invisible dialog to measure dialog base units */
-  measure_dialog = CreateDialogIndirectW (NULL, template, hwndOwner, measure_dialog_procedure);
-  if (!measure_dialog)
-    g_warning ("CreateDialogIndirectW failed");
-  else
-    {
-      RECT rect;
-
-      SetRect (&rect, 0, 0, 4, 8);
-      if (!MapDialogRect (measure_dialog, &rect))
-        g_warning ("MapDialogRect failed");
-      else
-        {
-          dbu_x = rect.right - rect.left;
-          dbu_y = rect.bottom - rect.top;
-        }
-
-      DestroyWindow (measure_dialog);
-      measure_dialog = NULL;
-    }
-
-  /* Make the template the size of the custom widget size request */
-  template->exStyle |= WS_EX_CONTROLPARENT;
-  template->style |= WS_CHILD | DS_CONTROL;
-  template->cx = (requisition.width * scale * 4.0) / dbu_x + 1;
-  template->cy = (requisition.height * scale * 8.0) / dbu_y + 1;
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkprintoperation-win32.c
 
   memset (&page, 0, sizeof (page));
   page.dwSize = sizeof (page);
@@ -1771,11 +1612,7 @@ bobgui_print_operation_run_without_dialog (BobguiPrintOperation *op,
       g_free (tmp_printer);
     }
 
-<<<<<<< HEAD:bobgui/print/bobguiprintoperation-win32.c
   hDevNames = bobgui_print_win32_devnames_to_win32_from_printer_name (printer);
-=======
-  hDevNames = gtk_print_win32_devnames_to_win32_from_printer_name (printer);
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkprintoperation-win32.c
   hDevMode = devmode_from_settings (settings, op->priv->default_page_setup, NULL);
 
   /* Create a printer DC for the print settings and page setup provided. */
@@ -1888,12 +1725,7 @@ bobgui_print_operation_run_with_dialog (BobguiPrintOperation *op,
   BobguiPrintOperationPrivate *priv;
   IPrintDialogCallback *callback;
   HPROPSHEETPAGE prop_page;
-<<<<<<< HEAD:bobgui/print/bobguiprintoperation-win32.c
   static gsize common_controls_initialized = 0;
-=======
-  int scale = 1;
-  static volatile gsize common_controls_initialized = 0;
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkprintoperation-win32.c
 
   if (g_once_init_enter (&common_controls_initialized))
     {
@@ -1923,12 +1755,7 @@ bobgui_print_operation_run_with_dialog (BobguiPrintOperation *op,
   
   if (parent == NULL)
     {
-<<<<<<< HEAD:bobgui/print/bobguiprintoperation-win32.c
       invisible = bobgui_window_new ();
-=======
-      invisible = gtk_invisible_new ();
-
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkprintoperation-win32.c
       parentHWnd = get_parent_hwnd (invisible);
       scale = gtk_widget_get_scale_factor (invisible);
     }
@@ -1937,11 +1764,8 @@ bobgui_print_operation_run_with_dialog (BobguiPrintOperation *op,
       parentHWnd = get_parent_hwnd (GTK_WIDGET (parent));
       scale = gtk_widget_get_scale_factor (GTK_WIDGET (parent));
     }
-<<<<<<< HEAD:bobgui/print/bobguiprintoperation-win32.c
   else
     parentHWnd = get_parent_hwnd (BOBGUI_WIDGET (parent));
-=======
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkprintoperation-win32.c
 
   printdlgex = (LPPRINTDLGEXW)GlobalAlloc (GPTR, sizeof (PRINTDLGEXW));
   if (!printdlgex)

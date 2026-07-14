@@ -192,6 +192,8 @@ test_dmabuf_import (void)
   GdkGLTextureBuilder *builder;
   guchar *data;
   gboolean external;
+  GdkColorState *color_state;
+  int color_space, range;
 
   display = gdk_display_get_default ();
   if (!gdk_display_prepare_gl (display, &error))

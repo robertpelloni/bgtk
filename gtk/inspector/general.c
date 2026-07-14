@@ -60,6 +60,7 @@ struct _GtkInspectorGeneralPrivate
   GtkWidget *display_box;
   GtkWidget *gl_box;
   GtkWidget *device_box;
+  GtkWidget *os_info;
   GtkWidget *gtk_version;
   GtkWidget *gdk_backend;
   GtkWidget *gl_version;

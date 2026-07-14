@@ -7110,7 +7110,7 @@ msgstr "На верхньому рівні"
 msgid "Child Visible"
 msgstr "Видимі діти"
 
-#: gtk/inspector/prop-editor.c:702
+#: gtk/inspector/prop-editor.c:748
 #, c-format
 msgid "Pointer: %p"
 msgstr "Принтер: %p"
@@ -7118,7 +7118,7 @@ msgstr "Принтер: %p"
 #. Translators: %s is a type name, for example
 #. * GtkPropertyExpression with value \"2.5\"
 #.
-#: gtk/inspector/prop-editor.c:827
+#: gtk/inspector/prop-editor.c:873
 #, c-format
 msgid "%s with value \"%s\""
 msgstr "%s зі значенням «%s»"
@@ -7126,7 +7126,7 @@ msgstr "%s зі значенням «%s»"
 #. Translators: Both %s are type names, for example
 #. * GtkPropertyExpression with type GObject
 #.
-#: gtk/inspector/prop-editor.c:838
+#: gtk/inspector/prop-editor.c:884
 #, c-format
 msgid "%s with type %s"
 msgstr "%s з типом %s"
@@ -7134,7 +7134,7 @@ msgstr "%s з типом %s"
 #. Translators: Both %s are type names, for example
 #. * GtkObjectExpression for GtkStringObject 0x23456789
 #.
-#: gtk/inspector/prop-editor.c:851
+#: gtk/inspector/prop-editor.c:897
 #, c-format
 msgid "%s for %s %p"
 msgstr "%s для %s %p"
@@ -7142,67 +7142,67 @@ msgstr "%s для %s %p"
 #. Translators: Both %s are type names, for example
 #. * GtkPropertyExpression with value type: gchararray
 #.
-#: gtk/inspector/prop-editor.c:881
+#: gtk/inspector/prop-editor.c:927
 #, c-format
 msgid "%s with value type %s"
 msgstr "%s із типом значення %s"
 
-#: gtk/inspector/prop-editor.c:1230
+#: gtk/inspector/prop-editor.c:1288
 #, c-format
 msgid "Uneditable property type: %s"
 msgstr "Неможливо редагувати цей тип властивості: %s"
 
-#: gtk/inspector/prop-editor.c:1388
+#: gtk/inspector/prop-editor.c:1446
 msgctxt "column number"
 msgid "None"
 msgstr "Немає"
 
-#: gtk/inspector/prop-editor.c:1425
+#: gtk/inspector/prop-editor.c:1483
 msgid "Attribute:"
 msgstr "Атрибут:"
 
-#: gtk/inspector/prop-editor.c:1428
+#: gtk/inspector/prop-editor.c:1486
 msgid "Model"
 msgstr "Модель"
 
-#: gtk/inspector/prop-editor.c:1433
+#: gtk/inspector/prop-editor.c:1491
 msgid "Column:"
 msgstr "Стовпець:"
 
 #. Translators: %s is a type name, for example
 #. * Action from 0x2345678 (GtkApplicationWindow)
 #.
-#: gtk/inspector/prop-editor.c:1532
+#: gtk/inspector/prop-editor.c:1590
 #, c-format
 msgid "Action from: %p (%s)"
 msgstr "Джерело дії: %p (%s)"
 
-#: gtk/inspector/prop-editor.c:1587
+#: gtk/inspector/prop-editor.c:1645
 msgid "Reset"
 msgstr "Скинути"
 
-#: gtk/inspector/prop-editor.c:1595
+#: gtk/inspector/prop-editor.c:1653
 msgctxt "GtkSettings source"
 msgid "Default"
 msgstr "Типове"
 
-#: gtk/inspector/prop-editor.c:1598
+#: gtk/inspector/prop-editor.c:1656
 msgctxt "GtkSettings source"
 #: gtk/inspector/prop-editor.c:1679
 msgid "Theme"
 msgstr "Тема"
 
-#: gtk/inspector/prop-editor.c:1601
+#: gtk/inspector/prop-editor.c:1659
 msgctxt "GtkSettings source"
 msgid "XSettings"
 msgstr "XSettings"
 
-#: gtk/inspector/prop-editor.c:1605
+#: gtk/inspector/prop-editor.c:1663
 msgctxt "GtkSettings source"
 msgid "Application"
 msgstr "Програма"
 
-#: gtk/inspector/prop-editor.c:1608
+#: gtk/inspector/prop-editor.c:1666
 msgctxt "GtkSettings source"
 msgid "Unknown"
 msgstr "Невідоме"
@@ -7211,7 +7211,7 @@ msgstr "Невідоме"
 msgid "Type"
 msgstr "Тип"
 
-#: gtk/inspector/prop-editor.c:1611
+#: gtk/inspector/prop-editor.c:1669
 msgid "Source:"
 msgstr "Джерело:"
 
@@ -17038,6 +17038,17 @@ msgstr ""
 "Немає індексного файла теми в «%s».\n"
 "Якщо ви дійсно бажаєте створити тут кеш значків, використовуйте --ignore-"
 "theme-index.\n"
+
+#~ msgid "record.record-events"
+#~ msgstr "record.record-events"
+
+#~| msgid "Add debug nodes"
+#~ msgid "record.debug-nodes"
+#~ msgstr "record.debug-nodes"
+
+#~| msgid "Highlight event sequences"
+#~ msgid "record.highlight-sequences"
+#~ msgstr "record.highlight-sequences"
 
 #, c-format
 #~ msgid "cicp: Narrow range or YUV not supported"

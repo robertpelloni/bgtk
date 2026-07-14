@@ -165,6 +165,8 @@ typedef struct {
 
   GString       *string;
 
+  GString       *string;
+
   gchar         *context;
   guint          translatable : 1;
 

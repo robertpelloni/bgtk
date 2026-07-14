@@ -971,6 +971,15 @@ typedef enum {
   GTK_LEVEL_BAR_MODE_DISCRETE
 } GtkLevelBarMode;
 
+
+typedef enum
+{
+  GTK_INDICATOR_STYLE_PLAIN,
+  GTK_INDICATOR_STYLE_CHECK,
+  GTK_INDICATOR_STYLE_RADIO
+} GtkIndicatorStyle;
+
+
 G_END_DECLS
 
 /**

@@ -2194,6 +2194,11 @@ parse_glyphs (BobguiCssParser *parser,
                 gi.attr.is_color = 1;
               else
                 gi.attr.is_color = 0;
+
+              if (gtk_css_parser_try_ident (parser, "need-offscreen"))
+                *((guint *)&gi.attr) |= (1 << 3);
+              else
+                *((guint *)&gi.attr) &= ~(1 << 3);
             }
 
           pango_glyph_string_set_size (glyph_string, glyph_string->num_glyphs + 1);
@@ -5330,6 +5335,20 @@ base64_encode_with_linebreaks (const guchar *data,
   return out;
 }
 
+#ifdef HAVE_AVIF
+static gboolean
+texture_should_use_avif (GdkTexture *texture)
+{
+  GdkColorState *color_state;
+  const GdkCicp *cicp;
+
+  color_state = gdk_texture_get_color_state (texture);
+  cicp = gdk_color_state_get_cicp (color_state);
+
+  return cicp->matrix_coefficients != 0;
+}
+#endif
+
 static void
 append_bytes_url (Printer    *p,
                   GBytes     *bytes,
@@ -5797,6 +5816,8 @@ gsk_text_node_serialize_glyphs (GskRenderNode *node,
             g_string_append (p, " same-cluster");
           if (glyphs[i].attr.is_color)
             g_string_append (p, " color");
+          if ((*(guint*)&glyphs[i].attr) & (1 << 3))
+            g_string_append (p, " needs-offscreen");
         }
 
       if (i + 1 < n_glyphs)

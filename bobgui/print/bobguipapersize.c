@@ -907,19 +907,11 @@ bobgui_paper_size_get_default_right_margin (BobguiPaperSize *size,
 }
 
 /**
-<<<<<<< HEAD:bobgui/print/bobguipapersize.c
  * bobgui_paper_size_new_from_key_file:
  * @key_file: the `GKeyFile` to retrieve the papersize from
  * @group_name: (nullable): the name of the group in the key file to read,
  *   or %NULL to read the first group
  * @error: (nullable): return location for an error
-=======
- * gtk_paper_size_new_from_key_file:
- * @key_file: the #GKeyFile to retrieve the papersize from
- * @group_name: (nullable): the name of the group in the key file to read,
- *     or %NULL to read the first group
- * @error: (allow-none): return location for an error, or %NULL
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/gtkpapersize.c
  *
  * Reads a paper size from the group @group_name in the key file
  * @key_file.
