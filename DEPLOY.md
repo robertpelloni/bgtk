@@ -25,3 +25,7 @@
    meson setup _build
    ninja -C _build
    ```
+
+## JUCE / Bobtk C++ Build Conflicts (Immediate Blockers)
+- **Meson Wraps:** The `meson.build` dependency resolution is currently failing for subprojects (e.g., `libxml2`, `vpx`). The recent mass rename from `gtk` to `bobtk` requires manual auditing of all `.wrap` files in `subprojects/` to ensure they point to the correct upstream repositories or internal mirrors, as this blocks compiling the C++ bridging layer required for the Go `/media` pillar's JUCE integration.
+- **Main Loop Contention:** Both JUCE (`MessageManager`) and Bobtk/GTK (`GMainLoop`) demand control of the main application thread. A strategy to nest or poll one loop inside the other must be devised before linking the UI layers.
