@@ -197,6 +197,49 @@ func main() {
 
 	// Wire up the consolidated single-page dashboard
 	dashboard := visualPillar.SetupConsolidatedDashboard(serverManager, tray)
+
+	// Register live telemetry for active supervised background servers
+	dashboard.UpdateTelemetry(visual.ServerTelemetry{
+		ServerID:  "broadway.server",
+		CPUUsage:  1.2,
+		MemoryMB:  18.4,
+		UptimeSec: 1420,
+		Requests:  854,
+	})
+	dashboard.UpdateTelemetry(visual.ServerTelemetry{
+		ServerID:  "ipc.daemon",
+		CPUUsage:  0.4,
+		MemoryMB:  9.8,
+		UptimeSec: 1420,
+		Requests:  4290,
+	})
+	dashboard.UpdateTelemetry(visual.ServerTelemetry{
+		ServerID:  "media.engine",
+		CPUUsage:  3.8,
+		MemoryMB:  34.1,
+		UptimeSec: 1420,
+		Requests:  112,
+	})
+
+	// Register Global Keyboard Accelerators / Shortcuts
+	dashboard.RegisterShortcut("Ctrl+Q", "Gracefully stop all daemons and quit application", "Lifecycle", func() (string, error) {
+		tray.QuitApplication()
+		return "Application shut down cleanly via shortcut accelerator", nil
+	})
+	dashboard.RegisterShortcut("Ctrl+R", "Trigger immediate visual canvas repaint and telemetry refresh", "UI", func() (string, error) {
+		rootComp.Repaint()
+		return "Canvas repainted successfully", nil
+	})
+	dashboard.RegisterShortcut("Ctrl+S", "Stop background servers without closing dashboard", "Supervisor", func() (string, error) {
+		serverManager.StopAllServers()
+		return "All background daemons stopped", nil
+	})
+
+	// Stream logs
+	dashboard.SubscribeLogs(func(logLine string) {
+		// Real-time telemetry log subscriber hook
+	})
+
 	dashboard.Log("Consolidated single-page dashboard initialized successfully.")
 	dashboard.Log(fmt.Sprintf("Core StateMachine active (Current state: %q, %d states registered) & PropertyAnimation at %0.1f%%.", stateMachine.CurrentState(), stateMachine.StateCount(), anim.Current()))
 	dashboard.Log("2D Vector Graphics Canvas active (GraphicsContext, Color palette, Path strokes & fills).")
@@ -214,9 +257,15 @@ func main() {
 	// Render the unified single-page layout
 	fmt.Print(dashboard.RenderSinglePage())
 
+	fmt.Println("[TESTING KEYBOARD ACCELERATOR DISPATCH]")
+	// Test keyboard shortcut execution
+	refreshRes, _ := dashboard.HandleKeyPress("Ctrl+R")
+	fmt.Println("Triggered Ctrl+R:", refreshRes)
+
 	fmt.Println("[DEMONSTRATING SYSTEM TRAY SERVER QUIT ACTION]")
 	// Test the tray's ability to cleanly stop all servers and quit
-	tray.QuitApplication()
+	quitRes, _ := dashboard.HandleKeyPress("Ctrl+Q")
+	fmt.Println("Triggered Ctrl+Q:", quitRes)
 	fmt.Printf("Servers active after quit command: %d\n", serverManager.RunningCount())
 	fmt.Println("================================================================================")
 }

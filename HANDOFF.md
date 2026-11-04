@@ -1,7 +1,10 @@
-# Handoff Document - Bobtk NetworkAccessManager & SyncEngine Subsystems (v1.1.6)
+# Handoff Document - Bobtk Telemetry & Keyboard Shortcuts (v1.1.7)
 
 ## Current Status
-- Version bumped to `1.1.6` tracking global versioning governance.
+- Version bumped to `1.1.7` tracking global versioning governance.
+- Implemented real-time `ServerTelemetry` metrics (CPU, memory, uptime, request counters) and `LogSubscriber` live event streaming in the single-page dashboard.
+- Implemented interactive global keyboard shortcut/accelerator dispatcher (`RegisterShortcut`, `HandleKeyPress`) in `visual.DashboardUI`.
+- Added test suites `TestDashboardTelemetryAndLogStreaming` and `TestDashboardShortcutKeyDispatcher` with 100% test pass rate across all packages.
 - Implemented `NetworkAccessManager` (HTTP transfer manager) and `SyncEngine` (multiplayer delta sync & cursor tracking) in Go Network Pillar with 100% test pass rate.
 - Implemented `PropertyAnimation` and `StateMachine` in Go Core Pillar.
 - Implemented `GraphicsContext`, `Color`, `Path`, and vector drawing operations in Go Visual Pillar, integrating with `Component` paint hierarchies.

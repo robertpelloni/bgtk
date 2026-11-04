@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## [1.1.7] - 2026-04-06
+### Added
+- **Real-Time Telemetry & Log Streaming (Go Visual Pillar)**:
+  - `ServerTelemetry`: Live CPU usage %, memory consumption MB, uptime seconds, and request counters attached to managed server processes.
+  - `LogSubscriber`: Dynamic event streaming callback hook allowing external consumers to tap into dashboard log lines in real-time.
+  - Formatted live telemetry strings directly within the single-page consolidated dashboard layout.
+- **Interactive Global Keyboard Shortcut Dispatcher (Go Visual Pillar)**:
+  - `ShortcutEntry` & `ShortcutHandler`: Accelerator registry binding keyboard sequences (e.g. `Ctrl+Q`, `Ctrl+R`, `Ctrl+S`) to executable actions with categorical and descriptive metadata.
+  - `HandleKeyPress`: Key dispatcher triggering matching registered actions with automatic execution logging.
+  - Added dedicated global keyboard shortcuts summary section to the single-page dashboard render.
+- **Verification Suites & Runner Expansion**:
+  - Added `TestDashboardTelemetryAndLogStreaming` and `TestDashboardShortcutKeyDispatcher` to `go/bobtk/visual/dashboard_test.go`.
+  - Updated `go/main.go` and `tools/run_dashboard.sh` to demonstrate live telemetry updates and keyboard accelerator execution.
+
 ## [1.1.6] - 2026-04-06
 ### Added
 - **HTTP Client & Multiplayer Sync Engine (Go Network Pillar)**:

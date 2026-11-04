@@ -23,5 +23,7 @@
 - [x] Implement Canvas & 2D Vector Graphics rendering engine in Go Visual Pillar.
 - [x] Port PropertyAnimation and StateMachine architecture into Go Core Pillar.
 - [x] Port NetworkAccessManager and SyncEngine into Go Network Pillar.
+- [x] Implement real-time server telemetry tracking and log streaming in Go Visual Pillar dashboard.
+- [x] Implement interactive global keyboard accelerator/shortcut dispatcher in Go Visual Pillar dashboard.
 - [ ] Research missing Qt6/Qt7 features compared to the current Bobtk C++ baseline.
 - [ ] Test and resolve any failing builds caused by renaming strings and paths (Meson wrap corruption).

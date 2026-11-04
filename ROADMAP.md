@@ -31,3 +31,5 @@
 - Develop native UI frontends and potentially web UI counterparts.
 - Redesign dashboard UI into a consolidated single-page control surface with zero fragmented subpages. *(Completed v1.0.3)*
 - Implement cross-platform System Tray and Server Supervisor with clean quit capability. *(Completed v1.0.3)*
+- Implement real-time server telemetry tracking and log streaming in the single-page dashboard. *(Completed v1.1.7)*
+- Implement interactive global keyboard accelerator and shortcut dispatcher. *(Completed v1.1.7)*
