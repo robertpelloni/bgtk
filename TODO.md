@@ -25,5 +25,6 @@
 - [x] Port NetworkAccessManager and SyncEngine into Go Network Pillar.
 - [x] Implement real-time server telemetry tracking and log streaming in Go Visual Pillar dashboard.
 - [x] Implement interactive global keyboard accelerator/shortcut dispatcher in Go Visual Pillar dashboard.
+- [x] Implement execution span profiling and diagnostic trace reporting in Go Tools Pillar (v1.1.8).
 - [ ] Research missing Qt6/Qt7 features compared to the current Bobtk C++ baseline.
 - [ ] Test and resolve any failing builds caused by renaming strings and paths (Meson wrap corruption).

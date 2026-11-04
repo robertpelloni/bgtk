@@ -19,3 +19,4 @@
 - **Animation & State Machine:** `PropertyAnimation` provides value interpolation over time and `StateMachine` enables event-driven state transitions in the Core pillar.
 - **Network Access & State Sync:** `NetworkAccessManager` executes/logs HTTP transfers, while `SyncEngine` synchronizes remote cursor movements and binary state deltas across connected peers.
 - **Server Telemetry & Keyboard Accelerators:** The single-page dashboard now incorporates `ServerTelemetry` metrics (CPU, memory, uptime, request counters), `LogSubscriber` dynamic log streaming, and an interactive global keyboard accelerator dispatcher (`RegisterShortcut` / `HandleKeyPress`) for unified system operations.
+- **Tools Pillar Execution Tracing:** `PerformanceProfiler` in `go/bobtk/tools/tools_pillar.go` provides fine-grained execution tracing through `StartSpan`, `EndSpan`, `GetSpans`, and `FormatTraceReport` (Sysprof parity).

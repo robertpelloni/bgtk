@@ -13,15 +13,26 @@ type ProfilerSample struct {
 	Duration  time.Duration
 }
 
+// Span represents an active or completed execution trace interval.
+type Span struct {
+	ID        string
+	Category  string
+	StartTime time.Time
+	Duration  time.Duration
+	Completed bool
+}
+
 // PerformanceProfiler measures subsystem timing and performance (QElapsedTimer / Sysprof parity).
 type PerformanceProfiler struct {
 	mu      sync.RWMutex
 	samples []ProfilerSample
+	spans   map[string]*Span
 }
 
 func NewPerformanceProfiler() *PerformanceProfiler {
 	return &PerformanceProfiler{
 		samples: make([]ProfilerSample, 0),
+		spans:   make(map[string]*Span),
 	}
 }
 
@@ -39,6 +50,63 @@ func (p *PerformanceProfiler) SampleCount() int {
 	p.mu.RLock()
 	defer p.mu.RUnlock()
 	return len(p.samples)
+}
+
+// StartSpan opens an execution trace span.
+func (p *PerformanceProfiler) StartSpan(id, category string) *Span {
+	p.mu.Lock()
+	defer p.mu.Unlock()
+	s := &Span{
+		ID:        id,
+		Category:  category,
+		StartTime: time.Now(),
+	}
+	p.spans[id] = s
+	return s
+}
+
+// EndSpan closes an active span and calculates elapsed execution duration.
+func (p *PerformanceProfiler) EndSpan(id string) time.Duration {
+	p.mu.Lock()
+	defer p.mu.Unlock()
+	s, exists := p.spans[id]
+	if !exists {
+		return 0
+	}
+	s.Duration = time.Since(s.StartTime)
+	s.Completed = true
+	p.samples = append(p.samples, ProfilerSample{
+		Timestamp: s.StartTime,
+		Label:     fmt.Sprintf("%s:%s", s.Category, s.ID),
+		Duration:  s.Duration,
+	})
+	return s.Duration
+}
+
+// GetSpans returns all registered trace spans.
+func (p *PerformanceProfiler) GetSpans() []*Span {
+	p.mu.RLock()
+	defer p.mu.RUnlock()
+	out := make([]*Span, 0, len(p.spans))
+	for _, s := range p.spans {
+		out = append(out, s)
+	}
+	return out
+}
+
+// FormatTraceReport summarizes spans into a human-readable diagnostic breakdown.
+func (p *PerformanceProfiler) FormatTraceReport() string {
+	p.mu.RLock()
+	defer p.mu.RUnlock()
+	out := fmt.Sprintf("Performance Tracing: %d spans recorded\n", len(p.spans))
+	for _, s := range p.spans {
+		status := "IN_FLIGHT"
+		if s.Completed {
+			status = fmt.Sprintf("%0.2fms", float64(s.Duration.Microseconds())/1000.0)
+		}
+		out += fmt.Sprintf("  • [%s] %s -> %s\n", s.Category, s.ID, status)
+	}
+	return out
 }
 
 // TestResult captures test status and assertions.
@@ -97,9 +165,11 @@ func (t *ToolsPillar) Initialize() {
 	if t.initialized {
 		return
 	}
+	t.Profiler.StartSpan("init.tools_pillar", "Subsystem")
 	t.Profiler.Record("startup", 5*time.Millisecond)
 	t.Runner.AddResult("PillarValidation", true, "")
 	fmt.Println("ToolsPillar initialized.")
+	t.Profiler.EndSpan("init.tools_pillar")
 	t.initialized = true
 }
 

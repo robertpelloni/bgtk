@@ -32,8 +32,11 @@ func main() {
 	toolsPillar := tools.NewToolsPillar()
 	toolsPillar.Initialize()
 
+	profiler := toolsPillar.PerformanceProfiler()
+	profiler.StartSpan("init.visual_pillar", "Startup")
 	visualPillar := visual.NewVisualPillar()
 	visualPillar.Initialize()
+	profiler.EndSpan("init.visual_pillar")
 
 	fmt.Println("Bobtk Go Port Initialization Complete.")
 	fmt.Println()
@@ -253,6 +256,7 @@ func main() {
 	dashboard.Log(fmt.Sprintf("Network Broadway Gateway active on port %d with %d connected client(s).", broadway.Port(), broadway.ClientCount()))
 	dashboard.Log(fmt.Sprintf("Media Audio DSP pipeline running with %d active processor(s) and MIDI 2.0 bus ready.", audioGraph.ProcessorCount()))
 	dashboard.Log(fmt.Sprintf("System tray active with %d background servers registered.", serverManager.RunningCount()))
+	dashboard.Log(fmt.Sprintf("Tools Pillar Performance Profiler: %d spans active, %d samples recorded.", len(profiler.GetSpans()), profiler.SampleCount()))
 
 	// Render the unified single-page layout
 	fmt.Print(dashboard.RenderSinglePage())

@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [1.1.8] - 2026-04-06
+### Added
+- **Subsystem Execution Span Profiling & Trace Reporting (Go Tools Pillar)**:
+  - `Span`: Structure capturing span identifier, category, start timestamp, elapsed duration, and completion status.
+  - `PerformanceProfiler` extensions: `StartSpan`, `EndSpan`, `GetSpans`, and `FormatTraceReport` for detailed subsystem latency analysis.
+  - Integrated startup tracing into `ToolsPillar.Initialize` and `main.go`.
+  - Comprehensive unit test `TestPerformanceProfilerSpansAndReport` in `go/bobtk/tools/tools_pillar_test.go`.
+
 ## [1.1.7] - 2026-04-06
 ### Added
 - **Real-Time Telemetry & Log Streaming (Go Visual Pillar)**:

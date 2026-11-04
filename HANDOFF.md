@@ -1,7 +1,9 @@
-# Handoff Document - Bobtk Telemetry & Keyboard Shortcuts (v1.1.7)
+# Handoff Document - Bobtk Execution Tracing & Diagnostic Profiler (v1.1.8)
 
 ## Current Status
-- Version bumped to `1.1.7` tracking global versioning governance.
+- Version bumped to `1.1.8` tracking global versioning governance.
+- Implemented execution span profiling (`Span`, `StartSpan`, `EndSpan`, `GetSpans`, `FormatTraceReport`) in Go Tools Pillar `PerformanceProfiler`.
+- Integrated execution trace metrics into single-page dashboard operations and runner scripts.
 - Implemented real-time `ServerTelemetry` metrics (CPU, memory, uptime, request counters) and `LogSubscriber` live event streaming in the single-page dashboard.
 - Implemented interactive global keyboard shortcut/accelerator dispatcher (`RegisterShortcut`, `HandleKeyPress`) in `visual.DashboardUI`.
 - Added test suites `TestDashboardTelemetryAndLogStreaming` and `TestDashboardShortcutKeyDispatcher` with 100% test pass rate across all packages.
