@@ -15,3 +15,4 @@
 - **Ultimate++ NTL Submodule Primitives:** The Go Core pillar includes `Vector` (cache-coherent fast dynamic array), `HeapPool` (slab arena allocator), `Map` (ordered indexed map), and `StateSerializer` (JSON state persistence).
 - **Qt6 Event & Action Architecture:** The Go framework now implements `Signal` (thread-safe slot connection/disconnection and emission), `Action` (`QAction` parity with reactive `Triggered`/`Toggled` signals), and `KeyEvent` (`QKeyEvent` parity with modifier bitmasks).
 - **FileSystem & Settings:** `FileSystemWatcher` (in System pillar) monitors file mutation events and `Settings` (in Core pillar) provides thread-safe key-value configuration storage.
+- **Canvas & 2D Vector Graphics:** `GraphicsContext` (in Visual pillar) handles drawing operations, color states, clipping rects, and vector `Path` tracing, integrated into the `Component` paint pipeline.

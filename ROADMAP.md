@@ -21,6 +21,7 @@
 - Implement Ultimate++ `Map` container and `StateSerializer` in Go Core Pillar (v1.1.1).
 - Integrate Qt6 Signal/Slot event mechanism, QAction, and QKeyEvent into Go Visual & Core pillars (v1.1.2).
 - Port FileSystemWatcher and Settings into Go System and Core pillars (v1.1.3).
+- Implement Canvas & 2D Vector Graphics rendering engine in Go Visual Pillar (v1.1.4).
 
 ## Phase 4: UI and Frontend Expansion
 - Ensure every backend feature is extensively represented in the frontend UI.

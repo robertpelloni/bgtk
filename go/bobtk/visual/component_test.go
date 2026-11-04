@@ -29,7 +29,7 @@ func TestComponentHierarchyAndBounds(t *testing.T) {
 	}
 
 	paintCalled := 0
-	child1.SetPaintCallback(func(c *Component, b Rect) {
+	child1.SetPaintCallback(func(g *GraphicsContext, b Rect) {
 		paintCalled++
 	})
 

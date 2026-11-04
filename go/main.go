@@ -135,11 +135,17 @@ func main() {
 	midiBus := mediaPillar.MidiBus()
 	midiBus.Broadcast(media.NewNoteOn(0, 1, 60, 0x7FFF))
 
-	// Demonstrate JUCE Component Tree & Timer Integration
+	// Demonstrate JUCE Component Tree, Vector Canvas Graphics & Timer Integration
 	rootComp := visual.NewComponent("RootAudioHost")
 	rootComp.SetBounds(0, 0, 1024, 768)
 	meterComp := visual.NewComponent("VUMeterDisplay")
 	meterComp.SetBounds(20, 20, 200, 150)
+	meterComp.SetPaintCallback(func(g *visual.GraphicsContext, bounds visual.Rect) {
+		g.SetColour(visual.ColorGreen)
+		g.FillRect(0, 0, 180, 20)
+		g.SetColour(visual.ColorWhite)
+		g.DrawText("Audio VU Peak", 5, 2, 170, 16)
+	})
 	rootComp.AddAndMakeVisible(meterComp)
 	rootComp.Repaint()
 
@@ -178,6 +184,7 @@ func main() {
 	// Wire up the consolidated single-page dashboard
 	dashboard := visualPillar.SetupConsolidatedDashboard(serverManager, tray)
 	dashboard.Log("Consolidated single-page dashboard initialized successfully.")
+	dashboard.Log("2D Vector Graphics Canvas active (GraphicsContext, Color palette, Path strokes & fills).")
 	dashboard.Log(fmt.Sprintf("Application Settings configured (%d keys) & FileSystemWatcher active (%d paths monitored).", len(appSettings.AllKeys()), len(fsWatcher.WatchedPaths())))
 	dashboard.Log("Qt6 Event & Action subsystem initialized (Signal/Slot, QAction, QKeyEvent modifiers).")
 	dashboard.Log(fmt.Sprintf("Ultimate++ NTL Heap Pool active (%d bytes/slab, %d active chunks), Vector (%d items), & Map (%d keys).", heapPool.ChunkSize(), heapPool.ActiveChunks(), vectorContainer.GetCount(), stateMap.GetCount()))

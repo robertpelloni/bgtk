@@ -5,7 +5,7 @@ import (
 )
 
 // PaintCallback defines custom vector/canvas rendering on a Component.
-type PaintCallback func(c *Component, bounds Rect)
+type PaintCallback func(g *GraphicsContext, bounds Rect)
 
 // Component represents the foundational building block for all user interface objects
 // (porting juce::Component architecture to Go).
@@ -84,7 +84,8 @@ func (c *Component) Repaint() {
 	c.mu.Unlock()
 
 	if pFn != nil {
-		pFn(c, b)
+		g := NewGraphicsContext(b)
+		pFn(g, b)
 	}
 
 	for _, kid := range kids {

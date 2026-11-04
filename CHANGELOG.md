@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [1.1.4] - 2026-04-06
+### Added
+- **Canvas & 2D Vector Graphics Engine (Go Visual Pillar)**:
+  - `GraphicsContext`: 2D canvas drawing pipeline (`QPainter` and `juce::Graphics` parity) supporting `DrawRect`, `FillRect`, `DrawText`, and `StrokePath`.
+  - `Color`: Complete color model with predefined constants (`ColorTransparent`, `ColorWhite`, `ColorBlack`, `ColorRed`, `ColorGreen`, `ColorBlue`).
+  - `Path`: Vector path builder with `StartNewSubPath`, `LineTo`, and `CloseSubPath`.
+  - Integrated `GraphicsContext` directly into the `Component` `Paint` callback hierarchy.
+  - Comprehensive unit test suite in `go/bobtk/visual/graphics_test.go`.
+
 ## [1.1.3] - 2026-04-06
 ### Added
 - **FileSystem & Settings Subsystems (Go System & Core Pillars)**:
