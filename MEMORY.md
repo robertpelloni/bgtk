@@ -13,3 +13,4 @@
 - **Go 6-Pillar Architecture Parity:** All 6 pillars (Core, Media, Network, System, Tools, Visual) now have concrete Go implementations with unit test suites and centralized dashboard integration.
 - **Native C/C++ Runtime Bridge:** `NativeBridge` in `go/bobtk/core/bridge.go` provides handle mapping, resource management, and event routing between the Go runtime and C/C++ GObject handles.
 - **Ultimate++ NTL Submodule Primitives:** The Go Core pillar includes `Vector` (cache-coherent fast dynamic array), `HeapPool` (slab arena allocator), `Map` (ordered indexed map), and `StateSerializer` (JSON state persistence).
+- **Qt6 Event & Action Architecture:** The Go framework now implements `Signal` (thread-safe slot connection/disconnection and emission), `Action` (`QAction` parity with reactive `Triggered`/`Toggled` signals), and `KeyEvent` (`QKeyEvent` parity with modifier bitmasks).

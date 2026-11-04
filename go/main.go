@@ -146,12 +146,20 @@ func main() {
 	telemetryTimer.StartTimer(50)
 	defer telemetryTimer.StopTimer()
 
-	// Demonstrate Qt6 Layout & Widget Parity
+	// Demonstrate Qt6 Layout, Widget & Signal/Action Parity
 	vbox := visual.NewVBoxLayout(8, 4)
 	titleLabel := visual.NewLabel("Qt6 Parity Dashboard Header")
 	actionBtn := visual.NewButton("Apply Layout")
 	progressBar := visual.NewProgressBar()
 	progressBar.SetValue(80)
+
+	dashboardRefreshAction := visual.NewAction("Refresh Surfaces")
+	dashboardRefreshAction.SetShortcut("Ctrl+R")
+	dashboardRefreshAction.SetTooltip("Reload all visual rendering surfaces")
+	dashboardRefreshAction.Triggered.Connect(func(arg interface{}) {
+		// Action triggered via signal/slot
+	})
+	dashboardRefreshAction.Trigger()
 
 	vbox.AddItem(titleLabel, 1)
 	vbox.AddItem(actionBtn, 1)
@@ -161,6 +169,7 @@ func main() {
 	// Wire up the consolidated single-page dashboard
 	dashboard := visualPillar.SetupConsolidatedDashboard(serverManager, tray)
 	dashboard.Log("Consolidated single-page dashboard initialized successfully.")
+	dashboard.Log("Qt6 Event & Action subsystem initialized (Signal/Slot, QAction, QKeyEvent modifiers).")
 	dashboard.Log(fmt.Sprintf("Ultimate++ NTL Heap Pool active (%d bytes/slab, %d active chunks), Vector (%d items), & Map (%d keys).", heapPool.ChunkSize(), heapPool.ActiveChunks(), vectorContainer.GetCount(), stateMap.GetCount()))
 	dashboard.Log("Qt6 Parity Layout Engine & Widgets initialized (QHBoxLayout, QVBoxLayout, QGridLayout, QStackedLayout).")
 	dashboard.Log(fmt.Sprintf("JUCE Component hierarchy nested (%d children) and precision Timer active (%d ms interval).", rootComp.NumChildComponents(), telemetryTimer.GetTimerInterval()))

@@ -1,7 +1,8 @@
-# Handoff Document - Bobtk Ultimate++ Map & Serialization Integration (v1.1.1)
+# Handoff Document - Bobtk Qt6 Signal/Slot & Action Subsystems (v1.1.2)
 
 ## Current Status
-- Version bumped to `1.1.1` tracking global versioning governance.
+- Version bumped to `1.1.2` tracking global versioning governance.
+- Implemented Qt6 Signal/Slot architecture (`Signal`), action model (`Action` / `QAction`), and key event dispatching (`KeyEvent` / `QKeyEvent`) in Go.
 - Assimilated Ultimate++ `Map` (ordered indexed key-value store) and `StateSerializer` (JSON state persistence) into Go Core Pillar.
 - Assimilated Ultimate++ NTL memory models into Go Core Pillar: `Vector` (cache-coherent array container) and `HeapPool` (fast slab/arena allocator avoiding GC latency spikes).
 - Implemented `NativeBridge` in `go/bobtk/core/bridge.go` enabling native handle allocation, resource tracking, and bidirectional event synchronization between Go and the underlying C/C++ Bobtk / GObject runtime.

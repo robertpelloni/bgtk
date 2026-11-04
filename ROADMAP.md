@@ -19,6 +19,7 @@
 - Implement bidirectional C/C++ to Go native bridge (`NativeBridge` v1.0.9).
 - Assimilate Ultimate++ NTL `Vector` and `HeapPool` slab allocator into Go Core Pillar (v1.1.0).
 - Implement Ultimate++ `Map` container and `StateSerializer` in Go Core Pillar (v1.1.1).
+- Integrate Qt6 Signal/Slot event mechanism, QAction, and QKeyEvent into Go Visual & Core pillars (v1.1.2).
 
 ## Phase 4: UI and Frontend Expansion
 - Ensure every backend feature is extensively represented in the frontend UI.

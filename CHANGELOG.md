@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [1.1.2] - 2026-04-06
+### Added
+- **Qt6 Signal/Slot & QAction Subsystem (Go Core & Visual Pillars)**:
+  - `Signal`: Thread-safe signal emission, slot connection, and disconnection inspired by Qt6 Signals and Slots.
+  - `Action`: Full user action abstraction (`QAction` parity) with text, icon, shortcut, tooltip, and reactive `Triggered`/`Toggled` signals.
+  - `KeyEvent`: Key press/release event model (`QKeyEvent` parity) with keyboard modifiers (`Shift`, `Control`, `Alt`, `Meta`) and `Accept`/`Ignore` dispatching.
+  - Comprehensive unit test suites in `go/bobtk/core/signal_test.go` and `go/bobtk/visual/action_test.go`.
+
 ## [1.1.1] - 2026-04-06
 ### Added
 - **Ultimate++ Map & Serialization Integration (Go Core Pillar)**:
