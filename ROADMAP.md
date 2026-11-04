@@ -2,7 +2,7 @@
 
 ## Phase 1: Foundational Refactoring
 - Rename all `gtk` and `bobgui` instances to `bobtk` across the C/C++ codebase. *(Completed)*
-- Add JUCE and Ultimate++ as submodules and evaluate their architectural design patterns. *(Ultimate++ evaluated, JUCE pending)*
+- Add JUCE and Ultimate++ as submodules and evaluate their architectural design patterns. *(Completed: UPP_ANALYSIS.md and JUCE_ANALYSIS.md)*
 - Set up documentation tracking and continuous agent instructions. *(Completed)*
 
 ## Phase 2: Feature Parity & Extensibility

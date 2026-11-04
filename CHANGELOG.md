@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [1.0.7] - 2026-04-06
+### Added
+- **JUCE Integration Analysis (`JUCE_ANALYSIS.md`)**:
+  - Detailed architectural breakdown of `juce::Component` hierarchy, `juce::Timer` periodic intervals, and `juce_audio_processors` DSP pipelines mapped into Bobtk's 6 pillars.
+- **JUCE-Style Component Hierarchy (Go Visual Pillar)**:
+  - `Component`: Recursive UI element hierarchy with `AddAndMakeVisible`, parent-relative coordinate transforms, `SetBounds`, `Resized`, and `Paint`/`Repaint` cascades.
+- **JUCE-Style Precision Timer (Go Core Pillar)**:
+  - `Timer`: Periodic callback dispatcher (`StartTimer`, `StopTimer`, `timerCallback`) decoupled from heavy thread allocations.
+  - Comprehensive unit test coverage in `go/bobtk/visual/component_test.go` and `go/bobtk/core/timer_test.go`.
+
 ## [1.0.6] - 2026-04-06
 ### Added
 - **Network Pillar Implementation (Go)**:

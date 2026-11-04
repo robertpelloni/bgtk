@@ -100,6 +100,21 @@ func main() {
 	midiBus := mediaPillar.MidiBus()
 	midiBus.Broadcast(media.NewNoteOn(0, 1, 60, 0x7FFF))
 
+	// Demonstrate JUCE Component Tree & Timer Integration
+	rootComp := visual.NewComponent("RootAudioHost")
+	rootComp.SetBounds(0, 0, 1024, 768)
+	meterComp := visual.NewComponent("VUMeterDisplay")
+	meterComp.SetBounds(20, 20, 200, 150)
+	rootComp.AddAndMakeVisible(meterComp)
+	rootComp.Repaint()
+
+	// High-precision telemetry timer
+	telemetryTimer := core.NewTimer(func() {
+		// Telemetry tick
+	})
+	telemetryTimer.StartTimer(50)
+	defer telemetryTimer.StopTimer()
+
 	// Demonstrate Qt6 Layout & Widget Parity
 	vbox := visual.NewVBoxLayout(8, 4)
 	titleLabel := visual.NewLabel("Qt6 Parity Dashboard Header")
@@ -116,6 +131,7 @@ func main() {
 	dashboard := visualPillar.SetupConsolidatedDashboard(serverManager, tray)
 	dashboard.Log("Consolidated single-page dashboard initialized successfully.")
 	dashboard.Log("Qt6 Parity Layout Engine & Widgets initialized (QHBoxLayout, QVBoxLayout, QGridLayout, QStackedLayout).")
+	dashboard.Log(fmt.Sprintf("JUCE Component hierarchy nested (%d children) and precision Timer active (%d ms interval).", rootComp.NumChildComponents(), telemetryTimer.GetTimerInterval()))
 	dashboard.Log(fmt.Sprintf("Network Broadway Gateway active on port %d with %d connected client(s).", broadway.Port(), broadway.ClientCount()))
 	dashboard.Log(fmt.Sprintf("Media Audio DSP pipeline running with %d active processor(s) and MIDI 2.0 bus ready.", audioGraph.ProcessorCount()))
 	dashboard.Log(fmt.Sprintf("System tray active with %d background servers registered.", serverManager.RunningCount()))
