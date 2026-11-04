@@ -14,5 +14,8 @@
 - [x] Implement Network and Media pillar subsystems in Go (`BroadwayGateway`, `WebSocketHub`, `AudioGraph`, `MidiBus`).
 - [x] Analyze JUCE UI widgets for intermixing capabilities (`JUCE_ANALYSIS.md`).
 - [x] Implement Qt6 layout and widget parity in Go Visual Pillar (`BoxLayout`, `GridLayout`, `StackedLayout`, `Button`, `Label`, `LineEdit`, `ProgressBar`).
+- [x] Complete Go implementations across all 6 pillars (`Core`, `Media`, `Network`, `System`, `Tools`, `Visual`).
+- [x] Implement Native C/C++ runtime bridge (`NativeBridge` in `go/bobtk/core/bridge.go`).
+- [x] Implement Ultimate++ NTL `Vector` and `HeapPool` slab allocator in Go Core Pillar.
 - [ ] Research missing Qt6/Qt7 features compared to the current Bobtk C++ baseline.
 - [ ] Test and resolve any failing builds caused by renaming strings and paths (Meson wrap corruption).

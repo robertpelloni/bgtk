@@ -9,6 +9,8 @@ type CorePillar struct {
 	Scheduler   *QuantumScheduler
 	Reflect     *ReflectContext
 	Entities    *EntityManager
+	Bridge      *NativeBridge
+	Heap        *HeapPool
 }
 
 // NewCorePillar creates a new instance of the CorePillar with foundational subsystems.
@@ -18,6 +20,8 @@ func NewCorePillar() *CorePillar {
 		Scheduler:   NewQuantumScheduler(16),
 		Reflect:     NewReflectContext(),
 		Entities:    NewEntityManager(),
+		Bridge:      NewNativeBridge(),
+		Heap:        NewHeapPool(4096),
 	}
 }
 
@@ -27,6 +31,7 @@ func (c *CorePillar) Initialize() {
 		return
 	}
 
+	_ = c.Bridge.InitializeRuntime()
 	fmt.Println("CorePillar initialized.")
 	c.initialized = true
 }
@@ -44,4 +49,14 @@ func (c *CorePillar) ReflectContext() *ReflectContext {
 // EntityManager returns the active ECS entity manager.
 func (c *CorePillar) EntityManager() *EntityManager {
 	return c.Entities
+}
+
+// NativeBridge returns the C/C++ runtime bridge.
+func (c *CorePillar) NativeBridge() *NativeBridge {
+	return c.Bridge
+}
+
+// HeapPool returns the Ultimate++ inspired slab memory pool.
+func (c *CorePillar) HeapPool() *HeapPool {
+	return c.Heap
 }

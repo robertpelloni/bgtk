@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## [1.1.0] - 2026-04-06
+### Added
+- **Ultimate++ NTL Submodule Assimilation (Go Core Pillar)**:
+  - `Vector`: High-performance cache-coherent dynamic array with pointer stability, fast indexed lookup, and pre-allocation inspired by U++ `upp::Vector`.
+  - `HeapPool`: Thread-safe memory slab/arena pool avoiding GC allocation spikes during high-frequency UI rendering passes inspired by U++ `sheap`/`lheap`.
+  - Comprehensive unit test coverage in `go/bobtk/core/upp_test.go`.
+
+## [1.0.9] - 2026-04-06
+### Added
+- **Native C/C++ Runtime Bridge (Go Core Pillar)**:
+  - `NativeBridge`: Manages GObject / C++ Bobtk runtime context, native handle allocation and deallocation (`AllocateNativeHandle`, `FreeNativeHandle`), and bidirectional event routing between C and Go.
+  - Safe pure-Go simulation fallback alongside live CGO linking capabilities.
+  - Comprehensive unit test coverage in `go/bobtk/core/bridge_test.go`.
+
+## [1.0.8] - 2026-04-06
+### Added
+- **Tools Pillar Implementation (Go)**:
+  - `PerformanceProfiler`: High-precision execution sampler tracking subsystem latencies and durations (`Sysprof` and `QElapsedTimer` parity).
+  - `IntegratedTestRunner`: Built-in automated diagnostic runner and reporting harness.
+  - Complete 6-pillar framework test suite coverage in Go (`core`, `media`, `network`, `system`, `tools`, `visual`) with 100% pass rate.
+
 ## [1.0.7] - 2026-04-06
 ### Added
 - **JUCE Integration Analysis (`JUCE_ANALYSIS.md`)**:

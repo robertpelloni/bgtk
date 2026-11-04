@@ -38,17 +38,38 @@ func main() {
 	fmt.Println("Bobtk Go Port Initialization Complete.")
 	fmt.Println()
 
-	// Demonstrate Core Pillar Quantum Scheduler & Dynamic Reflection
+	// Demonstrate Core Pillar Quantum Scheduler, Reflection & Native C/C++ Bridge
 	scheduler := corePillar.QuantumScheduler()
 	reflectCtx := corePillar.ReflectContext()
 	entityMgr := corePillar.EntityManager()
+	bridge := corePillar.NativeBridge()
 
 	reflectCtx.SetProperty("system.cluster_state", "Healthy-Online")
 	reflectCtx.SetProperty("ui.active_theme", "Bgtk-Modern-Dark")
 
+	// Demonstrate Ultimate++ NTL Vector & Memory Heap Pool
+	heapPool := corePillar.HeapPool()
+	slabBuffer := heapPool.Acquire()
+	defer heapPool.Release(slabBuffer)
+
+	vectorContainer := core.NewVector(16)
+	vectorContainer.Add("Pillar-Core")
+	vectorContainer.Add("Pillar-Visual")
+	vectorContainer.Add("Pillar-Media")
+
+	// Allocate native C/C++ handles through the bridge
+	hNativeWin := bridge.AllocateNativeHandle("BobguiWindow")
+	hNativeView := bridge.AllocateNativeHandle("BobguiDashboardView")
+
+	bridge.SubscribeNativeEvent("surface.rendered", func(h core.NativeHandle, data []byte) {
+		// Native render event received
+	})
+	bridge.DispatchNativeEvent("surface.rendered", hNativeView, []byte("ready"))
+
 	// Create root UI entity
 	rootWin := entityMgr.CreateEntity("AppWindow")
 	_ = entityMgr.AttachComponent(rootWin.ID, "role", "PrimaryDashboard")
+	_ = entityMgr.AttachComponent(rootWin.ID, "nativeHandle", uint64(hNativeWin))
 
 	// Dispatch worker tasks to verify scheduler throughput
 	for i := 0; i < 32; i++ {
@@ -130,8 +151,10 @@ func main() {
 	// Wire up the consolidated single-page dashboard
 	dashboard := visualPillar.SetupConsolidatedDashboard(serverManager, tray)
 	dashboard.Log("Consolidated single-page dashboard initialized successfully.")
+	dashboard.Log(fmt.Sprintf("Ultimate++ NTL Heap Pool active (%d bytes/slab, %d active chunks) & Vector container tracking %d items.", heapPool.ChunkSize(), heapPool.ActiveChunks(), vectorContainer.GetCount()))
 	dashboard.Log("Qt6 Parity Layout Engine & Widgets initialized (QHBoxLayout, QVBoxLayout, QGridLayout, QStackedLayout).")
 	dashboard.Log(fmt.Sprintf("JUCE Component hierarchy nested (%d children) and precision Timer active (%d ms interval).", rootComp.NumChildComponents(), telemetryTimer.GetTimerInterval()))
+	dashboard.Log(fmt.Sprintf("Native C/C++ Runtime Bridge active (%s mode, %d live handles registered, %d events synced).", bridge.Mode(), bridge.ActiveHandleCount(), bridge.EventCount()))
 	dashboard.Log(fmt.Sprintf("Network Broadway Gateway active on port %d with %d connected client(s).", broadway.Port(), broadway.ClientCount()))
 	dashboard.Log(fmt.Sprintf("Media Audio DSP pipeline running with %d active processor(s) and MIDI 2.0 bus ready.", audioGraph.ProcessorCount()))
 	dashboard.Log(fmt.Sprintf("System tray active with %d background servers registered.", serverManager.RunningCount()))
