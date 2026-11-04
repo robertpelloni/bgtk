@@ -12,5 +12,6 @@
 - [x] Create unified runner script `tools/run_dashboard.sh`.
 - [x] Build out Core Pillar subsystems in Go (`QuantumScheduler`, `ReflectContext`, `EntityManager`).
 - [ ] Analyze JUCE UI widgets for intermixing capabilities.
+- [x] Implement Qt6 layout and widget parity in Go Visual Pillar (`BoxLayout`, `GridLayout`, `StackedLayout`, `Button`, `Label`, `LineEdit`, `ProgressBar`).
 - [ ] Research missing Qt6/Qt7 features compared to the current Bobtk C++ baseline.
 - [ ] Test and resolve any failing builds caused by renaming strings and paths (Meson wrap corruption).

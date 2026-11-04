@@ -45,12 +45,13 @@ func (v *VisualPillar) SetupConsolidatedDashboard(sm *system.ServerManager, tray
 			Category:    "Visual",
 		},
 		Metrics: map[string]string{
-			"Layout Engine":     "Flexbox & Constraint Grid Solver",
+			"Layout Engine":     "Qt6 Parity (QHBoxLayout, QVBoxLayout, QGridLayout, QStackedLayout)",
 			"Active Views":      "Consolidated Single Page (Zero Fragmentation)",
 			"FPS Overlay":       "60.0 FPS Stable",
+			"Widget Primitives": "QPushButton, QLabel, QLineEdit, QProgressBar",
 			"Subpages Reduced":  "100% consolidated into main scrollview",
 		},
-		Subsections: []string{"Workbench", "Docking Subsystem", "Widget Tree", "ImGui Overlay"},
+		Subsections: []string{"Workbench", "Docking Subsystem", "Qt6 Layout Engine", "Widget Hierarchy", "ImGui Overlay"},
 		Actions: []ActionButton{
 			{
 				ID:       "visual.reload_theme",

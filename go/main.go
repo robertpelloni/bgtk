@@ -88,9 +88,22 @@ func main() {
 		tray.QuitApplication()
 	})
 
+	// Demonstrate Qt6 Layout & Widget Parity
+	vbox := visual.NewVBoxLayout(8, 4)
+	titleLabel := visual.NewLabel("Qt6 Parity Dashboard Header")
+	actionBtn := visual.NewButton("Apply Layout")
+	progressBar := visual.NewProgressBar()
+	progressBar.SetValue(80)
+
+	vbox.AddItem(titleLabel, 1)
+	vbox.AddItem(actionBtn, 1)
+	vbox.AddItem(progressBar, 2)
+	vbox.Layout(0, 0, 400, 120)
+
 	// Wire up the consolidated single-page dashboard
 	dashboard := visualPillar.SetupConsolidatedDashboard(serverManager, tray)
 	dashboard.Log("Consolidated single-page dashboard initialized successfully.")
+	dashboard.Log("Qt6 Parity Layout Engine & Widgets initialized (QHBoxLayout, QVBoxLayout, QGridLayout, QStackedLayout).")
 	dashboard.Log(fmt.Sprintf("System tray active with %d background servers registered.", serverManager.RunningCount()))
 
 	// Render the unified single-page layout

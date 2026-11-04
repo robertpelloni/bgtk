@@ -7,3 +7,4 @@
 - **System Tray and Server Process Supervisor:** Added cross-platform system tray integration (`SystemTrayIcon` in C++, `SystemTray` in Go) with dynamic context menus and background daemon lifecycle tracking (`ServerProcessController` / `ServerManager`).
 - **Consolidated Dashboard Paradigm:** All features across the 6 pillars are centralized into a single-page consolidated view without fragmented subpages, featuring prominent cards, tooltips, and server shutdown controls.
 - **Go Core Pillar Implementation:** `QuantumScheduler` handles concurrent pooled background execution (`CoWork` pattern), `ReflectContext` provides dynamic `Value` binding and observable properties, and `EntityManager` manages ECS component relationships.
+- **Go Visual Pillar Qt6 Parity:** Implemented `BoxLayout` (`QHBoxLayout`, `QVBoxLayout`), `GridLayout` (`QGridLayout`), `StackedLayout` (`QStackedLayout`), and reactive widget controls (`Button`, `Label`, `LineEdit`, `ProgressBar`).

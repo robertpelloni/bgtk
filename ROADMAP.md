@@ -6,7 +6,7 @@
 - Set up documentation tracking and continuous agent instructions. *(Completed)*
 
 ## Phase 2: Feature Parity & Extensibility
-- Systematically integrate and achieve 1:1 feature parity with Qt6 and beta Qt7 modules.
+- Systematically integrate and achieve 1:1 feature parity with Qt6 and beta Qt7 modules. *(Qt6 layout engine parity: QHBoxLayout, QVBoxLayout, QGridLayout, QStackedLayout, and widget primitives implemented in Go Visual Pillar v1.0.5)*
 - Assimilate features from JUCE and Ultimate++.
 - Implement and expand features from JavaFX, WxWidgets, WinUI, DearImgui, and other UI frameworks.
 - Provide multiple alternative UI paradigm implementations to mimic and improve upon competitors.

@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [1.0.5] - 2026-04-06
+### Added
+- **Qt6-Parity Layout & Widget System (Go Visual Pillar)**:
+  - `BoxLayout`: Horizontal (`QHBoxLayout`) and vertical (`QVBoxLayout`) box layout managers supporting dynamic stretch factors, spacing, and margins.
+  - `GridLayout`: 2D matrix layout manager (`QGridLayout`) with multi-row and multi-column spanning and proportional distribution.
+  - `StackedLayout`: Multi-view card switcher (`QStackedLayout`) with zero-overhead active widget rendering.
+  - Core Widget Primitives: `Button` (QPushButton), `Label` (QLabel), `LineEdit` (QLineEdit), `ProgressBar` (QProgressBar) with reactive event signals.
+  - Comprehensive unit test suite in `go/bobtk/visual/layout_test.go`.
+
 ## [1.0.4] - 2026-04-06
 ### Added
 - **Core Pillar Implementation (Go)**:
