@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.1.1] - 2026-04-06
+### Added
+- **Ultimate++ Map & Serialization Integration (Go Core Pillar)**:
+  - `Map`: Ordered key-value map container with index-based fast lookup inspired by U++ `upp::Map` and `Index`.
+  - `StateSerializer`: JSON state persistence and configuration serialization inspired by U++ `Jsonize`.
+  - Comprehensive unit test coverage in `go/bobtk/core/map_test.go`.
+
 ## [1.1.0] - 2026-04-06
 ### Added
 - **Ultimate++ NTL Submodule Assimilation (Go Core Pillar)**:

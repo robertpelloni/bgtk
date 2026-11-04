@@ -11,6 +11,8 @@ type CorePillar struct {
 	Entities    *EntityManager
 	Bridge      *NativeBridge
 	Heap        *HeapPool
+	StateMap    *Map
+	Serializer  *StateSerializer
 }
 
 // NewCorePillar creates a new instance of the CorePillar with foundational subsystems.
@@ -22,6 +24,8 @@ func NewCorePillar() *CorePillar {
 		Entities:    NewEntityManager(),
 		Bridge:      NewNativeBridge(),
 		Heap:        NewHeapPool(4096),
+		StateMap:    NewMap(16),
+		Serializer:  NewStateSerializer(),
 	}
 }
 
@@ -59,4 +63,14 @@ func (c *CorePillar) NativeBridge() *NativeBridge {
 // HeapPool returns the Ultimate++ inspired slab memory pool.
 func (c *CorePillar) HeapPool() *HeapPool {
 	return c.Heap
+}
+
+// Map returns the ordered Map container.
+func (c *CorePillar) Map() *Map {
+	return c.StateMap
+}
+
+// StateSerializer returns the state serialization engine.
+func (c *CorePillar) StateSerializer() *StateSerializer {
+	return c.Serializer
 }

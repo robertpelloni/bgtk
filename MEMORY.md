@@ -12,4 +12,4 @@
 - **JUCE Integration & Analysis:** `JUCE_ANALYSIS.md` maps JUCE component hierarchies and audio graphs into Bobtk. The Visual pillar now features `Component` with relative coordinate trees, bounds recalculation, and recursive repaint pipelines, coupled with `Timer` periodic dispatching in Core.
 - **Go 6-Pillar Architecture Parity:** All 6 pillars (Core, Media, Network, System, Tools, Visual) now have concrete Go implementations with unit test suites and centralized dashboard integration.
 - **Native C/C++ Runtime Bridge:** `NativeBridge` in `go/bobtk/core/bridge.go` provides handle mapping, resource management, and event routing between the Go runtime and C/C++ GObject handles.
-- **Ultimate++ NTL Submodule Primitives:** The Go Core pillar includes `Vector` (cache-coherent fast dynamic array) and `HeapPool` (slab arena allocator) to minimize GC thrashing during high-frequency UI repaints.
+- **Ultimate++ NTL Submodule Primitives:** The Go Core pillar includes `Vector` (cache-coherent fast dynamic array), `HeapPool` (slab arena allocator), `Map` (ordered indexed map), and `StateSerializer` (JSON state persistence).

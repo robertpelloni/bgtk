@@ -1,7 +1,8 @@
-# Handoff Document - Bobtk Ultimate++ NTL Integration (v1.1.0)
+# Handoff Document - Bobtk Ultimate++ Map & Serialization Integration (v1.1.1)
 
 ## Current Status
-- Version bumped to `1.1.0` tracking global versioning governance.
+- Version bumped to `1.1.1` tracking global versioning governance.
+- Assimilated Ultimate++ `Map` (ordered indexed key-value store) and `StateSerializer` (JSON state persistence) into Go Core Pillar.
 - Assimilated Ultimate++ NTL memory models into Go Core Pillar: `Vector` (cache-coherent array container) and `HeapPool` (fast slab/arena allocator avoiding GC latency spikes).
 - Implemented `NativeBridge` in `go/bobtk/core/bridge.go` enabling native handle allocation, resource tracking, and bidirectional event synchronization between Go and the underlying C/C++ Bobtk / GObject runtime.
 - **Milestone Reached**: All 6 pillars (Core, Media, Network, System, Tools, Visual) now possess fully tested concrete implementations in Go with 100% test pass rate across all modules.

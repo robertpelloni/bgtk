@@ -47,7 +47,7 @@ func main() {
 	reflectCtx.SetProperty("system.cluster_state", "Healthy-Online")
 	reflectCtx.SetProperty("ui.active_theme", "Bgtk-Modern-Dark")
 
-	// Demonstrate Ultimate++ NTL Vector & Memory Heap Pool
+	// Demonstrate Ultimate++ NTL Vector, Map & Serialization
 	heapPool := corePillar.HeapPool()
 	slabBuffer := heapPool.Acquire()
 	defer heapPool.Release(slabBuffer)
@@ -56,6 +56,16 @@ func main() {
 	vectorContainer.Add("Pillar-Core")
 	vectorContainer.Add("Pillar-Visual")
 	vectorContainer.Add("Pillar-Media")
+
+	stateMap := corePillar.Map()
+	stateMap.Put("cluster.node_count", 4)
+	stateMap.Put("cluster.leader", "node-alpha")
+
+	serializer := corePillar.StateSerializer()
+	_, _ = serializer.ToJSON(map[string]interface{}{
+		"node":   "node-alpha",
+		"status": "active",
+	})
 
 	// Allocate native C/C++ handles through the bridge
 	hNativeWin := bridge.AllocateNativeHandle("BobguiWindow")
@@ -151,7 +161,7 @@ func main() {
 	// Wire up the consolidated single-page dashboard
 	dashboard := visualPillar.SetupConsolidatedDashboard(serverManager, tray)
 	dashboard.Log("Consolidated single-page dashboard initialized successfully.")
-	dashboard.Log(fmt.Sprintf("Ultimate++ NTL Heap Pool active (%d bytes/slab, %d active chunks) & Vector container tracking %d items.", heapPool.ChunkSize(), heapPool.ActiveChunks(), vectorContainer.GetCount()))
+	dashboard.Log(fmt.Sprintf("Ultimate++ NTL Heap Pool active (%d bytes/slab, %d active chunks), Vector (%d items), & Map (%d keys).", heapPool.ChunkSize(), heapPool.ActiveChunks(), vectorContainer.GetCount(), stateMap.GetCount()))
 	dashboard.Log("Qt6 Parity Layout Engine & Widgets initialized (QHBoxLayout, QVBoxLayout, QGridLayout, QStackedLayout).")
 	dashboard.Log(fmt.Sprintf("JUCE Component hierarchy nested (%d children) and precision Timer active (%d ms interval).", rootComp.NumChildComponents(), telemetryTimer.GetTimerInterval()))
 	dashboard.Log(fmt.Sprintf("Native C/C++ Runtime Bridge active (%s mode, %d live handles registered, %d events synced).", bridge.Mode(), bridge.ActiveHandleCount(), bridge.EventCount()))
