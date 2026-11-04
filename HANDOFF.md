@@ -1,8 +1,9 @@
-# Handoff Document - Bobtk PropertyAnimation & StateMachine Subsystems (v1.1.5)
+# Handoff Document - Bobtk NetworkAccessManager & SyncEngine Subsystems (v1.1.6)
 
 ## Current Status
-- Version bumped to `1.1.5` tracking global versioning governance.
-- Implemented `PropertyAnimation` and `StateMachine` in Go Core Pillar with 100% test pass rate.
+- Version bumped to `1.1.6` tracking global versioning governance.
+- Implemented `NetworkAccessManager` (HTTP transfer manager) and `SyncEngine` (multiplayer delta sync & cursor tracking) in Go Network Pillar with 100% test pass rate.
+- Implemented `PropertyAnimation` and `StateMachine` in Go Core Pillar.
 - Implemented `GraphicsContext`, `Color`, `Path`, and vector drawing operations in Go Visual Pillar, integrating with `Component` paint hierarchies.
 - Implemented `FileSystemWatcher` (System pillar) and `Settings` (Core pillar) in Go with 100% test pass rate.
 - Implemented Qt6 Signal/Slot architecture (`Signal`), action model (`Action` / `QAction`), and key event dispatching (`KeyEvent` / `QKeyEvent`) in Go.

@@ -17,3 +17,4 @@
 - **FileSystem & Settings:** `FileSystemWatcher` (in System pillar) monitors file mutation events and `Settings` (in Core pillar) provides thread-safe key-value configuration storage.
 - **Canvas & 2D Vector Graphics:** `GraphicsContext` (in Visual pillar) handles drawing operations, color states, clipping rects, and vector `Path` tracing, integrated into the `Component` paint pipeline.
 - **Animation & State Machine:** `PropertyAnimation` provides value interpolation over time and `StateMachine` enables event-driven state transitions in the Core pillar.
+- **Network Access & State Sync:** `NetworkAccessManager` executes/logs HTTP transfers, while `SyncEngine` synchronizes remote cursor movements and binary state deltas across connected peers.

@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.1.6] - 2026-04-06
+### Added
+- **HTTP Client & Multiplayer Sync Engine (Go Network Pillar)**:
+  - `NetworkAccessManager`: HTTP request execution (`bobgui/cpp/network.hpp` and `QNetworkAccessManager` parity) supporting GET/POST methods and history tracking.
+  - `SyncEngine`: Multiplayer collaborative state syncing (`bobgui/cpp/network.hpp` parity) with peer connection management, cursor tracking, and state delta broadcasting.
+  - Comprehensive unit test suite in `go/bobtk/network/http_sync_test.go`.
+
 ## [1.1.5] - 2026-04-06
 ### Added
 - **PropertyAnimation & StateMachine Subsystems (Go Core Pillar)**:

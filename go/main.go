@@ -130,9 +130,16 @@ func main() {
 		tray.QuitApplication()
 	})
 
-	// Demonstrate Network Gateway and Media Audio DSP Pipeline
+	// Demonstrate Network Gateway, HTTP Client & SyncEngine
 	broadway := networkPillar.Gateway()
 	_ = broadway.RegisterClient("demo-client-1", "127.0.0.1")
+
+	httpMgr := networkPillar.HTTPManager()
+	_ = httpMgr.Get("https://api.bobtk.org/v1/health")
+
+	syncEngine := networkPillar.SyncEngine()
+	syncEngine.ConnectPeer("127.0.0.1:9091")
+	syncEngine.TrackCursor("local-user", 240.0, 180.0)
 
 	audioGraph := mediaPillar.AudioGraph()
 	audioGraph.AddProcessor(&media.GainProcessor{Gain: 0.85})
@@ -199,6 +206,7 @@ func main() {
 	dashboard.Log("Qt6 Parity Layout Engine & Widgets initialized (QHBoxLayout, QVBoxLayout, QGridLayout, QStackedLayout).")
 	dashboard.Log(fmt.Sprintf("JUCE Component hierarchy nested (%d children) and precision Timer active (%d ms interval).", rootComp.NumChildComponents(), telemetryTimer.GetTimerInterval()))
 	dashboard.Log(fmt.Sprintf("Native C/C++ Runtime Bridge active (%s mode, %d live handles registered, %d events synced).", bridge.Mode(), bridge.ActiveHandleCount(), bridge.EventCount()))
+	dashboard.Log(fmt.Sprintf("Network SyncEngine active (%d peer connected) & NetworkAccessManager (%d HTTP calls handled).", syncEngine.PeerCount(), httpMgr.HistoryCount()))
 	dashboard.Log(fmt.Sprintf("Network Broadway Gateway active on port %d with %d connected client(s).", broadway.Port(), broadway.ClientCount()))
 	dashboard.Log(fmt.Sprintf("Media Audio DSP pipeline running with %d active processor(s) and MIDI 2.0 bus ready.", audioGraph.ProcessorCount()))
 	dashboard.Log(fmt.Sprintf("System tray active with %d background servers registered.", serverManager.RunningCount()))

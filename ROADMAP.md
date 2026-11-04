@@ -23,6 +23,7 @@
 - Port FileSystemWatcher and Settings into Go System and Core pillars (v1.1.3).
 - Implement Canvas & 2D Vector Graphics rendering engine in Go Visual Pillar (v1.1.4).
 - Port PropertyAnimation and StateMachine architecture into Go Core Pillar (v1.1.5).
+- Port NetworkAccessManager and SyncEngine into Go Network Pillar (v1.1.6).
 
 ## Phase 4: UI and Frontend Expansion
 - Ensure every backend feature is extensively represented in the frontend UI.
