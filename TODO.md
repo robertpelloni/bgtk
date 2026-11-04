@@ -10,6 +10,7 @@
 - [x] Implement System Tray integration in C++ and Go with background server lifecycle and quit capability.
 - [x] Redesign Dashboard UI to consolidate all subsystem features across the 6 pillars into a single page with tooltip markers.
 - [x] Create unified runner script `tools/run_dashboard.sh`.
+- [x] Build out Core Pillar subsystems in Go (`QuantumScheduler`, `ReflectContext`, `EntityManager`).
 - [ ] Analyze JUCE UI widgets for intermixing capabilities.
 - [ ] Research missing Qt6/Qt7 features compared to the current Bobtk C++ baseline.
 - [ ] Test and resolve any failing builds caused by renaming strings and paths (Meson wrap corruption).

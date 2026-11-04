@@ -1,7 +1,9 @@
-# Handoff Document - Bobtk Audit and Single-Page Dashboard & System Tray Integration (v1.0.3)
+# Handoff Document - Bobtk Core Pillar Subsystems & Autopilot Progress (v1.0.4)
 
 ## Current Status
-- Version bumped to `1.0.3` tracking global versioning governance.
+- Version bumped to `1.0.4` tracking global versioning governance.
+- Foundational Core Pillar architecture in Go is fully operational (`QuantumScheduler`, `ReflectContext`, `EntityManager`) with 100% test pass rate.
+- Consolidated single-page dashboard and system tray server supervisor actively monitor all 6 pillars and active background services.
 - Unified single-page dashboard architecture is fully established in both C++ (`bobgui/cpp/dashboard_shell.hpp`, `examples/dashboard-demo/main.cpp`) and Go (`go/bobtk/visual/dashboard.go`, `go/bobtk/visual/visual_pillar.go`, `go/main.go`).
 - Zero subpage fragmentation: All functions and features from the 6 pillars (Core, System, Network, Visual, Media, Tools) are unified onto a single page organized by priority and high-value workflows.
 - Cross-platform System Tray subsystem and Server Process Supervisor implemented in C++ (`SystemTrayIcon`, `ServerProcessController`) and Go (`SystemTray`, `ServerManager`), enabling full background daemon management and graceful server termination.

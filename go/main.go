@@ -38,6 +38,26 @@ func main() {
 	fmt.Println("Bobtk Go Port Initialization Complete.")
 	fmt.Println()
 
+	// Demonstrate Core Pillar Quantum Scheduler & Dynamic Reflection
+	scheduler := corePillar.QuantumScheduler()
+	reflectCtx := corePillar.ReflectContext()
+	entityMgr := corePillar.EntityManager()
+
+	reflectCtx.SetProperty("system.cluster_state", "Healthy-Online")
+	reflectCtx.SetProperty("ui.active_theme", "Bgtk-Modern-Dark")
+
+	// Create root UI entity
+	rootWin := entityMgr.CreateEntity("AppWindow")
+	_ = entityMgr.AttachComponent(rootWin.ID, "role", "PrimaryDashboard")
+
+	// Dispatch worker tasks to verify scheduler throughput
+	for i := 0; i < 32; i++ {
+		scheduler.Dispatch(func() {
+			// Simulating background telemetry acquisition
+		})
+	}
+	scheduler.Wait()
+
 	// Initialize the Server Supervisor & System Tray
 	serverManager := system.NewServerManager()
 

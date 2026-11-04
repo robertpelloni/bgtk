@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [1.0.4] - 2026-04-06
+### Added
+- **Core Pillar Implementation (Go)**:
+  - `QuantumScheduler`: High-concurrency task execution pool modeled after Ultimate++ `CoWork`.
+  - `ReflectContext` & `Value`: Dynamic reflection, property binding, and change listeners modeled after U++ `Value` and Qt property systems.
+  - `EntityManager`: Cache-coherent entity component storage (ECS) hierarchy in Go.
+  - Comprehensive unit test suite in `go/bobtk/core/core_pillar_test.go`.
+
 ## [1.0.3] - 2026-04-06
 ### Added
 - **System Tray Subsystem**: Cross-platform system tray notification area abstraction (`SystemTrayIcon` in C++, `SystemTray` in Go) with dynamic context menu actions and tooltip guidance.
