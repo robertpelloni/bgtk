@@ -19,5 +19,6 @@
 - [x] Implement Ultimate++ NTL `Vector` and `HeapPool` slab allocator in Go Core Pillar.
 - [x] Implement Ultimate++ `Map` container and `StateSerializer` in Go Core Pillar.
 - [x] Implement Qt6 Signal/Slot, QAction, and QKeyEvent in Go Visual and Core pillars.
+- [x] Port FileSystemWatcher and Settings into Go System and Core pillars.
 - [ ] Research missing Qt6/Qt7 features compared to the current Bobtk C++ baseline.
 - [ ] Test and resolve any failing builds caused by renaming strings and paths (Meson wrap corruption).

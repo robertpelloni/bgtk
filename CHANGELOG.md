@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.1.3] - 2026-04-06
+### Added
+- **FileSystem & Settings Subsystems (Go System & Core Pillars)**:
+  - `FileSystemWatcher`: Monitors directories and files for changes (`QFileSystemWatcher` parity) with path registration and mutation dispatch.
+  - `Settings`: Thread-safe persistent application configuration store (`QSettings` parity) with key-value access and change notifications.
+  - Comprehensive unit test suites in `go/bobtk/system/fs_watcher_test.go` and `go/bobtk/core/settings_test.go`.
+
 ## [1.1.2] - 2026-04-06
 ### Added
 - **Qt6 Signal/Slot & QAction Subsystem (Go Core & Visual Pillars)**:

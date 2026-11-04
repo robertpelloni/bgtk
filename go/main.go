@@ -47,7 +47,7 @@ func main() {
 	reflectCtx.SetProperty("system.cluster_state", "Healthy-Online")
 	reflectCtx.SetProperty("ui.active_theme", "Bgtk-Modern-Dark")
 
-	// Demonstrate Ultimate++ NTL Vector, Map & Serialization
+	// Demonstrate Ultimate++ NTL Vector, Map, Settings & Serialization
 	heapPool := corePillar.HeapPool()
 	slabBuffer := heapPool.Acquire()
 	defer heapPool.Release(slabBuffer)
@@ -66,6 +66,10 @@ func main() {
 		"node":   "node-alpha",
 		"status": "active",
 	})
+
+	appSettings := corePillar.AppSettings()
+	appSettings.SetValue("runtime.telemetry_interval_ms", 50)
+	appSettings.SetValue("ui.single_page_mode", true)
 
 	// Allocate native C/C++ handles through the bridge
 	hNativeWin := bridge.AllocateNativeHandle("BobguiWindow")
@@ -166,9 +170,15 @@ func main() {
 	vbox.AddItem(progressBar, 2)
 	vbox.Layout(0, 0, 400, 120)
 
+	// Demonstrate FileSystemWatcher
+	fsWatcher := systemPillar.FileWatcher()
+	_ = fsWatcher.AddPath("/app/dashboard.ini")
+	fsWatcher.TriggerEvent("/app/dashboard.ini", "RELOAD")
+
 	// Wire up the consolidated single-page dashboard
 	dashboard := visualPillar.SetupConsolidatedDashboard(serverManager, tray)
 	dashboard.Log("Consolidated single-page dashboard initialized successfully.")
+	dashboard.Log(fmt.Sprintf("Application Settings configured (%d keys) & FileSystemWatcher active (%d paths monitored).", len(appSettings.AllKeys()), len(fsWatcher.WatchedPaths())))
 	dashboard.Log("Qt6 Event & Action subsystem initialized (Signal/Slot, QAction, QKeyEvent modifiers).")
 	dashboard.Log(fmt.Sprintf("Ultimate++ NTL Heap Pool active (%d bytes/slab, %d active chunks), Vector (%d items), & Map (%d keys).", heapPool.ChunkSize(), heapPool.ActiveChunks(), vectorContainer.GetCount(), stateMap.GetCount()))
 	dashboard.Log("Qt6 Parity Layout Engine & Widgets initialized (QHBoxLayout, QVBoxLayout, QGridLayout, QStackedLayout).")

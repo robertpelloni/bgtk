@@ -13,6 +13,7 @@ type CorePillar struct {
 	Heap        *HeapPool
 	StateMap    *Map
 	Serializer  *StateSerializer
+	Settings    *Settings
 }
 
 // NewCorePillar creates a new instance of the CorePillar with foundational subsystems.
@@ -26,6 +27,7 @@ func NewCorePillar() *CorePillar {
 		Heap:        NewHeapPool(4096),
 		StateMap:    NewMap(16),
 		Serializer:  NewStateSerializer(),
+		Settings:    NewSettings(),
 	}
 }
 
@@ -73,4 +75,9 @@ func (c *CorePillar) Map() *Map {
 // StateSerializer returns the state serialization engine.
 func (c *CorePillar) StateSerializer() *StateSerializer {
 	return c.Serializer
+}
+
+// AppSettings returns the application configuration store.
+func (c *CorePillar) AppSettings() *Settings {
+	return c.Settings
 }

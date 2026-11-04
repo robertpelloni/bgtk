@@ -1,7 +1,8 @@
-# Handoff Document - Bobtk Qt6 Signal/Slot & Action Subsystems (v1.1.2)
+# Handoff Document - Bobtk FileSystemWatcher & Settings Subsystems (v1.1.3)
 
 ## Current Status
-- Version bumped to `1.1.2` tracking global versioning governance.
+- Version bumped to `1.1.3` tracking global versioning governance.
+- Implemented `FileSystemWatcher` (System pillar) and `Settings` (Core pillar) in Go with 100% test pass rate.
 - Implemented Qt6 Signal/Slot architecture (`Signal`), action model (`Action` / `QAction`), and key event dispatching (`KeyEvent` / `QKeyEvent`) in Go.
 - Assimilated Ultimate++ `Map` (ordered indexed key-value store) and `StateSerializer` (JSON state persistence) into Go Core Pillar.
 - Assimilated Ultimate++ NTL memory models into Go Core Pillar: `Vector` (cache-coherent array container) and `HeapPool` (fast slab/arena allocator avoiding GC latency spikes).
