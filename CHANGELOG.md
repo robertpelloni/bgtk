@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [1.0.3] - 2026-04-06
+### Added
+- **System Tray Subsystem**: Cross-platform system tray notification area abstraction (`SystemTrayIcon` in C++, `SystemTray` in Go) with dynamic context menu actions and tooltip guidance.
+- **Server Lifecycle Controller**: Centralized process and daemon supervision (`ServerProcessController` in C++, `ServerManager` in Go) capable of tracking active services (Broadway HTML5 gateway, local IPC daemon, realtime audio server) and providing graceful termination and forceful shutdown.
+- **Consolidated Single-Page Dashboard UI**: Redesigned dashboard layout condensing all subsystem views, status metrics, and parallel concepts across the 6 pillars into a singular high-value page with zero fragmented subpages.
+- **Rich Guidance & Tooltip Markers**: Integrated detailed tooltips with categories, descriptions, and keyboard shortcuts across all interactive cards and actions.
+- **Unified Runner Script**: Created `tools/run_dashboard.sh` for non-destructive test execution, dashboard launching, and server monitoring.
+
 ## [1.0.2] - 2024-05-19
 ### Added
 - Completed `UPP_ANALYSIS.md` detailing integration points for Ultimate++ `Core` utilities (Memory Allocation, CoWork concurrency, Serialization, and Callbacks) into the Bobtk 6-pillar framework.

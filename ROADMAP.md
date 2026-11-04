@@ -21,3 +21,5 @@
 - Ensure every backend feature is extensively represented in the frontend UI.
 - Add comprehensive descriptions, labels, and tooltips for all user-facing functions.
 - Develop native UI frontends and potentially web UI counterparts.
+- Redesign dashboard UI into a consolidated single-page control surface with zero fragmented subpages. *(Completed v1.0.3)*
+- Implement cross-platform System Tray and Server Supervisor with clean quit capability. *(Completed v1.0.3)*

@@ -4,3 +4,5 @@
 - **Target Architecture:** Modern, multi-paradigm C++ combined with a parallel, comprehensive Go port.
 - **Design Preferences:** Clean, well-structured, easy to use, well-named, and highly documented.
 - **Current Observation:** The project has undergone a massive renaming from `gtk` and `bobgui` to `bobtk`. Pathing issues or build files (e.g., meson.build, Makefiles) may require further refinement if `bobtk` replacements broke regex or internal tooling.
+- **System Tray and Server Process Supervisor:** Added cross-platform system tray integration (`SystemTrayIcon` in C++, `SystemTray` in Go) with dynamic context menus and background daemon lifecycle tracking (`ServerProcessController` / `ServerManager`).
+- **Consolidated Dashboard Paradigm:** All features across the 6 pillars are centralized into a single-page consolidated view without fragmented subpages, featuring prominent cards, tooltips, and server shutdown controls.

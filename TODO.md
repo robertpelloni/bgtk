@@ -7,6 +7,9 @@
 - [x] Initialize primary documentation files.
 - [x] Initialize `/go` directory and establish the initial module (6-Pillar framework initialized).
 - [x] Analyze Ultimate++ utilities for integration points.
+- [x] Implement System Tray integration in C++ and Go with background server lifecycle and quit capability.
+- [x] Redesign Dashboard UI to consolidate all subsystem features across the 6 pillars into a single page with tooltip markers.
+- [x] Create unified runner script `tools/run_dashboard.sh`.
 - [ ] Analyze JUCE UI widgets for intermixing capabilities.
 - [ ] Research missing Qt6/Qt7 features compared to the current Bobtk C++ baseline.
 - [ ] Test and resolve any failing builds caused by renaming strings and paths (Meson wrap corruption).

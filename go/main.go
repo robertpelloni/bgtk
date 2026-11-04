@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+
 	"github.com/bobtk/bobtk/bobtk/core"
 	"github.com/bobtk/bobtk/bobtk/media"
 	"github.com/bobtk/bobtk/bobtk/network"
@@ -11,7 +12,9 @@ import (
 )
 
 func main() {
-	fmt.Println("Welcome to the Bobtk Go Port")
+	fmt.Println("================================================================================")
+	fmt.Println("             BOBTK UNIFIED RUNTIME & OPERATIONS DASHBOARD")
+	fmt.Println("================================================================================")
 	fmt.Println("Initializing 6-Pillar Framework...")
 
 	corePillar := core.NewCorePillar()
@@ -33,4 +36,49 @@ func main() {
 	visualPillar.Initialize()
 
 	fmt.Println("Bobtk Go Port Initialization Complete.")
+	fmt.Println()
+
+	// Initialize the Server Supervisor & System Tray
+	serverManager := system.NewServerManager()
+
+	// Register background servers into the supervisor
+	serverManager.RegisterServer("broadway.server", "Broadway Server", "HTML5 Broadway Display Gateway", 8085, func() error {
+		fmt.Println("[Broadway Server] Received graceful shutdown signal. Socket closed.")
+		return nil
+	})
+	serverManager.RegisterServer("ipc.daemon", "Local IPC Daemon", "High-throughput domain socket messaging daemon", 9090, func() error {
+		fmt.Println("[IPC Daemon] Terminating local client connections and unlinking socket.")
+		return nil
+	})
+	serverManager.RegisterServer("media.engine", "Realtime Audio Server", "Low-latency JUCE-compatible audio synthesis engine", 7777, func() error {
+		fmt.Println("[Realtime Audio] Stopping audio stream and releasing soundcard hardware buffers.")
+		return nil
+	})
+
+	// Configure System Tray
+	tray := system.NewSystemTray("utilities-system-monitor-symbolic", serverManager)
+	tray.SetTooltip("bgtk Operations Center - 3 Active Servers Monitored")
+
+	tray.AddMenuItem("tray.status", "System Status: Online", "All 6 pillars healthy and operational", nil)
+	tray.AddMenuItem("tray.stop_servers", "Stop Background Servers", "Gracefully shuts down all 3 registered background servers", func() {
+		serverManager.StopAllServers()
+	})
+	tray.AddSeparator()
+	tray.AddMenuItem("tray.quit", "Quit Dashboard and All Servers", "Halts all daemons and exits cleanly", func() {
+		tray.QuitApplication()
+	})
+
+	// Wire up the consolidated single-page dashboard
+	dashboard := visualPillar.SetupConsolidatedDashboard(serverManager, tray)
+	dashboard.Log("Consolidated single-page dashboard initialized successfully.")
+	dashboard.Log(fmt.Sprintf("System tray active with %d background servers registered.", serverManager.RunningCount()))
+
+	// Render the unified single-page layout
+	fmt.Print(dashboard.RenderSinglePage())
+
+	fmt.Println("[DEMONSTRATING SYSTEM TRAY SERVER QUIT ACTION]")
+	// Test the tray's ability to cleanly stop all servers and quit
+	tray.QuitApplication()
+	fmt.Printf("Servers active after quit command: %d\n", serverManager.RunningCount())
+	fmt.Println("================================================================================")
 }

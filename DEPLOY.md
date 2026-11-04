@@ -15,7 +15,13 @@
 3. **Building the Go Architecture:**
    ```bash
    cd go
+   go test ./...
    go run main.go
+   ```
+
+   Or execute the unified runner directly:
+   ```bash
+   ./tools/run_dashboard.sh
    ```
 
 4. **Building the C/C++ version:**
