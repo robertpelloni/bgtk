@@ -1,8 +1,9 @@
-# Handoff Document - Bobtk Qt6 Layout Parity & Continuous Execution (v1.0.5)
+# Handoff Document - Bobtk Network & Media Pillars Integration (v1.0.6)
 
 ## Current Status
-- Version bumped to `1.0.5` tracking global versioning governance.
-- Qt6-parity layout engine (`QHBoxLayout`, `QVBoxLayout`, `QGridLayout`, `QStackedLayout`) and reactive widgets (`Button`, `Label`, `LineEdit`, `ProgressBar`) in Go Visual Pillar fully operational with 100% test pass rate.
+- Version bumped to `1.0.6` tracking global versioning governance.
+- Network Pillar (`BroadwayGateway`, `WebSocketHub`) and Media Pillar (`AudioGraph`, `GainProcessor`, `MidiBus`, `UMPPacket`) in Go fully operational with 100% test pass rate.
+- Qt6-parity layout engine (`QHBoxLayout`, `QVBoxLayout`, `QGridLayout`, `QStackedLayout`) and reactive widgets (`Button`, `Label`, `LineEdit`, `ProgressBar`) in Go Visual Pillar fully operational.
 - Foundational Core Pillar architecture in Go is fully operational (`QuantumScheduler`, `ReflectContext`, `EntityManager`).
 - Consolidated single-page dashboard and system tray server supervisor actively monitor all 6 pillars and active background services.
 - Unified single-page dashboard architecture is fully established in both C++ (`bobgui/cpp/dashboard_shell.hpp`, `examples/dashboard-demo/main.cpp`) and Go (`go/bobtk/visual/dashboard.go`, `go/bobtk/visual/visual_pillar.go`, `go/main.go`).

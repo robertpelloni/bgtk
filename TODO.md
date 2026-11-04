@@ -11,6 +11,7 @@
 - [x] Redesign Dashboard UI to consolidate all subsystem features across the 6 pillars into a single page with tooltip markers.
 - [x] Create unified runner script `tools/run_dashboard.sh`.
 - [x] Build out Core Pillar subsystems in Go (`QuantumScheduler`, `ReflectContext`, `EntityManager`).
+- [x] Implement Network and Media pillar subsystems in Go (`BroadwayGateway`, `WebSocketHub`, `AudioGraph`, `MidiBus`).
 - [ ] Analyze JUCE UI widgets for intermixing capabilities.
 - [x] Implement Qt6 layout and widget parity in Go Visual Pillar (`BoxLayout`, `GridLayout`, `StackedLayout`, `Button`, `Label`, `LineEdit`, `ProgressBar`).
 - [ ] Research missing Qt6/Qt7 features compared to the current Bobtk C++ baseline.

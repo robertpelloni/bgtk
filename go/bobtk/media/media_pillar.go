@@ -2,25 +2,33 @@ package media
 
 import "fmt"
 
-// MediaPillar manages Audio, 3D, GIS mapping, Shaders, and Timeline management.
+// MediaPillar manages audio graphs, DSP pipelines, MIDI 2.0 streaming, and spatial media.
 type MediaPillar struct {
 	initialized bool
+	Audio       *AudioGraph
+	Midi        *MidiBus
 }
 
-// NewMediaPillar creates a new instance of the MediaPillar.
 func NewMediaPillar() *MediaPillar {
 	return &MediaPillar{
 		initialized: false,
+		Audio:       NewAudioGraph(48000, 256),
+		Midi:        NewMidiBus(),
 	}
 }
 
-// Initialize sets up the Media subsystem and bridges to the C++ backend.
 func (m *MediaPillar) Initialize() {
 	if m.initialized {
 		return
 	}
-
-	// TODO: Map to C++ AudioDeviceManager, AudioProcessor, ThreeDNode, etc.
 	fmt.Println("MediaPillar initialized.")
 	m.initialized = true
+}
+
+func (m *MediaPillar) AudioGraph() *AudioGraph {
+	return m.Audio
+}
+
+func (m *MediaPillar) MidiBus() *MidiBus {
+	return m.Midi
 }

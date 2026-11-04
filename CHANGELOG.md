@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## [1.0.6] - 2026-04-06
+### Added
+- **Network Pillar Implementation (Go)**:
+  - `BroadwayGateway`: Remote HTML5 canvas streaming gateway and client session manager porting GDK Broadway functionality to Go.
+  - `WebSocketHub`: Bidirectional JSON-RPC transport and dispatcher for distributed UI state syncing.
+  - Comprehensive unit test suite in `go/bobtk/network/network_pillar_test.go`.
+- **Media Pillar Implementation (Go)**:
+  - `AudioGraph` & `AudioBuffer`: Low-latency DSP audio processing graph inspired by JUCE `AudioProcessor`.
+  - `GainProcessor`: Standard real-time DSP gain node.
+  - `MidiBus` & `UMPPacket`: MIDI 2.0 Universal MIDI Packet event parser and distribution bus.
+  - Comprehensive unit test suite in `go/bobtk/media/media_pillar_test.go`.
+
 ## [1.0.5] - 2026-04-06
 ### Added
 - **Qt6-Parity Layout & Widget System (Go Visual Pillar)**:

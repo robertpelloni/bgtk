@@ -88,6 +88,18 @@ func main() {
 		tray.QuitApplication()
 	})
 
+	// Demonstrate Network Gateway and Media Audio DSP Pipeline
+	broadway := networkPillar.Gateway()
+	_ = broadway.RegisterClient("demo-client-1", "127.0.0.1")
+
+	audioGraph := mediaPillar.AudioGraph()
+	audioGraph.AddProcessor(&media.GainProcessor{Gain: 0.85})
+	audioBuf := media.NewAudioBuffer(2, 256)
+	audioGraph.Process(audioBuf)
+
+	midiBus := mediaPillar.MidiBus()
+	midiBus.Broadcast(media.NewNoteOn(0, 1, 60, 0x7FFF))
+
 	// Demonstrate Qt6 Layout & Widget Parity
 	vbox := visual.NewVBoxLayout(8, 4)
 	titleLabel := visual.NewLabel("Qt6 Parity Dashboard Header")
@@ -104,6 +116,8 @@ func main() {
 	dashboard := visualPillar.SetupConsolidatedDashboard(serverManager, tray)
 	dashboard.Log("Consolidated single-page dashboard initialized successfully.")
 	dashboard.Log("Qt6 Parity Layout Engine & Widgets initialized (QHBoxLayout, QVBoxLayout, QGridLayout, QStackedLayout).")
+	dashboard.Log(fmt.Sprintf("Network Broadway Gateway active on port %d with %d connected client(s).", broadway.Port(), broadway.ClientCount()))
+	dashboard.Log(fmt.Sprintf("Media Audio DSP pipeline running with %d active processor(s) and MIDI 2.0 bus ready.", audioGraph.ProcessorCount()))
 	dashboard.Log(fmt.Sprintf("System tray active with %d background servers registered.", serverManager.RunningCount()))
 
 	// Render the unified single-page layout
