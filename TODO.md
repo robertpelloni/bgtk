@@ -21,5 +21,6 @@
 - [x] Implement Qt6 Signal/Slot, QAction, and QKeyEvent in Go Visual and Core pillars.
 - [x] Port FileSystemWatcher and Settings into Go System and Core pillars.
 - [x] Implement Canvas & 2D Vector Graphics rendering engine in Go Visual Pillar.
+- [x] Port PropertyAnimation and StateMachine architecture into Go Core Pillar.
 - [ ] Research missing Qt6/Qt7 features compared to the current Bobtk C++ baseline.
 - [ ] Test and resolve any failing builds caused by renaming strings and paths (Meson wrap corruption).

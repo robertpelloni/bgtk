@@ -5,29 +5,39 @@ import "fmt"
 // CorePillar manages the creation and state of all data, rendering,
 // layout, machine learning, logic, and state management subsystems.
 type CorePillar struct {
-	initialized bool
-	Scheduler   *QuantumScheduler
-	Reflect     *ReflectContext
-	Entities    *EntityManager
-	Bridge      *NativeBridge
-	Heap        *HeapPool
-	StateMap    *Map
-	Serializer  *StateSerializer
-	Settings    *Settings
+	initialized  bool
+	Scheduler    *QuantumScheduler
+	Reflect      *ReflectContext
+	Entities     *EntityManager
+	Bridge       *NativeBridge
+	Heap         *HeapPool
+	StateMap     *Map
+	Serializer   *StateSerializer
+	Settings     *Settings
+	StateMachine *StateMachine
 }
 
 // NewCorePillar creates a new instance of the CorePillar with foundational subsystems.
 func NewCorePillar() *CorePillar {
+	initialState := NewStateNode("Idle")
+	initialState.AddTransition("ACTIVATE", "Running")
+	runningState := NewStateNode("Running")
+	runningState.AddTransition("DEACTIVATE", "Idle")
+
+	sm := NewStateMachine(initialState)
+	sm.AddState(runningState)
+
 	return &CorePillar{
-		initialized: false,
-		Scheduler:   NewQuantumScheduler(16),
-		Reflect:     NewReflectContext(),
-		Entities:    NewEntityManager(),
-		Bridge:      NewNativeBridge(),
-		Heap:        NewHeapPool(4096),
-		StateMap:    NewMap(16),
-		Serializer:  NewStateSerializer(),
-		Settings:    NewSettings(),
+		initialized:  false,
+		Scheduler:    NewQuantumScheduler(16),
+		Reflect:      NewReflectContext(),
+		Entities:     NewEntityManager(),
+		Bridge:       NewNativeBridge(),
+		Heap:         NewHeapPool(4096),
+		StateMap:     NewMap(16),
+		Serializer:   NewStateSerializer(),
+		Settings:     NewSettings(),
+		StateMachine: sm,
 	}
 }
 
@@ -80,4 +90,9 @@ func (c *CorePillar) StateSerializer() *StateSerializer {
 // AppSettings returns the application configuration store.
 func (c *CorePillar) AppSettings() *Settings {
 	return c.Settings
+}
+
+// AppStateMachine returns the core state machine.
+func (c *CorePillar) AppStateMachine() *StateMachine {
+	return c.StateMachine
 }

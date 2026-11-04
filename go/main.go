@@ -47,6 +47,13 @@ func main() {
 	reflectCtx.SetProperty("system.cluster_state", "Healthy-Online")
 	reflectCtx.SetProperty("ui.active_theme", "Bgtk-Modern-Dark")
 
+	// Demonstrate StateMachine and Animation Interpolation
+	stateMachine := corePillar.AppStateMachine()
+	_, _ = stateMachine.PostEvent("ACTIVATE")
+
+	anim := core.NewPropertyAnimation(0.0, 100.0, 500)
+	anim.Step(250) // advance midpoint
+
 	// Demonstrate Ultimate++ NTL Vector, Map, Settings & Serialization
 	heapPool := corePillar.HeapPool()
 	slabBuffer := heapPool.Acquire()
@@ -184,6 +191,7 @@ func main() {
 	// Wire up the consolidated single-page dashboard
 	dashboard := visualPillar.SetupConsolidatedDashboard(serverManager, tray)
 	dashboard.Log("Consolidated single-page dashboard initialized successfully.")
+	dashboard.Log(fmt.Sprintf("Core StateMachine active (Current state: %q, %d states registered) & PropertyAnimation at %0.1f%%.", stateMachine.CurrentState(), stateMachine.StateCount(), anim.Current()))
 	dashboard.Log("2D Vector Graphics Canvas active (GraphicsContext, Color palette, Path strokes & fills).")
 	dashboard.Log(fmt.Sprintf("Application Settings configured (%d keys) & FileSystemWatcher active (%d paths monitored).", len(appSettings.AllKeys()), len(fsWatcher.WatchedPaths())))
 	dashboard.Log("Qt6 Event & Action subsystem initialized (Signal/Slot, QAction, QKeyEvent modifiers).")

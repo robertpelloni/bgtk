@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.1.5] - 2026-04-06
+### Added
+- **PropertyAnimation & StateMachine Subsystems (Go Core Pillar)**:
+  - `PropertyAnimation`: Interpolates float values over time (`bobgui/cpp/animation.hpp` and `QPropertyAnimation` parity) supporting discrete step advancement and live updates.
+  - `StateMachine` & `StateNode`: Hierarchical state transitions with event posting and enter/exit listeners (`bobguistate.h` and `QStateMachine` parity).
+  - Comprehensive unit test suites in `go/bobtk/core/animation_test.go` and `go/bobtk/core/state_machine_test.go`.
+
 ## [1.1.4] - 2026-04-06
 ### Added
 - **Canvas & 2D Vector Graphics Engine (Go Visual Pillar)**:
