@@ -26,6 +26,7 @@
 - Port NetworkAccessManager and SyncEngine into Go Network Pillar (v1.1.6).
 - Implement execution span profiling and diagnostic trace reporting in Go Tools Pillar (v1.1.8).
 - Implement Slider and CheckBox widget primitives in Go Visual Pillar (v1.1.9).
+- Implement SineOscillatorProcessor and LowPassFilterProcessor in Go Media Pillar (v1.2.0).
 
 ## Phase 4: UI and Frontend Expansion
 - Ensure every backend feature is extensively represented in the frontend UI.

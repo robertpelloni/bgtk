@@ -27,5 +27,6 @@
 - [x] Implement interactive global keyboard accelerator/shortcut dispatcher in Go Visual Pillar dashboard.
 - [x] Implement execution span profiling and diagnostic trace reporting in Go Tools Pillar (v1.1.8).
 - [x] Implement Slider and CheckBox widget primitives in Go Visual Pillar (v1.1.9).
+- [x] Implement SineOscillatorProcessor and LowPassFilterProcessor in Go Media Pillar (v1.2.0).
 - [ ] Research missing Qt6/Qt7 features compared to the current Bobtk C++ baseline.
 - [ ] Test and resolve any failing builds caused by renaming strings and paths (Meson wrap corruption).

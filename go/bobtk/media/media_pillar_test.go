@@ -54,3 +54,44 @@ func TestMidi2UMPBus(t *testing.T) {
 		t.Errorf("expected note 60, got %d", (receivedPkt.Word0>>8)&0xFF)
 	}
 }
+
+func TestSineOscillatorProcessor(t *testing.T) {
+	osc := NewSineOscillatorProcessor(440.0, 48000, 1.0)
+	buf := NewAudioBuffer(2, 128)
+
+	osc.ProcessBlock(buf)
+
+	// After synthesis, buffer should contain non-zero audio values
+	hasAudio := false
+	for i := 0; i < buf.NumSamples; i++ {
+		if buf.Data[0][i] != 0.0 {
+			hasAudio = true
+			break
+		}
+	}
+	if !hasAudio {
+		t.Errorf("expected synthesized sine wave in buffer")
+	}
+}
+
+func TestLowPassFilterProcessor(t *testing.T) {
+	lp := NewLowPassFilterProcessor(1000.0, 48000, 2)
+	buf := NewAudioBuffer(2, 64)
+
+	// Step input
+	for c := 0; c < 2; c++ {
+		for i := 0; i < 64; i++ {
+			buf.Data[c][i] = 1.0
+		}
+	}
+
+	lp.ProcessBlock(buf)
+
+	// Filtered step output should start below 1.0 and smoothly rise
+	if buf.Data[0][0] >= 1.0 {
+		t.Errorf("expected low-pass filter to attenuate initial step, got %f", buf.Data[0][0])
+	}
+	if buf.Data[0][63] <= buf.Data[0][0] {
+		t.Errorf("expected output to rise towards 1.0, but final was %f", buf.Data[0][63])
+	}
+}

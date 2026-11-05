@@ -1,7 +1,8 @@
-# Handoff Document - Bobtk Slider & CheckBox Widget Primitives (v1.1.9)
+# Handoff Document - Bobtk Audio DSP Synthesis & Filtering (v1.2.0)
 
 ## Current Status
-- Version bumped to `1.1.9` tracking global versioning governance.
+- Version bumped to `1.2.0` tracking global versioning governance.
+- Implemented `SineOscillatorProcessor` and `LowPassFilterProcessor` in Go Media Pillar (`go/bobtk/media/audio_graph.go`) with unit tests in `go/bobtk/media/media_pillar_test.go`.
 - Implemented `Slider` and `CheckBox` widget primitives in Go Visual Pillar (`go/bobtk/visual/widgets.go`) with clamping and toggling callbacks.
 - Added comprehensive unit tests in `go/bobtk/visual/layout_test.go` (`TestSliderWidget`, `TestCheckBoxWidget`).
 - Implemented execution span profiling (`Span`, `StartSpan`, `EndSpan`, `GetSpans`, `FormatTraceReport`) in Go Tools Pillar `PerformanceProfiler`.

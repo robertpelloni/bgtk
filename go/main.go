@@ -145,6 +145,8 @@ func main() {
 	syncEngine.TrackCursor("local-user", 240.0, 180.0)
 
 	audioGraph := mediaPillar.AudioGraph()
+	audioGraph.AddProcessor(media.NewSineOscillatorProcessor(440.0, 48000.0, 0.5))
+	audioGraph.AddProcessor(media.NewLowPassFilterProcessor(2000.0, 48000.0, 2))
 	audioGraph.AddProcessor(&media.GainProcessor{Gain: 0.85})
 	audioBuf := media.NewAudioBuffer(2, 256)
 	audioGraph.Process(audioBuf)

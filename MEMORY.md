@@ -21,3 +21,4 @@
 - **Server Telemetry & Keyboard Accelerators:** The single-page dashboard now incorporates `ServerTelemetry` metrics (CPU, memory, uptime, request counters), `LogSubscriber` dynamic log streaming, and an interactive global keyboard accelerator dispatcher (`RegisterShortcut` / `HandleKeyPress`) for unified system operations.
 - **Tools Pillar Execution Tracing:** `PerformanceProfiler` in `go/bobtk/tools/tools_pillar.go` provides fine-grained execution tracing through `StartSpan`, `EndSpan`, `GetSpans`, and `FormatTraceReport` (Sysprof parity).
 - **Qt6 Widget Set Parity:** In addition to `Button`, `Label`, `LineEdit`, and `ProgressBar`, the Visual pillar provides `Slider` (continuous/stepped clamped range selector) and `CheckBox` (binary toggle with label).
+- **JUCE DSP Parity:** Media pillar provides `SineOscillatorProcessor` (ToneGeneratorAudioProcessor parity) and `LowPassFilterProcessor` (IIRFilter parity) within `AudioGraph`.

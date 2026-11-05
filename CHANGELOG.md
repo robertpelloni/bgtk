@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.2.0] - 2026-04-06
+### Added
+- **Sine Oscillator & Low-Pass Filter DSP Processors (Go Media Pillar)**:
+  - `SineOscillatorProcessor`: Real-time sine wave synthesizer node with frequency, amplitude, and sample rate parameterization (`juce::ToneGeneratorAudioProcessor` parity).
+  - `LowPassFilterProcessor`: Single-pole IIR low-pass filtering node with cutoff frequency smoothing (`juce::IIRFilter` parity).
+  - Extended DSP pipeline in `go/bobtk/media/audio_graph.go` and verified in `go/main.go` and `go/bobtk/media/media_pillar_test.go`.
+
 ## [1.1.9] - 2026-04-06
 ### Added
 - **Slider & CheckBox Widget Primitives (Go Visual Pillar)**:
