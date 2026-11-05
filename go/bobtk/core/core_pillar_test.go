@@ -69,6 +69,24 @@ func TestReflectContextAndDynamicValue(t *testing.T) {
 	}
 }
 
+func TestQuantumSchedulerParallelFor(t *testing.T) {
+	qs := NewQuantumScheduler(8)
+	defer qs.Close()
+
+	n := 100
+	results := make([]int, n)
+
+	qs.ParallelFor(n, func(i int) {
+		results[i] = i * 2
+	})
+
+	for i := 0; i < n; i++ {
+		if results[i] != i*2 {
+			t.Errorf("expected results[%d]=%d, got %d", i, i*2, results[i])
+		}
+	}
+}
+
 func TestEntityManager(t *testing.T) {
 	em := NewEntityManager()
 

@@ -1,7 +1,8 @@
-# Handoff Document - Bobtk ComboBox & RadioButton Widget Primitives (v1.2.2)
+# Handoff Document - Bobtk ParallelFor Concurrency Dispatcher (v1.2.3)
 
 ## Current Status
-- Version bumped to `1.2.2` tracking global versioning governance.
+- Version bumped to `1.2.3` tracking global versioning governance.
+- Implemented `ParallelFor` concurrent iteration execution in Go Core Pillar (`go/bobtk/core/scheduler.go`) with unit tests in `go/bobtk/core/core_pillar_test.go`.
 - Implemented `ComboBox` and `RadioButton` widget primitives in Go Visual Pillar (`go/bobtk/visual/widgets.go`) with unit test coverage in `go/bobtk/visual/layout_test.go`.
 - Implemented `WebSocketSession` tracking and non-blocking cluster event `Broadcast` in Go Network Pillar (`go/bobtk/network/websocket.go`).
 - Added comprehensive unit tests in `go/bobtk/network/network_pillar_test.go` (`TestWebSocketHubClientSessionsAndBroadcast`).

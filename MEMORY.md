@@ -23,3 +23,4 @@
 - **Qt6 Widget Set Parity:** In addition to `Button`, `Label`, `LineEdit`, `ProgressBar`, `Slider`, and `CheckBox`, the Visual pillar provides `ComboBox` (item list dropdown selector) and `RadioButton` (mutually exclusive group selector).
 - **JUCE DSP Parity:** Media pillar provides `SineOscillatorProcessor` (ToneGeneratorAudioProcessor parity) and `LowPassFilterProcessor` (IIRFilter parity) within `AudioGraph`.
 - **WebSocket Cluster Broadcasting:** `WebSocketHub` in `go/bobtk/network/websocket.go` manages connected `WebSocketSession` peers with non-blocking per-client channels and broadcast dispatching.
+- **CoWork ParallelFor:** `QuantumScheduler` in `go/bobtk/core/scheduler.go` provides index-partitioned `ParallelFor` concurrent loops with completion barriers.

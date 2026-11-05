@@ -63,6 +63,25 @@ func (qs *QuantumScheduler) Wait() {
 	qs.wg.Wait()
 }
 
+// ParallelFor executes fn(i) across all indices 0..count-1 concurrently across workers (Ultimate++ CoWork::Do / QtConcurrent::map parity).
+func (qs *QuantumScheduler) ParallelFor(count int, fn func(i int)) {
+	if count <= 0 || fn == nil {
+		return
+	}
+	var forWg sync.WaitGroup
+	forWg.Add(count)
+
+	for i := 0; i < count; i++ {
+		idx := i
+		qs.Dispatch(func() {
+			defer forWg.Done()
+			fn(idx)
+		})
+	}
+
+	forWg.Wait()
+}
+
 // ExecutedCount returns the cumulative number of completed tasks.
 func (qs *QuantumScheduler) ExecutedCount() int64 {
 	return atomic.LoadInt64(&qs.executedTasks)

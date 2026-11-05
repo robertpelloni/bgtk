@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.2.3] - 2026-04-06
+### Added
+- **ParallelFor Concurrency Dispatcher (Go Core Pillar)**:
+  - `QuantumScheduler.ParallelFor`: Concurrent loop iteration distribution across worker routines with completion barriers (`upp::CoWork::Do` / `QtConcurrent::map` parity).
+  - Integrated into `go/main.go` and verified with unit test suite `TestQuantumSchedulerParallelFor` in `go/bobtk/core/core_pillar_test.go`.
+
 ## [1.2.2] - 2026-04-06
 ### Added
 - **ComboBox & RadioButton Widget Primitives (Go Visual Pillar)**:

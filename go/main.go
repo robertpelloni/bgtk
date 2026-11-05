@@ -103,6 +103,12 @@ func main() {
 	}
 	scheduler.Wait()
 
+	// Demonstrate ParallelFor concurrent loop execution (Ultimate++ CoWork::Do parity)
+	telemetryData := make([]float64, 64)
+	scheduler.ParallelFor(len(telemetryData), func(i int) {
+		telemetryData[i] = float64(i) * 1.5
+	})
+
 	// Initialize the Server Supervisor & System Tray
 	serverManager := system.NewServerManager()
 
