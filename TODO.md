@@ -33,5 +33,6 @@
 - [x] Implement ParallelFor loop execution in Go Core Pillar QuantumScheduler (v1.2.3).
 - [x] Implement server restart, start, and query operations in Go System Pillar ServerManager (v1.2.4).
 - [x] Implement project health check and environment diagnostic suite in tools/check_health.sh (v1.2.5).
+- [x] Implement TabWidget navigation container in Go Visual Pillar (v1.2.6).
 - [ ] Research missing Qt6/Qt7 features compared to the current Bobtk C++ baseline.
 - [ ] Test and resolve any failing builds caused by renaming strings and paths (Meson wrap corruption).

@@ -272,6 +272,83 @@ func (r *RadioButton) Select() {
 	}
 }
 
+// TabItem represents an individual titled page within a TabWidget.
+type TabItem struct {
+	Title   string
+	Content LayoutItem
+}
+
+// TabWidget manages multiple selectable pages with tab headers (QTabWidget parity).
+type TabWidget struct {
+	WidgetBase
+	tabs         []TabItem
+	currentIndex int
+	OnTabChanged func(index int, title string)
+}
+
+func NewTabWidget() *TabWidget {
+	return &TabWidget{
+		WidgetBase:   WidgetBase{minW: 200, minH: 150, visible: true, enabled: true},
+		tabs:         make([]TabItem, 0),
+		currentIndex: -1,
+	}
+}
+
+func (t *TabWidget) AddTab(content LayoutItem, title string) int {
+	t.mu.Lock()
+	idx := len(t.tabs)
+	t.tabs = append(t.tabs, TabItem{Title: title, Content: content})
+	if t.currentIndex == -1 {
+		t.currentIndex = 0
+	}
+	t.mu.Unlock()
+	return idx
+}
+
+func (t *TabWidget) SetCurrentIndex(idx int) {
+	t.mu.Lock()
+	if idx < 0 || idx >= len(t.tabs) {
+		t.mu.Unlock()
+		return
+	}
+	t.currentIndex = idx
+	title := t.tabs[idx].Title
+	cb := t.OnTabChanged
+	t.mu.Unlock()
+	if cb != nil {
+		cb(idx, title)
+	}
+}
+
+func (t *TabWidget) CurrentIndex() int {
+	t.mu.RLock()
+	defer t.mu.RUnlock()
+	return t.currentIndex
+}
+
+func (t *TabWidget) Count() int {
+	t.mu.RLock()
+	defer t.mu.RUnlock()
+	return len(t.tabs)
+}
+
+func (t *TabWidget) Layout(x, y, w, h int) {
+	t.mu.Lock()
+	defer t.mu.Unlock()
+	t.bounds = Rect{X: x, Y: y, W: w, H: h}
+
+	headerH := 30
+	contentY := y + headerH
+	contentH := h - headerH
+	if contentH < 0 {
+		contentH = 0
+	}
+
+	if t.currentIndex >= 0 && t.currentIndex < len(t.tabs) {
+		t.tabs[t.currentIndex].Content.SetGeometry(x, contentY, w, contentH)
+	}
+}
+
 func (c *CheckBox) Toggle() {
 	c.mu.Lock()
 	c.Checked = !c.Checked

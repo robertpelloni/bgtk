@@ -210,3 +210,40 @@ func TestRadioButtonWidget(t *testing.T) {
 		t.Errorf("expected radio button selected true")
 	}
 }
+
+func TestTabWidget(t *testing.T) {
+	tabWidget := NewTabWidget()
+	page1 := NewLabel("Page 1 Content")
+	page2 := NewLabel("Page 2 Content")
+
+	idx0 := tabWidget.AddTab(page1, "Overview")
+	idx1 := tabWidget.AddTab(page2, "Diagnostics")
+
+	if idx0 != 0 || idx1 != 1 || tabWidget.Count() != 2 {
+		t.Fatalf("unexpected tab indices or count: idx0=%d, idx1=%d, count=%d", idx0, idx1, tabWidget.Count())
+	}
+
+	tabWidget.Layout(0, 0, 400, 300)
+	g1 := page1.Geometry()
+	if g1.W != 400 || g1.H != 270 || g1.Y != 30 {
+		t.Errorf("expected page1 layout W=400, H=270, Y=30, got %+v", g1)
+	}
+
+	switchedIdx := -1
+	switchedTitle := ""
+	tabWidget.OnTabChanged = func(idx int, title string) {
+		switchedIdx = idx
+		switchedTitle = title
+	}
+
+	tabWidget.SetCurrentIndex(1)
+	if tabWidget.CurrentIndex() != 1 || switchedIdx != 1 || switchedTitle != "Diagnostics" {
+		t.Errorf("expected tab switched to 1, got %d %q", switchedIdx, switchedTitle)
+	}
+
+	tabWidget.Layout(0, 0, 400, 300)
+	g2 := page2.Geometry()
+	if g2.W != 400 || g2.H != 270 || g2.Y != 30 {
+		t.Errorf("expected page2 layout W=400, H=270, Y=30, got %+v", g2)
+	}
+}

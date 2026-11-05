@@ -224,7 +224,16 @@ func main() {
 	vbox.AddItem(telemetryToggle, 1)
 	vbox.AddItem(modeCombo, 1)
 	vbox.AddItem(radioHighPrio, 1)
-	vbox.Layout(0, 0, 400, 220)
+
+	// Demonstrate TabWidget (QTabWidget parity)
+	tabWidget := visual.NewTabWidget()
+	tabWidget.AddTab(titleLabel, "Primary")
+	tabWidget.AddTab(volumeSlider, "Audio Controls")
+	tabWidget.AddTab(modeCombo, "Environment Profiles")
+	tabWidget.Layout(0, 0, 400, 200)
+
+	vbox.AddItem(tabWidget, 3)
+	vbox.Layout(0, 0, 400, 300)
 
 	// Demonstrate FileSystemWatcher
 	fsWatcher := systemPillar.FileWatcher()

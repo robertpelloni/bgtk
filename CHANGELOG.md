@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.2.6] - 2026-04-06
+### Added
+- **TabWidget Navigation Container (Go Visual Pillar)**:
+  - `TabWidget`: Multi-page tabbed container supporting dynamic tab addition (`AddTab`), tab index switching (`SetCurrentIndex`), and `OnTabChanged` notification (`QTabWidget` parity).
+  - `TabItem`: Titled container binding page titles to active child widgets.
+  - Integrated into `go/main.go` and verified in `go/bobtk/visual/layout_test.go`.
+
 ## [1.2.5] - 2026-04-06
 ### Added
 - **Project Health & Environment Diagnostic Suite**:
