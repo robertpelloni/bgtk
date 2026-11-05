@@ -180,6 +180,12 @@ func main() {
 	progressBar := visual.NewProgressBar()
 	progressBar.SetValue(80)
 
+	volumeSlider := visual.NewSlider(visual.Horizontal)
+	volumeSlider.SetValue(75)
+
+	telemetryToggle := visual.NewCheckBox("Stream Telemetry Live")
+	telemetryToggle.SetChecked(true)
+
 	dashboardRefreshAction := visual.NewAction("Refresh Surfaces")
 	dashboardRefreshAction.SetShortcut("Ctrl+R")
 	dashboardRefreshAction.SetTooltip("Reload all visual rendering surfaces")
@@ -191,7 +197,9 @@ func main() {
 	vbox.AddItem(titleLabel, 1)
 	vbox.AddItem(actionBtn, 1)
 	vbox.AddItem(progressBar, 2)
-	vbox.Layout(0, 0, 400, 120)
+	vbox.AddItem(volumeSlider, 1)
+	vbox.AddItem(telemetryToggle, 1)
+	vbox.Layout(0, 0, 400, 160)
 
 	// Demonstrate FileSystemWatcher
 	fsWatcher := systemPillar.FileWatcher()

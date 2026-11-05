@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.1.9] - 2026-04-06
+### Added
+- **Slider & CheckBox Widget Primitives (Go Visual Pillar)**:
+  - `Slider`: Stepped/continuous value selector with orientation support (`Horizontal`, `Vertical`), range limits (`Minimum`, `Maximum`), boundary clamping, and `OnValueChanged` notification (QSlider parity).
+  - `CheckBox`: Toggleable option control with state tracking (`Checked`), interactive toggling (`Toggle`), and `OnToggled` notification (QCheckBox parity).
+  - Integrated `Slider` and `CheckBox` directly into `go/main.go` and verified with unit test suites in `go/bobtk/visual/layout_test.go`.
+
 ## [1.1.8] - 2026-04-06
 ### Added
 - **Subsystem Execution Span Profiling & Trace Reporting (Go Tools Pillar)**:

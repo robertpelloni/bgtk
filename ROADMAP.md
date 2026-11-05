@@ -25,6 +25,7 @@
 - Port PropertyAnimation and StateMachine architecture into Go Core Pillar (v1.1.5).
 - Port NetworkAccessManager and SyncEngine into Go Network Pillar (v1.1.6).
 - Implement execution span profiling and diagnostic trace reporting in Go Tools Pillar (v1.1.8).
+- Implement Slider and CheckBox widget primitives in Go Visual Pillar (v1.1.9).
 
 ## Phase 4: UI and Frontend Expansion
 - Ensure every backend feature is extensively represented in the frontend UI.

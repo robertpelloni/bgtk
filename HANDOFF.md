@@ -1,7 +1,9 @@
-# Handoff Document - Bobtk Execution Tracing & Diagnostic Profiler (v1.1.8)
+# Handoff Document - Bobtk Slider & CheckBox Widget Primitives (v1.1.9)
 
 ## Current Status
-- Version bumped to `1.1.8` tracking global versioning governance.
+- Version bumped to `1.1.9` tracking global versioning governance.
+- Implemented `Slider` and `CheckBox` widget primitives in Go Visual Pillar (`go/bobtk/visual/widgets.go`) with clamping and toggling callbacks.
+- Added comprehensive unit tests in `go/bobtk/visual/layout_test.go` (`TestSliderWidget`, `TestCheckBoxWidget`).
 - Implemented execution span profiling (`Span`, `StartSpan`, `EndSpan`, `GetSpans`, `FormatTraceReport`) in Go Tools Pillar `PerformanceProfiler`.
 - Integrated execution trace metrics into single-page dashboard operations and runner scripts.
 - Implemented real-time `ServerTelemetry` metrics (CPU, memory, uptime, request counters) and `LogSubscriber` live event streaming in the single-page dashboard.

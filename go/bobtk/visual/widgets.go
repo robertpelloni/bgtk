@@ -128,3 +128,80 @@ func (p *ProgressBar) SetValue(v int) {
 	}
 	p.Value = v
 }
+
+// Slider represents a draggable or stepped value selector (QSlider parity).
+type Slider struct {
+	WidgetBase
+	Value          int
+	Minimum        int
+	Maximum        int
+	Orientation    Orientation
+	OnValueChanged func(int)
+}
+
+func NewSlider(orientation Orientation) *Slider {
+	minW, minH := 100, 20
+	if orientation == Vertical {
+		minW, minH = 20, 100
+	}
+	return &Slider{
+		WidgetBase:  WidgetBase{minW: minW, minH: minH, visible: true, enabled: true},
+		Value:       0,
+		Minimum:     0,
+		Maximum:     100,
+		Orientation: orientation,
+	}
+}
+
+func (s *Slider) SetValue(v int) {
+	s.mu.Lock()
+	if v < s.Minimum {
+		v = s.Minimum
+	}
+	if v > s.Maximum {
+		v = s.Maximum
+	}
+	s.Value = v
+	cb := s.OnValueChanged
+	s.mu.Unlock()
+	if cb != nil {
+		cb(v)
+	}
+}
+
+// CheckBox represents a toggleable option with label (QCheckBox parity).
+type CheckBox struct {
+	WidgetBase
+	Text      string
+	Checked   bool
+	OnToggled func(bool)
+}
+
+func NewCheckBox(text string) *CheckBox {
+	return &CheckBox{
+		WidgetBase: WidgetBase{minW: 80, minH: 22, visible: true, enabled: true},
+		Text:       text,
+		Checked:    false,
+	}
+}
+
+func (c *CheckBox) SetChecked(checked bool) {
+	c.mu.Lock()
+	c.Checked = checked
+	cb := c.OnToggled
+	c.mu.Unlock()
+	if cb != nil {
+		cb(checked)
+	}
+}
+
+func (c *CheckBox) Toggle() {
+	c.mu.Lock()
+	c.Checked = !c.Checked
+	checked := c.Checked
+	cb := c.OnToggled
+	c.mu.Unlock()
+	if cb != nil {
+		cb(checked)
+	}
+}

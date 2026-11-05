@@ -132,3 +132,45 @@ func TestWidgetSignals(t *testing.T) {
 		t.Errorf("expected progress bar value 75, got %d", pbar.Value)
 	}
 }
+
+func TestSliderWidget(t *testing.T) {
+	slider := NewSlider(Horizontal)
+	changedVal := -1
+	slider.OnValueChanged = func(v int) {
+		changedVal = v
+	}
+
+	slider.SetValue(42)
+	if slider.Value != 42 || changedVal != 42 {
+		t.Errorf("expected slider value 42, got %d (cb: %d)", slider.Value, changedVal)
+	}
+
+	// Test clamping
+	slider.SetValue(150)
+	if slider.Value != 100 {
+		t.Errorf("expected upper bound clamp 100, got %d", slider.Value)
+	}
+
+	slider.SetValue(-20)
+	if slider.Value != 0 {
+		t.Errorf("expected lower bound clamp 0, got %d", slider.Value)
+	}
+}
+
+func TestCheckBoxWidget(t *testing.T) {
+	cb := NewCheckBox("Enable Telemetry")
+	toggled := false
+	cb.OnToggled = func(checked bool) {
+		toggled = checked
+	}
+
+	cb.SetChecked(true)
+	if !cb.Checked || !toggled {
+		t.Errorf("expected checkbox checked true")
+	}
+
+	cb.Toggle()
+	if cb.Checked || toggled {
+		t.Errorf("expected checkbox toggled to false")
+	}
+}
