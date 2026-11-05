@@ -1,7 +1,8 @@
-# Handoff Document - Bobtk WebSocket Session & Event Broadcast (v1.2.1)
+# Handoff Document - Bobtk ComboBox & RadioButton Widget Primitives (v1.2.2)
 
 ## Current Status
-- Version bumped to `1.2.1` tracking global versioning governance.
+- Version bumped to `1.2.2` tracking global versioning governance.
+- Implemented `ComboBox` and `RadioButton` widget primitives in Go Visual Pillar (`go/bobtk/visual/widgets.go`) with unit test coverage in `go/bobtk/visual/layout_test.go`.
 - Implemented `WebSocketSession` tracking and non-blocking cluster event `Broadcast` in Go Network Pillar (`go/bobtk/network/websocket.go`).
 - Added comprehensive unit tests in `go/bobtk/network/network_pillar_test.go` (`TestWebSocketHubClientSessionsAndBroadcast`).
 - Implemented `SineOscillatorProcessor` and `LowPassFilterProcessor` in Go Media Pillar (`go/bobtk/media/audio_graph.go`) with unit tests in `go/bobtk/media/media_pillar_test.go`.

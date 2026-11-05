@@ -174,3 +174,39 @@ func TestCheckBoxWidget(t *testing.T) {
 		t.Errorf("expected checkbox toggled to false")
 	}
 }
+
+func TestComboBoxWidget(t *testing.T) {
+	combo := NewComboBox()
+	combo.AddItem("Option Alpha")
+	combo.AddItem("Option Beta")
+	combo.AddItem("Option Gamma")
+
+	if combo.CurrentText() != "Option Alpha" {
+		t.Errorf("expected initial text 'Option Alpha', got %q", combo.CurrentText())
+	}
+
+	selectedIdx := -1
+	selectedVal := ""
+	combo.OnIndexChanged = func(idx int, val string) {
+		selectedIdx = idx
+		selectedVal = val
+	}
+
+	combo.SetCurrentIndex(2)
+	if combo.CurrentIndex != 2 || selectedIdx != 2 || selectedVal != "Option Gamma" {
+		t.Errorf("expected index 2 'Option Gamma', got %d %q", selectedIdx, selectedVal)
+	}
+}
+
+func TestRadioButtonWidget(t *testing.T) {
+	radio := NewRadioButton("High Precision", "AudioQualityGroup")
+	selected := false
+	radio.OnSelected = func() {
+		selected = true
+	}
+
+	radio.Select()
+	if !radio.Checked || !selected {
+		t.Errorf("expected radio button selected true")
+	}
+}

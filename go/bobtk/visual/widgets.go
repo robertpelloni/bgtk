@@ -195,6 +195,83 @@ func (c *CheckBox) SetChecked(checked bool) {
 	}
 }
 
+// ComboBox represents a drop-down menu / selector (QComboBox parity).
+type ComboBox struct {
+	WidgetBase
+	Items          []string
+	CurrentIndex   int
+	OnIndexChanged func(int, string)
+}
+
+func NewComboBox() *ComboBox {
+	return &ComboBox{
+		WidgetBase:   WidgetBase{minW: 120, minH: 26, visible: true, enabled: true},
+		Items:        make([]string, 0),
+		CurrentIndex: -1,
+	}
+}
+
+func (c *ComboBox) AddItem(item string) {
+	c.mu.Lock()
+	c.Items = append(c.Items, item)
+	if c.CurrentIndex == -1 {
+		c.CurrentIndex = 0
+	}
+	c.mu.Unlock()
+}
+
+func (c *ComboBox) SetCurrentIndex(idx int) {
+	c.mu.Lock()
+	if idx < 0 || idx >= len(c.Items) {
+		c.mu.Unlock()
+		return
+	}
+	c.CurrentIndex = idx
+	item := c.Items[idx]
+	cb := c.OnIndexChanged
+	c.mu.Unlock()
+	if cb != nil {
+		cb(idx, item)
+	}
+}
+
+func (c *ComboBox) CurrentText() string {
+	c.mu.RLock()
+	defer c.mu.RUnlock()
+	if c.CurrentIndex >= 0 && c.CurrentIndex < len(c.Items) {
+		return c.Items[c.CurrentIndex]
+	}
+	return ""
+}
+
+// RadioButton represents an exclusive selectable radio button (QRadioButton parity).
+type RadioButton struct {
+	WidgetBase
+	Text       string
+	GroupID    string
+	Checked    bool
+	OnSelected func()
+}
+
+func NewRadioButton(text, groupID string) *RadioButton {
+	return &RadioButton{
+		WidgetBase: WidgetBase{minW: 80, minH: 22, visible: true, enabled: true},
+		Text:       text,
+		GroupID:    groupID,
+		Checked:    false,
+	}
+}
+
+func (r *RadioButton) Select() {
+	r.mu.Lock()
+	r.Checked = true
+	cb := r.OnSelected
+	r.mu.Unlock()
+	if cb != nil {
+		cb()
+	}
+}
+
 func (c *CheckBox) Toggle() {
 	c.mu.Lock()
 	c.Checked = !c.Checked

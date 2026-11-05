@@ -192,6 +192,14 @@ func main() {
 	telemetryToggle := visual.NewCheckBox("Stream Telemetry Live")
 	telemetryToggle.SetChecked(true)
 
+	modeCombo := visual.NewComboBox()
+	modeCombo.AddItem("Production Profile")
+	modeCombo.AddItem("Diagnostic Trace")
+	modeCombo.AddItem("Simulation Sandbox")
+
+	radioHighPrio := visual.NewRadioButton("High Throughput", "PerformanceGroup")
+	radioHighPrio.Select()
+
 	dashboardRefreshAction := visual.NewAction("Refresh Surfaces")
 	dashboardRefreshAction.SetShortcut("Ctrl+R")
 	dashboardRefreshAction.SetTooltip("Reload all visual rendering surfaces")
@@ -205,7 +213,9 @@ func main() {
 	vbox.AddItem(progressBar, 2)
 	vbox.AddItem(volumeSlider, 1)
 	vbox.AddItem(telemetryToggle, 1)
-	vbox.Layout(0, 0, 400, 160)
+	vbox.AddItem(modeCombo, 1)
+	vbox.AddItem(radioHighPrio, 1)
+	vbox.Layout(0, 0, 400, 220)
 
 	// Demonstrate FileSystemWatcher
 	fsWatcher := systemPillar.FileWatcher()

@@ -29,5 +29,6 @@
 - [x] Implement Slider and CheckBox widget primitives in Go Visual Pillar (v1.1.9).
 - [x] Implement SineOscillatorProcessor and LowPassFilterProcessor in Go Media Pillar (v1.2.0).
 - [x] Implement WebSocketSession management and event broadcasting in Go Network Pillar (v1.2.1).
+- [x] Implement ComboBox and RadioButton widget primitives in Go Visual Pillar (v1.2.2).
 - [ ] Research missing Qt6/Qt7 features compared to the current Bobtk C++ baseline.
 - [ ] Test and resolve any failing builds caused by renaming strings and paths (Meson wrap corruption).

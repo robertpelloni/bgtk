@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.2.2] - 2026-04-06
+### Added
+- **ComboBox & RadioButton Widget Primitives (Go Visual Pillar)**:
+  - `ComboBox`: Drop-down selector supporting item registration, index tracking, text retrieval, and `OnIndexChanged` notifications (`QComboBox` parity).
+  - `RadioButton`: Mutually exclusive radio option supporting group identifiers, selection states, and `OnSelected` notifications (`QRadioButton` parity).
+  - Integrated into `go/main.go` and verified in `go/bobtk/visual/layout_test.go`.
+
 ## [1.2.1] - 2026-04-06
 ### Added
 - **WebSocket Session Management & Broadcasting (Go Network Pillar)**:
