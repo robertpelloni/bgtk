@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.2.5] - 2026-04-06
+### Added
+- **Project Health & Environment Diagnostic Suite**:
+  - `tools/check_health.sh`: Inspects availability and versions of Go toolchain, GCC, G++, Meson, and Ninja; evaluates submodule states; and runs Go test suites non-destructively.
+  - Enhanced `tools/run_dashboard.sh` with `--check-health` (`-c`) command-line flag to perform pre-flight diagnostics before booting the operations dashboard.
+
 ## [1.2.4] - 2026-04-06
 ### Added
 - **Server Start & Restart Operations (Go System Pillar)**:

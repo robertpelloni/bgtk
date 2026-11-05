@@ -11,6 +11,23 @@ echo "==========================================================================
 echo "Repository Root: ${REPO_ROOT}"
 echo "Current Time: $(date)"
 
+# Process command-line flags
+CHECK_HEALTH=0
+for arg in "$@"; do
+    case "${arg}" in
+        --check-health|-c)
+            CHECK_HEALTH=1
+            ;;
+    esac
+done
+
+if [ "${CHECK_HEALTH}" -eq 1 ]; then
+    echo ""
+    echo "Running Pre-flight Environment & Health Diagnostics..."
+    bash "${SCRIPT_DIR}/check_health.sh"
+    echo ""
+fi
+
 cd "${REPO_ROOT}/go"
 
 echo "Running Go Unit Tests..."

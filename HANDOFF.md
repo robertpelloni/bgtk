@@ -1,7 +1,9 @@
-# Handoff Document - Bobtk Server Start & Restart Lifecycle Operations (v1.2.4)
+# Handoff Document - Bobtk Health Check & Diagnostic Suite (v1.2.5)
 
 ## Current Status
-- Version bumped to `1.2.4` tracking global versioning governance.
+- Version bumped to `1.2.5` tracking global versioning governance.
+- Implemented `tools/check_health.sh` diagnostic suite monitoring toolchains, submodules, and Go test suites.
+- Enhanced `tools/run_dashboard.sh` with `--check-health` (`-c`) pre-flight diagnostics flag.
 - Implemented server start, restart, and lookup capabilities (`StartServer`, `RestartServer`, `GetServer`, `RegisterServerWithStart`) in Go System Pillar `ServerManager` (`go/bobtk/system/server_manager.go`).
 - Implemented `ParallelFor` concurrent iteration execution in Go Core Pillar (`go/bobtk/core/scheduler.go`) with unit tests in `go/bobtk/core/core_pillar_test.go`.
 - Implemented `ComboBox` and `RadioButton` widget primitives in Go Visual Pillar (`go/bobtk/visual/widgets.go`) with unit test coverage in `go/bobtk/visual/layout_test.go`.

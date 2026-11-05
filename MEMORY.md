@@ -25,3 +25,4 @@
 - **WebSocket Cluster Broadcasting:** `WebSocketHub` in `go/bobtk/network/websocket.go` manages connected `WebSocketSession` peers with non-blocking per-client channels and broadcast dispatching.
 - **CoWork ParallelFor:** `QuantumScheduler` in `go/bobtk/core/scheduler.go` provides index-partitioned `ParallelFor` concurrent loops with completion barriers.
 - **Server Process Control:** `ServerManager` in `go/bobtk/system/server_manager.go` provides comprehensive daemon lifecycle management including `StartServer`, `StopServer`, `RestartServer`, and `GetServer`.
+- **Environment Diagnostics:** `tools/check_health.sh` provides non-destructive pre-flight environment, toolchain, submodule, and test diagnostics, invokable directly or via `tools/run_dashboard.sh --check-health`.
