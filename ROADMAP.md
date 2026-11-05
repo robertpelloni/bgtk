@@ -30,6 +30,7 @@
 - Implement WebSocketSession management and event broadcasting in Go Network Pillar (v1.2.1).
 - Implement ComboBox and RadioButton widget primitives in Go Visual Pillar (v1.2.2).
 - Implement ParallelFor loop execution in Go Core Pillar QuantumScheduler (v1.2.3).
+- Implement server restart, start, and query operations in Go System Pillar ServerManager (v1.2.4).
 
 ## Phase 4: UI and Frontend Expansion
 - Ensure every backend feature is extensively represented in the frontend UI.

@@ -24,3 +24,4 @@
 - **JUCE DSP Parity:** Media pillar provides `SineOscillatorProcessor` (ToneGeneratorAudioProcessor parity) and `LowPassFilterProcessor` (IIRFilter parity) within `AudioGraph`.
 - **WebSocket Cluster Broadcasting:** `WebSocketHub` in `go/bobtk/network/websocket.go` manages connected `WebSocketSession` peers with non-blocking per-client channels and broadcast dispatching.
 - **CoWork ParallelFor:** `QuantumScheduler` in `go/bobtk/core/scheduler.go` provides index-partitioned `ParallelFor` concurrent loops with completion barriers.
+- **Server Process Control:** `ServerManager` in `go/bobtk/system/server_manager.go` provides comprehensive daemon lifecycle management including `StartServer`, `StopServer`, `RestartServer`, and `GetServer`.

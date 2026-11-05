@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [1.2.4] - 2026-04-06
+### Added
+- **Server Start & Restart Operations (Go System Pillar)**:
+  - `ServerManager.StartServer`: Starts an inactive or failed background daemon.
+  - `ServerManager.RestartServer`: Gracefully stops and reboots an active or stopped daemon.
+  - `ServerManager.GetServer`: Queries server status and configuration by ID.
+  - `RegisterServerWithStart`: Allows servers to supply both initialization and shutdown lifecycle hooks.
+  - Integrated into `go/main.go` via System Tray actions and verified in `go/bobtk/system/tray_test.go`.
+
 ## [1.2.3] - 2026-04-06
 ### Added
 - **ParallelFor Concurrency Dispatcher (Go Core Pillar)**:

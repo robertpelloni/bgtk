@@ -134,6 +134,9 @@ func main() {
 	tray.AddMenuItem("tray.stop_servers", "Stop Background Servers", "Gracefully shuts down all 3 registered background servers", func() {
 		serverManager.StopAllServers()
 	})
+	tray.AddMenuItem("tray.restart_broadway", "Restart Broadway Server", "Reboots HTML5 display server socket", func() {
+		_ = serverManager.RestartServer("broadway.server")
+	})
 	tray.AddSeparator()
 	tray.AddMenuItem("tray.quit", "Quit Dashboard and All Servers", "Halts all daemons and exits cleanly", func() {
 		tray.QuitApplication()

@@ -22,6 +22,7 @@ type ServerProcess struct {
 	Description string
 	Port        int
 	Status      ServerStatus
+	StartFn     func() error
 	StopFn      func() error
 }
 
@@ -41,6 +42,11 @@ func NewServerManager() *ServerManager {
 
 // RegisterServer registers a new server process for lifecycle monitoring.
 func (sm *ServerManager) RegisterServer(id, name, desc string, port int, stopFn func() error) *ServerProcess {
+	return sm.RegisterServerWithStart(id, name, desc, port, nil, stopFn)
+}
+
+// RegisterServerWithStart registers a new server process with both start and stop lifecycle handlers.
+func (sm *ServerManager) RegisterServerWithStart(id, name, desc string, port int, startFn func() error, stopFn func() error) *ServerProcess {
 	sm.mu.Lock()
 	defer sm.mu.Unlock()
 
@@ -50,10 +56,34 @@ func (sm *ServerManager) RegisterServer(id, name, desc string, port int, stopFn 
 		Description: desc,
 		Port:        port,
 		Status:      StatusRunning,
+		StartFn:     startFn,
 		StopFn:      stopFn,
 	}
 	sm.servers[id] = proc
 	return proc
+}
+
+// StartServer starts a stopped or error server process.
+func (sm *ServerManager) StartServer(id string) error {
+	sm.mu.Lock()
+	defer sm.mu.Unlock()
+
+	proc, ok := sm.servers[id]
+	if !ok {
+		return fmt.Errorf("server %q not found", id)
+	}
+	if proc.Status == StatusRunning {
+		return nil
+	}
+	proc.Status = StatusStarting
+	if proc.StartFn != nil {
+		if err := proc.StartFn(); err != nil {
+			proc.Status = StatusError
+			return err
+		}
+	}
+	proc.Status = StatusRunning
+	return nil
 }
 
 // StopServer stops a specific server by ID.
@@ -76,6 +106,33 @@ func (sm *ServerManager) StopServer(id string) error {
 	}
 	proc.Status = StatusStopped
 	return nil
+}
+
+// RestartServer gracefully restarts an active or stopped server.
+func (sm *ServerManager) RestartServer(id string) error {
+	sm.mu.Lock()
+	proc, ok := sm.servers[id]
+	sm.mu.Unlock()
+
+	if !ok {
+		return fmt.Errorf("server %q not found", id)
+	}
+
+	if proc.Status == StatusRunning {
+		if err := sm.StopServer(id); err != nil {
+			return fmt.Errorf("failed to stop %s during restart: %w", id, err)
+		}
+	}
+	return sm.StartServer(id)
+}
+
+// GetServer returns a single server process by ID.
+func (sm *ServerManager) GetServer(id string) (*ServerProcess, bool) {
+	sm.mu.RLock()
+	defer sm.mu.RUnlock()
+
+	proc, ok := sm.servers[id]
+	return proc, ok
 }
 
 // StopAllServers stops all active registered servers.

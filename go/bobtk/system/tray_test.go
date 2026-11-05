@@ -39,3 +39,40 @@ func TestServerManagerAndSystemTray(t *testing.T) {
 		t.Errorf("expected 0 running servers after quit, got %d", sm.RunningCount())
 	}
 }
+
+func TestServerManagerStartAndRestart(t *testing.T) {
+	sm := NewServerManager()
+	startCalls := 0
+	stopCalls := 0
+
+	sm.RegisterServerWithStart("daemon.alpha", "Alpha Daemon", "Background worker", 8888, func() error {
+		startCalls++
+		return nil
+	}, func() error {
+		stopCalls++
+		return nil
+	})
+
+	srv, ok := sm.GetServer("daemon.alpha")
+	if !ok || srv.Status != StatusRunning {
+		t.Fatalf("expected running daemon.alpha")
+	}
+
+	// Stop the server
+	err := sm.StopServer("daemon.alpha")
+	if err != nil || srv.Status != StatusStopped || stopCalls != 1 {
+		t.Fatalf("expected server stopped, status=%s, stopCalls=%d", srv.Status, stopCalls)
+	}
+
+	// Start the server
+	err = sm.StartServer("daemon.alpha")
+	if err != nil || srv.Status != StatusRunning || startCalls != 1 {
+		t.Fatalf("expected server running, status=%s, startCalls=%d", srv.Status, startCalls)
+	}
+
+	// Restart the server
+	err = sm.RestartServer("daemon.alpha")
+	if err != nil || srv.Status != StatusRunning || startCalls != 2 || stopCalls != 2 {
+		t.Fatalf("expected restart success, status=%s, starts=%d, stops=%d", srv.Status, startCalls, stopCalls)
+	}
+}
