@@ -22,3 +22,4 @@
 - **Tools Pillar Execution Tracing:** `PerformanceProfiler` in `go/bobtk/tools/tools_pillar.go` provides fine-grained execution tracing through `StartSpan`, `EndSpan`, `GetSpans`, and `FormatTraceReport` (Sysprof parity).
 - **Qt6 Widget Set Parity:** In addition to `Button`, `Label`, `LineEdit`, and `ProgressBar`, the Visual pillar provides `Slider` (continuous/stepped clamped range selector) and `CheckBox` (binary toggle with label).
 - **JUCE DSP Parity:** Media pillar provides `SineOscillatorProcessor` (ToneGeneratorAudioProcessor parity) and `LowPassFilterProcessor` (IIRFilter parity) within `AudioGraph`.
+- **WebSocket Cluster Broadcasting:** `WebSocketHub` in `go/bobtk/network/websocket.go` manages connected `WebSocketSession` peers with non-blocking per-client channels and broadcast dispatching.

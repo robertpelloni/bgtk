@@ -16,11 +16,19 @@ type RPCMessage struct {
 // RPCHandler handles an incoming RPC method call.
 type RPCHandler func(params json.RawMessage) (interface{}, error)
 
+// WebSocketSession represents a connected WebSocket/IPC client session.
+type WebSocketSession struct {
+	ID         string
+	RemoteAddr string
+	SendQueue  chan string
+}
+
 // WebSocketHub handles bidirectional JSON-RPC messaging between distributed Bobtk nodes.
 type WebSocketHub struct {
 	mu       sync.RWMutex
 	port     int
 	handlers map[string]RPCHandler
+	clients  map[string]*WebSocketSession
 	running  bool
 }
 
@@ -32,7 +40,52 @@ func NewWebSocketHub(port int) *WebSocketHub {
 	return &WebSocketHub{
 		port:     port,
 		handlers: make(map[string]RPCHandler),
+		clients:  make(map[string]*WebSocketSession),
 	}
+}
+
+// RegisterClient adds a client session to the hub.
+func (hub *WebSocketHub) RegisterClient(id, remoteAddr string) *WebSocketSession {
+	hub.mu.Lock()
+	defer hub.mu.Unlock()
+	sess := &WebSocketSession{
+		ID:         id,
+		RemoteAddr: remoteAddr,
+		SendQueue:  make(chan string, 16),
+	}
+	hub.clients[id] = sess
+	return sess
+}
+
+// UnregisterClient removes a client session from the hub.
+func (hub *WebSocketHub) UnregisterClient(id string) {
+	hub.mu.Lock()
+	defer hub.mu.Unlock()
+	sess, ok := hub.clients[id]
+	if ok {
+		close(sess.SendQueue)
+		delete(hub.clients, id)
+	}
+}
+
+// Broadcast sends a message to all connected client sessions.
+func (hub *WebSocketHub) Broadcast(msg string) {
+	hub.mu.RLock()
+	defer hub.mu.RUnlock()
+	for _, sess := range hub.clients {
+		select {
+		case sess.SendQueue <- msg:
+		default:
+			// Non-blocking drop if client buffer is full
+		}
+	}
+}
+
+// ClientCount returns the number of active sessions.
+func (hub *WebSocketHub) ClientCount() int {
+	hub.mu.RLock()
+	defer hub.mu.RUnlock()
+	return len(hub.clients)
 }
 
 // RegisterHandler binds an RPC method name to a handler function.

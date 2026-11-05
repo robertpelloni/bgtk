@@ -27,6 +27,7 @@
 - Implement execution span profiling and diagnostic trace reporting in Go Tools Pillar (v1.1.8).
 - Implement Slider and CheckBox widget primitives in Go Visual Pillar (v1.1.9).
 - Implement SineOscillatorProcessor and LowPassFilterProcessor in Go Media Pillar (v1.2.0).
+- Implement WebSocketSession management and event broadcasting in Go Network Pillar (v1.2.1).
 
 ## Phase 4: UI and Frontend Expansion
 - Ensure every backend feature is extensively represented in the frontend UI.

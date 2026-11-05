@@ -63,3 +63,39 @@ func TestWebSocketHubDispatch(t *testing.T) {
 		t.Errorf("expected ECHO:HelloWorld, got %v", parsed["result"])
 	}
 }
+
+func TestWebSocketHubClientSessionsAndBroadcast(t *testing.T) {
+	hub := NewWebSocketHub(9090)
+
+	sess1 := hub.RegisterClient("client-1", "127.0.0.1:50001")
+	sess2 := hub.RegisterClient("client-2", "127.0.0.1:50002")
+
+	if hub.ClientCount() != 2 {
+		t.Errorf("expected 2 active clients, got %d", hub.ClientCount())
+	}
+
+	hub.Broadcast("STATE_SYNC_UPDATE")
+
+	select {
+	case msg := <-sess1.SendQueue:
+		if msg != "STATE_SYNC_UPDATE" {
+			t.Errorf("unexpected message for sess1: %s", msg)
+		}
+	default:
+		t.Errorf("expected message in sess1 send queue")
+	}
+
+	select {
+	case msg := <-sess2.SendQueue:
+		if msg != "STATE_SYNC_UPDATE" {
+			t.Errorf("unexpected message for sess2: %s", msg)
+		}
+	default:
+		t.Errorf("expected message in sess2 send queue")
+	}
+
+	hub.UnregisterClient("client-1")
+	if hub.ClientCount() != 1 {
+		t.Errorf("expected 1 active client after unregistering client-1, got %d", hub.ClientCount())
+	}
+}

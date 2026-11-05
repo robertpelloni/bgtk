@@ -137,6 +137,10 @@ func main() {
 	broadway := networkPillar.Gateway()
 	_ = broadway.RegisterClient("demo-client-1", "127.0.0.1")
 
+	wsHub := networkPillar.Hub()
+	wsHub.RegisterClient("ws-peer-1", "127.0.0.1:54321")
+	wsHub.Broadcast("{\"event\":\"CLUSTER_SYNC\",\"state\":\"ACTIVE\"}")
+
 	httpMgr := networkPillar.HTTPManager()
 	_ = httpMgr.Get("https://api.bobtk.org/v1/health")
 

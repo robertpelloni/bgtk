@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.2.1] - 2026-04-06
+### Added
+- **WebSocket Session Management & Broadcasting (Go Network Pillar)**:
+  - `WebSocketSession`: Connected client session structure with per-session non-blocking outbound send queues.
+  - `WebSocketHub` extensions: `RegisterClient`, `UnregisterClient`, `Broadcast`, and `ClientCount` for real-time cluster state and UI event distribution.
+  - Integrated into `go/main.go` and verified in `go/bobtk/network/network_pillar_test.go`.
+
 ## [1.2.0] - 2026-04-06
 ### Added
 - **Sine Oscillator & Low-Pass Filter DSP Processors (Go Media Pillar)**:
