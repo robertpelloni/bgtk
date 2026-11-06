@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [1.3.5] - 2026-04-06
+### Added
+- **FastMutex & ReadWriteSpinLock Concurrency Primitives (Go Core Pillar)**:
+  - `FastMutex`: User-space spinlock with progressive backoff and CPU yielding (`upp::SpinLock` and `juce::SpinLock` parity).
+  - `ReadWriteSpinLock`: Multi-reader single-writer spinlock (`juce::ReadWriteLock` and `upp::RWMutex` parity).
+  - Comprehensive unit test suite in `go/bobtk/core/sync_test.go` verifying high contention under concurrent goroutines.
+  - Demonstrated in `go/main.go` and verified in single-page dashboard operations.
+
 ## [1.3.4] - 2026-04-06
 ### Added
 - **RingBuffer Concurrent FIFO Queue (Go Core Pillar)**:

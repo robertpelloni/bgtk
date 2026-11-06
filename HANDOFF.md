@@ -1,7 +1,9 @@
-# Handoff Document - Bobtk RingBuffer Concurrent FIFO Queue (v1.3.4)
+# Handoff Document - Bobtk Fast Concurrency Primitives (v1.3.5)
 
 ## Current Status
-- Version bumped to `1.3.4` tracking global versioning governance.
+- Version bumped to `1.3.5` tracking global versioning governance.
+- Implemented `FastMutex` user-space spinlock and `ReadWriteSpinLock` multi-reader single-writer spinlock in Go Core Pillar (`go/bobtk/core/sync.go`) achieving `upp::SpinLock` and `juce::SpinLock`/`ReadWriteLock` parity.
+- Verified concurrency primitives with unit test suite `TestFastMutexLockUnlock`, `TestFastMutexTryLock`, and `TestReadWriteSpinLockConcurrentReadersWriters` in `go/bobtk/core/sync_test.go` and demonstrated in `go/main.go`.
 - Implemented `RingBuffer[T]` thread-safe circular FIFO queue in Go Core Pillar (`go/bobtk/core/ring_buffer.go`) achieving `juce::AbstractFifo` and Ultimate++ `BiVector` stream buffer parity with non-blocking try-push/pop and timed blocking push/pop.
 - Verified RingBuffer with unit test suite `TestRingBufferPushPop`, `TestRingBufferTryPushTryPopFullEmpty`, and `TestRingBufferConcurrentProducersConsumers` in `go/bobtk/core/ring_buffer_test.go` and demonstrated live queuing in `go/main.go`.
 - Implemented `BinaryPack` and `BinaryUnpack` binary stream serialization in Go Core Pillar (`go/bobtk/core/serializer.go`) achieving `upp::Stream` and `QDataStream` parity with little-endian packing.

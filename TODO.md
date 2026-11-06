@@ -42,5 +42,6 @@
 - [x] Implement Splitter container layout in Go Visual Pillar (v1.3.2).
 - [x] Implement Binary Stream Serialization in Go Core Pillar (v1.3.3).
 - [x] Implement RingBuffer concurrent FIFO data structure in Go Core Pillar (v1.3.4).
+- [x] Implement FastMutex and ReadWriteSpinLock concurrency primitives in Go Core Pillar (v1.3.5).
 - [ ] Research missing Qt6/Qt7 features compared to the current Bobtk C++ baseline.
 - [ ] Test and resolve any remaining failing builds caused by renaming strings and paths (Meson wrap corruption).

@@ -96,6 +96,15 @@ func main() {
 	_ = ringBuffer.TryPush("packet-audio-frame")
 	_ = ringBuffer.TryPush("packet-telemetry-tick")
 
+	// FastMutex & ReadWriteSpinLock Demonstration (U++ SpinLock / JUCE ReadWriteLock parity)
+	fastMutex := core.NewFastMutex()
+	fastMutex.Lock()
+	fastMutex.Unlock()
+
+	rwSpinLock := core.NewReadWriteSpinLock()
+	rwSpinLock.RLock()
+	rwSpinLock.RUnlock()
+
 	appSettings := corePillar.AppSettings()
 	appSettings.SetValue("runtime.telemetry_interval_ms", 50)
 	appSettings.SetValue("ui.single_page_mode", true)
@@ -325,6 +334,7 @@ func main() {
 	dashboard.Log(fmt.Sprintf("Ultimate++ NTL Heap Pool active (%d bytes/slab, %d active chunks), Vector (%d items), & Map (%d keys).", heapPool.ChunkSize(), heapPool.ActiveChunks(), vectorContainer.GetCount(), stateMap.GetCount()))
 	dashboard.Log(fmt.Sprintf("Ultimate++ NTL Binary Stream Serialization verified: %d bytes packed, unpacked magic: 0x%X (weight: %0.2f).", len(binaryStatePayload), unpackedMagic, unpackedWeight))
 	dashboard.Log(fmt.Sprintf("RingBuffer concurrent FIFO active (Capacity: %d, Queued: %d items, Empty: %t, Full: %t).", ringBuffer.Capacity(), ringBuffer.Len(), ringBuffer.IsEmpty(), ringBuffer.IsFull()))
+	dashboard.Log("User-space FastMutex & ReadWriteSpinLock concurrency primitives active (zero-syscall contention backoff).")
 	dashboard.Log("Qt6 Parity Layout Engine & Widgets initialized (QHBoxLayout, QVBoxLayout, QGridLayout, QStackedLayout).")
 	dashboard.Log(fmt.Sprintf("JUCE Component hierarchy nested (%d children) and precision Timer active (%d ms interval).", rootComp.NumChildComponents(), telemetryTimer.GetTimerInterval()))
 	dashboard.Log(fmt.Sprintf("Native C/C++ Runtime Bridge active (%s mode, %d live handles registered, %d events synced).", bridge.Mode(), bridge.ActiveHandleCount(), bridge.EventCount()))
