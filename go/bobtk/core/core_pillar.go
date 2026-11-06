@@ -96,3 +96,8 @@ func (c *CorePillar) AppSettings() *Settings {
 func (c *CorePillar) AppStateMachine() *StateMachine {
 	return c.StateMachine
 }
+
+// NewRingBuffer creates a thread-safe circular FIFO buffer of specified capacity.
+func (c *CorePillar) NewRingBuffer(capacity int) *RingBuffer[interface{}] {
+	return NewRingBuffer[interface{}](capacity)
+}

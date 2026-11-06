@@ -31,3 +31,4 @@
 - **Clipboard Subsystem:** `SystemPillar` provides thread-safe clipboard abstraction (`go/bobtk/system/clipboard.go`) with change notifications and clearing operations.
 - **Instruction Governance:** Synchronized `CLAUDE.md`, `GEMINI.md`, `GPT.md`, and `copilot-instructions.md` with explicit 6-pillar framework directives, single-page dashboard standards, system tray & server supervisor controls, and pre-flight diagnostics tooling.
 - **Binary Stream Serialization:** `StateSerializer` in `go/bobtk/core/serializer.go` provides `BinaryPack` and `BinaryUnpack` for high-throughput fixed-size binary streaming (`upp::Stream` and `QDataStream` parity).
+- **RingBuffer FIFO Queue:** `RingBuffer[T]` in `go/bobtk/core/ring_buffer.go` provides a thread-safe circular FIFO buffer with non-blocking try-push/pop, timed blocking push/pop, and channel-like graceful shutdown (`juce::AbstractFifo` and U++ stream parity).

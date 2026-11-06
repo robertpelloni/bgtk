@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [1.3.4] - 2026-04-06
+### Added
+- **RingBuffer Concurrent FIFO Queue (Go Core Pillar)**:
+  - `RingBuffer[T]`: Thread-safe generic circular FIFO buffer inspired by `juce::AbstractFifo` and Ultimate++ `BiVector` stream buffers.
+  - Implemented non-blocking `TryPush`/`TryPop`, condition-variable backed blocking `Push`/`Pop` with timeouts, capacity queries (`Capacity`, `Len`, `IsFull`, `IsEmpty`), `Clear`, and graceful channel shutdown via `Close`.
+  - Added constructor `NewRingBuffer[T]` and exposed through `CorePillar.NewRingBuffer`.
+  - Comprehensive unit test suite in `go/bobtk/core/ring_buffer_test.go` verifying concurrent producers and consumers.
+
 ## [1.3.3] - 2026-04-06
 ### Added
 - **Binary Stream Serialization (Go Core Pillar)**:

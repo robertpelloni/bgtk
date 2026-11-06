@@ -1,7 +1,9 @@
-# Handoff Document - Bobtk Binary Stream Serialization (v1.3.3)
+# Handoff Document - Bobtk RingBuffer Concurrent FIFO Queue (v1.3.4)
 
 ## Current Status
-- Version bumped to `1.3.3` tracking global versioning governance.
+- Version bumped to `1.3.4` tracking global versioning governance.
+- Implemented `RingBuffer[T]` thread-safe circular FIFO queue in Go Core Pillar (`go/bobtk/core/ring_buffer.go`) achieving `juce::AbstractFifo` and Ultimate++ `BiVector` stream buffer parity with non-blocking try-push/pop and timed blocking push/pop.
+- Verified RingBuffer with unit test suite `TestRingBufferPushPop`, `TestRingBufferTryPushTryPopFullEmpty`, and `TestRingBufferConcurrentProducersConsumers` in `go/bobtk/core/ring_buffer_test.go` and demonstrated live queuing in `go/main.go`.
 - Implemented `BinaryPack` and `BinaryUnpack` binary stream serialization in Go Core Pillar (`go/bobtk/core/serializer.go`) achieving `upp::Stream` and `QDataStream` parity with little-endian packing.
 - Verified binary stream serialization with unit test suite `TestBinaryStreamSerialization` in `go/bobtk/core/map_test.go` and integrated live demonstration into `go/main.go`.
 - Implemented `Splitter` multi-widget partitioned container in Go Visual Pillar (`go/bobtk/visual/widgets.go`) with proportional partition geometry calculations, verified in `go/bobtk/visual/layout_test.go`.
