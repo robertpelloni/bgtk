@@ -1,7 +1,8 @@
-# Handoff Document - Bobtk Sysprof Wrap & Option Restoration (v1.2.9)
+# Handoff Document - Bobtk Clipboard Subsystem (v1.3.0)
 
 ## Current Status
-- Version bumped to `1.2.9` tracking global versioning governance.
+- Version bumped to `1.3.0` tracking global versioning governance.
+- Implemented thread-safe `Clipboard` in Go System Pillar (`go/bobtk/system/clipboard.go`) with `GetText`, `SetText`, `Clear`, and `AddListener`.
 - Corrected sysprof subproject default options in `meson.build` from `bobgui=false` back to `gtk=false` and defined `sysprof` feature option in `meson_options.txt`.
 - Implemented `NewNoteOff`, `NewControlChange`, and `UMPPacket.Channel` in Go Media Pillar (`go/bobtk/media/midi.go`) with unit test coverage in `go/bobtk/media/media_pillar_test.go`.
 - Implemented `DelayProcessor` circular buffer delay line in Go Media Pillar (`go/bobtk/media/audio_graph.go`) with feedback and mix parameterization, verified in `go/bobtk/media/media_pillar_test.go`.

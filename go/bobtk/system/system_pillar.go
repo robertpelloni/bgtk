@@ -8,15 +8,17 @@ type SystemPillar struct {
 	Servers     *ServerManager
 	Tray        *SystemTray
 	FSWatcher   *FileSystemWatcher
+	ClipboardMgr *Clipboard
 }
 
 func NewSystemPillar() *SystemPillar {
 	sm := NewServerManager()
 	return &SystemPillar{
-		initialized: false,
-		Servers:     sm,
-		Tray:        NewSystemTray("utilities-system-monitor", sm),
-		FSWatcher:   NewFileSystemWatcher(),
+		initialized:  false,
+		Servers:      sm,
+		Tray:         NewSystemTray("utilities-system-monitor", sm),
+		FSWatcher:    NewFileSystemWatcher(),
+		ClipboardMgr: NewClipboard(),
 	}
 }
 
@@ -39,4 +41,8 @@ func (s *SystemPillar) SystemTray() *SystemTray {
 
 func (s *SystemPillar) FileWatcher() *FileSystemWatcher {
 	return s.FSWatcher
+}
+
+func (s *SystemPillar) Clipboard() *Clipboard {
+	return s.ClipboardMgr
 }

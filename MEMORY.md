@@ -28,3 +28,4 @@
 - **Server Process Control:** `ServerManager` in `go/bobtk/system/server_manager.go` provides comprehensive daemon lifecycle management including `StartServer`, `StopServer`, `RestartServer`, and `GetServer`.
 - **Environment Diagnostics:** `tools/check_health.sh` provides non-destructive pre-flight environment, toolchain, submodule, and test diagnostics, invokable directly or via `tools/run_dashboard.sh --check-health`.
 - **Sysprof Subproject Wrap:** Corrected `gtk=false` in `meson.build` default_options for `libsysprof_capture_dep` and defined the `sysprof` feature option in `meson_options.txt`.
+- **Clipboard Subsystem:** `SystemPillar` provides thread-safe clipboard abstraction (`go/bobtk/system/clipboard.go`) with change notifications and clearing operations.

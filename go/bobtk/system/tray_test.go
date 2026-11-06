@@ -76,3 +76,28 @@ func TestServerManagerStartAndRestart(t *testing.T) {
 		t.Fatalf("expected restart success, status=%s, starts=%d, stops=%d", srv.Status, startCalls, stopCalls)
 	}
 }
+
+func TestClipboardOperations(t *testing.T) {
+	cb := NewClipboard()
+
+	if cb.GetText() != "" {
+		t.Errorf("expected empty initial clipboard, got %q", cb.GetText())
+	}
+
+	listenerCalled := false
+	notifiedText := ""
+	cb.AddListener(func(txt string) {
+		listenerCalled = true
+		notifiedText = txt
+	})
+
+	cb.SetText("Sample Clipboard Payload")
+	if cb.GetText() != "Sample Clipboard Payload" || !listenerCalled || notifiedText != "Sample Clipboard Payload" {
+		t.Errorf("unexpected clipboard text or listener result: %q (notified: %q)", cb.GetText(), notifiedText)
+	}
+
+	cb.Clear()
+	if cb.GetText() != "" {
+		t.Errorf("expected empty clipboard after clear, got %q", cb.GetText())
+	}
+}

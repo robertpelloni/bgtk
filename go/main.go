@@ -238,10 +238,13 @@ func main() {
 	vbox.AddItem(tabWidget, 3)
 	vbox.Layout(0, 0, 400, 300)
 
-	// Demonstrate FileSystemWatcher
+	// Demonstrate FileSystemWatcher & Clipboard
 	fsWatcher := systemPillar.FileWatcher()
 	_ = fsWatcher.AddPath("/app/dashboard.ini")
 	fsWatcher.TriggerEvent("/app/dashboard.ini", "RELOAD")
+
+	clipboard := systemPillar.Clipboard()
+	clipboard.SetText("bgtk-auth-token-example")
 
 	// Wire up the consolidated single-page dashboard
 	dashboard := visualPillar.SetupConsolidatedDashboard(serverManager, tray)

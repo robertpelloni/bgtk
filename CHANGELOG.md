@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.3.0] - 2026-04-06
+### Added
+- **Clipboard Subsystem (Go System Pillar)**:
+  - `Clipboard`: Thread-safe cross-platform clipboard abstraction (`QClipboard` and `GtkClipboard` parity) with `GetText`, `SetText`, `Clear`, and `AddListener`.
+  - Exposed via `SystemPillar.Clipboard()` and integrated into `go/main.go`.
+  - Comprehensive unit test `TestClipboardOperations` in `go/bobtk/system/tray_test.go`.
+
 ## [1.2.9] - 2026-04-06
 ### Fixed
 - **Meson Build System & Sysprof Subproject Dependency**:
