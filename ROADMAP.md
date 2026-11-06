@@ -37,6 +37,7 @@
 - Implement MIDI 2.0 NoteOff and ControlChange packet generators in Go Media Pillar (v1.2.8).
 - Resolve sysprof subproject build and wrap configuration options in Meson (v1.2.9).
 - Implement thread-safe Clipboard subsystem in Go System Pillar (v1.3.0).
+- Harmonize agent-specific instructions and autonomous governance guidelines (v1.3.1).
 
 ## Phase 4: UI and Frontend Expansion
 - Ensure every backend feature is extensively represented in the frontend UI.

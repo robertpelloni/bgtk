@@ -1,7 +1,8 @@
-# Handoff Document - Bobtk Clipboard Subsystem (v1.3.0)
+# Handoff Document - Bobtk Agent Instruction Harmonization (v1.3.1)
 
 ## Current Status
-- Version bumped to `1.3.0` tracking global versioning governance.
+- Version bumped to `1.3.1` tracking global versioning governance.
+- Harmonized and updated model-specific instruction files (`CLAUDE.md`, `GEMINI.md`, `GPT.md`, `copilot-instructions.md`) to guide future autonomous agent iterations across 6-pillar parity, consolidated single-page dashboard architecture, and system tray server management.
 - Implemented thread-safe `Clipboard` in Go System Pillar (`go/bobtk/system/clipboard.go`) with `GetText`, `SetText`, `Clear`, and `AddListener`.
 - Corrected sysprof subproject default options in `meson.build` from `bobgui=false` back to `gtk=false` and defined `sysprof` feature option in `meson_options.txt`.
 - Implemented `NewNoteOff`, `NewControlChange`, and `UMPPacket.Channel` in Go Media Pillar (`go/bobtk/media/midi.go`) with unit test coverage in `go/bobtk/media/media_pillar_test.go`.

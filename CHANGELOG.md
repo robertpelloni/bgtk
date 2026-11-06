@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## [1.3.1] - 2026-04-06
+### Documentation
+- **Agent-Specific Instruction Harmonization**:
+  - Synchronized `CLAUDE.md`, `GEMINI.md`, `GPT.md`, and `copilot-instructions.md` with current 6-pillar framework directives, single-page dashboard standards, system tray & server supervisor controls, and pre-flight diagnostics tooling.
+
 ## [1.3.0] - 2026-04-06
 ### Added
 - **Clipboard Subsystem (Go System Pillar)**:
