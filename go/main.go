@@ -160,6 +160,7 @@ func main() {
 	audioGraph := mediaPillar.AudioGraph()
 	audioGraph.AddProcessor(media.NewSineOscillatorProcessor(440.0, 48000.0, 0.5))
 	audioGraph.AddProcessor(media.NewLowPassFilterProcessor(2000.0, 48000.0, 2))
+	audioGraph.AddProcessor(media.NewDelayProcessor(2400, 0.3, 0.4, 2))
 	audioGraph.AddProcessor(&media.GainProcessor{Gain: 0.85})
 	audioBuf := media.NewAudioBuffer(2, 256)
 	audioGraph.Process(audioBuf)

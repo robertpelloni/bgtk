@@ -95,3 +95,24 @@ func TestLowPassFilterProcessor(t *testing.T) {
 		t.Errorf("expected output to rise towards 1.0, but final was %f", buf.Data[0][63])
 	}
 }
+
+func TestDelayProcessor(t *testing.T) {
+	delaySamples := 16
+	delay := NewDelayProcessor(delaySamples, 0.5, 0.5, 2)
+
+	buf1 := NewAudioBuffer(2, delaySamples)
+	buf1.Data[0][0] = 1.0 // Impulse in first sample
+
+	delay.ProcessBlock(buf1)
+	if buf1.Data[0][0] != 0.5 { // 1.0 * (1 - mix) + 0.0 * mix = 0.5
+		t.Errorf("expected dry sample attenuated by mix to 0.5, got %f", buf1.Data[0][0])
+	}
+
+	// Next block should receive the delayed echo at sample index 0
+	buf2 := NewAudioBuffer(2, delaySamples)
+	delay.ProcessBlock(buf2)
+
+	if buf2.Data[0][0] != 0.5 { // 0.0 * (1 - mix) + 1.0 * mix = 0.5
+		t.Errorf("expected delayed echo at sample 0 of buf2 to be 0.5, got %f", buf2.Data[0][0])
+	}
+}

@@ -1,7 +1,8 @@
-# Handoff Document - Bobtk TabWidget Navigation Container (v1.2.6)
+# Handoff Document - Bobtk DelayProcessor Circular Buffer DSP (v1.2.7)
 
 ## Current Status
-- Version bumped to `1.2.6` tracking global versioning governance.
+- Version bumped to `1.2.7` tracking global versioning governance.
+- Implemented `DelayProcessor` circular buffer delay line in Go Media Pillar (`go/bobtk/media/audio_graph.go`) with feedback and mix parameterization, verified in `go/bobtk/media/media_pillar_test.go`.
 - Implemented `TabWidget` and `TabItem` multi-page navigation container in Go Visual Pillar (`go/bobtk/visual/widgets.go`) with unit test coverage in `go/bobtk/visual/layout_test.go`.
 - Implemented `tools/check_health.sh` diagnostic suite monitoring toolchains, submodules, and Go test suites.
 - Enhanced `tools/run_dashboard.sh` with `--check-health` (`-c`) pre-flight diagnostics flag.

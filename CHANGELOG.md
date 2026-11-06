@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.2.7] - 2026-04-06
+### Added
+- **Circular Buffer Delay DSP Processor (Go Media Pillar)**:
+  - `DelayProcessor`: Multi-channel circular buffer delay line with parameterized feedback and wet/dry mix controls (`juce::dsp::DelayLine` parity).
+  - Integrated into `AudioGraph` processing chain in `go/main.go` and verified in `go/bobtk/media/media_pillar_test.go`.
+
 ## [1.2.6] - 2026-04-06
 ### Added
 - **TabWidget Navigation Container (Go Visual Pillar)**:

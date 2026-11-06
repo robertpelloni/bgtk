@@ -128,6 +128,55 @@ func (lp *LowPassFilterProcessor) ProcessBlock(buffer *AudioBuffer) {
 	}
 }
 
+// DelayProcessor adds echo and reverberant delay lines (JUCE DelayLine parity).
+type DelayProcessor struct {
+	DelaySamples int
+	Feedback     float32
+	Mix          float32
+	buffers      [][]float32
+	writePos     int
+}
+
+func NewDelayProcessor(delaySamples int, feedback, mix float32, channels int) *DelayProcessor {
+	if delaySamples <= 0 {
+		delaySamples = 4800 // 100ms at 48kHz
+	}
+	if channels <= 0 {
+		channels = 2
+	}
+	bufs := make([][]float32, channels)
+	for c := 0; c < channels; c++ {
+		bufs[c] = make([]float32, delaySamples)
+	}
+	return &DelayProcessor{
+		DelaySamples: delaySamples,
+		Feedback:     feedback,
+		Mix:          mix,
+		buffers:      bufs,
+		writePos:     0,
+	}
+}
+
+func (d *DelayProcessor) Name() string { return "DelayProcessor" }
+func (d *DelayProcessor) ProcessBlock(buffer *AudioBuffer) {
+	for i := 0; i < buffer.NumSamples; i++ {
+		for c := 0; c < buffer.Channels; c++ {
+			if c >= len(d.buffers) {
+				continue
+			}
+			inSample := buffer.Data[c][i]
+			delayedSample := d.buffers[c][d.writePos]
+
+			// Feedback loop
+			d.buffers[c][d.writePos] = inSample + (delayedSample * d.Feedback)
+
+			// Wet / Dry blend
+			buffer.Data[c][i] = inSample*(1.0-d.Mix) + delayedSample*d.Mix
+		}
+		d.writePos = (d.writePos + 1) % d.DelaySamples
+	}
+}
+
 // AudioGraph chains audio processors into an execution pipeline.
 type AudioGraph struct {
 	mu         sync.RWMutex
