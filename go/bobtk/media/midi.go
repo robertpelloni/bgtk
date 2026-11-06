@@ -25,10 +25,29 @@ func (u UMPPacket) Status() uint8 {
 	return uint8((u.Word0 >> 16) & 0xFF)
 }
 
+// Channel extracts the 4-bit channel number (0-15).
+func (u UMPPacket) Channel() uint8 {
+	return uint8((u.Word0 >> 16) & 0x0F)
+}
+
 // NoteOn creates a MIDI 2.0 Note On packet with 16-bit high-resolution velocity.
 func NewNoteOn(group, channel, note uint8, velocity16 uint16) UMPPacket {
 	w0 := (uint32(0x4) << 28) | (uint32(group&0x0F) << 24) | (uint32(0x90|(channel&0x0F)) << 16) | (uint32(note) << 8)
 	w1 := uint32(velocity16) << 16
+	return UMPPacket{Word0: w0, Word1: w1}
+}
+
+// NoteOff creates a MIDI 2.0 Note Off packet with 16-bit high-resolution release velocity.
+func NewNoteOff(group, channel, note uint8, velocity16 uint16) UMPPacket {
+	w0 := (uint32(0x4) << 28) | (uint32(group&0x0F) << 24) | (uint32(0x80|(channel&0x0F)) << 16) | (uint32(note) << 8)
+	w1 := uint32(velocity16) << 16
+	return UMPPacket{Word0: w0, Word1: w1}
+}
+
+// ControlChange creates a MIDI 2.0 Control Change packet with 32-bit high-resolution value.
+func NewControlChange(group, channel, index uint8, value32 uint32) UMPPacket {
+	w0 := (uint32(0x4) << 28) | (uint32(group&0x0F) << 24) | (uint32(0xB0|(channel&0x0F)) << 16) | (uint32(index) << 8)
+	w1 := value32
 	return UMPPacket{Word0: w0, Word1: w1}
 }
 

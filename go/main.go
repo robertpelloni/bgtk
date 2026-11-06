@@ -167,6 +167,8 @@ func main() {
 
 	midiBus := mediaPillar.MidiBus()
 	midiBus.Broadcast(media.NewNoteOn(0, 1, 60, 0x7FFF))
+	midiBus.Broadcast(media.NewControlChange(0, 1, 7, 0xCCCCCCCC))
+	midiBus.Broadcast(media.NewNoteOff(0, 1, 60, 0x4000))
 
 	// Demonstrate JUCE Component Tree, Vector Canvas Graphics & Timer Integration
 	rootComp := visual.NewComponent("RootAudioHost")

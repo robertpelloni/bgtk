@@ -55,6 +55,41 @@ func TestMidi2UMPBus(t *testing.T) {
 	}
 }
 
+func TestMidi2NoteOffAndControlChange(t *testing.T) {
+	// Test NoteOff
+	noteOff := NewNoteOff(1, 2, 64, 0x4000)
+	if noteOff.MessageType() != 0x4 {
+		t.Errorf("expected message type 4, got %d", noteOff.MessageType())
+	}
+	if noteOff.Group() != 1 {
+		t.Errorf("expected group 1, got %d", noteOff.Group())
+	}
+	if noteOff.Channel() != 2 {
+		t.Errorf("expected channel 2, got %d", noteOff.Channel())
+	}
+	if noteOff.Status() != 0x82 {
+		t.Errorf("expected status 0x82, got 0x%X", noteOff.Status())
+	}
+	if (noteOff.Word1 >> 16) != 0x4000 {
+		t.Errorf("expected velocity 0x4000, got 0x%X", noteOff.Word1>>16)
+	}
+
+	// Test ControlChange
+	cc := NewControlChange(0, 5, 7, 0x12345678)
+	if cc.Channel() != 5 {
+		t.Errorf("expected channel 5, got %d", cc.Channel())
+	}
+	if cc.Status() != 0xB5 {
+		t.Errorf("expected status 0xB5, got 0x%X", cc.Status())
+	}
+	if (cc.Word0>>8)&0xFF != 7 {
+		t.Errorf("expected CC index 7, got %d", (cc.Word0>>8)&0xFF)
+	}
+	if cc.Word1 != 0x12345678 {
+		t.Errorf("expected 32-bit value 0x12345678, got 0x%X", cc.Word1)
+	}
+}
+
 func TestSineOscillatorProcessor(t *testing.T) {
 	osc := NewSineOscillatorProcessor(440.0, 48000, 1.0)
 	buf := NewAudioBuffer(2, 128)

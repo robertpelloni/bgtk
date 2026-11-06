@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [1.2.8] - 2026-04-06
+### Added
+- **MIDI 2.0 Packet Generation (Go Media Pillar)**:
+  - `NewNoteOff`: Constructs MIDI 2.0 Note Off Universal MIDI Packets (UMP) with 16-bit release velocity.
+  - `NewControlChange`: Constructs MIDI 2.0 Control Change UMP packets with 32-bit high-resolution parameter values.
+  - `UMPPacket.Channel`: Extracts 4-bit channel index (0-15).
+  - Integrated into `go/main.go` and verified in `go/bobtk/media/media_pillar_test.go`.
+
 ## [1.2.7] - 2026-04-06
 ### Added
 - **Circular Buffer Delay DSP Processor (Go Media Pillar)**:

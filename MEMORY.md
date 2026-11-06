@@ -22,6 +22,7 @@
 - **Tools Pillar Execution Tracing:** `PerformanceProfiler` in `go/bobtk/tools/tools_pillar.go` provides fine-grained execution tracing through `StartSpan`, `EndSpan`, `GetSpans`, and `FormatTraceReport` (Sysprof parity).
 - **Qt6 Widget Set Parity:** In addition to `Button`, `Label`, `LineEdit`, `ProgressBar`, `Slider`, and `CheckBox`, the Visual pillar provides `ComboBox` (item list dropdown selector), `RadioButton` (mutually exclusive group selector), and `TabWidget` (titled multi-page tabbed container).
 - **JUCE DSP Parity:** Media pillar provides `SineOscillatorProcessor` (ToneGeneratorAudioProcessor parity), `LowPassFilterProcessor` (IIRFilter parity), and `DelayProcessor` (circular buffer delay line) within `AudioGraph`.
+- **MIDI 2.0 Packets:** `go/bobtk/media/midi.go` provides UMP builders for `NewNoteOn`, `NewNoteOff`, and `NewControlChange` with 16-bit/32-bit high resolution.
 - **WebSocket Cluster Broadcasting:** `WebSocketHub` in `go/bobtk/network/websocket.go` manages connected `WebSocketSession` peers with non-blocking per-client channels and broadcast dispatching.
 - **CoWork ParallelFor:** `QuantumScheduler` in `go/bobtk/core/scheduler.go` provides index-partitioned `ParallelFor` concurrent loops with completion barriers.
 - **Server Process Control:** `ServerManager` in `go/bobtk/system/server_manager.go` provides comprehensive daemon lifecycle management including `StartServer`, `StopServer`, `RestartServer`, and `GetServer`.

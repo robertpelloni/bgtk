@@ -35,5 +35,6 @@
 - [x] Implement project health check and environment diagnostic suite in tools/check_health.sh (v1.2.5).
 - [x] Implement TabWidget navigation container in Go Visual Pillar (v1.2.6).
 - [x] Implement DelayProcessor circular buffer echo in Go Media Pillar (v1.2.7).
+- [x] Implement MIDI 2.0 NoteOff and ControlChange packet generators in Go Media Pillar (v1.2.8).
 - [ ] Research missing Qt6/Qt7 features compared to the current Bobtk C++ baseline.
 - [ ] Test and resolve any failing builds caused by renaming strings and paths (Meson wrap corruption).
