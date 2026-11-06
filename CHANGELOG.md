@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.3.3] - 2026-04-06
+### Added
+- **Binary Stream Serialization (Go Core Pillar)**:
+  - `BinaryPack`: Serializes fixed-size scalar values, integers, floats, and binary structs into compact little-endian byte buffers (`upp::Stream` and `QDataStream` parity).
+  - `BinaryUnpack`: Sequential stream reader extracting binary data into pointers with type-safe boundary checks.
+  - Demonstrated binary serialization in `go/main.go` and verified with comprehensive unit testing in `go/bobtk/core/map_test.go`.
+
 ## [1.3.2] - 2026-04-06
 ### Added
 - **Splitter Container Layout (Go Visual Pillar)**:

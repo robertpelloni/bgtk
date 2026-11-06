@@ -40,5 +40,6 @@
 - [x] Implement thread-safe Clipboard subsystem in Go System Pillar (v1.3.0).
 - [x] Synchronize agent instructions across CLAUDE.md, GEMINI.md, GPT.md, and copilot-instructions.md (v1.3.1).
 - [x] Implement Splitter container layout in Go Visual Pillar (v1.3.2).
+- [x] Implement Binary Stream Serialization in Go Core Pillar (v1.3.3).
 - [ ] Research missing Qt6/Qt7 features compared to the current Bobtk C++ baseline.
 - [ ] Test and resolve any remaining failing builds caused by renaming strings and paths (Meson wrap corruption).

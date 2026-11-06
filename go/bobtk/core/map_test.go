@@ -68,3 +68,34 @@ func TestStateSerializer(t *testing.T) {
 		t.Errorf("expected DarkModern, got %v", parsed["theme"])
 	}
 }
+
+func TestBinaryStreamSerialization(t *testing.T) {
+	s := NewStateSerializer()
+
+	var magic uint32 = 0xB0B7C001
+	var version uint16 = 133
+	var flags uint8 = 0x7F
+
+	packed, err := s.BinaryPack(magic, version, flags)
+	if err != nil {
+		t.Fatalf("binary pack failed: %v", err)
+	}
+
+	if len(packed) != 7 { // 4 + 2 + 1 bytes
+		t.Errorf("expected 7 packed bytes, got %d", len(packed))
+	}
+
+	var outMagic uint32
+	var outVersion uint16
+	var outFlags uint8
+
+	err = s.BinaryUnpack(packed, &outMagic, &outVersion, &outFlags)
+	if err != nil {
+		t.Fatalf("binary unpack failed: %v", err)
+	}
+
+	if outMagic != magic || outVersion != version || outFlags != flags {
+		t.Errorf("unpacked mismatch: magic=0x%X (exp 0x%X), version=%d, flags=0x%X",
+			outMagic, magic, outVersion, outFlags)
+	}
+}

@@ -76,6 +76,19 @@ func main() {
 		"node":   "node-alpha",
 		"status": "active",
 	})
+	// Ultimate++ NTL Binary Stream Serialization Demonstration
+	var packMagic uint32 = 0x4247544B // 'BGTK'
+	var packVersion uint16 = 1
+	var packFlags uint16 = 0x00FF
+	var packWeight float64 = 98.75
+
+	binaryStatePayload, _ := serializer.BinaryPack(packMagic, packVersion, packFlags, packWeight)
+
+	var unpackedMagic uint32
+	var unpackedVersion uint16
+	var unpackedFlags uint16
+	var unpackedWeight float64
+	_ = serializer.BinaryUnpack(binaryStatePayload, &unpackedMagic, &unpackedVersion, &unpackedFlags, &unpackedWeight)
 
 	appSettings := corePillar.AppSettings()
 	appSettings.SetValue("runtime.telemetry_interval_ms", 50)
@@ -304,6 +317,7 @@ func main() {
 	dashboard.Log(fmt.Sprintf("Application Settings configured (%d keys) & FileSystemWatcher active (%d paths monitored).", len(appSettings.AllKeys()), len(fsWatcher.WatchedPaths())))
 	dashboard.Log("Qt6 Event & Action subsystem initialized (Signal/Slot, QAction, QKeyEvent modifiers).")
 	dashboard.Log(fmt.Sprintf("Ultimate++ NTL Heap Pool active (%d bytes/slab, %d active chunks), Vector (%d items), & Map (%d keys).", heapPool.ChunkSize(), heapPool.ActiveChunks(), vectorContainer.GetCount(), stateMap.GetCount()))
+	dashboard.Log(fmt.Sprintf("Ultimate++ NTL Binary Stream Serialization verified: %d bytes packed, unpacked magic: 0x%X (weight: %0.2f).", len(binaryStatePayload), unpackedMagic, unpackedWeight))
 	dashboard.Log("Qt6 Parity Layout Engine & Widgets initialized (QHBoxLayout, QVBoxLayout, QGridLayout, QStackedLayout).")
 	dashboard.Log(fmt.Sprintf("JUCE Component hierarchy nested (%d children) and precision Timer active (%d ms interval).", rootComp.NumChildComponents(), telemetryTimer.GetTimerInterval()))
 	dashboard.Log(fmt.Sprintf("Native C/C++ Runtime Bridge active (%s mode, %d live handles registered, %d events synced).", bridge.Mode(), bridge.ActiveHandleCount(), bridge.EventCount()))
