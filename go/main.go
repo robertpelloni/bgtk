@@ -235,7 +235,14 @@ func main() {
 	tabWidget.AddTab(modeCombo, "Environment Profiles")
 	tabWidget.Layout(0, 0, 400, 200)
 
-	vbox.AddItem(tabWidget, 3)
+	// Demonstrate Splitter (QSplitter parity)
+	splitter := visual.NewSplitter(visual.Horizontal)
+	splitter.AddWidget(tabWidget)
+	splitter.AddWidget(actionBtn)
+	splitter.SetSizes([]int{7, 3})
+	splitter.Layout(0, 0, 400, 200)
+
+	vbox.AddItem(splitter, 3)
 	vbox.Layout(0, 0, 400, 300)
 
 	// Demonstrate FileSystemWatcher & Clipboard

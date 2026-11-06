@@ -1,7 +1,8 @@
-# Handoff Document - Bobtk Agent Instruction Harmonization (v1.3.1)
+# Handoff Document - Bobtk Splitter Container Layout (v1.3.2)
 
 ## Current Status
-- Version bumped to `1.3.1` tracking global versioning governance.
+- Version bumped to `1.3.2` tracking global versioning governance.
+- Implemented `Splitter` multi-widget partitioned container in Go Visual Pillar (`go/bobtk/visual/widgets.go`) with proportional partition geometry calculations, verified in `go/bobtk/visual/layout_test.go`.
 - Harmonized and updated model-specific instruction files (`CLAUDE.md`, `GEMINI.md`, `GPT.md`, `copilot-instructions.md`) to guide future autonomous agent iterations across 6-pillar parity, consolidated single-page dashboard architecture, and system tray server management.
 - Implemented thread-safe `Clipboard` in Go System Pillar (`go/bobtk/system/clipboard.go`) with `GetText`, `SetText`, `Clear`, and `AddListener`.
 - Corrected sysprof subproject default options in `meson.build` from `bobgui=false` back to `gtk=false` and defined `sysprof` feature option in `meson_options.txt`.

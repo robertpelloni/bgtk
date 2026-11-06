@@ -247,3 +247,25 @@ func TestTabWidget(t *testing.T) {
 		t.Errorf("expected page2 layout W=400, H=270, Y=30, got %+v", g2)
 	}
 }
+
+func TestSplitterWidget(t *testing.T) {
+	splitter := NewSplitter(Horizontal)
+	left := NewLabel("Left Pane")
+	right := NewLabel("Right Pane")
+
+	splitter.AddWidget(left)
+	splitter.AddWidget(right)
+	splitter.SetSizes([]int{1, 3}) // 25% / 75%
+
+	splitter.Layout(0, 0, 400, 200)
+
+	gLeft := left.Geometry()
+	gRight := right.Geometry()
+
+	if gLeft.W != 100 || gRight.W != 300 {
+		t.Errorf("expected 100/300 width split, got %d and %d", gLeft.W, gRight.W)
+	}
+	if gRight.X != 100 {
+		t.Errorf("expected right pane X=100, got %d", gRight.X)
+	}
+}

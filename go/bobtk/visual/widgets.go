@@ -349,6 +349,86 @@ func (t *TabWidget) Layout(x, y, w, h int) {
 	}
 }
 
+// Splitter arranges multiple widgets with resizable partitions (QSplitter parity).
+type Splitter struct {
+	WidgetBase
+	orientation Orientation
+	items       []LayoutItem
+	sizes       []int
+}
+
+func NewSplitter(orientation Orientation) *Splitter {
+	return &Splitter{
+		WidgetBase:  WidgetBase{minW: 100, minH: 100, visible: true, enabled: true},
+		orientation: orientation,
+		items:       make([]LayoutItem, 0),
+		sizes:       make([]int, 0),
+	}
+}
+
+func (s *Splitter) AddWidget(w LayoutItem) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	s.items = append(s.items, w)
+	s.sizes = append(s.sizes, 100)
+}
+
+func (s *Splitter) SetSizes(sizes []int) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	s.sizes = append([]int{}, sizes...)
+}
+
+func (s *Splitter) Sizes() []int {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	return append([]int{}, s.sizes...)
+}
+
+func (s *Splitter) Layout(x, y, w, h int) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	s.bounds = Rect{X: x, Y: y, W: w, H: h}
+
+	n := len(s.items)
+	if n == 0 {
+		return
+	}
+
+	totalSize := 0
+	for _, sz := range s.sizes {
+		if sz <= 0 {
+			totalSize += 1
+		} else {
+			totalSize += sz
+		}
+	}
+
+	if s.orientation == Horizontal {
+		curX := x
+		for i, it := range s.items {
+			weight := 1
+			if i < len(s.sizes) && s.sizes[i] > 0 {
+				weight = s.sizes[i]
+			}
+			itemW := (w * weight) / totalSize
+			it.SetGeometry(curX, y, itemW, h)
+			curX += itemW
+		}
+	} else {
+		curY := y
+		for i, it := range s.items {
+			weight := 1
+			if i < len(s.sizes) && s.sizes[i] > 0 {
+				weight = s.sizes[i]
+			}
+			itemH := (h * weight) / totalSize
+			it.SetGeometry(x, curY, w, itemH)
+			curY += itemH
+		}
+	}
+}
+
 func (c *CheckBox) Toggle() {
 	c.mu.Lock()
 	c.Checked = !c.Checked

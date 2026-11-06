@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.3.2] - 2026-04-06
+### Added
+- **Splitter Container Layout (Go Visual Pillar)**:
+  - `Splitter`: Partitioned multi-widget container supporting horizontal and vertical orientations and proportional coordinate sizing (`QSplitter` parity).
+  - Integrated into `go/main.go` and verified in `go/bobtk/visual/layout_test.go`.
+
 ## [1.3.1] - 2026-04-06
 ### Documentation
 - **Agent-Specific Instruction Harmonization**:

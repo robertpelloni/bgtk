@@ -38,6 +38,7 @@
 - Resolve sysprof subproject build and wrap configuration options in Meson (v1.2.9).
 - Implement thread-safe Clipboard subsystem in Go System Pillar (v1.3.0).
 - Harmonize agent-specific instructions and autonomous governance guidelines (v1.3.1).
+- Implement Splitter container layout in Go Visual Pillar (v1.3.2).
 
 ## Phase 4: UI and Frontend Expansion
 - Ensure every backend feature is extensively represented in the frontend UI.
