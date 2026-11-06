@@ -1440,7 +1440,7 @@ if not get_option('sysprof').disabled()
     default_options: [
       'agent=false',
       'examples=false',
-      'bobgui=false',
+      'gtk=false',
       'tests=false',
       'tools=false',
       'libsysprof=true',

@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.2.9] - 2026-04-06
+### Fixed
+- **Meson Build System & Sysprof Subproject Dependency**:
+  - Restored `gtk=false` in `meson.build` default_options for `libsysprof_capture_dep` (repairing blind mass-renaming corruption).
+  - Added missing `sysprof` feature option definition in `meson_options.txt`.
+
 ## [1.2.8] - 2026-04-06
 ### Added
 - **MIDI 2.0 Packet Generation (Go Media Pillar)**:

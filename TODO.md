@@ -36,5 +36,6 @@
 - [x] Implement TabWidget navigation container in Go Visual Pillar (v1.2.6).
 - [x] Implement DelayProcessor circular buffer echo in Go Media Pillar (v1.2.7).
 - [x] Implement MIDI 2.0 NoteOff and ControlChange packet generators in Go Media Pillar (v1.2.8).
+- [x] Correct corrupted sysprof subproject default_options and feature definition in Meson build system (v1.2.9).
 - [ ] Research missing Qt6/Qt7 features compared to the current Bobtk C++ baseline.
-- [ ] Test and resolve any failing builds caused by renaming strings and paths (Meson wrap corruption).
+- [ ] Test and resolve any remaining failing builds caused by renaming strings and paths (Meson wrap corruption).

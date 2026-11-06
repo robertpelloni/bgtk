@@ -35,6 +35,7 @@
 - Implement TabWidget navigation container in Go Visual Pillar (v1.2.6).
 - Implement DelayProcessor circular buffer echo in Go Media Pillar (v1.2.7).
 - Implement MIDI 2.0 NoteOff and ControlChange packet generators in Go Media Pillar (v1.2.8).
+- Resolve sysprof subproject build and wrap configuration options in Meson (v1.2.9).
 
 ## Phase 4: UI and Frontend Expansion
 - Ensure every backend feature is extensively represented in the frontend UI.

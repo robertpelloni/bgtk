@@ -47,3 +47,4 @@ option('installed_tests', type: 'boolean', value: 'false',
 # input modules
 option('builtin_immodules', type: 'string',
        value: '', description: 'Build specified immodules into GTK so/DLL (comma-separated list), "all", "none" or "backend"')
+option('sysprof', type: 'feature', value: 'auto', description: 'Include sysprof tracing support')
