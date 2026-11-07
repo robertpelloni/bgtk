@@ -233,6 +233,7 @@ func main() {
 	titleLabel.SetText("Qt6 Parity Consolidated Header")
 	titleLabel.SetVisible(true)
 	actionBtn := visual.NewButton("Apply Layout")
+	actionBtn.SetText("Apply Unified Layout")
 	actionBtn.SetEnabled(true)
 	progressBar := visual.NewProgressBar()
 	progressBar.SetValue(80)

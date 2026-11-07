@@ -1,7 +1,9 @@
-# Handoff Document - Bobtk Label Text Accessors (v1.5.0)
+# Handoff Document - Bobtk Button Text Accessors (v1.5.1)
 
 ## Current Status
-- Version bumped to `1.5.0` tracking global versioning governance.
+- Version bumped to `1.5.1` tracking global versioning governance.
+- Added thread-safe `SetText` and `GetText` to `Button` in Go Visual Pillar (`go/bobtk/visual/widgets.go`) achieving `QPushButton::setText`/`text` parity.
+- Verified button text accessors with unit test suite `TestButtonSetGetText` in `go/bobtk/visual/layout_test.go`.
 - Added thread-safe `SetText` and `GetText` to `Label` in Go Visual Pillar (`go/bobtk/visual/widgets.go`) achieving `QLabel::setText`/`text` parity.
 - Verified label text accessors with unit test suite `TestLabelSetGetText` in `go/bobtk/visual/layout_test.go`.
 - Cleaned duplicate configuration sections from `subprojects/fribidi.wrap` and `subprojects/libpng.wrap`.

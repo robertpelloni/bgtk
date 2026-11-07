@@ -352,3 +352,15 @@ func TestLabelSetGetText(t *testing.T) {
 		t.Errorf("expected 'Mutated Title', got %q", lbl.GetText())
 	}
 }
+
+func TestButtonSetGetText(t *testing.T) {
+	btn := NewButton("Initial Button")
+	if btn.GetText() != "Initial Button" {
+		t.Errorf("expected 'Initial Button', got %q", btn.GetText())
+	}
+
+	btn.SetText("Mutated Button")
+	if btn.GetText() != "Mutated Button" {
+		t.Errorf("expected 'Mutated Button', got %q", btn.GetText())
+	}
+}

@@ -48,3 +48,4 @@
 - **Widget Visibility State:** `WidgetBase` in `go/bobtk/visual/widgets.go` supports `SetVisible` and `IsVisible` (`QWidget::setVisible`/`isVisible` parity).
 - **Wrap File Cleanup (Batch 2):** Cleaned duplicate configuration blocks in `subprojects/fribidi.wrap` and `subprojects/libpng.wrap`.
 - **Label Text Accessors:** `Label` in `go/bobtk/visual/widgets.go` provides thread-safe `SetText` and `GetText` (`QLabel::setText`/`text` parity).
+- **Button Text Accessors:** `Button` in `go/bobtk/visual/widgets.go` provides thread-safe `SetText` and `GetText` (`QPushButton::setText`/`text` parity).

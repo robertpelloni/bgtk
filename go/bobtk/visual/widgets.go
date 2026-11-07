@@ -90,6 +90,18 @@ func (b *Button) Click() {
 	}
 }
 
+func (b *Button) SetText(text string) {
+	b.mu.Lock()
+	defer b.mu.Unlock()
+	b.Text = text
+}
+
+func (b *Button) GetText() string {
+	b.mu.RLock()
+	defer b.mu.RUnlock()
+	return b.Text
+}
+
 // Label represents a text display label (QLabel parity).
 type Label struct {
 	WidgetBase
