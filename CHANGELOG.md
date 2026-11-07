@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [1.4.4] - 2026-04-06
+### Fixed
+- **Meson Build Syntax Corrections**:
+  - Removed duplicate `project()` declaration at the beginning of `meson.build`.
+  - Added missing closing bracket to `check_headers` and completed `check_functions` loop block.
+  - Corrected unclosed `cairo_backends` foreach loop and balanced `_GDK_EXTERN` platform conditional branches.
+  - Removed duplicate `bind_textdomain_codeset` check in `libintl_dep`.
+
 ## [1.4.3] - 2026-04-06
 ### Added
 - **Widget Base Enablement State (Go Visual Pillar)**:

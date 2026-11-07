@@ -51,5 +51,6 @@
 - [x] Extend PerformanceProfiler with category filtering and average latency analytics in Go Tools Pillar (v1.4.1).
 - [x] Add platform target and bridge mode switching to NativeBridge in Go Core Pillar (v1.4.2).
 - [x] Add SetEnabled and IsEnabled to WidgetBase in Go Visual Pillar (v1.4.3).
+- [x] Correct syntax errors and bracket blocks in root meson.build (v1.4.4).
 - [ ] Research missing Qt6/Qt7 features compared to the current Bobtk C++ baseline.
 - [ ] Test and resolve any remaining failing builds caused by renaming strings and paths (Meson wrap corruption).
