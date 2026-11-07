@@ -1,7 +1,9 @@
-# Handoff Document - Bobtk Platform Target Awareness (v1.4.2)
+# Handoff Document - Bobtk Widget Base Enablement (v1.4.3)
 
 ## Current Status
-- Version bumped to `1.4.2` tracking global versioning governance.
+- Version bumped to `1.4.3` tracking global versioning governance.
+- Added `SetEnabled` and `IsEnabled` to `WidgetBase` in Go Visual Pillar (`go/bobtk/visual/widgets.go`) with click suppression on disabled buttons (`QWidget::setEnabled`/`isEnabled` parity).
+- Verified widget enablement states with unit test suite `TestWidgetBaseEnablement` in `go/bobtk/visual/layout_test.go`.
 - Extended `NativeBridge` in Go Core Pillar (`go/bobtk/core/bridge.go`) with `TargetOS`, `TargetArch`, and `SetMode` for cross-compilation targeting and simulation switching.
 - Verified platform target querying and mode switching with unit test suite `TestNativeBridgeTargetPlatformAndModeSwitching` in `go/bobtk/core/bridge_test.go`.
 - Extended `PerformanceProfiler` in Go Tools Pillar (`go/bobtk/tools/tools_pillar.go`) with `GetSpansByCategory`, `AverageDuration`, and `Clear`.

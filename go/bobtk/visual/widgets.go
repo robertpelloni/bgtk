@@ -39,6 +39,18 @@ func (w *WidgetBase) Geometry() Rect {
 	return w.bounds
 }
 
+func (w *WidgetBase) SetEnabled(enabled bool) {
+	w.mu.Lock()
+	defer w.mu.Unlock()
+	w.enabled = enabled
+}
+
+func (w *WidgetBase) IsEnabled() bool {
+	w.mu.RLock()
+	defer w.mu.RUnlock()
+	return w.enabled
+}
+
 // Button represents a clickable command button (QPushButton parity).
 type Button struct {
 	WidgetBase
@@ -55,6 +67,10 @@ func NewButton(text string) *Button {
 
 func (b *Button) Click() {
 	b.mu.RLock()
+	if !b.enabled {
+		b.mu.RUnlock()
+		return
+	}
 	cb := b.OnClick
 	b.mu.RUnlock()
 	if cb != nil {

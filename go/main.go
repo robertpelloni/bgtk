@@ -230,6 +230,7 @@ func main() {
 	vbox := visual.NewVBoxLayout(8, 4)
 	titleLabel := visual.NewLabel("Qt6 Parity Dashboard Header")
 	actionBtn := visual.NewButton("Apply Layout")
+	actionBtn.SetEnabled(true)
 	progressBar := visual.NewProgressBar()
 	progressBar.SetValue(80)
 

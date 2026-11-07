@@ -292,3 +292,33 @@ func TestSplitterZeroTotalSizeFallback(t *testing.T) {
 		t.Errorf("expected equal 100px split on fallback, got %d and %d", g1.W, g2.W)
 	}
 }
+
+func TestWidgetBaseEnablement(t *testing.T) {
+	btn := NewButton("Submit Action")
+
+	if !btn.IsEnabled() {
+		t.Errorf("expected button to be enabled initially")
+	}
+
+	clicked := false
+	btn.OnClick = func() {
+		clicked = true
+	}
+
+	btn.Click()
+	if !clicked {
+		t.Errorf("expected button click to execute when enabled")
+	}
+
+	// Disable button and ensure click handler is suppressed
+	btn.SetEnabled(false)
+	if btn.IsEnabled() {
+		t.Errorf("expected button to be disabled after SetEnabled(false)")
+	}
+
+	clicked = false
+	btn.Click()
+	if clicked {
+		t.Errorf("expected click to be suppressed when button is disabled")
+	}
+}

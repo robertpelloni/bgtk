@@ -49,6 +49,7 @@
 - Extend Clipboard with HasText, SetData, and GetData in Go System Pillar (v1.4.0).
 - Extend PerformanceProfiler with category filtering and average latency analytics in Go Tools Pillar (v1.4.1).
 - Add platform target and bridge mode switching to NativeBridge in Go Core Pillar (v1.4.2).
+- Add SetEnabled and IsEnabled to WidgetBase in Go Visual Pillar (v1.4.3).
 
 ## Phase 4: UI and Frontend Expansion
 - Ensure every backend feature is extensively represented in the frontend UI.

@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [1.4.3] - 2026-04-06
+### Added
+- **Widget Base Enablement State (Go Visual Pillar)**:
+  - Added `SetEnabled` and `IsEnabled` methods to `WidgetBase` (`QWidget::setEnabled` / `isEnabled` parity).
+  - Updated `Button.Click` to suppress click event callbacks when the button is disabled.
+  - Added unit test suite `TestWidgetBaseEnablement` in `go/bobtk/visual/layout_test.go`.
+  - Demonstrated in `go/main.go` and verified in single-page dashboard operations.
+
 ## [1.4.2] - 2026-04-06
 ### Added
 - **Cross-Compilation Target & Mode Inspection in NativeBridge (Go Core Pillar)**:
