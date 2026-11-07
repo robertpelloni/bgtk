@@ -90,6 +90,41 @@ func TestMidi2NoteOffAndControlChange(t *testing.T) {
 	}
 }
 
+func TestMidi2PitchBendAndPolyPressure(t *testing.T) {
+	// PitchBend test
+	pb := NewPitchBend(0, 3, 0x80000000)
+	if pb.MessageType() != 0x4 {
+		t.Errorf("expected message type 4, got %d", pb.MessageType())
+	}
+	if pb.Channel() != 3 {
+		t.Errorf("expected channel 3, got %d", pb.Channel())
+	}
+	if pb.Status() != 0xE3 {
+		t.Errorf("expected status 0xE3, got 0x%X", pb.Status())
+	}
+	if pb.Word1 != 0x80000000 {
+		t.Errorf("expected center pitch bend 0x80000000, got 0x%X", pb.Word1)
+	}
+
+	// PolyPressure test
+	pp := NewPolyPressure(1, 4, 72, 0xFFFFFFFF)
+	if pp.Group() != 1 {
+		t.Errorf("expected group 1, got %d", pp.Group())
+	}
+	if pp.Channel() != 4 {
+		t.Errorf("expected channel 4, got %d", pp.Channel())
+	}
+	if pp.Status() != 0xA4 {
+		t.Errorf("expected status 0xA4, got 0x%X", pp.Status())
+	}
+	if (pp.Word0>>8)&0xFF != 72 {
+		t.Errorf("expected note 72, got %d", (pp.Word0>>8)&0xFF)
+	}
+	if pp.Word1 != 0xFFFFFFFF {
+		t.Errorf("expected maximum pressure 0xFFFFFFFF, got 0x%X", pp.Word1)
+	}
+}
+
 func TestSineOscillatorProcessor(t *testing.T) {
 	osc := NewSineOscillatorProcessor(440.0, 48000, 1.0)
 	buf := NewAudioBuffer(2, 128)

@@ -1,7 +1,9 @@
-# Handoff Document - Bobtk HTTP Methods & Headers (v1.3.7)
+# Handoff Document - Bobtk MIDI 2.0 Modulation Packets (v1.3.8)
 
 ## Current Status
-- Version bumped to `1.3.7` tracking global versioning governance.
+- Version bumped to `1.3.8` tracking global versioning governance.
+- Implemented `NewPitchBend` and `NewPolyPressure` Universal MIDI Packet builders in Go Media Pillar (`go/bobtk/media/midi.go`) supporting 32-bit modulation resolution.
+- Verified MIDI 2.0 modulation packets with unit test suite `TestMidi2PitchBendAndPolyPressure` in `go/bobtk/media/media_pillar_test.go` and demonstrated in `go/main.go`.
 - Extended `NetworkAccessManager` in Go Network Pillar (`go/bobtk/network/http_client.go`) with `Put` and `Delete` HTTP methods and `SetHeader`/`GetHeader` key-value mappings.
 - Verified HTTP client extensions with unit test suite `TestNetworkAccessManagerPutDeleteHeaders` in `go/bobtk/network/http_sync_test.go`.
 - Added division-by-zero safeguard to `Splitter.Layout` in Go Visual Pillar (`go/bobtk/visual/widgets.go`) with unit test `TestSplitterZeroTotalSizeFallback` in `go/bobtk/visual/layout_test.go`.

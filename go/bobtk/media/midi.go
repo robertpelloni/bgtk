@@ -51,6 +51,20 @@ func NewControlChange(group, channel, index uint8, value32 uint32) UMPPacket {
 	return UMPPacket{Word0: w0, Word1: w1}
 }
 
+// PitchBend creates a MIDI 2.0 Pitch Bend packet with 32-bit high-resolution value (0x80000000 is center).
+func NewPitchBend(group, channel uint8, pitch32 uint32) UMPPacket {
+	w0 := (uint32(0x4) << 28) | (uint32(group&0x0F) << 24) | (uint32(0xE0|(channel&0x0F)) << 16)
+	w1 := pitch32
+	return UMPPacket{Word0: w0, Word1: w1}
+}
+
+// PolyPressure creates a MIDI 2.0 Polyphonic Key Pressure (Aftertouch) packet with 32-bit data.
+func NewPolyPressure(group, channel, note uint8, pressure32 uint32) UMPPacket {
+	w0 := (uint32(0x4) << 28) | (uint32(group&0x0F) << 24) | (uint32(0xA0|(channel&0x0F)) << 16) | (uint32(note) << 8)
+	w1 := pressure32
+	return UMPPacket{Word0: w0, Word1: w1}
+}
+
 // MidiBus handles dispatching UMP packets to listeners.
 type MidiBus struct {
 	mu        sync.RWMutex

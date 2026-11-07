@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [1.3.8] - 2026-04-06
+### Added
+- **PitchBend & PolyPressure MIDI 2.0 Packets (Go Media Pillar)**:
+  - `NewPitchBend`: Generates 32-bit high-resolution pitch bend Universal MIDI Packets (0x80000000 center position).
+  - `NewPolyPressure`: Generates 32-bit polyphonic key aftertouch UMP packets for per-note pressure modulations.
+  - Added unit test suite `TestMidi2PitchBendAndPolyPressure` in `go/bobtk/media/media_pillar_test.go`.
+  - Demonstrated in `go/main.go` and verified in single-page dashboard operations.
+
 ## [1.3.7] - 2026-04-06
 ### Added
 - **HTTP Methods & Headers (Go Network Pillar)**:

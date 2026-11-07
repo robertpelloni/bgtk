@@ -35,3 +35,4 @@
 - **Fast User-Space Concurrency Primitives:** `FastMutex` and `ReadWriteSpinLock` in `go/bobtk/core/sync.go` provide low-latency user-space spin-locks avoiding OS context switching for high-frequency GUI event loops (`upp::SpinLock` and `juce::SpinLock`/`ReadWriteLock` parity).
 - **Splitter Fallback Safeguard:** `Splitter.Layout` in `go/bobtk/visual/widgets.go` safely protects against division by zero if empty or zero-weight partition slices are supplied, defaulting `totalSize = len(s.items)`.
 - **Extended HTTP Client:** `NetworkAccessManager` in `go/bobtk/network/http_client.go` supports PUT and DELETE HTTP verbs alongside GET and POST, and includes default header state management (`SetHeader`/`GetHeader`).
+- **MIDI 2.0 Modulation Packets:** `go/bobtk/media/midi.go` provides UMP packet builders for `NewPitchBend` (32-bit wheel value) and `NewPolyPressure` (32-bit per-note aftertouch).
