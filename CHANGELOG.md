@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.3.6] - 2026-04-06
+### Fixed
+- **Splitter Layout Fallback (Go Visual Pillar)**:
+  - Added safety guard to `Splitter.Layout` in `go/bobtk/visual/widgets.go` falling back to equal partition sizing when `totalSize <= 0` (e.g. Empty or zero-sized partition weights).
+  - Added unit test `TestSplitterZeroTotalSizeFallback` in `go/bobtk/visual/layout_test.go`.
+
 ## [1.3.5] - 2026-04-06
 ### Added
 - **FastMutex & ReadWriteSpinLock Concurrency Primitives (Go Core Pillar)**:

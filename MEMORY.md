@@ -33,3 +33,4 @@
 - **Binary Stream Serialization:** `StateSerializer` in `go/bobtk/core/serializer.go` provides `BinaryPack` and `BinaryUnpack` for high-throughput fixed-size binary streaming (`upp::Stream` and `QDataStream` parity).
 - **RingBuffer FIFO Queue:** `RingBuffer[T]` in `go/bobtk/core/ring_buffer.go` provides a thread-safe circular FIFO buffer with non-blocking try-push/pop, timed blocking push/pop, and channel-like graceful shutdown (`juce::AbstractFifo` and U++ stream parity).
 - **Fast User-Space Concurrency Primitives:** `FastMutex` and `ReadWriteSpinLock` in `go/bobtk/core/sync.go` provide low-latency user-space spin-locks avoiding OS context switching for high-frequency GUI event loops (`upp::SpinLock` and `juce::SpinLock`/`ReadWriteLock` parity).
+- **Splitter Fallback Safeguard:** `Splitter.Layout` in `go/bobtk/visual/widgets.go` safely protects against division by zero if empty or zero-weight partition slices are supplied, defaulting `totalSize = len(s.items)`.

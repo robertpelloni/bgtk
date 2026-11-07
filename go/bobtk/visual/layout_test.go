@@ -269,3 +269,26 @@ func TestSplitterWidget(t *testing.T) {
 		t.Errorf("expected right pane X=100, got %d", gRight.X)
 	}
 }
+
+func TestSplitterZeroTotalSizeFallback(t *testing.T) {
+	splitter := NewSplitter(Horizontal)
+	pane1 := NewLabel("Pane 1")
+	pane2 := NewLabel("Pane 2")
+
+	splitter.AddWidget(pane1)
+	splitter.AddWidget(pane2)
+	splitter.SetSizes([]int{}) // empty sizes test fallback
+
+	// Should not panic and distribute equally (200 / 2 = 100 each)
+	splitter.Layout(0, 0, 200, 100)
+
+	g1 := pane1.Geometry()
+	g2 := pane2.Geometry()
+
+	if g1.W <= 0 || g2.W <= 0 {
+		t.Errorf("expected positive widths on empty size fallback, got %d and %d", g1.W, g2.W)
+	}
+	if g1.W != 100 || g2.W != 100 {
+		t.Errorf("expected equal 100px split on fallback, got %d and %d", g1.W, g2.W)
+	}
+}

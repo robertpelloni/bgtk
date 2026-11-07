@@ -403,6 +403,9 @@ func (s *Splitter) Layout(x, y, w, h int) {
 			totalSize += sz
 		}
 	}
+	if totalSize <= 0 {
+		totalSize = n
+	}
 
 	if s.orientation == Horizontal {
 		curX := x

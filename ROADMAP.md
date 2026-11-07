@@ -42,6 +42,7 @@
 - Implement Binary Stream Serialization in Go Core Pillar (v1.3.3).
 - Implement RingBuffer concurrent FIFO data structure in Go Core Pillar (v1.3.4).
 - Implement FastMutex and ReadWriteSpinLock concurrency primitives in Go Core Pillar (v1.3.5).
+- Add Splitter Layout zero-size fallback safeguard in Go Visual Pillar (v1.3.6).
 
 ## Phase 4: UI and Frontend Expansion
 - Ensure every backend feature is extensively represented in the frontend UI.
