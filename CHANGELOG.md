@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.4.6] - 2026-04-06
+### Added
+- **AudioBuffer Magnitude & Buffer Operations (Go Media Pillar)**:
+  - Extended `AudioBuffer` with `Clear()`, `CopyFrom()`, and `GetMagnitude()` (`juce::AudioBuffer<float>` parity).
+  - Added unit test suite `TestAudioBufferClearCopyMagnitude` in `go/bobtk/media/media_pillar_test.go`.
+  - Demonstrated in `go/main.go` and verified in single-page dashboard operations.
+
 ## [1.4.5] - 2026-04-06
 ### Fixed
 - **Meson Build Options Consolidation**:

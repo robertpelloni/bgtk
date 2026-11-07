@@ -25,6 +25,48 @@ func NewAudioBuffer(channels, numSamples int) *AudioBuffer {
 	}
 }
 
+// Clear zeroes all samples in all channels of the buffer (juce::AudioBuffer::clear parity).
+func (ab *AudioBuffer) Clear() {
+	for c := 0; c < ab.Channels; c++ {
+		for i := 0; i < ab.NumSamples; i++ {
+			ab.Data[c][i] = 0.0
+		}
+	}
+}
+
+// CopyFrom copies samples from a source audio buffer up to matching channel and sample bounds.
+func (ab *AudioBuffer) CopyFrom(src *AudioBuffer) {
+	if src == nil {
+		return
+	}
+	chans := ab.Channels
+	if src.Channels < chans {
+		chans = src.Channels
+	}
+	samples := ab.NumSamples
+	if src.NumSamples < samples {
+		samples = src.NumSamples
+	}
+	for c := 0; c < chans; c++ {
+		copy(ab.Data[c][:samples], src.Data[c][:samples])
+	}
+}
+
+// GetMagnitude computes the peak absolute amplitude across a channel (juce::AudioBuffer::getMagnitude parity).
+func (ab *AudioBuffer) GetMagnitude(channel int) float32 {
+	if channel < 0 || channel >= ab.Channels {
+		return 0.0
+	}
+	var maxMag float32 = 0.0
+	for i := 0; i < ab.NumSamples; i++ {
+		v := float32(math.Abs(float64(ab.Data[channel][i])))
+		if v > maxMag {
+			maxMag = v
+		}
+	}
+	return maxMag
+}
+
 // AudioProcessor defines the DSP processing interface inspired by JUCE AudioProcessor.
 type AudioProcessor interface {
 	ProcessBlock(buffer *AudioBuffer)

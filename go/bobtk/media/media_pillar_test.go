@@ -186,3 +186,28 @@ func TestDelayProcessor(t *testing.T) {
 		t.Errorf("expected delayed echo at sample 0 of buf2 to be 0.5, got %f", buf2.Data[0][0])
 	}
 }
+
+func TestAudioBufferClearCopyMagnitude(t *testing.T) {
+	buf1 := NewAudioBuffer(2, 64)
+	buf1.Data[0][10] = 0.75
+	buf1.Data[1][20] = -0.95
+
+	if buf1.GetMagnitude(0) != 0.75 {
+		t.Errorf("expected channel 0 magnitude 0.75, got %f", buf1.GetMagnitude(0))
+	}
+	if buf1.GetMagnitude(1) != 0.95 {
+		t.Errorf("expected channel 1 magnitude 0.95, got %f", buf1.GetMagnitude(1))
+	}
+
+	buf2 := NewAudioBuffer(2, 64)
+	buf2.CopyFrom(buf1)
+
+	if buf2.GetMagnitude(0) != 0.75 || buf2.GetMagnitude(1) != 0.95 {
+		t.Errorf("expected copied buffer to have matching magnitude")
+	}
+
+	buf2.Clear()
+	if buf2.GetMagnitude(0) != 0.0 || buf2.GetMagnitude(1) != 0.0 {
+		t.Errorf("expected 0.0 magnitude after Clear()")
+	}
+}
