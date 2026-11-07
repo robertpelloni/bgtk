@@ -22,6 +22,29 @@ func TestNetworkAccessManagerRequests(t *testing.T) {
 	}
 }
 
+func TestNetworkAccessManagerPutDeleteHeaders(t *testing.T) {
+	nam := NewNetworkAccessManager()
+
+	nam.SetHeader("Authorization", "Bearer bgtk-token-xyz")
+	if nam.GetHeader("Authorization") != "Bearer bgtk-token-xyz" {
+		t.Errorf("expected header value 'Bearer bgtk-token-xyz', got %q", nam.GetHeader("Authorization"))
+	}
+
+	resPut := nam.Put("https://api.bobtk.org/v1/resource/1", []byte("update payload"))
+	if resPut.StatusCode != 200 || string(resPut.Body) != "OK PUT https://api.bobtk.org/v1/resource/1" {
+		t.Errorf("unexpected PUT response: %+v", resPut)
+	}
+
+	resDelete := nam.Delete("https://api.bobtk.org/v1/resource/1")
+	if resDelete.StatusCode != 204 || string(resDelete.Body) != "OK DELETE https://api.bobtk.org/v1/resource/1" {
+		t.Errorf("unexpected DELETE response: %+v", resDelete)
+	}
+
+	if nam.HistoryCount() != 2 {
+		t.Errorf("expected 2 requests logged in history, got %d", nam.HistoryCount())
+	}
+}
+
 func TestSyncEnginePeersAndCursors(t *testing.T) {
 	se := NewSyncEngine()
 

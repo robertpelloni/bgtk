@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [1.3.7] - 2026-04-06
+### Added
+- **HTTP Methods & Headers (Go Network Pillar)**:
+  - Extended `NetworkAccessManager` with `Put` and `Delete` HTTP methods (`QNetworkAccessManager` parity).
+  - Added thread-safe `SetHeader` and `GetHeader` for configuring default HTTP headers.
+  - Added unit test suite `TestNetworkAccessManagerPutDeleteHeaders` in `go/bobtk/network/http_sync_test.go`.
+  - Demonstrated in `go/main.go` and verified in single-page dashboard operations.
+
 ## [1.3.6] - 2026-04-06
 ### Fixed
 - **Splitter Layout Fallback (Go Visual Pillar)**:

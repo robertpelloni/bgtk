@@ -1,7 +1,9 @@
-# Handoff Document - Bobtk Splitter Layout Fallback (v1.3.6)
+# Handoff Document - Bobtk HTTP Methods & Headers (v1.3.7)
 
 ## Current Status
-- Version bumped to `1.3.6` tracking global versioning governance.
+- Version bumped to `1.3.7` tracking global versioning governance.
+- Extended `NetworkAccessManager` in Go Network Pillar (`go/bobtk/network/http_client.go`) with `Put` and `Delete` HTTP methods and `SetHeader`/`GetHeader` key-value mappings.
+- Verified HTTP client extensions with unit test suite `TestNetworkAccessManagerPutDeleteHeaders` in `go/bobtk/network/http_sync_test.go`.
 - Added division-by-zero safeguard to `Splitter.Layout` in Go Visual Pillar (`go/bobtk/visual/widgets.go`) with unit test `TestSplitterZeroTotalSizeFallback` in `go/bobtk/visual/layout_test.go`.
 - Implemented `FastMutex` user-space spinlock and `ReadWriteSpinLock` multi-reader single-writer spinlock in Go Core Pillar (`go/bobtk/core/sync.go`) achieving `upp::SpinLock` and `juce::SpinLock`/`ReadWriteLock` parity.
 - Verified concurrency primitives with unit test suite `TestFastMutexLockUnlock`, `TestFastMutexTryLock`, and `TestReadWriteSpinLockConcurrentReadersWriters` in `go/bobtk/core/sync_test.go` and demonstrated in `go/main.go`.

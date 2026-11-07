@@ -44,5 +44,6 @@
 - [x] Implement RingBuffer concurrent FIFO data structure in Go Core Pillar (v1.3.4).
 - [x] Implement FastMutex and ReadWriteSpinLock concurrency primitives in Go Core Pillar (v1.3.5).
 - [x] Add Splitter Layout zero-size fallback safeguard in Go Visual Pillar (v1.3.6).
+- [x] Extend NetworkAccessManager with custom headers and PUT/DELETE methods in Go Network Pillar (v1.3.7).
 - [ ] Research missing Qt6/Qt7 features compared to the current Bobtk C++ baseline.
 - [ ] Test and resolve any remaining failing builds caused by renaming strings and paths (Meson wrap corruption).

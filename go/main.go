@@ -179,7 +179,10 @@ func main() {
 	wsHub.Broadcast("{\"event\":\"CLUSTER_SYNC\",\"state\":\"ACTIVE\"}")
 
 	httpMgr := networkPillar.HTTPManager()
+	httpMgr.SetHeader("User-Agent", "bgtk-runtime/1.3.7")
 	_ = httpMgr.Get("https://api.bobtk.org/v1/health")
+	_ = httpMgr.Put("https://api.bobtk.org/v1/state", []byte("active"))
+	_ = httpMgr.Delete("https://api.bobtk.org/v1/cache")
 
 	syncEngine := networkPillar.SyncEngine()
 	syncEngine.ConnectPeer("127.0.0.1:9091")
