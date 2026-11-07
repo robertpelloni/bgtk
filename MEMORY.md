@@ -53,3 +53,4 @@
 - **Parametric Audio Processors:** `HighPassFilterProcessor` and `PeakingEQProcessor` in `go/bobtk/media/audio_graph.go` implement high-pass and biquad peaking equalizer DSP filtering (`juce::dsp::IIR::Filter` parity).
 - **StyleSheet Engine:** `StyleSheet` in `go/bobtk/visual/style.go` provides CSS rule parsing and selector styling matching (`QStyleSheet` parity).
 - **Polyphonic Synthesizer Engine:** `Synthesizer` and `SynthVoice` in `go/bobtk/media/synth.go` provide polyphonic voice tracking, MIDI note to frequency synthesis, dynamic voice stealing, and audio buffer rendering (`juce::Synthesizer` parity).
+- **Notification Center & Desktop Alerts:** `NotificationCenter` in `go/bobtk/system/notification.go` manages desktop alert dispatching, urgency priority levels, listener subscriptions, and history logging (`QSystemTrayIcon::showMessage` parity).

@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [1.5.4] - 2026-04-06
+### Added
+- **Notification Center & Desktop Alerts (Go System Pillar)**:
+  - Implemented `NotificationCenter`, `NotificationItem`, and `UrgencyLevel` in `go/bobtk/system/notification.go` (`QSystemTrayIcon::showMessage` parity).
+  - Added notification dispatching, callback listener registration, history querying, and clearing.
+  - Added unit test suite `TestNotificationCenterSendAndHistory` in `go/bobtk/system/notification_test.go`.
+  - Exposed via `SystemPillar.NotificationCenter()` and demonstrated live desktop notification alerts in `go/main.go`.
+
 ## [1.5.3] - 2026-04-06
 ### Added
 - **Polyphonic Synthesizer Engine (Go Media Pillar)**:

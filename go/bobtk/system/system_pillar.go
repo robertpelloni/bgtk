@@ -4,11 +4,12 @@ import "fmt"
 
 // SystemPillar manages low-level OS integrations, servers, system tray, and file watchers.
 type SystemPillar struct {
-	initialized bool
-	Servers     *ServerManager
-	Tray        *SystemTray
-	FSWatcher   *FileSystemWatcher
+	initialized  bool
+	Servers      *ServerManager
+	Tray         *SystemTray
+	FSWatcher    *FileSystemWatcher
 	ClipboardMgr *Clipboard
+	NotifCenter  *NotificationCenter
 }
 
 func NewSystemPillar() *SystemPillar {
@@ -19,6 +20,7 @@ func NewSystemPillar() *SystemPillar {
 		Tray:         NewSystemTray("utilities-system-monitor", sm),
 		FSWatcher:    NewFileSystemWatcher(),
 		ClipboardMgr: NewClipboard(),
+		NotifCenter:  NewNotificationCenter(),
 	}
 }
 
@@ -45,4 +47,8 @@ func (s *SystemPillar) FileWatcher() *FileSystemWatcher {
 
 func (s *SystemPillar) Clipboard() *Clipboard {
 	return s.ClipboardMgr
+}
+
+func (s *SystemPillar) NotificationCenter() *NotificationCenter {
+	return s.NotifCenter
 }

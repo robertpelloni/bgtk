@@ -304,6 +304,10 @@ func main() {
 	clipboard.SetText("bgtk-auth-token-example")
 	clipboard.SetData("application/x-bgtk-session", []byte("session-key-42"))
 
+	// Demonstrate NotificationCenter (QSystemTrayIcon::showMessage parity)
+	notifCenter := systemPillar.NotificationCenter()
+	notifCenter.Send("alert.startup", "Dashboard Online", "All 6 pillars operational and supervised", system.UrgencyNormal)
+
 	// Wire up the consolidated single-page dashboard
 	dashboard := visualPillar.SetupConsolidatedDashboard(serverManager, tray)
 
@@ -364,7 +368,7 @@ func main() {
 	dashboard.Log(fmt.Sprintf("Network SyncEngine active (%d peer connected) & NetworkAccessManager (%d HTTP calls handled).", syncEngine.PeerCount(), httpMgr.HistoryCount()))
 	dashboard.Log(fmt.Sprintf("Network Broadway Gateway active on port %d with %d connected client(s).", broadway.Port(), broadway.ClientCount()))
 	dashboard.Log(fmt.Sprintf("Media Audio DSP pipeline running with %d active processor(s) (Peak Ch0: %0.2f), Polyphonic Synth active (Peak: %0.2f), and MIDI 2.0 bus ready.", audioGraph.ProcessorCount(), ch0Peak, synthPeak))
-	dashboard.Log(fmt.Sprintf("System tray active with %d background servers registered.", serverManager.RunningCount()))
+	dashboard.Log(fmt.Sprintf("System tray active with %d background servers registered & NotificationCenter (%d alerts dispatched).", serverManager.RunningCount(), notifCenter.Count()))
 	dashboard.Log(fmt.Sprintf("Tools Pillar Performance Profiler: %d spans active, %d samples recorded (Startup avg: %v).", len(profiler.GetSpans()), profiler.SampleCount(), profiler.AverageDuration("Startup")))
 
 	// Render the unified single-page layout

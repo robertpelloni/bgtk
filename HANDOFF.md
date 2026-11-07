@@ -1,7 +1,9 @@
-# Handoff Document - Bobtk Polyphonic Synthesizer Engine (v1.5.3)
+# Handoff Document - Bobtk Notification Center & Desktop Alerts (v1.5.4)
 
 ## Current Status
-- Version bumped to `1.5.3` tracking global versioning governance.
+- Version bumped to `1.5.4` tracking global versioning governance.
+- Implemented `NotificationCenter`, `NotificationItem`, and `UrgencyLevel` in Go System Pillar (`go/bobtk/system/notification.go`) achieving `QSystemTrayIcon::showMessage` parity.
+- Verified desktop alerts with unit test suite in `go/bobtk/system/notification_test.go` and integrated live notification demonstration in `go/main.go`.
 - Implemented `Synthesizer` and `SynthVoice` in Go Media Pillar (`go/bobtk/media/synth.go`) achieving `juce::Synthesizer` and `juce::SynthesizerVoice` parity.
 - Verified polyphonic synthesis with unit test suite in `go/bobtk/media/synth_test.go` and integrated live demonstration in `go/main.go`.
 - Implemented `WorkPool` in Go Core Pillar (`go/bobtk/core/work_pool.go`) inspired by U++ `CoWork` and JUCE `ThreadPool` with waitable tasks (`SubmitWaitable`), cancellation contexts, and barrier wait (`Wait`).
