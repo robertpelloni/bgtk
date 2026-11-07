@@ -44,3 +44,4 @@
 - **Meson Build Syntax Corrections:** Repaired multiple historical syntax artifacts in `meson.build` including duplicate `project()` calls, missing bracket closures on `check_headers`, unterminated `check_functions` loops, and unclosed `cairo_backends` loops.
 - **Meson Options Harmonization:** Consolidate build option definitions into `meson.options` and eliminated duplicate `meson_options.txt` to prevent Meson configuration file collision.
 - **AudioBuffer Operations:** `AudioBuffer` in `go/bobtk/media/audio_graph.go` supports `Clear()`, `CopyFrom()`, and `GetMagnitude()` (`juce::AudioBuffer<float>` parity).
+- **Wrap File Cleanup:** Removed corrupted duplicate git metadata appended to `subprojects/gdk-pixbuf.wrap` and `subprojects/pango.wrap`.

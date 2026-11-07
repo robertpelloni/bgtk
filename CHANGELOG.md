@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## [1.4.7] - 2026-04-06
+### Fixed
+- **Meson Subproject Wrap File Corrections**:
+  - Removed corrupted duplicate git section definitions from `subprojects/gdk-pixbuf.wrap` and `subprojects/pango.wrap`.
+
 ## [1.4.6] - 2026-04-06
 ### Added
 - **AudioBuffer Magnitude & Buffer Operations (Go Media Pillar)**:

@@ -54,5 +54,6 @@
 - [x] Correct syntax errors and bracket blocks in root meson.build (v1.4.4).
 - [x] Consolidate Meson build options and eliminate redundant meson_options.txt (v1.4.5).
 - [x] Implement AudioBuffer Clear, CopyFrom, and GetMagnitude in Go Media Pillar (v1.4.6).
+- [x] Remove corrupted duplicate git lines in subproject wrap files (v1.4.7).
 - [ ] Research missing Qt6/Qt7 features compared to the current Bobtk C++ baseline.
 - [ ] Test and resolve any remaining failing builds caused by renaming strings and paths (Meson wrap corruption).
