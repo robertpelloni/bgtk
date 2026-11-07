@@ -48,3 +48,39 @@ func TestPerformanceProfilerSpansAndReport(t *testing.T) {
 		t.Errorf("expected non-empty trace report")
 	}
 }
+
+func TestPerformanceProfilerAverageDurationAndFilter(t *testing.T) {
+	p := NewPerformanceProfiler()
+
+	p.StartSpan("task1", "IO")
+	time.Sleep(2 * time.Millisecond)
+	p.EndSpan("task1")
+
+	p.StartSpan("task2", "IO")
+	time.Sleep(4 * time.Millisecond)
+	p.EndSpan("task2")
+
+	p.StartSpan("task3", "Compute")
+	time.Sleep(1 * time.Millisecond)
+	p.EndSpan("task3")
+
+	ioSpans := p.GetSpansByCategory("IO")
+	if len(ioSpans) != 2 {
+		t.Errorf("expected 2 IO spans, got %d", len(ioSpans))
+	}
+
+	computeSpans := p.GetSpansByCategory("Compute")
+	if len(computeSpans) != 1 {
+		t.Errorf("expected 1 Compute span, got %d", len(computeSpans))
+	}
+
+	avgIO := p.AverageDuration("IO")
+	if avgIO <= 0 {
+		t.Errorf("expected positive average duration for IO, got %v", avgIO)
+	}
+
+	p.Clear()
+	if len(p.GetSpans()) != 0 || p.SampleCount() != 0 {
+		t.Errorf("expected profiler cleared")
+	}
+}

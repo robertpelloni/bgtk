@@ -48,5 +48,6 @@
 - [x] Implement MIDI 2.0 PitchBend and PolyPressure packet builders in Go Media Pillar (v1.3.8).
 - [x] Implement DrawEllipse and FillEllipse vector drawing operations in Go Visual Pillar (v1.3.9).
 - [x] Extend Clipboard with HasText, SetData, and GetData in Go System Pillar (v1.4.0).
+- [x] Extend PerformanceProfiler with category filtering and average latency analytics in Go Tools Pillar (v1.4.1).
 - [ ] Research missing Qt6/Qt7 features compared to the current Bobtk C++ baseline.
 - [ ] Test and resolve any remaining failing builds caused by renaming strings and paths (Meson wrap corruption).

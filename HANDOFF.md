@@ -1,7 +1,9 @@
-# Handoff Document - Bobtk Clipboard MIME Storage & Queries (v1.4.0)
+# Handoff Document - Bobtk Profiler Analytics (v1.4.1)
 
 ## Current Status
-- Version bumped to `1.4.0` tracking global versioning governance.
+- Version bumped to `1.4.1` tracking global versioning governance.
+- Extended `PerformanceProfiler` in Go Tools Pillar (`go/bobtk/tools/tools_pillar.go`) with `GetSpansByCategory`, `AverageDuration`, and `Clear`.
+- Verified profiler filtering and latency calculations with unit test suite `TestPerformanceProfilerAverageDurationAndFilter` in `go/bobtk/tools/tools_pillar_test.go`.
 - Extended `Clipboard` in Go System Pillar (`go/bobtk/system/clipboard.go`) with `SetData`, `GetData`, and `HasText` for arbitrary MIME and binary payload associations (`QMimeData` and `QClipboard` parity).
 - Verified clipboard MIME storage and queries with unit test suite `TestClipboardMimeDataAndHasText` in `go/bobtk/system/tray_test.go`.
 - Implemented `DrawEllipse` and `FillEllipse` vector drawing operations in Go Visual Pillar `GraphicsContext` (`go/bobtk/visual/graphics.go`).

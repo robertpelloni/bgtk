@@ -94,6 +94,45 @@ func (p *PerformanceProfiler) GetSpans() []*Span {
 	return out
 }
 
+// GetSpansByCategory returns only spans matching the specified category tag.
+func (p *PerformanceProfiler) GetSpansByCategory(category string) []*Span {
+	p.mu.RLock()
+	defer p.mu.RUnlock()
+	out := make([]*Span, 0)
+	for _, s := range p.spans {
+		if s.Category == category {
+			out = append(out, s)
+		}
+	}
+	return out
+}
+
+// AverageDuration computes the average duration of completed spans in a category.
+func (p *PerformanceProfiler) AverageDuration(category string) time.Duration {
+	p.mu.RLock()
+	defer p.mu.RUnlock()
+	var total time.Duration
+	count := 0
+	for _, s := range p.spans {
+		if s.Category == category && s.Completed {
+			total += s.Duration
+			count++
+		}
+	}
+	if count == 0 {
+		return 0
+	}
+	return total / time.Duration(count)
+}
+
+// Clear flushes all samples and spans.
+func (p *PerformanceProfiler) Clear() {
+	p.mu.Lock()
+	defer p.mu.Unlock()
+	p.samples = make([]ProfilerSample, 0)
+	p.spans = make(map[string]*Span)
+}
+
 // FormatTraceReport summarizes spans into a human-readable diagnostic breakdown.
 func (p *PerformanceProfiler) FormatTraceReport() string {
 	p.mu.RLock()

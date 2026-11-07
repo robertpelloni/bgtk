@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.4.1] - 2026-04-06
+### Added
+- **Performance Profiler Category Filtering & Analytics (Go Tools Pillar)**:
+  - Extended `PerformanceProfiler` with `GetSpansByCategory`, `AverageDuration`, and `Clear`.
+  - Added unit test suite `TestPerformanceProfilerAverageDurationAndFilter` in `go/bobtk/tools/tools_pillar_test.go`.
+  - Demonstrated in `go/main.go` and verified in single-page dashboard operations.
+
 ## [1.4.0] - 2026-04-06
 ### Added
 - **Clipboard MIME Data Storage & Queries (Go System Pillar)**:
