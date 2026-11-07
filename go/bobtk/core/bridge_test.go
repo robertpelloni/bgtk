@@ -51,3 +51,28 @@ func TestNativeBridgeLifecycleAndHandles(t *testing.T) {
 		t.Errorf("expected 1 active handle after free, got %d", bridge.ActiveHandleCount())
 	}
 }
+
+func TestNativeBridgeTargetPlatformAndModeSwitching(t *testing.T) {
+	bridge := NewNativeBridge()
+
+	if bridge.TargetOS() == "" {
+		t.Errorf("expected non-empty TargetOS")
+	}
+	if bridge.TargetArch() == "" {
+		t.Errorf("expected non-empty TargetArch")
+	}
+
+	if bridge.Mode() != ModePureGo {
+		t.Errorf("expected default ModePureGo, got %s", bridge.Mode())
+	}
+
+	bridge.SetMode(ModeLinkedC)
+	if bridge.Mode() != ModeLinkedC {
+		t.Errorf("expected ModeLinkedC after SetMode, got %s", bridge.Mode())
+	}
+
+	bridge.SetMode(ModePureGo)
+	if bridge.Mode() != ModePureGo {
+		t.Errorf("expected ModePureGo after reverting, got %s", bridge.Mode())
+	}
+}

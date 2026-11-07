@@ -39,3 +39,4 @@
 - **Ellipse Vector Drawing:** `GraphicsContext` in `go/bobtk/visual/graphics.go` provides `DrawEllipse` and `FillEllipse` (`QPainter::drawEllipse` and `juce::Graphics::drawEllipse`/`fillEllipse` parity).
 - **Clipboard MIME Storage:** `Clipboard` in `go/bobtk/system/clipboard.go` supports arbitrary binary and MIME payloads (`SetData`/`GetData`) and empty-state queries (`HasText`).
 - **Profiler Category Analytics:** `PerformanceProfiler` in `go/bobtk/tools/tools_pillar.go` provides category-based span queries (`GetSpansByCategory`), mean latency calculation (`AverageDuration`), and state reset (`Clear`).
+- **Platform Awareness in Bridge:** `NativeBridge` in `go/bobtk/core/bridge.go` queries target OS/arch (`TargetOS`/`TargetArch`) and allows dynamic mode transitions (`SetMode`).

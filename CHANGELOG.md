@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [1.4.2] - 2026-04-06
+### Added
+- **Cross-Compilation Target & Mode Inspection in NativeBridge (Go Core Pillar)**:
+  - Added `TargetOS` and `TargetArch` methods returning runtime compile target metadata (`runtime.GOOS`, `runtime.GOARCH`).
+  - Added `SetMode` to enable dynamic switching between `ModePureGo` and `ModeLinkedC`.
+  - Added unit test suite `TestNativeBridgeTargetPlatformAndModeSwitching` in `go/bobtk/core/bridge_test.go`.
+  - Demonstrated in `go/main.go` and verified in single-page dashboard operations.
+
 ## [1.4.1] - 2026-04-06
 ### Added
 - **Performance Profiler Category Filtering & Analytics (Go Tools Pillar)**:

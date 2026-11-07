@@ -1,7 +1,9 @@
-# Handoff Document - Bobtk Profiler Analytics (v1.4.1)
+# Handoff Document - Bobtk Platform Target Awareness (v1.4.2)
 
 ## Current Status
-- Version bumped to `1.4.1` tracking global versioning governance.
+- Version bumped to `1.4.2` tracking global versioning governance.
+- Extended `NativeBridge` in Go Core Pillar (`go/bobtk/core/bridge.go`) with `TargetOS`, `TargetArch`, and `SetMode` for cross-compilation targeting and simulation switching.
+- Verified platform target querying and mode switching with unit test suite `TestNativeBridgeTargetPlatformAndModeSwitching` in `go/bobtk/core/bridge_test.go`.
 - Extended `PerformanceProfiler` in Go Tools Pillar (`go/bobtk/tools/tools_pillar.go`) with `GetSpansByCategory`, `AverageDuration`, and `Clear`.
 - Verified profiler filtering and latency calculations with unit test suite `TestPerformanceProfilerAverageDurationAndFilter` in `go/bobtk/tools/tools_pillar_test.go`.
 - Extended `Clipboard` in Go System Pillar (`go/bobtk/system/clipboard.go`) with `SetData`, `GetData`, and `HasText` for arbitrary MIME and binary payload associations (`QMimeData` and `QClipboard` parity).

@@ -2,6 +2,7 @@ package core
 
 import (
 	"fmt"
+	"runtime"
 	"sync"
 	"sync/atomic"
 )
@@ -122,6 +123,23 @@ func (nb *NativeBridge) Mode() BridgeMode {
 	nb.mu.RLock()
 	defer nb.mu.RUnlock()
 	return nb.mode
+}
+
+// SetMode configures the active bridging mode (e.g. ModePureGo or ModeLinkedC).
+func (nb *NativeBridge) SetMode(mode BridgeMode) {
+	nb.mu.Lock()
+	defer nb.mu.Unlock()
+	nb.mode = mode
+}
+
+// TargetOS returns the compile/runtime target operating system.
+func (nb *NativeBridge) TargetOS() string {
+	return runtime.GOOS
+}
+
+// TargetArch returns the compile/runtime target architecture.
+func (nb *NativeBridge) TargetArch() string {
+	return runtime.GOARCH
 }
 
 // IsInitialized reports if the native runtime is active.
