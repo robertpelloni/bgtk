@@ -1,7 +1,9 @@
-# Handoff Document - Bobtk Wrap File Cleanup Batch 2 (v1.4.9)
+# Handoff Document - Bobtk Label Text Accessors (v1.5.0)
 
 ## Current Status
-- Version bumped to `1.4.9` tracking global versioning governance.
+- Version bumped to `1.5.0` tracking global versioning governance.
+- Added thread-safe `SetText` and `GetText` to `Label` in Go Visual Pillar (`go/bobtk/visual/widgets.go`) achieving `QLabel::setText`/`text` parity.
+- Verified label text accessors with unit test suite `TestLabelSetGetText` in `go/bobtk/visual/layout_test.go`.
 - Cleaned duplicate configuration sections from `subprojects/fribidi.wrap` and `subprojects/libpng.wrap`.
 - Added `SetVisible` and `IsVisible` methods to `WidgetBase` in Go Visual Pillar (`go/bobtk/visual/widgets.go`) achieving `QWidget::setVisible`/`isVisible` parity.
 - Verified widget visibility operations with unit test suite `TestWidgetBaseVisibility` in `go/bobtk/visual/layout_test.go`.

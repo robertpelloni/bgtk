@@ -47,3 +47,4 @@
 - **Wrap File Cleanup:** Removed corrupted duplicate git metadata appended to `subprojects/gdk-pixbuf.wrap` and `subprojects/pango.wrap`.
 - **Widget Visibility State:** `WidgetBase` in `go/bobtk/visual/widgets.go` supports `SetVisible` and `IsVisible` (`QWidget::setVisible`/`isVisible` parity).
 - **Wrap File Cleanup (Batch 2):** Cleaned duplicate configuration blocks in `subprojects/fribidi.wrap` and `subprojects/libpng.wrap`.
+- **Label Text Accessors:** `Label` in `go/bobtk/visual/widgets.go` provides thread-safe `SetText` and `GetText` (`QLabel::setText`/`text` parity).

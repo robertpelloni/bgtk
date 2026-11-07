@@ -340,3 +340,15 @@ func TestWidgetBaseVisibility(t *testing.T) {
 		t.Errorf("expected widget to be visible after SetVisible(true)")
 	}
 }
+
+func TestLabelSetGetText(t *testing.T) {
+	lbl := NewLabel("Initial Title")
+	if lbl.GetText() != "Initial Title" {
+		t.Errorf("expected 'Initial Title', got %q", lbl.GetText())
+	}
+
+	lbl.SetText("Mutated Title")
+	if lbl.GetText() != "Mutated Title" {
+		t.Errorf("expected 'Mutated Title', got %q", lbl.GetText())
+	}
+}

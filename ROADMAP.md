@@ -56,6 +56,7 @@
 - Remove corrupted duplicate git lines in subproject wrap files (v1.4.7).
 - Add SetVisible and IsVisible to WidgetBase in Go Visual Pillar (v1.4.8).
 - Clean duplicate sections in fribidi and libpng wrap files (v1.4.9).
+- Add SetText and GetText to Label in Go Visual Pillar (v1.5.0).
 
 ## Phase 4: UI and Frontend Expansion
 - Ensure every backend feature is extensively represented in the frontend UI.

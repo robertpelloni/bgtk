@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.5.0] - 2026-04-06
+### Added
+- **Label Text Accessors (Go Visual Pillar)**:
+  - Added thread-safe `SetText` and `GetText` methods to `Label` widget (`QLabel::setText`/`text` parity).
+  - Added unit test suite `TestLabelSetGetText` in `go/bobtk/visual/layout_test.go`.
+  - Demonstrated in `go/main.go` and verified in single-page dashboard operations.
+
 ## [1.4.9] - 2026-04-06
 ### Fixed
 - **Wrap File Artifact Cleaning**:

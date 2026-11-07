@@ -103,6 +103,18 @@ func NewLabel(text string) *Label {
 	}
 }
 
+func (l *Label) SetText(text string) {
+	l.mu.Lock()
+	defer l.mu.Unlock()
+	l.Text = text
+}
+
+func (l *Label) GetText() string {
+	l.mu.RLock()
+	defer l.mu.RUnlock()
+	return l.Text
+}
+
 // LineEdit represents a single-line text input field (QLineEdit parity).
 type LineEdit struct {
 	WidgetBase

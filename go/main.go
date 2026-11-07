@@ -230,6 +230,7 @@ func main() {
 	// Demonstrate Qt6 Layout, Widget & Signal/Action Parity
 	vbox := visual.NewVBoxLayout(8, 4)
 	titleLabel := visual.NewLabel("Qt6 Parity Dashboard Header")
+	titleLabel.SetText("Qt6 Parity Consolidated Header")
 	titleLabel.SetVisible(true)
 	actionBtn := visual.NewButton("Apply Layout")
 	actionBtn.SetEnabled(true)
