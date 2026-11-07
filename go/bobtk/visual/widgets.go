@@ -51,6 +51,18 @@ func (w *WidgetBase) IsEnabled() bool {
 	return w.enabled
 }
 
+func (w *WidgetBase) SetVisible(visible bool) {
+	w.mu.Lock()
+	defer w.mu.Unlock()
+	w.visible = visible
+}
+
+func (w *WidgetBase) IsVisible() bool {
+	w.mu.RLock()
+	defer w.mu.RUnlock()
+	return w.visible
+}
+
 // Button represents a clickable command button (QPushButton parity).
 type Button struct {
 	WidgetBase

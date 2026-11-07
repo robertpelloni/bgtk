@@ -322,3 +322,21 @@ func TestWidgetBaseEnablement(t *testing.T) {
 		t.Errorf("expected click to be suppressed when button is disabled")
 	}
 }
+
+func TestWidgetBaseVisibility(t *testing.T) {
+	lbl := NewLabel("Info Label")
+
+	if !lbl.IsVisible() {
+		t.Errorf("expected widget to be visible by default")
+	}
+
+	lbl.SetVisible(false)
+	if lbl.IsVisible() {
+		t.Errorf("expected widget to be hidden after SetVisible(false)")
+	}
+
+	lbl.SetVisible(true)
+	if !lbl.IsVisible() {
+		t.Errorf("expected widget to be visible after SetVisible(true)")
+	}
+}

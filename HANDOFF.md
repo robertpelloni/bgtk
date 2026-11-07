@@ -1,7 +1,9 @@
-# Handoff Document - Bobtk Meson Wrap Cleaning (v1.4.7)
+# Handoff Document - Bobtk Widget Visibility Control (v1.4.8)
 
 ## Current Status
-- Version bumped to `1.4.7` tracking global versioning governance.
+- Version bumped to `1.4.8` tracking global versioning governance.
+- Added `SetVisible` and `IsVisible` methods to `WidgetBase` in Go Visual Pillar (`go/bobtk/visual/widgets.go`) achieving `QWidget::setVisible`/`isVisible` parity.
+- Verified widget visibility operations with unit test suite `TestWidgetBaseVisibility` in `go/bobtk/visual/layout_test.go`.
 - Cleaned corrupted duplicate git configuration blocks from `subprojects/gdk-pixbuf.wrap` and `subprojects/pango.wrap`.
 - Extended `AudioBuffer` in Go Media Pillar (`go/bobtk/media/audio_graph.go`) with `Clear`, `CopyFrom`, and `GetMagnitude` achieving `juce::AudioBuffer<float>` parity.
 - Verified audio buffer operations with unit test suite `TestAudioBufferClearCopyMagnitude` in `go/bobtk/media/media_pillar_test.go` and demonstrated in `go/main.go`.

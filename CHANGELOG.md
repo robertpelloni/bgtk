@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.4.8] - 2026-04-06
+### Added
+- **Widget Visibility State (Go Visual Pillar)**:
+  - Added `SetVisible` and `IsVisible` methods to `WidgetBase` (`QWidget::setVisible` / `isVisible` parity).
+  - Added unit test suite `TestWidgetBaseVisibility` in `go/bobtk/visual/layout_test.go`.
+  - Demonstrated in `go/main.go` and verified in single-page dashboard operations.
+
 ## [1.4.7] - 2026-04-06
 ### Fixed
 - **Meson Subproject Wrap File Corrections**:
