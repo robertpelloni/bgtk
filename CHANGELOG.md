@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.4.5] - 2026-04-06
+### Fixed
+- **Meson Build Options Consolidation**:
+  - Consolidated options from `meson_options.txt` into `meson.options` (`quartz_backend`, `xinerama`, `profiler`, `print_backends`, `gtk_doc`, `man`, `demos`, `examples`, `tests`, `installed_tests`, `builtin_immodules`).
+  - Removed redundant `meson_options.txt` to resolve duplicate option definition file conflict in Meson 1.12+.
+
 ## [1.4.4] - 2026-04-06
 ### Fixed
 - **Meson Build Syntax Corrections**:
