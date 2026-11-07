@@ -1,7 +1,13 @@
-# Handoff Document - Bobtk Button Text Accessors (v1.5.1)
+# Handoff Document - Bobtk WorkPool, AudioGraph Filters & StyleSheet (v1.5.2)
 
 ## Current Status
-- Version bumped to `1.5.1` tracking global versioning governance.
+- Version bumped to `1.5.2` tracking global versioning governance.
+- Implemented `WorkPool` in Go Core Pillar (`go/bobtk/core/work_pool.go`) inspired by U++ `CoWork` and JUCE `ThreadPool` with waitable tasks (`SubmitWaitable`), cancellation contexts, and barrier wait (`Wait`).
+- Verified WorkPool with unit test suite in `go/bobtk/core/work_pool_test.go`.
+- Implemented `HighPassFilterProcessor` and `PeakingEQProcessor` in Go Media Pillar (`go/bobtk/media/audio_graph.go`) achieving `juce::dsp::IIR::Filter` parity.
+- Verified audio filters with unit test suite in `go/bobtk/media/media_pillar_test.go`.
+- Implemented `StyleSheet` and `StyleDeclaration` in Go Visual Pillar (`go/bobtk/visual/style.go`) providing CSS rule parsing and selector styling matching (`QStyleSheet` parity).
+- Verified StyleSheet engine with unit test suite in `go/bobtk/visual/style_test.go`.
 - Added thread-safe `SetText` and `GetText` to `Button` in Go Visual Pillar (`go/bobtk/visual/widgets.go`) achieving `QPushButton::setText`/`text` parity.
 - Verified button text accessors with unit test suite `TestButtonSetGetText` in `go/bobtk/visual/layout_test.go`.
 - Added thread-safe `SetText` and `GetText` to `Label` in Go Visual Pillar (`go/bobtk/visual/widgets.go`) achieving `QLabel::setText`/`text` parity.

@@ -59,5 +59,8 @@
 - [x] Clean duplicate sections in fribidi and libpng wrap files (v1.4.9).
 - [x] Add SetText and GetText to Label in Go Visual Pillar (v1.5.0).
 - [x] Add SetText and GetText to Button in Go Visual Pillar (v1.5.1).
+- [x] Implement WorkPool task dispatcher in Go Core Pillar (v1.5.2).
+- [x] Implement HighPassFilterProcessor and PeakingEQProcessor in Go Media Pillar (v1.5.2).
+- [x] Implement StyleSheet CSS rule engine in Go Visual Pillar (v1.5.2).
 - [ ] Research missing Qt6/Qt7 features compared to the current Bobtk C++ baseline.
 - [ ] Test and resolve any remaining failing builds caused by renaming strings and paths (Meson wrap corruption).

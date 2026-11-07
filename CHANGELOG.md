@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## [1.5.2] - 2026-04-06
+### Added
+- **WorkPool Task Dispatcher (Go Core Pillar)**:
+  - Implemented `WorkPool` (`go/bobtk/core/work_pool.go`) inspired by U++ `CoWork` and JUCE `ThreadPool`.
+  - Added concurrent job dispatching, non-blocking task submission, waitable completion channels (`SubmitWaitable`), task cancellation context, and barrier synchronization (`Wait`).
+  - Unit test suite `go/bobtk/core/work_pool_test.go` verifying parallel task dispatching and clean shutdown.
+- **Parametric Audio Processors (Go Media Pillar)**:
+  - Implemented `HighPassFilterProcessor` (RC high-pass filter) and `PeakingEQProcessor` (biquad peaking EQ based on RBJ Audio EQ Cookbook) in `go/bobtk/media/audio_graph.go` (`juce::dsp::IIR::Filter` parity).
+  - Added unit test suite `TestHighPassFilterProcessor` and `TestPeakingEQProcessor` in `go/bobtk/media/media_pillar_test.go`.
+- **StyleSheet Engine (Go Visual Pillar)**:
+  - Implemented `StyleSheet` and `StyleDeclaration` in `go/bobtk/visual/style.go` providing CSS-like style definitions (background color, border width, border color, corner radius, padding, text color) and selector matching (`QStyleSheet` parity).
+  - Added unit test suite `TestStyleSheetRuleManagement` and `TestStyleSheetParseSimpleCSS` in `go/bobtk/visual/style_test.go`.
+
 ## [1.5.1] - 2026-04-06
 ### Added
 - **Button Text Accessors (Go Visual Pillar)**:

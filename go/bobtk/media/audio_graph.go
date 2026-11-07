@@ -170,6 +170,137 @@ func (lp *LowPassFilterProcessor) ProcessBlock(buffer *AudioBuffer) {
 	}
 }
 
+// HighPassFilterProcessor applies a single-pole high-pass filter (JUCE IIRFilter highpass parity).
+type HighPassFilterProcessor struct {
+	Cutoff     float64
+	SampleRate float64
+	prevInput  []float32
+	prevOutput []float32
+}
+
+func NewHighPassFilterProcessor(cutoff, sampleRate float64, channels int) *HighPassFilterProcessor {
+	if sampleRate <= 0 {
+		sampleRate = 48000
+	}
+	if channels <= 0 {
+		channels = 2
+	}
+	return &HighPassFilterProcessor{
+		Cutoff:     cutoff,
+		SampleRate: sampleRate,
+		prevInput:  make([]float32, channels),
+		prevOutput: make([]float32, channels),
+	}
+}
+
+func (hp *HighPassFilterProcessor) Name() string { return "HighPassFilterProcessor" }
+func (hp *HighPassFilterProcessor) ProcessBlock(buffer *AudioBuffer) {
+	if len(hp.prevInput) < buffer.Channels {
+		hp.prevInput = make([]float32, buffer.Channels)
+		hp.prevOutput = make([]float32, buffer.Channels)
+	}
+	// RC filter: alpha = rc / (rc + dt)
+	dt := 1.0 / hp.SampleRate
+	rc := 1.0 / (2.0 * math.Pi * hp.Cutoff)
+	alpha := float32(rc / (rc + dt))
+
+	for c := 0; c < buffer.Channels; c++ {
+		prevIn := hp.prevInput[c]
+		prevOut := hp.prevOutput[c]
+		for i := 0; i < buffer.NumSamples; i++ {
+			in := buffer.Data[c][i]
+			out := alpha * (prevOut + in - prevIn)
+			buffer.Data[c][i] = out
+			prevIn = in
+			prevOut = out
+		}
+		hp.prevInput[c] = prevIn
+		hp.prevOutput[c] = prevOut
+	}
+}
+
+// PeakingEQProcessor provides parametric peaking EQ filtering (JUCE dsp::IIR::Filter parity).
+type PeakingEQProcessor struct {
+	CenterFreq float64
+	Q          float64
+	GainDB     float64
+	SampleRate float64
+	x1, x2     []float32
+	y1, y2     []float32
+}
+
+func NewPeakingEQProcessor(centerFreq, q, gainDB, sampleRate float64, channels int) *PeakingEQProcessor {
+	if sampleRate <= 0 {
+		sampleRate = 48000
+	}
+	if channels <= 0 {
+		channels = 2
+	}
+	if q <= 0 {
+		q = 1.0
+	}
+	return &PeakingEQProcessor{
+		CenterFreq: centerFreq,
+		Q:          q,
+		GainDB:     gainDB,
+		SampleRate: sampleRate,
+		x1:         make([]float32, channels),
+		x2:         make([]float32, channels),
+		y1:         make([]float32, channels),
+		y2:         make([]float32, channels),
+	}
+}
+
+func (eq *PeakingEQProcessor) Name() string { return "PeakingEQProcessor" }
+func (eq *PeakingEQProcessor) ProcessBlock(buffer *AudioBuffer) {
+	// Standard biquad peaking EQ design (RBJ Audio EQ Cookbook)
+	A := math.Pow(10.0, eq.GainDB/40.0)
+	omega := 2.0 * math.Pi * eq.CenterFreq / eq.SampleRate
+	alpha := math.Sin(omega) / (2.0 * eq.Q)
+	cosw := math.Cos(omega)
+
+	b0 := 1.0 + alpha*A
+	b1 := -2.0 * cosw
+	b2 := 1.0 - alpha*A
+	a0 := 1.0 + alpha/A
+	a1 := -2.0 * cosw
+	a2 := 1.0 - alpha/A
+
+	// Normalize coefficients
+	b0_norm := float32(b0 / a0)
+	b1_norm := float32(b1 / a0)
+	b2_norm := float32(b2 / a0)
+	a1_norm := float32(a1 / a0)
+	a2_norm := float32(a2 / a0)
+
+	for c := 0; c < buffer.Channels; c++ {
+		if c >= len(eq.x1) {
+			continue
+		}
+		x1 := eq.x1[c]
+		x2 := eq.x2[c]
+		y1 := eq.y1[c]
+		y2 := eq.y2[c]
+
+		for i := 0; i < buffer.NumSamples; i++ {
+			x0 := buffer.Data[c][i]
+			y0 := b0_norm*x0 + b1_norm*x1 + b2_norm*x2 - a1_norm*y1 - a2_norm*y2
+
+			x2 = x1
+			x1 = x0
+			y2 = y1
+			y1 = y0
+
+			buffer.Data[c][i] = y0
+		}
+
+		eq.x1[c] = x1
+		eq.x2[c] = x2
+		eq.y1[c] = y1
+		eq.y2[c] = y2
+	}
+}
+
 // DelayProcessor adds echo and reverberant delay lines (JUCE DelayLine parity).
 type DelayProcessor struct {
 	DelaySamples int

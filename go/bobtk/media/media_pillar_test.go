@@ -211,3 +211,45 @@ func TestAudioBufferClearCopyMagnitude(t *testing.T) {
 		t.Errorf("expected 0.0 magnitude after Clear()")
 	}
 }
+
+func TestHighPassFilterProcessor(t *testing.T) {
+	hp := NewHighPassFilterProcessor(500.0, 48000, 2)
+	if hp.Name() != "HighPassFilterProcessor" {
+		t.Errorf("expected name HighPassFilterProcessor, got %s", hp.Name())
+	}
+
+	buf := NewAudioBuffer(2, 64)
+	// Fill buffer with constant DC offset (1.0)
+	for c := 0; c < 2; c++ {
+		for i := 0; i < 64; i++ {
+			buf.Data[c][i] = 1.0
+		}
+	}
+
+	hp.ProcessBlock(buf)
+
+	// High-pass filter must attenuate DC signal over time towards zero
+	if buf.Data[0][63] >= buf.Data[0][0] {
+		t.Errorf("expected high-pass filter to attenuate DC signal, sample 0: %f, sample 63: %f",
+			buf.Data[0][0], buf.Data[0][63])
+	}
+}
+
+func TestPeakingEQProcessor(t *testing.T) {
+	// Center freq 1000Hz, Q 1.0, +6dB boost
+	eq := NewPeakingEQProcessor(1000.0, 1.0, 6.0, 48000, 2)
+	if eq.Name() != "PeakingEQProcessor" {
+		t.Errorf("expected name PeakingEQProcessor, got %s", eq.Name())
+	}
+
+	buf := NewAudioBuffer(2, 64)
+	// Impulse input at sample 0
+	buf.Data[0][0] = 1.0
+	buf.Data[1][0] = 1.0
+
+	eq.ProcessBlock(buf)
+
+	if buf.GetMagnitude(0) == 0.0 {
+		t.Errorf("expected non-zero magnitude after EQ processing")
+	}
+}

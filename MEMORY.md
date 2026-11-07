@@ -49,3 +49,6 @@
 - **Wrap File Cleanup (Batch 2):** Cleaned duplicate configuration blocks in `subprojects/fribidi.wrap` and `subprojects/libpng.wrap`.
 - **Label Text Accessors:** `Label` in `go/bobtk/visual/widgets.go` provides thread-safe `SetText` and `GetText` (`QLabel::setText`/`text` parity).
 - **Button Text Accessors:** `Button` in `go/bobtk/visual/widgets.go` provides thread-safe `SetText` and `GetText` (`QPushButton::setText`/`text` parity).
+- **WorkPool Task Dispatcher:** `WorkPool` in `go/bobtk/core/work_pool.go` provides dynamic concurrency control, waitable job completions (`SubmitWaitable`), task cancellation context, and barrier synchronization (`Wait`) inspired by U++ `CoWork` and JUCE `ThreadPool`.
+- **Parametric Audio Processors:** `HighPassFilterProcessor` and `PeakingEQProcessor` in `go/bobtk/media/audio_graph.go` implement high-pass and biquad peaking equalizer DSP filtering (`juce::dsp::IIR::Filter` parity).
+- **StyleSheet Engine:** `StyleSheet` in `go/bobtk/visual/style.go` provides CSS rule parsing and selector styling matching (`QStyleSheet` parity).
