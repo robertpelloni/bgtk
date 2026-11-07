@@ -287,6 +287,7 @@ func main() {
 
 	clipboard := systemPillar.Clipboard()
 	clipboard.SetText("bgtk-auth-token-example")
+	clipboard.SetData("application/x-bgtk-session", []byte("session-key-42"))
 
 	// Wire up the consolidated single-page dashboard
 	dashboard := visualPillar.SetupConsolidatedDashboard(serverManager, tray)

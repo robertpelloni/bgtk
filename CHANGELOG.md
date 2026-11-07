@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [1.4.0] - 2026-04-06
+### Added
+- **Clipboard MIME Data Storage & Queries (Go System Pillar)**:
+  - Extended `Clipboard` with `SetData` and `GetData` for storing arbitrary MIME and binary payloads (`QMimeData` and `QClipboard` parity).
+  - Added `HasText` method to inspect whether plain text content is available.
+  - Added unit test suite `TestClipboardMimeDataAndHasText` in `go/bobtk/system/tray_test.go`.
+  - Demonstrated in `go/main.go` and verified in single-page dashboard operations.
+
 ## [1.3.9] - 2026-04-06
 ### Added
 - **Ellipse Vector Drawing (Go Visual Pillar)**:

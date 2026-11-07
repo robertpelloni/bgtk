@@ -101,3 +101,36 @@ func TestClipboardOperations(t *testing.T) {
 		t.Errorf("expected empty clipboard after clear, got %q", cb.GetText())
 	}
 }
+
+func TestClipboardMimeDataAndHasText(t *testing.T) {
+	cb := NewClipboard()
+
+	if cb.HasText() {
+		t.Errorf("expected HasText to be false initially")
+	}
+
+	cb.SetText("Bgtk Clipboard Text")
+	if !cb.HasText() {
+		t.Errorf("expected HasText to be true after SetText")
+	}
+
+	data, found := cb.GetData("text/plain")
+	if !found || string(data) != "Bgtk Clipboard Text" {
+		t.Errorf("expected text/plain MIME payload, got %s (found=%v)", string(data), found)
+	}
+
+	cb.SetData("application/x-bgtk-binary", []byte{0xDE, 0xAD, 0xBE, 0xEF})
+	binData, foundBin := cb.GetData("application/x-bgtk-binary")
+	if !foundBin || len(binData) != 4 || binData[0] != 0xDE {
+		t.Errorf("unexpected binary payload retrieval: %v (found=%v)", binData, foundBin)
+	}
+
+	cb.Clear()
+	if cb.HasText() {
+		t.Errorf("expected HasText to be false after Clear")
+	}
+	_, foundAfterClear := cb.GetData("application/x-bgtk-binary")
+	if foundAfterClear {
+		t.Errorf("expected MIME data cleared after Clear()")
+	}
+}

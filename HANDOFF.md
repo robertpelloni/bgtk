@@ -1,7 +1,9 @@
-# Handoff Document - Bobtk Ellipse Vector Drawing (v1.3.9)
+# Handoff Document - Bobtk Clipboard MIME Storage & Queries (v1.4.0)
 
 ## Current Status
-- Version bumped to `1.3.9` tracking global versioning governance.
+- Version bumped to `1.4.0` tracking global versioning governance.
+- Extended `Clipboard` in Go System Pillar (`go/bobtk/system/clipboard.go`) with `SetData`, `GetData`, and `HasText` for arbitrary MIME and binary payload associations (`QMimeData` and `QClipboard` parity).
+- Verified clipboard MIME storage and queries with unit test suite `TestClipboardMimeDataAndHasText` in `go/bobtk/system/tray_test.go`.
 - Implemented `DrawEllipse` and `FillEllipse` vector drawing operations in Go Visual Pillar `GraphicsContext` (`go/bobtk/visual/graphics.go`).
 - Verified ellipse canvas drawing with unit test suite `TestGraphicsContextEllipseOperations` in `go/bobtk/visual/graphics_test.go` and integrated into `go/main.go`.
 - Implemented `NewPitchBend` and `NewPolyPressure` Universal MIDI Packet builders in Go Media Pillar (`go/bobtk/media/midi.go`) supporting 32-bit modulation resolution.

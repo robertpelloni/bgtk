@@ -37,3 +37,4 @@
 - **Extended HTTP Client:** `NetworkAccessManager` in `go/bobtk/network/http_client.go` supports PUT and DELETE HTTP verbs alongside GET and POST, and includes default header state management (`SetHeader`/`GetHeader`).
 - **MIDI 2.0 Modulation Packets:** `go/bobtk/media/midi.go` provides UMP packet builders for `NewPitchBend` (32-bit wheel value) and `NewPolyPressure` (32-bit per-note aftertouch).
 - **Ellipse Vector Drawing:** `GraphicsContext` in `go/bobtk/visual/graphics.go` provides `DrawEllipse` and `FillEllipse` (`QPainter::drawEllipse` and `juce::Graphics::drawEllipse`/`fillEllipse` parity).
+- **Clipboard MIME Storage:** `Clipboard` in `go/bobtk/system/clipboard.go` supports arbitrary binary and MIME payloads (`SetData`/`GetData`) and empty-state queries (`HasText`).
