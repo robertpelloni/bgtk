@@ -22,6 +22,8 @@ namespace cpp {
   // System module exports
   using system::FileSystemWatcher;
   using system::LocalServer;
+  using system::SystemTrayIcon;
+  using system::ServerProcessController;
   
   // Network module exports
   using network::Network;

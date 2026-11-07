@@ -1,5 +1,3 @@
-project('bobgui', 'c',
-        version: '4.23.0',
 project('gtk', 'c',
         version: '4.14.4',
         default_options: [
@@ -341,6 +339,7 @@ check_headers = [
   'sys/mman.h',
   'sys/sysmacros.h',
   'sys/time.h',
+]
 gtk_prefix = get_option('prefix')
 gtk_includedir = join_paths(gtk_prefix, get_option('includedir'))
 gtk_libdir = join_paths(gtk_prefix, get_option('libdir'))
@@ -433,6 +432,11 @@ foreach func : check_functions
                        '#include <fcntl.h>\n' +
                        '#include <math.h>',
                      dependencies: libm)
+    cdata.set('HAVE_' + func.underscorify().to_upper(), 1)
+  endif
+endforeach
+
+check_math_functions = [
   'dcgettext',
   'getpagesize',
   'getresuid',
@@ -782,16 +786,17 @@ endif
 gst_deps = [ gstplay_dep, gstgl_dep, gstallocators_dep, gstd3d12_dep ]
 
 fontconfig_dep = [] # only used in x11 backend
-    if cc.get_id() == 'msvc'
-      cdata.set('_GDK_EXTERN', '__declspec(dllexport) extern')
-    else
-      cdata.set('_GDK_EXTERN', '__attribute__((visibility("default"))) __declspec(dllexport) extern')
-      common_cflags += ['-fvisibility=hidden']
-    endif
+
+if os_win32
+  if cc.get_id() == 'msvc'
+    cdata.set('_GDK_EXTERN', '__declspec(dllexport) extern')
   else
-    cdata.set('_GDK_EXTERN', '__attribute__((visibility("default"))) extern')
+    cdata.set('_GDK_EXTERN', '__attribute__((visibility("default"))) __declspec(dllexport) extern')
     common_cflags += ['-fvisibility=hidden']
   endif
+else
+  cdata.set('_GDK_EXTERN', '__attribute__((visibility("default"))) extern')
+  common_cflags += ['-fvisibility=hidden']
 endif
 
 common_ldflags = []
@@ -950,6 +955,7 @@ foreach backend: [ ['cairo-xlib', cairo_req, x11_enabled],
      cairo_backends += [ cairo_backend ]
    endif
  endif
+endforeach
 # Remove once Meson is fixed to find deps properly with CMake or
 # gains the ability to declare deps in a declarative manner
 # Fallback for HarfBuzz
@@ -1057,6 +1063,9 @@ if wayland_enabled
   wayland_pkgs = [
     'wayland-client @0@'.format(wayland_req),
     'xkbcommon @0@'.format(xkbcommon_req),
+  ]
+endif
+
 if cairo_found_type == 'internal' or cairo_found_type == 'pkgconfig'
   cairo_pkg_found = true
 endif
@@ -1371,7 +1380,6 @@ if cc.has_function('ngettext')
   cdata.set('HAVE_BIND_TEXTDOMAIN_CODESET', 1)
 else
   libintl_dep = cc.find_library('intl', required : false)
-  if cc.has_function('bind_textdomain_codeset', prefix: libintl_prefix, dependencies: libintl_dep)
   if cc.has_function('bind_textdomain_codeset', dependencies: libintl_dep)
     cdata.set('HAVE_BIND_TEXTDOMAIN_CODESET', 1)
   else
@@ -1440,7 +1448,7 @@ if not get_option('sysprof').disabled()
     default_options: [
       'agent=false',
       'examples=false',
-      'bobgui=false',
+      'gtk=false',
       'tests=false',
       'tools=false',
       'libsysprof=true',
