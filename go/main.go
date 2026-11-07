@@ -211,6 +211,8 @@ func main() {
 	meterComp.SetPaintCallback(func(g *visual.GraphicsContext, bounds visual.Rect) {
 		g.SetColour(visual.ColorGreen)
 		g.FillRect(0, 0, 180, 20)
+		g.SetColour(visual.ColorBlue)
+		g.FillEllipse(185, 2, 16, 16)
 		g.SetColour(visual.ColorWhite)
 		g.DrawText("Audio VU Peak", 5, 2, 170, 16)
 	})

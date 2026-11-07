@@ -46,5 +46,6 @@
 - [x] Add Splitter Layout zero-size fallback safeguard in Go Visual Pillar (v1.3.6).
 - [x] Extend NetworkAccessManager with custom headers and PUT/DELETE methods in Go Network Pillar (v1.3.7).
 - [x] Implement MIDI 2.0 PitchBend and PolyPressure packet builders in Go Media Pillar (v1.3.8).
+- [x] Implement DrawEllipse and FillEllipse vector drawing operations in Go Visual Pillar (v1.3.9).
 - [ ] Research missing Qt6/Qt7 features compared to the current Bobtk C++ baseline.
 - [ ] Test and resolve any remaining failing builds caused by renaming strings and paths (Meson wrap corruption).

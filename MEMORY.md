@@ -36,3 +36,4 @@
 - **Splitter Fallback Safeguard:** `Splitter.Layout` in `go/bobtk/visual/widgets.go` safely protects against division by zero if empty or zero-weight partition slices are supplied, defaulting `totalSize = len(s.items)`.
 - **Extended HTTP Client:** `NetworkAccessManager` in `go/bobtk/network/http_client.go` supports PUT and DELETE HTTP verbs alongside GET and POST, and includes default header state management (`SetHeader`/`GetHeader`).
 - **MIDI 2.0 Modulation Packets:** `go/bobtk/media/midi.go` provides UMP packet builders for `NewPitchBend` (32-bit wheel value) and `NewPolyPressure` (32-bit per-note aftertouch).
+- **Ellipse Vector Drawing:** `GraphicsContext` in `go/bobtk/visual/graphics.go` provides `DrawEllipse` and `FillEllipse` (`QPainter::drawEllipse` and `juce::Graphics::drawEllipse`/`fillEllipse` parity).

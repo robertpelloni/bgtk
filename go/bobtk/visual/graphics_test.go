@@ -38,3 +38,23 @@ func TestGraphicsContextDrawingOperations(t *testing.T) {
 		t.Errorf("expected 3 operations after stroking path, got %d", ctx.OperationCount())
 	}
 }
+
+func TestGraphicsContextEllipseOperations(t *testing.T) {
+	ctx := NewGraphicsContext(Rect{0, 0, 400, 300})
+	ctx.SetColour(ColorGreen)
+	ctx.DrawEllipse(20, 20, 100, 100)
+	ctx.FillEllipse(50, 50, 40, 40)
+
+	if ctx.OperationCount() != 2 {
+		t.Fatalf("expected 2 ellipse operations, got %d", ctx.OperationCount())
+	}
+
+	lastOp, err := ctx.LastOperation()
+	if err != nil {
+		t.Fatalf("failed to get last operation: %v", err)
+	}
+
+	if lastOp.Type != "FILL_ELLIPSE" || lastOp.Rect.W != 40 || lastOp.Color != ColorGreen {
+		t.Errorf("unexpected last operation: %+v", lastOp)
+	}
+}

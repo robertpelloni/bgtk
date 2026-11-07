@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [1.3.9] - 2026-04-06
+### Added
+- **Ellipse Vector Drawing (Go Visual Pillar)**:
+  - `DrawEllipse`: Outlines an ellipse within the specified bounding rectangle (`QPainter::drawEllipse` and `juce::Graphics::drawEllipse` parity).
+  - `FillEllipse`: Fills an ellipse using the active foreground color.
+  - Added unit test suite `TestGraphicsContextEllipseOperations` in `go/bobtk/visual/graphics_test.go`.
+  - Demonstrated in `go/main.go` and verified in single-page dashboard operations.
+
 ## [1.3.8] - 2026-04-06
 ### Added
 - **PitchBend & PolyPressure MIDI 2.0 Packets (Go Media Pillar)**:

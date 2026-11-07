@@ -130,6 +130,26 @@ func (g *GraphicsContext) FillRect(x, y, w, h int) {
 	})
 }
 
+func (g *GraphicsContext) DrawEllipse(x, y, w, h int) {
+	g.mu.Lock()
+	defer g.mu.Unlock()
+	g.operations = append(g.operations, DrawOp{
+		Type:  "DRAW_ELLIPSE",
+		Color: g.currentColor,
+		Rect:  Rect{X: x, Y: y, W: w, H: h},
+	})
+}
+
+func (g *GraphicsContext) FillEllipse(x, y, w, h int) {
+	g.mu.Lock()
+	defer g.mu.Unlock()
+	g.operations = append(g.operations, DrawOp{
+		Type:  "FILL_ELLIPSE",
+		Color: g.currentColor,
+		Rect:  Rect{X: x, Y: y, W: w, H: h},
+	})
+}
+
 func (g *GraphicsContext) DrawText(text string, x, y, w, h int) {
 	g.mu.Lock()
 	defer g.mu.Unlock()
