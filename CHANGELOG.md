@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [1.5.3] - 2026-04-06
+### Added
+- **Polyphonic Synthesizer Engine (Go Media Pillar)**:
+  - Implemented `Synthesizer` and `SynthVoice` in `go/bobtk/media/synth.go` (`juce::Synthesizer` and `juce::SynthesizerVoice` parity).
+  - Added multi-voice polyphony management, dynamic voice stealing, MIDI note to frequency calculation, note triggers (`NoteOn`, `NoteOff`, `AllNotesOff`), and real-time buffer rendering (`RenderNextBlock`).
+  - Added unit test suite `TestSynthesizerPolyphony` in `go/bobtk/media/synth_test.go`.
+  - Exposed via `MediaPillar.Synthesizer()` and integrated real-time polyphonic triad synthesis demonstration into `go/main.go`.
+
 ## [1.5.2] - 2026-04-06
 ### Added
 - **WorkPool Task Dispatcher (Go Core Pillar)**:

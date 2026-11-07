@@ -197,6 +197,16 @@ func main() {
 	audioGraph.Process(audioBuf)
 	ch0Peak := audioBuf.GetMagnitude(0)
 
+	// Demonstrate Polyphonic Synthesizer Engine (JUCE Synthesizer parity)
+	synthEngine := mediaPillar.Synthesizer()
+	synthEngine.NoteOn(60, 0.8) // Middle C
+	synthEngine.NoteOn(64, 0.7) // E4
+	synthEngine.NoteOn(67, 0.9) // G4
+	synthBuf := media.NewAudioBuffer(2, 128)
+	synthEngine.RenderNextBlock(synthBuf)
+	synthPeak := synthBuf.GetMagnitude(0)
+	synthEngine.AllNotesOff()
+
 	midiBus := mediaPillar.MidiBus()
 	midiBus.Broadcast(media.NewNoteOn(0, 1, 60, 0x7FFF))
 	midiBus.Broadcast(media.NewControlChange(0, 1, 7, 0xCCCCCCCC))
@@ -353,7 +363,7 @@ func main() {
 	dashboard.Log(fmt.Sprintf("Native C/C++ Runtime Bridge active (%s mode on %s/%s, %d live handles registered, %d events synced).", bridge.Mode(), bridge.TargetOS(), bridge.TargetArch(), bridge.ActiveHandleCount(), bridge.EventCount()))
 	dashboard.Log(fmt.Sprintf("Network SyncEngine active (%d peer connected) & NetworkAccessManager (%d HTTP calls handled).", syncEngine.PeerCount(), httpMgr.HistoryCount()))
 	dashboard.Log(fmt.Sprintf("Network Broadway Gateway active on port %d with %d connected client(s).", broadway.Port(), broadway.ClientCount()))
-	dashboard.Log(fmt.Sprintf("Media Audio DSP pipeline running with %d active processor(s) (Peak Ch0: %0.2f) and MIDI 2.0 bus ready.", audioGraph.ProcessorCount(), ch0Peak))
+	dashboard.Log(fmt.Sprintf("Media Audio DSP pipeline running with %d active processor(s) (Peak Ch0: %0.2f), Polyphonic Synth active (Peak: %0.2f), and MIDI 2.0 bus ready.", audioGraph.ProcessorCount(), ch0Peak, synthPeak))
 	dashboard.Log(fmt.Sprintf("System tray active with %d background servers registered.", serverManager.RunningCount()))
 	dashboard.Log(fmt.Sprintf("Tools Pillar Performance Profiler: %d spans active, %d samples recorded (Startup avg: %v).", len(profiler.GetSpans()), profiler.SampleCount(), profiler.AverageDuration("Startup")))
 

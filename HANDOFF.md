@@ -1,7 +1,9 @@
-# Handoff Document - Bobtk WorkPool, AudioGraph Filters & StyleSheet (v1.5.2)
+# Handoff Document - Bobtk Polyphonic Synthesizer Engine (v1.5.3)
 
 ## Current Status
-- Version bumped to `1.5.2` tracking global versioning governance.
+- Version bumped to `1.5.3` tracking global versioning governance.
+- Implemented `Synthesizer` and `SynthVoice` in Go Media Pillar (`go/bobtk/media/synth.go`) achieving `juce::Synthesizer` and `juce::SynthesizerVoice` parity.
+- Verified polyphonic synthesis with unit test suite in `go/bobtk/media/synth_test.go` and integrated live demonstration in `go/main.go`.
 - Implemented `WorkPool` in Go Core Pillar (`go/bobtk/core/work_pool.go`) inspired by U++ `CoWork` and JUCE `ThreadPool` with waitable tasks (`SubmitWaitable`), cancellation contexts, and barrier wait (`Wait`).
 - Verified WorkPool with unit test suite in `go/bobtk/core/work_pool_test.go`.
 - Implemented `HighPassFilterProcessor` and `PeakingEQProcessor` in Go Media Pillar (`go/bobtk/media/audio_graph.go`) achieving `juce::dsp::IIR::Filter` parity.

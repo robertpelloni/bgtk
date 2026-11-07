@@ -7,6 +7,7 @@ type MediaPillar struct {
 	initialized bool
 	Audio       *AudioGraph
 	Midi        *MidiBus
+	Synth       *Synthesizer
 }
 
 func NewMediaPillar() *MediaPillar {
@@ -14,6 +15,7 @@ func NewMediaPillar() *MediaPillar {
 		initialized: false,
 		Audio:       NewAudioGraph(48000, 256),
 		Midi:        NewMidiBus(),
+		Synth:       NewSynthesizer(16, 48000),
 	}
 }
 
@@ -31,4 +33,8 @@ func (m *MediaPillar) AudioGraph() *AudioGraph {
 
 func (m *MediaPillar) MidiBus() *MidiBus {
 	return m.Midi
+}
+
+func (m *MediaPillar) Synthesizer() *Synthesizer {
+	return m.Synth
 }

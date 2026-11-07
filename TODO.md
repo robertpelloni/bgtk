@@ -62,5 +62,6 @@
 - [x] Implement WorkPool task dispatcher in Go Core Pillar (v1.5.2).
 - [x] Implement HighPassFilterProcessor and PeakingEQProcessor in Go Media Pillar (v1.5.2).
 - [x] Implement StyleSheet CSS rule engine in Go Visual Pillar (v1.5.2).
+- [x] Implement Polyphonic Synthesizer engine in Go Media Pillar (v1.5.3).
 - [ ] Research missing Qt6/Qt7 features compared to the current Bobtk C++ baseline.
 - [ ] Test and resolve any remaining failing builds caused by renaming strings and paths (Meson wrap corruption).

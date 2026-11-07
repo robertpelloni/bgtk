@@ -61,6 +61,7 @@
 - Implement WorkPool task dispatcher in Go Core Pillar (v1.5.2).
 - Implement HighPassFilterProcessor and PeakingEQProcessor in Go Media Pillar (v1.5.2).
 - Implement StyleSheet CSS rule engine in Go Visual Pillar (v1.5.2).
+- Implement Polyphonic Synthesizer engine in Go Media Pillar (v1.5.3).
 
 ## Phase 4: UI and Frontend Expansion
 - Ensure every backend feature is extensively represented in the frontend UI.
