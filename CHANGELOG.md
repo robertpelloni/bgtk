@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## [1.4.9] - 2026-04-06
+### Fixed
+- **Wrap File Artifact Cleaning**:
+  - Removed duplicate git and file configuration blocks from `subprojects/fribidi.wrap` and `subprojects/libpng.wrap`.
+
 ## [1.4.8] - 2026-04-06
 ### Added
 - **Widget Visibility State (Go Visual Pillar)**:

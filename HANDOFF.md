@@ -1,7 +1,8 @@
-# Handoff Document - Bobtk Widget Visibility Control (v1.4.8)
+# Handoff Document - Bobtk Wrap File Cleanup Batch 2 (v1.4.9)
 
 ## Current Status
-- Version bumped to `1.4.8` tracking global versioning governance.
+- Version bumped to `1.4.9` tracking global versioning governance.
+- Cleaned duplicate configuration sections from `subprojects/fribidi.wrap` and `subprojects/libpng.wrap`.
 - Added `SetVisible` and `IsVisible` methods to `WidgetBase` in Go Visual Pillar (`go/bobtk/visual/widgets.go`) achieving `QWidget::setVisible`/`isVisible` parity.
 - Verified widget visibility operations with unit test suite `TestWidgetBaseVisibility` in `go/bobtk/visual/layout_test.go`.
 - Cleaned corrupted duplicate git configuration blocks from `subprojects/gdk-pixbuf.wrap` and `subprojects/pango.wrap`.

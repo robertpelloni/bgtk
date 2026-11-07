@@ -56,5 +56,6 @@
 - [x] Implement AudioBuffer Clear, CopyFrom, and GetMagnitude in Go Media Pillar (v1.4.6).
 - [x] Remove corrupted duplicate git lines in subproject wrap files (v1.4.7).
 - [x] Add SetVisible and IsVisible to WidgetBase in Go Visual Pillar (v1.4.8).
+- [x] Clean duplicate sections in fribidi and libpng wrap files (v1.4.9).
 - [ ] Research missing Qt6/Qt7 features compared to the current Bobtk C++ baseline.
 - [ ] Test and resolve any remaining failing builds caused by renaming strings and paths (Meson wrap corruption).

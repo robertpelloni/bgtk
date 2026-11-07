@@ -46,3 +46,4 @@
 - **AudioBuffer Operations:** `AudioBuffer` in `go/bobtk/media/audio_graph.go` supports `Clear()`, `CopyFrom()`, and `GetMagnitude()` (`juce::AudioBuffer<float>` parity).
 - **Wrap File Cleanup:** Removed corrupted duplicate git metadata appended to `subprojects/gdk-pixbuf.wrap` and `subprojects/pango.wrap`.
 - **Widget Visibility State:** `WidgetBase` in `go/bobtk/visual/widgets.go` supports `SetVisible` and `IsVisible` (`QWidget::setVisible`/`isVisible` parity).
+- **Wrap File Cleanup (Batch 2):** Cleaned duplicate configuration blocks in `subprojects/fribidi.wrap` and `subprojects/libpng.wrap`.
