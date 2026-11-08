@@ -221,6 +221,82 @@ func (s *Slider) SetValue(v int) {
 	}
 }
 
+// ScrollBar represents a scroll bar control with page stepping (QScrollBar parity).
+type ScrollBar struct {
+	WidgetBase
+	value          int
+	minimum        int
+	maximum        int
+	pageStep       int
+	orientation    Orientation
+	OnValueChanged func(int)
+}
+
+func NewScrollBar(orientation Orientation) *ScrollBar {
+	minW, minH := 100, 16
+	if orientation == Vertical {
+		minW, minH = 16, 100
+	}
+	return &ScrollBar{
+		WidgetBase:  WidgetBase{minW: minW, minH: minH, visible: true, enabled: true},
+		value:       0,
+		minimum:     0,
+		maximum:     100,
+		pageStep:    10,
+		orientation: orientation,
+	}
+}
+
+func (sb *ScrollBar) Value() int {
+	sb.mu.RLock()
+	defer sb.mu.RUnlock()
+	return sb.value
+}
+
+func (sb *ScrollBar) SetValue(v int) {
+	sb.mu.Lock()
+	if v < sb.minimum {
+		v = sb.minimum
+	}
+	if v > sb.maximum {
+		v = sb.maximum
+	}
+	sb.value = v
+	cb := sb.OnValueChanged
+	sb.mu.Unlock()
+	if cb != nil {
+		cb(v)
+	}
+}
+
+func (sb *ScrollBar) PageUp() {
+	sb.mu.Lock()
+	v := sb.value - sb.pageStep
+	if v < sb.minimum {
+		v = sb.minimum
+	}
+	sb.value = v
+	cb := sb.OnValueChanged
+	sb.mu.Unlock()
+	if cb != nil {
+		cb(v)
+	}
+}
+
+func (sb *ScrollBar) PageDown() {
+	sb.mu.Lock()
+	v := sb.value + sb.pageStep
+	if v > sb.maximum {
+		v = sb.maximum
+	}
+	sb.value = v
+	cb := sb.OnValueChanged
+	sb.mu.Unlock()
+	if cb != nil {
+		cb(v)
+	}
+}
+
 // CheckBox represents a toggleable option with label (QCheckBox parity).
 type CheckBox struct {
 	WidgetBase

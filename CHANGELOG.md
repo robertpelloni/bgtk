@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.5.9] - 2026-04-06
+### Added
+- **ScrollBar Widget (Go Visual Pillar)**:
+  - Implemented `ScrollBar` in `go/bobtk/visual/widgets.go` (`QScrollBar` parity) supporting horizontal and vertical orientations, value boundary clamping, page stepping (`PageUp`, `PageDown`), and reactive `OnValueChanged` signals.
+  - Added unit test suite `TestScrollBarWidget` in `go/bobtk/visual/layout_test.go`.
+  - Integrated into `go/main.go` layout and single-page dashboard operations.
+
 ## [1.5.8] - 2026-04-06
 ### Fixed
 - **Sysprof-Capture Fallback & Dependency Resolution (Meson Build System)**:

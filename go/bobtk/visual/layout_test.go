@@ -397,3 +397,36 @@ func TestSpinBoxWidget(t *testing.T) {
 		t.Errorf("expected 0 after clamping to minimum, got %d", spin.Value())
 	}
 }
+
+func TestScrollBarWidget(t *testing.T) {
+	sb := NewScrollBar(Vertical)
+
+	if sb.Value() != 0 {
+		t.Fatalf("expected initial value 0, got %d", sb.Value())
+	}
+
+	var notifiedVal int
+	sb.OnValueChanged = func(v int) {
+		notifiedVal = v
+	}
+
+	sb.PageDown()
+	if sb.Value() != 10 || notifiedVal != 10 {
+		t.Errorf("expected 10 after PageDown, got %d (notified %d)", sb.Value(), notifiedVal)
+	}
+
+	sb.PageUp()
+	if sb.Value() != 0 || notifiedVal != 0 {
+		t.Errorf("expected 0 after PageUp, got %d (notified %d)", sb.Value(), notifiedVal)
+	}
+
+	sb.SetValue(85)
+	if sb.Value() != 85 {
+		t.Errorf("expected 85, got %d", sb.Value())
+	}
+
+	sb.SetValue(200) // clamp to max 100
+	if sb.Value() != 100 {
+		t.Errorf("expected 100 after clamping, got %d", sb.Value())
+	}
+}

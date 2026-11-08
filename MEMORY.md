@@ -58,3 +58,4 @@
 - **WorkPool Drain Guarantee:** `WorkPool` in `go/bobtk/core/work_pool.go` safely drains remaining buffered tasks upon shutdown while closing the channel under mutex synchronization.
 - **BenchmarkRunner Throughput Analysis:** `BenchmarkRunner` in `go/bobtk/tools/tools_pillar.go` records iteration counts, total and average latency, and operations per second.
 - **Sysprof-Capture Fallback:** `meson.build` provides subproject wrap fallbacks and default configuration options for `sysprof-capture-4` ensuring clean configuration when sysprof is absent from host pkg-config.
+- **ScrollBar Widget:** `ScrollBar` in `go/bobtk/visual/widgets.go` provides horizontal/vertical scrolling, page steps (`PageUp`, `PageDown`), bounds clamping, and change signals (`QScrollBar` parity).

@@ -268,6 +268,9 @@ func main() {
 	bufferSpinBox := visual.NewSpinBox(64, 4096, 256, 64)
 	bufferSpinBox.StepUp() // advance to 320
 
+	scrollBar := visual.NewScrollBar(visual.Vertical)
+	scrollBar.PageDown() // advance to 10
+
 	telemetryToggle := visual.NewCheckBox("Stream Telemetry Live")
 	telemetryToggle.SetChecked(true)
 
@@ -292,6 +295,7 @@ func main() {
 	vbox.AddItem(progressBar, 2)
 	vbox.AddItem(volumeSlider, 1)
 	vbox.AddItem(bufferSpinBox, 1)
+	vbox.AddItem(scrollBar, 1)
 	vbox.AddItem(telemetryToggle, 1)
 	vbox.AddItem(modeCombo, 1)
 	vbox.AddItem(radioHighPrio, 1)
@@ -381,7 +385,7 @@ func main() {
 	dashboard.Log(fmt.Sprintf("Ultimate++ NTL Binary Stream Serialization verified: %d bytes packed, unpacked magic: 0x%X (weight: %0.2f).", len(binaryStatePayload), unpackedMagic, unpackedWeight))
 	dashboard.Log(fmt.Sprintf("RingBuffer concurrent FIFO active (Capacity: %d, Queued: %d items, Empty: %t, Full: %t).", ringBuffer.Capacity(), ringBuffer.Len(), ringBuffer.IsEmpty(), ringBuffer.IsFull()))
 	dashboard.Log("User-space FastMutex & ReadWriteSpinLock concurrency primitives active (zero-syscall contention backoff).")
-	dashboard.Log(fmt.Sprintf("Qt6 Parity Layout Engine & Widgets initialized (QHBoxLayout, QVBoxLayout, QGridLayout, QStackedLayout, SpinBox: %d).", bufferSpinBox.Value()))
+	dashboard.Log(fmt.Sprintf("Qt6 Parity Layout Engine & Widgets initialized (QHBoxLayout, QVBoxLayout, QGridLayout, QStackedLayout, SpinBox: %d, ScrollBar: %d).", bufferSpinBox.Value(), scrollBar.Value()))
 	dashboard.Log(fmt.Sprintf("JUCE Component hierarchy nested (%d children) and precision Timer active (%d ms interval).", rootComp.NumChildComponents(), telemetryTimer.GetTimerInterval()))
 	dashboard.Log(fmt.Sprintf("Native C/C++ Runtime Bridge active (%s mode on %s/%s, %d live handles registered, %d events synced).", bridge.Mode(), bridge.TargetOS(), bridge.TargetArch(), bridge.ActiveHandleCount(), bridge.EventCount()))
 	dashboard.Log(fmt.Sprintf("Network SyncEngine active (%d peer connected) & NetworkAccessManager (%d HTTP calls handled).", syncEngine.PeerCount(), httpMgr.HistoryCount()))
