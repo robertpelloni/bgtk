@@ -247,6 +247,85 @@ func (c *CheckBox) SetChecked(checked bool) {
 	}
 }
 
+// SpinBox represents a numeric integer input field with step buttons (QSpinBox parity).
+type SpinBox struct {
+	WidgetBase
+	value          int
+	minimum        int
+	maximum        int
+	step           int
+	OnValueChanged func(int)
+}
+
+func NewSpinBox(min, max, initial, step int) *SpinBox {
+	if step <= 0 {
+		step = 1
+	}
+	if initial < min {
+		initial = min
+	}
+	if initial > max {
+		initial = max
+	}
+	return &SpinBox{
+		WidgetBase: WidgetBase{minW: 80, minH: 26, visible: true, enabled: true},
+		value:      initial,
+		minimum:    min,
+		maximum:    max,
+		step:       step,
+	}
+}
+
+func (s *SpinBox) Value() int {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	return s.value
+}
+
+func (s *SpinBox) SetValue(v int) {
+	s.mu.Lock()
+	if v < s.minimum {
+		v = s.minimum
+	}
+	if v > s.maximum {
+		v = s.maximum
+	}
+	s.value = v
+	cb := s.OnValueChanged
+	s.mu.Unlock()
+	if cb != nil {
+		cb(v)
+	}
+}
+
+func (s *SpinBox) StepUp() {
+	s.mu.Lock()
+	v := s.value + s.step
+	if v > s.maximum {
+		v = s.maximum
+	}
+	s.value = v
+	cb := s.OnValueChanged
+	s.mu.Unlock()
+	if cb != nil {
+		cb(v)
+	}
+}
+
+func (s *SpinBox) StepDown() {
+	s.mu.Lock()
+	v := s.value - s.step
+	if v < s.minimum {
+		v = s.minimum
+	}
+	s.value = v
+	cb := s.OnValueChanged
+	s.mu.Unlock()
+	if cb != nil {
+		cb(v)
+	}
+}
+
 // ComboBox represents a drop-down menu / selector (QComboBox parity).
 type ComboBox struct {
 	WidgetBase

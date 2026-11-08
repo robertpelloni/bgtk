@@ -364,3 +364,36 @@ func TestButtonSetGetText(t *testing.T) {
 		t.Errorf("expected 'Mutated Button', got %q", btn.GetText())
 	}
 }
+
+func TestSpinBoxWidget(t *testing.T) {
+	spin := NewSpinBox(0, 100, 10, 5)
+
+	if spin.Value() != 10 {
+		t.Fatalf("expected initial value 10, got %d", spin.Value())
+	}
+
+	var notifiedVal int
+	spin.OnValueChanged = func(v int) {
+		notifiedVal = v
+	}
+
+	spin.StepUp()
+	if spin.Value() != 15 || notifiedVal != 15 {
+		t.Errorf("expected 15 after StepUp, got %d (notified %d)", spin.Value(), notifiedVal)
+	}
+
+	spin.StepDown()
+	if spin.Value() != 10 || notifiedVal != 10 {
+		t.Errorf("expected 10 after StepDown, got %d (notified %d)", spin.Value(), notifiedVal)
+	}
+
+	spin.SetValue(150) // clamp to max 100
+	if spin.Value() != 100 {
+		t.Errorf("expected 100 after clamping to maximum, got %d", spin.Value())
+	}
+
+	spin.SetValue(-50) // clamp to min 0
+	if spin.Value() != 0 {
+		t.Errorf("expected 0 after clamping to minimum, got %d", spin.Value())
+	}
+}

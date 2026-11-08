@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.5.5] - 2026-04-06
+### Added
+- **SpinBox Numeric Input Widget (Go Visual Pillar)**:
+  - Implemented `SpinBox` in `go/bobtk/visual/widgets.go` (`QSpinBox` parity) supporting integer bounds (`minimum`, `maximum`), stepped navigation (`StepUp`, `StepDown`), value clamping, and reactive `OnValueChanged` signals.
+  - Added unit test suite `TestSpinBoxWidget` in `go/bobtk/visual/layout_test.go`.
+  - Integrated into `go/main.go` layout and single-page dashboard operations.
+
 ## [1.5.4] - 2026-04-06
 ### Added
 - **Notification Center & Desktop Alerts (Go System Pillar)**:

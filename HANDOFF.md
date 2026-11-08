@@ -1,7 +1,9 @@
-# Handoff Document - Bobtk Notification Center & Desktop Alerts (v1.5.4)
+# Handoff Document - Bobtk SpinBox Numeric Widget (v1.5.5)
 
 ## Current Status
-- Version bumped to `1.5.4` tracking global versioning governance.
+- Version bumped to `1.5.5` tracking global versioning governance.
+- Implemented `SpinBox` in Go Visual Pillar (`go/bobtk/visual/widgets.go`) achieving `QSpinBox` parity with stepped navigation, value bounds clamping, and reactive change signals.
+- Verified SpinBox with unit test suite in `go/bobtk/visual/layout_test.go` and demonstrated in `go/main.go`.
 - Implemented `NotificationCenter`, `NotificationItem`, and `UrgencyLevel` in Go System Pillar (`go/bobtk/system/notification.go`) achieving `QSystemTrayIcon::showMessage` parity.
 - Verified desktop alerts with unit test suite in `go/bobtk/system/notification_test.go` and integrated live notification demonstration in `go/main.go`.
 - Implemented `Synthesizer` and `SynthVoice` in Go Media Pillar (`go/bobtk/media/synth.go`) achieving `juce::Synthesizer` and `juce::SynthesizerVoice` parity.
