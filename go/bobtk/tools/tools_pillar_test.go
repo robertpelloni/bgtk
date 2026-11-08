@@ -84,3 +84,41 @@ func TestPerformanceProfilerAverageDurationAndFilter(t *testing.T) {
 		t.Errorf("expected profiler cleared")
 	}
 }
+
+func TestBenchmarkRunnerExecution(t *testing.T) {
+	runner := NewBenchmarkRunner()
+
+	if runner.Count() != 0 {
+		t.Fatalf("expected initial count 0, got %d", runner.Count())
+	}
+
+	count := 0
+	res := runner.Run("TestLoop", 2000, func() {
+		count++
+	})
+
+	if count != 2000 {
+		t.Fatalf("expected count 2000, got %d", count)
+	}
+
+	if res.Iterations != 2000 {
+		t.Errorf("expected 2000 iterations, got %d", res.Iterations)
+	}
+
+	if res.AverageTime <= 0 {
+		t.Errorf("expected positive average duration, got %v", res.AverageTime)
+	}
+
+	if res.OpsPerSec <= 0 {
+		t.Errorf("expected positive ops per sec, got %f", res.OpsPerSec)
+	}
+
+	if runner.Count() != 1 {
+		t.Errorf("expected 1 result recorded, got %d", runner.Count())
+	}
+
+	runner.Clear()
+	if runner.Count() != 0 {
+		t.Errorf("expected 0 results after Clear(), got %d", runner.Count())
+	}
+}

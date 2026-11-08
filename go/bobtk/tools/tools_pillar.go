@@ -155,6 +155,79 @@ type TestResult struct {
 	Error  string
 }
 
+// BenchmarkResult records throughput metrics of an automated benchmark run.
+type BenchmarkResult struct {
+	Name         string
+	Iterations   int
+	TotalElapsed time.Duration
+	AverageTime  time.Duration
+	OpsPerSec    float64
+}
+
+// BenchmarkRunner provides automated execution throughput analysis.
+type BenchmarkRunner struct {
+	mu      sync.RWMutex
+	results []BenchmarkResult
+}
+
+func NewBenchmarkRunner() *BenchmarkRunner {
+	return &BenchmarkRunner{
+		results: make([]BenchmarkResult, 0),
+	}
+}
+
+func (b *BenchmarkRunner) Run(name string, iterations int, fn func()) BenchmarkResult {
+	if iterations <= 0 {
+		iterations = 1000
+	}
+
+	start := time.Now()
+	for i := 0; i < iterations; i++ {
+		fn()
+	}
+	elapsed := time.Since(start)
+
+	avg := elapsed / time.Duration(iterations)
+	var opsPerSec float64
+	if elapsed.Seconds() > 0 {
+		opsPerSec = float64(iterations) / elapsed.Seconds()
+	}
+
+	res := BenchmarkResult{
+		Name:         name,
+		Iterations:   iterations,
+		TotalElapsed: elapsed,
+		AverageTime:  avg,
+		OpsPerSec:    opsPerSec,
+	}
+
+	b.mu.Lock()
+	b.results = append(b.results, res)
+	b.mu.Unlock()
+
+	return res
+}
+
+func (b *BenchmarkRunner) Results() []BenchmarkResult {
+	b.mu.RLock()
+	defer b.mu.RUnlock()
+	out := make([]BenchmarkResult, len(b.results))
+	copy(out, b.results)
+	return out
+}
+
+func (b *BenchmarkRunner) Count() int {
+	b.mu.RLock()
+	defer b.mu.RUnlock()
+	return len(b.results)
+}
+
+func (b *BenchmarkRunner) Clear() {
+	b.mu.Lock()
+	defer b.mu.Unlock()
+	b.results = make([]BenchmarkResult, 0)
+}
+
 // IntegratedTestRunner runs and reports unit and integration checks.
 type IntegratedTestRunner struct {
 	mu      sync.RWMutex
@@ -190,6 +263,7 @@ type ToolsPillar struct {
 	initialized bool
 	Profiler    *PerformanceProfiler
 	Runner      *IntegratedTestRunner
+	Benchmarker *BenchmarkRunner
 }
 
 func NewToolsPillar() *ToolsPillar {
@@ -197,6 +271,7 @@ func NewToolsPillar() *ToolsPillar {
 		initialized: false,
 		Profiler:    NewPerformanceProfiler(),
 		Runner:      NewIntegratedTestRunner(),
+		Benchmarker: NewBenchmarkRunner(),
 	}
 }
 
@@ -218,4 +293,8 @@ func (t *ToolsPillar) PerformanceProfiler() *PerformanceProfiler {
 
 func (t *ToolsPillar) IntegratedRunner() *IntegratedTestRunner {
 	return t.Runner
+}
+
+func (t *ToolsPillar) BenchmarkRunner() *BenchmarkRunner {
+	return t.Benchmarker
 }

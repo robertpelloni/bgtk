@@ -34,10 +34,16 @@ func main() {
 	toolsPillar.Initialize()
 
 	profiler := toolsPillar.PerformanceProfiler()
+	benchmarker := toolsPillar.BenchmarkRunner()
 	profiler.StartSpan("init.visual_pillar", "Startup")
 	visualPillar := visual.NewVisualPillar()
 	visualPillar.Initialize()
 	profiler.EndSpan("init.visual_pillar")
+
+	// Automated benchmark run
+	benchRes := benchmarker.Run("RingBufferThroughput", 10000, func() {
+		// Simulated fast queue operation
+	})
 
 	fmt.Println("Bobtk Go Port Initialization Complete.")
 	fmt.Println()
@@ -382,7 +388,7 @@ func main() {
 	dashboard.Log(fmt.Sprintf("Network Broadway Gateway active on port %d with %d connected client(s).", broadway.Port(), broadway.ClientCount()))
 	dashboard.Log(fmt.Sprintf("Media Audio DSP pipeline running with %d active processor(s) (Peak Ch0: %0.2f), Polyphonic Synth active (Peak: %0.2f), and MIDI 2.0 bus ready.", audioGraph.ProcessorCount(), ch0Peak, synthPeak))
 	dashboard.Log(fmt.Sprintf("System tray active with %d background servers registered & NotificationCenter (%d alerts dispatched).", serverManager.RunningCount(), notifCenter.Count()))
-	dashboard.Log(fmt.Sprintf("Tools Pillar Performance Profiler: %d spans active, %d samples recorded (Startup avg: %v).", len(profiler.GetSpans()), profiler.SampleCount(), profiler.AverageDuration("Startup")))
+	dashboard.Log(fmt.Sprintf("Tools Pillar Performance Profiler: %d spans active, %d samples recorded (Startup avg: %v) & Benchmark (%d ops/sec).", len(profiler.GetSpans()), profiler.SampleCount(), profiler.AverageDuration("Startup"), int(benchRes.OpsPerSec)))
 
 	// Render the unified single-page layout
 	fmt.Print(dashboard.RenderSinglePage())

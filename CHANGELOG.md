@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.5.7] - 2026-04-06
+### Added
+- **BenchmarkRunner Throughput Profiling (Go Tools Pillar)**:
+  - Implemented `BenchmarkRunner` and `BenchmarkResult` in `go/bobtk/tools/tools_pillar.go` supporting automated iteration loops, elapsed execution timing, average operation latency calculation, and operations-per-second throughput metrics.
+  - Added unit test suite `TestBenchmarkRunnerExecution` in `go/bobtk/tools/tools_pillar_test.go`.
+  - Exposed via `ToolsPillar.BenchmarkRunner()` and integrated automated benchmark run into `go/main.go`.
+
 ## [1.5.6] - 2026-04-06
 ### Added
 - **WorkPool Queue Draining & CorePillar Integration (Go Core Pillar)**:
