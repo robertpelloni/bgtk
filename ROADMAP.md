@@ -68,7 +68,6 @@
 - Implement BenchmarkRunner throughput profiling in Go Tools Pillar (v1.5.7).
 - Resolve sysprof-capture dependency fallback in Meson build system (v1.5.8).
 - Implement ScrollBar widget in Go Visual Pillar (v1.5.9).
-
 ## Phase 4: UI and Frontend Expansion
 - Ensure every backend feature is extensively represented in the frontend UI.
 - Add comprehensive descriptions, labels, and tooltips for all user-facing functions.
