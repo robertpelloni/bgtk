@@ -1,7 +1,9 @@
-# Handoff Document - Bobtk BenchmarkRunner Throughput Profiling (v1.5.7)
+# Handoff Document - Bobtk Sysprof-Capture Fallback & Build Fix (v1.5.8)
 
 ## Current Status
-- Version bumped to `1.5.7` tracking global versioning governance.
+- Version bumped to `1.5.8` tracking global versioning governance.
+- Added subproject wrap fallback `['sysprof', 'libsysprof_capture_dep']` and default configuration options for `sysprof-capture-4` in `meson.build`.
+- Removed fatal configuration halt when optional profiler capture is not installed on host machine, allowing seamless fallback compilation.
 - Implemented `BenchmarkRunner` and `BenchmarkResult` in Go Tools Pillar (`go/bobtk/tools/tools_pillar.go`) recording iterations, elapsed time, average operation duration, and ops/sec metrics.
 - Verified BenchmarkRunner with unit test suite in `go/bobtk/tools/tools_pillar_test.go` and integrated live demonstration in `go/main.go`.
 - Enhanced `WorkPool.Shutdown` in Go Core Pillar (`go/bobtk/core/work_pool.go`) to drain queued tasks safely before worker exit.

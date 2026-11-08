@@ -66,6 +66,7 @@
 - Implement SpinBox numeric input widget in Go Visual Pillar (v1.5.5).
 - Enhance WorkPool queue draining and expose in CorePillar (v1.5.6).
 - Implement BenchmarkRunner throughput profiling in Go Tools Pillar (v1.5.7).
+- Resolve sysprof-capture dependency fallback in Meson build system (v1.5.8).
 
 ## Phase 4: UI and Frontend Expansion
 - Ensure every backend feature is extensively represented in the frontend UI.

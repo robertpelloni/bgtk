@@ -1666,12 +1666,21 @@ profiler_enabled = get_option('profiler')
 if profiler_enabled
   profiler_dep = dependency('sysprof-capture-3', static: true, required: false)
   if not profiler_dep.found()
-    profiler_dep = dependency('sysprof-capture-4', static: true, required: false)
+    profiler_dep = dependency('sysprof-capture-4', static: true, required: false,
+      fallback: ['sysprof', 'libsysprof_capture_dep'],
+      default_options: [
+        'agent=false',
+        'examples=false',
+        'gtk=false',
+        'tests=false',
+        'tools=false',
+        'libsysprof=true',
+        'sysprofd=none',
+        'help=false',
+      ])
   endif
   if profiler_dep.found()
     cdata.set('HAVE_SYSPROF_CAPTURE', profiler_dep.found())
-  else
-    error('Profiler support not found, but was explicitly requested.')
   endif
 endif
 

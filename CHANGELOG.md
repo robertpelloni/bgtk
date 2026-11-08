@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.5.8] - 2026-04-06
+### Fixed
+- **Sysprof-Capture Fallback & Dependency Resolution (Meson Build System)**:
+  - Added subproject wrap fallback `['sysprof', 'libsysprof_capture_dep']` and default build options to `sysprof-capture-4` in `meson.build`.
+  - Removed fatal configuration error when optional profiler capture is not installed on host machine, enabling seamless fallback compilation.
+
 ## [1.5.7] - 2026-04-06
 ### Added
 - **BenchmarkRunner Throughput Profiling (Go Tools Pillar)**:

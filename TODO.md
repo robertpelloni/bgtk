@@ -67,5 +67,6 @@
 - [x] Implement SpinBox numeric input widget in Go Visual Pillar (v1.5.5).
 - [x] Enhance WorkPool queue draining and expose in CorePillar (v1.5.6).
 - [x] Implement BenchmarkRunner throughput profiling in Go Tools Pillar (v1.5.7).
+- [x] Resolve sysprof-capture dependency fallback in Meson build system (v1.5.8).
 - [ ] Research missing Qt6/Qt7 features compared to the current Bobtk C++ baseline.
 - [ ] Test and resolve any remaining failing builds caused by renaming strings and paths (Meson wrap corruption).
