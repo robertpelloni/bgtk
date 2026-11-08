@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.5.6] - 2026-04-06
+### Added
+- **WorkPool Queue Draining & CorePillar Integration (Go Core Pillar)**:
+  - Enhanced `WorkPool.Shutdown` to close the job queue under mutual exclusion and allow workers to exhaust remaining queued tasks.
+  - Exposed `WorkPool` via `CorePillar.WorkPool()`.
+  - Integrated waitable task demonstration into `go/main.go` and verified single-page dashboard execution.
+
 ## [1.5.5] - 2026-04-06
 ### Added
 - **SpinBox Numeric Input Widget (Go Visual Pillar)**:

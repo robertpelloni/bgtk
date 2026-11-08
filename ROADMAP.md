@@ -64,6 +64,7 @@
 - Implement Polyphonic Synthesizer engine in Go Media Pillar (v1.5.3).
 - Implement NotificationCenter and desktop alerts in Go System Pillar (v1.5.4).
 - Implement SpinBox numeric input widget in Go Visual Pillar (v1.5.5).
+- Enhance WorkPool queue draining and expose in CorePillar (v1.5.6).
 
 ## Phase 4: UI and Frontend Expansion
 - Ensure every backend feature is extensively represented in the frontend UI.

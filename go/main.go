@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 
 	"github.com/bobtk/bobtk/bobtk/core"
@@ -136,6 +137,13 @@ func main() {
 	scheduler.ParallelFor(len(telemetryData), func(i int) {
 		telemetryData[i] = float64(i) * 1.5
 	})
+
+	// Demonstrate WorkPool Task Dispatcher (JUCE ThreadPool / U++ CoWork parity)
+	workPool := corePillar.WorkPool()
+	waitCh, _ := workPool.SubmitWaitable(func(ctx context.Context) error {
+		return nil
+	})
+	<-waitCh
 
 	// Initialize the Server Supervisor & System Tray
 	serverManager := system.NewServerManager()
@@ -363,6 +371,7 @@ func main() {
 	dashboard.Log(fmt.Sprintf("Application Settings configured (%d keys) & FileSystemWatcher active (%d paths monitored).", len(appSettings.AllKeys()), len(fsWatcher.WatchedPaths())))
 	dashboard.Log("Qt6 Event & Action subsystem initialized (Signal/Slot, QAction, QKeyEvent modifiers).")
 	dashboard.Log(fmt.Sprintf("Ultimate++ NTL Heap Pool active (%d bytes/slab, %d active chunks), Vector (%d items), & Map (%d keys).", heapPool.ChunkSize(), heapPool.ActiveChunks(), vectorContainer.GetCount(), stateMap.GetCount()))
+	dashboard.Log(fmt.Sprintf("WorkPool dispatcher active (Concurrency: %d, Active: %d tasks).", workPool.Concurrency(), workPool.ActiveTasks()))
 	dashboard.Log(fmt.Sprintf("Ultimate++ NTL Binary Stream Serialization verified: %d bytes packed, unpacked magic: 0x%X (weight: %0.2f).", len(binaryStatePayload), unpackedMagic, unpackedWeight))
 	dashboard.Log(fmt.Sprintf("RingBuffer concurrent FIFO active (Capacity: %d, Queued: %d items, Empty: %t, Full: %t).", ringBuffer.Capacity(), ringBuffer.Len(), ringBuffer.IsEmpty(), ringBuffer.IsFull()))
 	dashboard.Log("User-space FastMutex & ReadWriteSpinLock concurrency primitives active (zero-syscall contention backoff).")

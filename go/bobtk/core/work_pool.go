@@ -57,8 +57,6 @@ func NewWorkPool(concurrency int, queueDepth int) *WorkPool {
 func (wp *WorkPool) worker() {
 	for {
 		select {
-		case <-wp.ctx.Done():
-			return
 		case task, ok := <-wp.jobQueue:
 			if !ok {
 				return
@@ -69,6 +67,17 @@ func (wp *WorkPool) worker() {
 				wp.activeTasks.Add(-1)
 				wp.wg.Done()
 			}
+		case <-wp.ctx.Done():
+			// Context canceled; drain any remaining buffered tasks
+			for task := range wp.jobQueue {
+				if task != nil {
+					wp.activeTasks.Add(1)
+					task()
+					wp.activeTasks.Add(-1)
+					wp.wg.Done()
+				}
+			}
+			return
 		}
 	}
 }
@@ -142,7 +151,9 @@ func (wp *WorkPool) Concurrency() int {
 // Shutdown halts all worker goroutines and stops accepting new work.
 func (wp *WorkPool) Shutdown() {
 	if wp.stopped.CompareAndSwap(false, true) {
-		wp.cancel()
+		wp.mu.Lock()
 		close(wp.jobQueue)
+		wp.mu.Unlock()
+		wp.cancel()
 	}
 }

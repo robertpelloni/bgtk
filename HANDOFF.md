@@ -1,7 +1,9 @@
-# Handoff Document - Bobtk SpinBox Numeric Widget (v1.5.5)
+# Handoff Document - Bobtk WorkPool Queue Draining (v1.5.6)
 
 ## Current Status
-- Version bumped to `1.5.5` tracking global versioning governance.
+- Version bumped to `1.5.6` tracking global versioning governance.
+- Enhanced `WorkPool.Shutdown` in Go Core Pillar (`go/bobtk/core/work_pool.go`) to drain queued tasks safely before worker exit.
+- Exposed `WorkPool` through `CorePillar.WorkPool()` and demonstrated waitable parallel tasks in `go/main.go`.
 - Implemented `SpinBox` in Go Visual Pillar (`go/bobtk/visual/widgets.go`) achieving `QSpinBox` parity with stepped navigation, value bounds clamping, and reactive change signals.
 - Verified SpinBox with unit test suite in `go/bobtk/visual/layout_test.go` and demonstrated in `go/main.go`.
 - Implemented `NotificationCenter`, `NotificationItem`, and `UrgencyLevel` in Go System Pillar (`go/bobtk/system/notification.go`) achieving `QSystemTrayIcon::showMessage` parity.

@@ -55,3 +55,4 @@
 - **Polyphonic Synthesizer Engine:** `Synthesizer` and `SynthVoice` in `go/bobtk/media/synth.go` provide polyphonic voice tracking, MIDI note to frequency synthesis, dynamic voice stealing, and audio buffer rendering (`juce::Synthesizer` parity).
 - **Notification Center & Desktop Alerts:** `NotificationCenter` in `go/bobtk/system/notification.go` manages desktop alert dispatching, urgency priority levels, listener subscriptions, and history logging (`QSystemTrayIcon::showMessage` parity).
 - **SpinBox Numeric Control:** `SpinBox` in `go/bobtk/visual/widgets.go` provides integer value bounded input with step increments (`StepUp`, `StepDown`) and value change notifications (`QSpinBox` parity).
+- **WorkPool Drain Guarantee:** `WorkPool` in `go/bobtk/core/work_pool.go` safely drains remaining buffered tasks upon shutdown while closing the channel under mutex synchronization.

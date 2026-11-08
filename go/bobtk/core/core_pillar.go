@@ -15,6 +15,7 @@ type CorePillar struct {
 	Serializer   *StateSerializer
 	Settings     *Settings
 	StateMachine *StateMachine
+	Workers      *WorkPool
 }
 
 // NewCorePillar creates a new instance of the CorePillar with foundational subsystems.
@@ -38,6 +39,7 @@ func NewCorePillar() *CorePillar {
 		Serializer:   NewStateSerializer(),
 		Settings:     NewSettings(),
 		StateMachine: sm,
+		Workers:      NewWorkPool(8, 32),
 	}
 }
 
@@ -100,4 +102,9 @@ func (c *CorePillar) AppStateMachine() *StateMachine {
 // NewRingBuffer creates a thread-safe circular FIFO buffer of specified capacity.
 func (c *CorePillar) NewRingBuffer(capacity int) *RingBuffer[interface{}] {
 	return NewRingBuffer[interface{}](capacity)
+}
+
+// WorkPool returns the adaptive worker pool dispatcher.
+func (c *CorePillar) WorkPool() *WorkPool {
+	return c.Workers
 }
