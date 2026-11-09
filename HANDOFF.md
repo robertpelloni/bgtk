@@ -1,7 +1,9 @@
-# Handoff Document - Bobtk ScrollBar Widget (v1.5.9)
+# Handoff Document - Bobtk Deployment Instructions & Health Diagnostics (v1.6.0)
 
 ## Current Status
-- Version bumped to `1.5.9` tracking global versioning governance.
+- Version bumped to `1.6.0` tracking global versioning governance.
+- Updated `DEPLOY.md` documenting pre-flight diagnostics execution via `tools/check_health.sh` and `tools/run_dashboard.sh --check-health`.
+- Clarified Meson build setup instructions following options consolidation and `sysprof-capture-4` wrap fallback resolutions.
 - Implemented `ScrollBar` in Go Visual Pillar (`go/bobtk/visual/widgets.go`) achieving `QScrollBar` parity with horizontal/vertical orientations, page stepping, and change notifications.
 - Verified ScrollBar with unit test suite in `go/bobtk/visual/layout_test.go` and integrated demonstration in `go/main.go`.
 - Added subproject wrap fallback `['sysprof', 'libsysprof_capture_dep']` and default configuration options for `sysprof-capture-4` in `meson.build`.

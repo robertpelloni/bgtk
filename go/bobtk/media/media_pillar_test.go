@@ -253,3 +253,35 @@ func TestPeakingEQProcessor(t *testing.T) {
 		t.Errorf("expected non-zero magnitude after EQ processing")
 	}
 }
+
+func TestAudioThumbnailExtraction(t *testing.T) {
+	thumb := NewAudioThumbnail(64)
+
+	if thumb.NumThumbnails(0) != 0 {
+		t.Fatalf("expected 0 thumbnails initially, got %d", thumb.NumThumbnails(0))
+	}
+
+	buf := NewAudioBuffer(2, 128)
+	buf.Data[0][10] = -0.75
+	buf.Data[0][20] = 0.85
+
+	thumb.AddBlock(buf)
+
+	if thumb.NumThumbnails(0) != 2 {
+		t.Fatalf("expected 2 thumbnail blocks for 128 samples / 64 window, got %d", thumb.NumThumbnails(0))
+	}
+
+	sample0, ok := thumb.GetMinMax(0, 0)
+	if !ok {
+		t.Fatalf("expected min/max sample at index 0")
+	}
+
+	if sample0.MinVal > -0.75 || sample0.MaxVal < 0.85 {
+		t.Errorf("unexpected peak bounds: min %f, max %f", sample0.MinVal, sample0.MaxVal)
+	}
+
+	thumb.Reset()
+	if thumb.NumThumbnails(0) != 0 {
+		t.Errorf("expected 0 thumbnails after Reset, got %d", thumb.NumThumbnails(0))
+	}
+}

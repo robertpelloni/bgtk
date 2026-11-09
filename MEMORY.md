@@ -59,3 +59,4 @@
 - **BenchmarkRunner Throughput Analysis:** `BenchmarkRunner` in `go/bobtk/tools/tools_pillar.go` records iteration counts, total and average latency, and operations per second.
 - **Sysprof-Capture Fallback:** `meson.build` provides subproject wrap fallbacks and default configuration options for `sysprof-capture-4` ensuring clean configuration when sysprof is absent from host pkg-config.
 - **ScrollBar Widget:** `ScrollBar` in `go/bobtk/visual/widgets.go` provides horizontal/vertical scrolling, page steps (`PageUp`, `PageDown`), bounds clamping, and change signals (`QScrollBar` parity).
+- **Deployment Documentation:** `DEPLOY.md` provides instructions for running pre-flight diagnostic monitoring and building the repaired Meson build tree.

@@ -395,3 +395,99 @@ func (ag *AudioGraph) ProcessorCount() int {
 	defer ag.mu.RUnlock()
 	return len(ag.processors)
 }
+
+// MinMaxSample holds the minimum and maximum sample peak values within a waveform window.
+type MinMaxSample struct {
+	MinVal float32
+	MaxVal float32
+}
+
+// AudioThumbnail stores and generates downsampled audio waveform peak overviews (juce::AudioThumbnail parity).
+type AudioThumbnail struct {
+	mu          sync.RWMutex
+	samplesPerThumb int
+	peaks       [][]MinMaxSample
+}
+
+// NewAudioThumbnail creates an AudioThumbnail cache.
+func NewAudioThumbnail(samplesPerThumb int) *AudioThumbnail {
+	if samplesPerThumb <= 0 {
+		samplesPerThumb = 256
+	}
+	return &AudioThumbnail{
+		samplesPerThumb: samplesPerThumb,
+		peaks:           make([][]MinMaxSample, 0),
+	}
+}
+
+// AddBlock extracts min/max peak levels from an incoming AudioBuffer and stores them.
+func (at *AudioThumbnail) AddBlock(buffer *AudioBuffer) {
+	if buffer == nil || buffer.Channels == 0 || buffer.NumSamples == 0 {
+		return
+	}
+
+	at.mu.Lock()
+	defer at.mu.Unlock()
+
+	// Ensure channels allocated
+	for len(at.peaks) < buffer.Channels {
+		at.peaks = append(at.peaks, make([]MinMaxSample, 0))
+	}
+
+	for c := 0; c < buffer.Channels; c++ {
+		for i := 0; i < buffer.NumSamples; i += at.samplesPerThumb {
+			minVal := float32(1.0)
+			maxVal := float32(-1.0)
+
+			end := i + at.samplesPerThumb
+			if end > buffer.NumSamples {
+				end = buffer.NumSamples
+			}
+
+			for s := i; s < end; s++ {
+				val := buffer.Data[c][s]
+				if val < minVal {
+					minVal = val
+				}
+				if val > maxVal {
+					maxVal = val
+				}
+			}
+
+			at.peaks[c] = append(at.peaks[c], MinMaxSample{
+				MinVal: minVal,
+				MaxVal: maxVal,
+			})
+		}
+	}
+}
+
+// NumThumbnails returns the number of downsampled overview windows stored for a channel.
+func (at *AudioThumbnail) NumThumbnails(channel int) int {
+	at.mu.RLock()
+	defer at.mu.RUnlock()
+	if channel < 0 || channel >= len(at.peaks) {
+		return 0
+	}
+	return len(at.peaks[channel])
+}
+
+// GetMinMax retrieves the min/max peak for a channel at a given overview window index.
+func (at *AudioThumbnail) GetMinMax(channel, index int) (MinMaxSample, bool) {
+	at.mu.RLock()
+	defer at.mu.RUnlock()
+	if channel < 0 || channel >= len(at.peaks) {
+		return MinMaxSample{}, false
+	}
+	if index < 0 || index >= len(at.peaks[channel]) {
+		return MinMaxSample{}, false
+	}
+	return at.peaks[channel][index], true
+}
+
+// Reset clears all cached peak overviews.
+func (at *AudioThumbnail) Reset() {
+	at.mu.Lock()
+	defer at.mu.Unlock()
+	at.peaks = make([][]MinMaxSample, 0)
+}

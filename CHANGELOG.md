@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.6.0] - 2026-04-06
+### Documentation
+- **Deployment Instructions & Environment Diagnostics (DEPLOY.md)**:
+  - Updated `DEPLOY.md` documenting pre-flight diagnostics execution via `tools/check_health.sh` and `tools/run_dashboard.sh --check-health`.
+  - Clarified Meson build setup instructions following options consolidation and `sysprof-capture-4` wrap fallback resolutions.
+
 ## [1.5.9] - 2026-04-06
 ### Added
 - **ScrollBar Widget (Go Visual Pillar)**:

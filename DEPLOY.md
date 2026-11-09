@@ -24,10 +24,17 @@
    ./tools/run_dashboard.sh
    ```
 
-4. **Building the C/C++ version:**
-   - **WARNING**: The C/C++ `meson.build` system is currently experiencing failures due to a blind mass rename operation (`gtk` -> `bobtk`) which broke Subproject Wrap references. Manual intervention is required before running:
+4. **Pre-Flight Health Diagnostics:**
+   Run the automated diagnostic suite to verify toolchains (gcc, g++, Go, Meson, Ninja) and submodule states:
    ```bash
-   # Pending wrap repairs
+   ./tools/check_health.sh
+   # Or via dashboard launcher flag:
+   ./tools/run_dashboard.sh --check-health
+   ```
+
+5. **Building the C/C++ Subsystem:**
+   Meson build configuration and options collisions have been repaired, and wrap dependencies for sysprof-capture-4 support seamless fallback:
+   ```bash
    meson setup _build
    ninja -C _build
    ```
