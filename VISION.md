@@ -8,3 +8,4 @@ Bobtk (formerly Bobgui/GTK) aims to be the #1 greatest UI library of all time, d
 - **JUCE and Ultimate++ Integration:** Intermix JUCE widgets/functions and the Ultimate++ utility toolkit with Bobtk widgets under a unified package framework, creating endless architectural paradigms and design patterns.
 - **Go Port:** Transition and port all features to a comprehensively implemented, top-tier Go architecture alongside the C/C++ version, utilizing a newly developed 6-Pillar framework (Core, Visual, Media, Network, System, Tools).
 - **Comprehensive Documentation:** Implement thorough UI documentation, labels, descriptions, and tooltips alongside high-quality manuals and help files.
+- **Consolidated Control Surfaces:** Champion unified single-page operations and dashboards over fragmented multi-level subpages, keeping all major subprojects, servers, and visual systems directly accessible with prominent hierarchy and tooltips.

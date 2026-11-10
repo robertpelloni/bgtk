@@ -1,5 +1,444 @@
 # CHANGELOG
 
+## [1.6.1] - 2026-04-06
+### Documentation
+- **Build Validation Blockers Status Update**:
+  - Updated `docs/BUILD_VALIDATION_BLOCKERS_2026-04-05.md` resolving historical compiler and build tool availability blockers, noting availability of gcc 13.3.0, g++ 13.3.0, Meson 1.12.1, and Go 1.24.3 with automated diagnostic health tooling.
+
+## [1.6.0] - 2026-04-06
+### Documentation
+- **Deployment Instructions & Environment Diagnostics (DEPLOY.md)**:
+  - Updated `DEPLOY.md` documenting pre-flight diagnostics execution via `tools/check_health.sh` and `tools/run_dashboard.sh --check-health`.
+  - Clarified Meson build setup instructions following options consolidation and `sysprof-capture-4` wrap fallback resolutions.
+
+## [1.5.9] - 2026-04-06
+### Added
+- **ScrollBar Widget (Go Visual Pillar)**:
+  - Implemented `ScrollBar` in `go/bobtk/visual/widgets.go` (`QScrollBar` parity) supporting horizontal and vertical orientations, value boundary clamping, page stepping (`PageUp`, `PageDown`), and reactive `OnValueChanged` signals.
+  - Added unit test suite `TestScrollBarWidget` in `go/bobtk/visual/layout_test.go`.
+  - Integrated into `go/main.go` layout and single-page dashboard operations.
+
+## [1.5.8] - 2026-04-06
+### Fixed
+- **Sysprof-Capture Fallback & Dependency Resolution (Meson Build System)**:
+  - Added subproject wrap fallback `['sysprof', 'libsysprof_capture_dep']` and default build options to `sysprof-capture-4` in `meson.build`.
+  - Removed fatal configuration error when optional profiler capture is not installed on host machine, enabling seamless fallback compilation.
+
+## [1.5.7] - 2026-04-06
+### Added
+- **BenchmarkRunner Throughput Profiling (Go Tools Pillar)**:
+  - Implemented `BenchmarkRunner` and `BenchmarkResult` in `go/bobtk/tools/tools_pillar.go` supporting automated iteration loops, elapsed execution timing, average operation latency calculation, and operations-per-second throughput metrics.
+  - Added unit test suite `TestBenchmarkRunnerExecution` in `go/bobtk/tools/tools_pillar_test.go`.
+  - Exposed via `ToolsPillar.BenchmarkRunner()` and integrated automated benchmark run into `go/main.go`.
+
+## [1.5.6] - 2026-04-06
+### Added
+- **WorkPool Queue Draining & CorePillar Integration (Go Core Pillar)**:
+  - Enhanced `WorkPool.Shutdown` to close the job queue under mutual exclusion and allow workers to exhaust remaining queued tasks.
+  - Exposed `WorkPool` via `CorePillar.WorkPool()`.
+  - Integrated waitable task demonstration into `go/main.go` and verified single-page dashboard execution.
+
+## [1.5.5] - 2026-04-06
+### Added
+- **SpinBox Numeric Input Widget (Go Visual Pillar)**:
+  - Implemented `SpinBox` in `go/bobtk/visual/widgets.go` (`QSpinBox` parity) supporting integer bounds (`minimum`, `maximum`), stepped navigation (`StepUp`, `StepDown`), value clamping, and reactive `OnValueChanged` signals.
+  - Added unit test suite `TestSpinBoxWidget` in `go/bobtk/visual/layout_test.go`.
+  - Integrated into `go/main.go` layout and single-page dashboard operations.
+
+## [1.5.4] - 2026-04-06
+### Added
+- **Notification Center & Desktop Alerts (Go System Pillar)**:
+  - Implemented `NotificationCenter`, `NotificationItem`, and `UrgencyLevel` in `go/bobtk/system/notification.go` (`QSystemTrayIcon::showMessage` parity).
+  - Added notification dispatching, callback listener registration, history querying, and clearing.
+  - Added unit test suite `TestNotificationCenterSendAndHistory` in `go/bobtk/system/notification_test.go`.
+  - Exposed via `SystemPillar.NotificationCenter()` and demonstrated live desktop notification alerts in `go/main.go`.
+
+## [1.5.3] - 2026-04-06
+### Added
+- **Polyphonic Synthesizer Engine (Go Media Pillar)**:
+  - Implemented `Synthesizer` and `SynthVoice` in `go/bobtk/media/synth.go` (`juce::Synthesizer` and `juce::SynthesizerVoice` parity).
+  - Added multi-voice polyphony management, dynamic voice stealing, MIDI note to frequency calculation, note triggers (`NoteOn`, `NoteOff`, `AllNotesOff`), and real-time buffer rendering (`RenderNextBlock`).
+  - Added unit test suite `TestSynthesizerPolyphony` in `go/bobtk/media/synth_test.go`.
+  - Exposed via `MediaPillar.Synthesizer()` and integrated real-time polyphonic triad synthesis demonstration into `go/main.go`.
+
+## [1.5.2] - 2026-04-06
+### Added
+- **WorkPool Task Dispatcher (Go Core Pillar)**:
+  - Implemented `WorkPool` (`go/bobtk/core/work_pool.go`) inspired by U++ `CoWork` and JUCE `ThreadPool`.
+  - Added concurrent job dispatching, non-blocking task submission, waitable completion channels (`SubmitWaitable`), task cancellation context, and barrier synchronization (`Wait`).
+  - Unit test suite `go/bobtk/core/work_pool_test.go` verifying parallel task dispatching and clean shutdown.
+- **Parametric Audio Processors (Go Media Pillar)**:
+  - Implemented `HighPassFilterProcessor` (RC high-pass filter) and `PeakingEQProcessor` (biquad peaking EQ based on RBJ Audio EQ Cookbook) in `go/bobtk/media/audio_graph.go` (`juce::dsp::IIR::Filter` parity).
+  - Added unit test suite `TestHighPassFilterProcessor` and `TestPeakingEQProcessor` in `go/bobtk/media/media_pillar_test.go`.
+- **StyleSheet Engine (Go Visual Pillar)**:
+  - Implemented `StyleSheet` and `StyleDeclaration` in `go/bobtk/visual/style.go` providing CSS-like style definitions (background color, border width, border color, corner radius, padding, text color) and selector matching (`QStyleSheet` parity).
+  - Added unit test suite `TestStyleSheetRuleManagement` and `TestStyleSheetParseSimpleCSS` in `go/bobtk/visual/style_test.go`.
+
+## [1.5.1] - 2026-04-06
+### Added
+- **Button Text Accessors (Go Visual Pillar)**:
+  - Added thread-safe `SetText` and `GetText` methods to `Button` widget (`QPushButton::setText`/`text` parity).
+  - Added unit test suite `TestButtonSetGetText` in `go/bobtk/visual/layout_test.go`.
+  - Demonstrated in `go/main.go` and verified in single-page dashboard operations.
+
+## [1.5.0] - 2026-04-06
+### Added
+- **Label Text Accessors (Go Visual Pillar)**:
+  - Added thread-safe `SetText` and `GetText` methods to `Label` widget (`QLabel::setText`/`text` parity).
+  - Added unit test suite `TestLabelSetGetText` in `go/bobtk/visual/layout_test.go`.
+  - Demonstrated in `go/main.go` and verified in single-page dashboard operations.
+
+## [1.4.9] - 2026-04-06
+### Fixed
+- **Wrap File Artifact Cleaning**:
+  - Removed duplicate git and file configuration blocks from `subprojects/fribidi.wrap` and `subprojects/libpng.wrap`.
+
+## [1.4.8] - 2026-04-06
+### Added
+- **Widget Visibility State (Go Visual Pillar)**:
+  - Added `SetVisible` and `IsVisible` methods to `WidgetBase` (`QWidget::setVisible` / `isVisible` parity).
+  - Added unit test suite `TestWidgetBaseVisibility` in `go/bobtk/visual/layout_test.go`.
+  - Demonstrated in `go/main.go` and verified in single-page dashboard operations.
+
+## [1.4.7] - 2026-04-06
+### Fixed
+- **Meson Subproject Wrap File Corrections**:
+  - Removed corrupted duplicate git section definitions from `subprojects/gdk-pixbuf.wrap` and `subprojects/pango.wrap`.
+
+## [1.4.6] - 2026-04-06
+### Added
+- **AudioBuffer Magnitude & Buffer Operations (Go Media Pillar)**:
+  - Extended `AudioBuffer` with `Clear()`, `CopyFrom()`, and `GetMagnitude()` (`juce::AudioBuffer<float>` parity).
+  - Added unit test suite `TestAudioBufferClearCopyMagnitude` in `go/bobtk/media/media_pillar_test.go`.
+  - Demonstrated in `go/main.go` and verified in single-page dashboard operations.
+
+## [1.4.5] - 2026-04-06
+### Fixed
+- **Meson Build Options Consolidation**:
+  - Consolidated options from `meson_options.txt` into `meson.options` (`quartz_backend`, `xinerama`, `profiler`, `print_backends`, `gtk_doc`, `man`, `demos`, `examples`, `tests`, `installed_tests`, `builtin_immodules`).
+  - Removed redundant `meson_options.txt` to resolve duplicate option definition file conflict in Meson 1.12+.
+
+## [1.4.4] - 2026-04-06
+### Fixed
+- **Meson Build Syntax Corrections**:
+  - Removed duplicate `project()` declaration at the beginning of `meson.build`.
+  - Added missing closing bracket to `check_headers` and completed `check_functions` loop block.
+  - Corrected unclosed `cairo_backends` foreach loop and balanced `_GDK_EXTERN` platform conditional branches.
+  - Removed duplicate `bind_textdomain_codeset` check in `libintl_dep`.
+
+## [1.4.3] - 2026-04-06
+### Added
+- **Widget Base Enablement State (Go Visual Pillar)**:
+  - Added `SetEnabled` and `IsEnabled` methods to `WidgetBase` (`QWidget::setEnabled` / `isEnabled` parity).
+  - Updated `Button.Click` to suppress click event callbacks when the button is disabled.
+  - Added unit test suite `TestWidgetBaseEnablement` in `go/bobtk/visual/layout_test.go`.
+  - Demonstrated in `go/main.go` and verified in single-page dashboard operations.
+
+## [1.4.2] - 2026-04-06
+### Added
+- **Cross-Compilation Target & Mode Inspection in NativeBridge (Go Core Pillar)**:
+  - Added `TargetOS` and `TargetArch` methods returning runtime compile target metadata (`runtime.GOOS`, `runtime.GOARCH`).
+  - Added `SetMode` to enable dynamic switching between `ModePureGo` and `ModeLinkedC`.
+  - Added unit test suite `TestNativeBridgeTargetPlatformAndModeSwitching` in `go/bobtk/core/bridge_test.go`.
+  - Demonstrated in `go/main.go` and verified in single-page dashboard operations.
+
+## [1.4.1] - 2026-04-06
+### Added
+- **Performance Profiler Category Filtering & Analytics (Go Tools Pillar)**:
+  - Extended `PerformanceProfiler` with `GetSpansByCategory`, `AverageDuration`, and `Clear`.
+  - Added unit test suite `TestPerformanceProfilerAverageDurationAndFilter` in `go/bobtk/tools/tools_pillar_test.go`.
+  - Demonstrated in `go/main.go` and verified in single-page dashboard operations.
+
+## [1.4.0] - 2026-04-06
+### Added
+- **Clipboard MIME Data Storage & Queries (Go System Pillar)**:
+  - Extended `Clipboard` with `SetData` and `GetData` for storing arbitrary MIME and binary payloads (`QMimeData` and `QClipboard` parity).
+  - Added `HasText` method to inspect whether plain text content is available.
+  - Added unit test suite `TestClipboardMimeDataAndHasText` in `go/bobtk/system/tray_test.go`.
+  - Demonstrated in `go/main.go` and verified in single-page dashboard operations.
+
+## [1.3.9] - 2026-04-06
+### Added
+- **Ellipse Vector Drawing (Go Visual Pillar)**:
+  - `DrawEllipse`: Outlines an ellipse within the specified bounding rectangle (`QPainter::drawEllipse` and `juce::Graphics::drawEllipse` parity).
+  - `FillEllipse`: Fills an ellipse using the active foreground color.
+  - Added unit test suite `TestGraphicsContextEllipseOperations` in `go/bobtk/visual/graphics_test.go`.
+  - Demonstrated in `go/main.go` and verified in single-page dashboard operations.
+
+## [1.3.8] - 2026-04-06
+### Added
+- **PitchBend & PolyPressure MIDI 2.0 Packets (Go Media Pillar)**:
+  - `NewPitchBend`: Generates 32-bit high-resolution pitch bend Universal MIDI Packets (0x80000000 center position).
+  - `NewPolyPressure`: Generates 32-bit polyphonic key aftertouch UMP packets for per-note pressure modulations.
+  - Added unit test suite `TestMidi2PitchBendAndPolyPressure` in `go/bobtk/media/media_pillar_test.go`.
+  - Demonstrated in `go/main.go` and verified in single-page dashboard operations.
+
+## [1.3.7] - 2026-04-06
+### Added
+- **HTTP Methods & Headers (Go Network Pillar)**:
+  - Extended `NetworkAccessManager` with `Put` and `Delete` HTTP methods (`QNetworkAccessManager` parity).
+  - Added thread-safe `SetHeader` and `GetHeader` for configuring default HTTP headers.
+  - Added unit test suite `TestNetworkAccessManagerPutDeleteHeaders` in `go/bobtk/network/http_sync_test.go`.
+  - Demonstrated in `go/main.go` and verified in single-page dashboard operations.
+
+## [1.3.6] - 2026-04-06
+### Fixed
+- **Splitter Layout Fallback (Go Visual Pillar)**:
+  - Added safety guard to `Splitter.Layout` in `go/bobtk/visual/widgets.go` falling back to equal partition sizing when `totalSize <= 0` (e.g. Empty or zero-sized partition weights).
+  - Added unit test `TestSplitterZeroTotalSizeFallback` in `go/bobtk/visual/layout_test.go`.
+
+## [1.3.5] - 2026-04-06
+### Added
+- **FastMutex & ReadWriteSpinLock Concurrency Primitives (Go Core Pillar)**:
+  - `FastMutex`: User-space spinlock with progressive backoff and CPU yielding (`upp::SpinLock` and `juce::SpinLock` parity).
+  - `ReadWriteSpinLock`: Multi-reader single-writer spinlock (`juce::ReadWriteLock` and `upp::RWMutex` parity).
+  - Comprehensive unit test suite in `go/bobtk/core/sync_test.go` verifying high contention under concurrent goroutines.
+  - Demonstrated in `go/main.go` and verified in single-page dashboard operations.
+
+## [1.3.4] - 2026-04-06
+### Added
+- **RingBuffer Concurrent FIFO Queue (Go Core Pillar)**:
+  - `RingBuffer[T]`: Thread-safe generic circular FIFO buffer inspired by `juce::AbstractFifo` and Ultimate++ `BiVector` stream buffers.
+  - Implemented non-blocking `TryPush`/`TryPop`, condition-variable backed blocking `Push`/`Pop` with timeouts, capacity queries (`Capacity`, `Len`, `IsFull`, `IsEmpty`), `Clear`, and graceful channel shutdown via `Close`.
+  - Added constructor `NewRingBuffer[T]` and exposed through `CorePillar.NewRingBuffer`.
+  - Comprehensive unit test suite in `go/bobtk/core/ring_buffer_test.go` verifying concurrent producers and consumers.
+
+## [1.3.3] - 2026-04-06
+### Added
+- **Binary Stream Serialization (Go Core Pillar)**:
+  - `BinaryPack`: Serializes fixed-size scalar values, integers, floats, and binary structs into compact little-endian byte buffers (`upp::Stream` and `QDataStream` parity).
+  - `BinaryUnpack`: Sequential stream reader extracting binary data into pointers with type-safe boundary checks.
+  - Demonstrated binary serialization in `go/main.go` and verified with comprehensive unit testing in `go/bobtk/core/map_test.go`.
+
+## [1.3.2] - 2026-04-06
+### Added
+- **Splitter Container Layout (Go Visual Pillar)**:
+  - `Splitter`: Partitioned multi-widget container supporting horizontal and vertical orientations and proportional coordinate sizing (`QSplitter` parity).
+  - Integrated into `go/main.go` and verified in `go/bobtk/visual/layout_test.go`.
+
+## [1.3.1] - 2026-04-06
+### Documentation
+- **Agent-Specific Instruction Harmonization**:
+  - Synchronized `CLAUDE.md`, `GEMINI.md`, `GPT.md`, and `copilot-instructions.md` with current 6-pillar framework directives, single-page dashboard standards, system tray & server supervisor controls, and pre-flight diagnostics tooling.
+
+## [1.3.0] - 2026-04-06
+### Added
+- **Clipboard Subsystem (Go System Pillar)**:
+  - `Clipboard`: Thread-safe cross-platform clipboard abstraction (`QClipboard` and `GtkClipboard` parity) with `GetText`, `SetText`, `Clear`, and `AddListener`.
+  - Exposed via `SystemPillar.Clipboard()` and integrated into `go/main.go`.
+  - Comprehensive unit test `TestClipboardOperations` in `go/bobtk/system/tray_test.go`.
+
+## [1.2.9] - 2026-04-06
+### Fixed
+- **Meson Build System & Sysprof Subproject Dependency**:
+  - Restored `gtk=false` in `meson.build` default_options for `libsysprof_capture_dep` (repairing blind mass-renaming corruption).
+  - Added missing `sysprof` feature option definition in `meson_options.txt`.
+
+## [1.2.8] - 2026-04-06
+### Added
+- **MIDI 2.0 Packet Generation (Go Media Pillar)**:
+  - `NewNoteOff`: Constructs MIDI 2.0 Note Off Universal MIDI Packets (UMP) with 16-bit release velocity.
+  - `NewControlChange`: Constructs MIDI 2.0 Control Change UMP packets with 32-bit high-resolution parameter values.
+  - `UMPPacket.Channel`: Extracts 4-bit channel index (0-15).
+  - Integrated into `go/main.go` and verified in `go/bobtk/media/media_pillar_test.go`.
+
+## [1.2.7] - 2026-04-06
+### Added
+- **Circular Buffer Delay DSP Processor (Go Media Pillar)**:
+  - `DelayProcessor`: Multi-channel circular buffer delay line with parameterized feedback and wet/dry mix controls (`juce::dsp::DelayLine` parity).
+  - Integrated into `AudioGraph` processing chain in `go/main.go` and verified in `go/bobtk/media/media_pillar_test.go`.
+
+## [1.2.6] - 2026-04-06
+### Added
+- **TabWidget Navigation Container (Go Visual Pillar)**:
+  - `TabWidget`: Multi-page tabbed container supporting dynamic tab addition (`AddTab`), tab index switching (`SetCurrentIndex`), and `OnTabChanged` notification (`QTabWidget` parity).
+  - `TabItem`: Titled container binding page titles to active child widgets.
+  - Integrated into `go/main.go` and verified in `go/bobtk/visual/layout_test.go`.
+
+## [1.2.5] - 2026-04-06
+### Added
+- **Project Health & Environment Diagnostic Suite**:
+  - `tools/check_health.sh`: Inspects availability and versions of Go toolchain, GCC, G++, Meson, and Ninja; evaluates submodule states; and runs Go test suites non-destructively.
+  - Enhanced `tools/run_dashboard.sh` with `--check-health` (`-c`) command-line flag to perform pre-flight diagnostics before booting the operations dashboard.
+
+## [1.2.4] - 2026-04-06
+### Added
+- **Server Start & Restart Operations (Go System Pillar)**:
+  - `ServerManager.StartServer`: Starts an inactive or failed background daemon.
+  - `ServerManager.RestartServer`: Gracefully stops and reboots an active or stopped daemon.
+  - `ServerManager.GetServer`: Queries server status and configuration by ID.
+  - `RegisterServerWithStart`: Allows servers to supply both initialization and shutdown lifecycle hooks.
+  - Integrated into `go/main.go` via System Tray actions and verified in `go/bobtk/system/tray_test.go`.
+
+## [1.2.3] - 2026-04-06
+### Added
+- **ParallelFor Concurrency Dispatcher (Go Core Pillar)**:
+  - `QuantumScheduler.ParallelFor`: Concurrent loop iteration distribution across worker routines with completion barriers (`upp::CoWork::Do` / `QtConcurrent::map` parity).
+  - Integrated into `go/main.go` and verified with unit test suite `TestQuantumSchedulerParallelFor` in `go/bobtk/core/core_pillar_test.go`.
+
+## [1.2.2] - 2026-04-06
+### Added
+- **ComboBox & RadioButton Widget Primitives (Go Visual Pillar)**:
+  - `ComboBox`: Drop-down selector supporting item registration, index tracking, text retrieval, and `OnIndexChanged` notifications (`QComboBox` parity).
+  - `RadioButton`: Mutually exclusive radio option supporting group identifiers, selection states, and `OnSelected` notifications (`QRadioButton` parity).
+  - Integrated into `go/main.go` and verified in `go/bobtk/visual/layout_test.go`.
+
+## [1.2.1] - 2026-04-06
+### Added
+- **WebSocket Session Management & Broadcasting (Go Network Pillar)**:
+  - `WebSocketSession`: Connected client session structure with per-session non-blocking outbound send queues.
+  - `WebSocketHub` extensions: `RegisterClient`, `UnregisterClient`, `Broadcast`, and `ClientCount` for real-time cluster state and UI event distribution.
+  - Integrated into `go/main.go` and verified in `go/bobtk/network/network_pillar_test.go`.
+
+## [1.2.0] - 2026-04-06
+### Added
+- **Sine Oscillator & Low-Pass Filter DSP Processors (Go Media Pillar)**:
+  - `SineOscillatorProcessor`: Real-time sine wave synthesizer node with frequency, amplitude, and sample rate parameterization (`juce::ToneGeneratorAudioProcessor` parity).
+  - `LowPassFilterProcessor`: Single-pole IIR low-pass filtering node with cutoff frequency smoothing (`juce::IIRFilter` parity).
+  - Extended DSP pipeline in `go/bobtk/media/audio_graph.go` and verified in `go/main.go` and `go/bobtk/media/media_pillar_test.go`.
+
+## [1.1.9] - 2026-04-06
+### Added
+- **Slider & CheckBox Widget Primitives (Go Visual Pillar)**:
+  - `Slider`: Stepped/continuous value selector with orientation support (`Horizontal`, `Vertical`), range limits (`Minimum`, `Maximum`), boundary clamping, and `OnValueChanged` notification (QSlider parity).
+  - `CheckBox`: Toggleable option control with state tracking (`Checked`), interactive toggling (`Toggle`), and `OnToggled` notification (QCheckBox parity).
+  - Integrated `Slider` and `CheckBox` directly into `go/main.go` and verified with unit test suites in `go/bobtk/visual/layout_test.go`.
+
+## [1.1.8] - 2026-04-06
+### Added
+- **Subsystem Execution Span Profiling & Trace Reporting (Go Tools Pillar)**:
+  - `Span`: Structure capturing span identifier, category, start timestamp, elapsed duration, and completion status.
+  - `PerformanceProfiler` extensions: `StartSpan`, `EndSpan`, `GetSpans`, and `FormatTraceReport` for detailed subsystem latency analysis.
+  - Integrated startup tracing into `ToolsPillar.Initialize` and `main.go`.
+  - Comprehensive unit test `TestPerformanceProfilerSpansAndReport` in `go/bobtk/tools/tools_pillar_test.go`.
+
+## [1.1.7] - 2026-04-06
+### Added
+- **Real-Time Telemetry & Log Streaming (Go Visual Pillar)**:
+  - `ServerTelemetry`: Live CPU usage %, memory consumption MB, uptime seconds, and request counters attached to managed server processes.
+  - `LogSubscriber`: Dynamic event streaming callback hook allowing external consumers to tap into dashboard log lines in real-time.
+  - Formatted live telemetry strings directly within the single-page consolidated dashboard layout.
+- **Interactive Global Keyboard Shortcut Dispatcher (Go Visual Pillar)**:
+  - `ShortcutEntry` & `ShortcutHandler`: Accelerator registry binding keyboard sequences (e.g. `Ctrl+Q`, `Ctrl+R`, `Ctrl+S`) to executable actions with categorical and descriptive metadata.
+  - `HandleKeyPress`: Key dispatcher triggering matching registered actions with automatic execution logging.
+  - Added dedicated global keyboard shortcuts summary section to the single-page dashboard render.
+- **Verification Suites & Runner Expansion**:
+  - Added `TestDashboardTelemetryAndLogStreaming` and `TestDashboardShortcutKeyDispatcher` to `go/bobtk/visual/dashboard_test.go`.
+  - Updated `go/main.go` and `tools/run_dashboard.sh` to demonstrate live telemetry updates and keyboard accelerator execution.
+
+## [1.1.6] - 2026-04-06
+### Added
+- **HTTP Client & Multiplayer Sync Engine (Go Network Pillar)**:
+  - `NetworkAccessManager`: HTTP request execution (`bobgui/cpp/network.hpp` and `QNetworkAccessManager` parity) supporting GET/POST methods and history tracking.
+  - `SyncEngine`: Multiplayer collaborative state syncing (`bobgui/cpp/network.hpp` parity) with peer connection management, cursor tracking, and state delta broadcasting.
+  - Comprehensive unit test suite in `go/bobtk/network/http_sync_test.go`.
+
+## [1.1.5] - 2026-04-06
+### Added
+- **PropertyAnimation & StateMachine Subsystems (Go Core Pillar)**:
+  - `PropertyAnimation`: Interpolates float values over time (`bobgui/cpp/animation.hpp` and `QPropertyAnimation` parity) supporting discrete step advancement and live updates.
+  - `StateMachine` & `StateNode`: Hierarchical state transitions with event posting and enter/exit listeners (`bobguistate.h` and `QStateMachine` parity).
+  - Comprehensive unit test suites in `go/bobtk/core/animation_test.go` and `go/bobtk/core/state_machine_test.go`.
+
+## [1.1.4] - 2026-04-06
+### Added
+- **Canvas & 2D Vector Graphics Engine (Go Visual Pillar)**:
+  - `GraphicsContext`: 2D canvas drawing pipeline (`QPainter` and `juce::Graphics` parity) supporting `DrawRect`, `FillRect`, `DrawText`, and `StrokePath`.
+  - `Color`: Complete color model with predefined constants (`ColorTransparent`, `ColorWhite`, `ColorBlack`, `ColorRed`, `ColorGreen`, `ColorBlue`).
+  - `Path`: Vector path builder with `StartNewSubPath`, `LineTo`, and `CloseSubPath`.
+  - Integrated `GraphicsContext` directly into the `Component` `Paint` callback hierarchy.
+  - Comprehensive unit test suite in `go/bobtk/visual/graphics_test.go`.
+
+## [1.1.3] - 2026-04-06
+### Added
+- **FileSystem & Settings Subsystems (Go System & Core Pillars)**:
+  - `FileSystemWatcher`: Monitors directories and files for changes (`QFileSystemWatcher` parity) with path registration and mutation dispatch.
+  - `Settings`: Thread-safe persistent application configuration store (`QSettings` parity) with key-value access and change notifications.
+  - Comprehensive unit test suites in `go/bobtk/system/fs_watcher_test.go` and `go/bobtk/core/settings_test.go`.
+
+## [1.1.2] - 2026-04-06
+### Added
+- **Qt6 Signal/Slot & QAction Subsystem (Go Core & Visual Pillars)**:
+  - `Signal`: Thread-safe signal emission, slot connection, and disconnection inspired by Qt6 Signals and Slots.
+  - `Action`: Full user action abstraction (`QAction` parity) with text, icon, shortcut, tooltip, and reactive `Triggered`/`Toggled` signals.
+  - `KeyEvent`: Key press/release event model (`QKeyEvent` parity) with keyboard modifiers (`Shift`, `Control`, `Alt`, `Meta`) and `Accept`/`Ignore` dispatching.
+  - Comprehensive unit test suites in `go/bobtk/core/signal_test.go` and `go/bobtk/visual/action_test.go`.
+
+## [1.1.1] - 2026-04-06
+### Added
+- **Ultimate++ Map & Serialization Integration (Go Core Pillar)**:
+  - `Map`: Ordered key-value map container with index-based fast lookup inspired by U++ `upp::Map` and `Index`.
+  - `StateSerializer`: JSON state persistence and configuration serialization inspired by U++ `Jsonize`.
+  - Comprehensive unit test coverage in `go/bobtk/core/map_test.go`.
+
+## [1.1.0] - 2026-04-06
+### Added
+- **Ultimate++ NTL Submodule Assimilation (Go Core Pillar)**:
+  - `Vector`: High-performance cache-coherent dynamic array with pointer stability, fast indexed lookup, and pre-allocation inspired by U++ `upp::Vector`.
+  - `HeapPool`: Thread-safe memory slab/arena pool avoiding GC allocation spikes during high-frequency UI rendering passes inspired by U++ `sheap`/`lheap`.
+  - Comprehensive unit test coverage in `go/bobtk/core/upp_test.go`.
+
+## [1.0.9] - 2026-04-06
+### Added
+- **Native C/C++ Runtime Bridge (Go Core Pillar)**:
+  - `NativeBridge`: Manages GObject / C++ Bobtk runtime context, native handle allocation and deallocation (`AllocateNativeHandle`, `FreeNativeHandle`), and bidirectional event routing between C and Go.
+  - Safe pure-Go simulation fallback alongside live CGO linking capabilities.
+  - Comprehensive unit test coverage in `go/bobtk/core/bridge_test.go`.
+
+## [1.0.8] - 2026-04-06
+### Added
+- **Tools Pillar Implementation (Go)**:
+  - `PerformanceProfiler`: High-precision execution sampler tracking subsystem latencies and durations (`Sysprof` and `QElapsedTimer` parity).
+  - `IntegratedTestRunner`: Built-in automated diagnostic runner and reporting harness.
+  - Complete 6-pillar framework test suite coverage in Go (`core`, `media`, `network`, `system`, `tools`, `visual`) with 100% pass rate.
+
+## [1.0.7] - 2026-04-06
+### Added
+- **JUCE Integration Analysis (`JUCE_ANALYSIS.md`)**:
+  - Detailed architectural breakdown of `juce::Component` hierarchy, `juce::Timer` periodic intervals, and `juce_audio_processors` DSP pipelines mapped into Bobtk's 6 pillars.
+- **JUCE-Style Component Hierarchy (Go Visual Pillar)**:
+  - `Component`: Recursive UI element hierarchy with `AddAndMakeVisible`, parent-relative coordinate transforms, `SetBounds`, `Resized`, and `Paint`/`Repaint` cascades.
+- **JUCE-Style Precision Timer (Go Core Pillar)**:
+  - `Timer`: Periodic callback dispatcher (`StartTimer`, `StopTimer`, `timerCallback`) decoupled from heavy thread allocations.
+  - Comprehensive unit test coverage in `go/bobtk/visual/component_test.go` and `go/bobtk/core/timer_test.go`.
+
+## [1.0.6] - 2026-04-06
+### Added
+- **Network Pillar Implementation (Go)**:
+  - `BroadwayGateway`: Remote HTML5 canvas streaming gateway and client session manager porting GDK Broadway functionality to Go.
+  - `WebSocketHub`: Bidirectional JSON-RPC transport and dispatcher for distributed UI state syncing.
+  - Comprehensive unit test suite in `go/bobtk/network/network_pillar_test.go`.
+- **Media Pillar Implementation (Go)**:
+  - `AudioGraph` & `AudioBuffer`: Low-latency DSP audio processing graph inspired by JUCE `AudioProcessor`.
+  - `GainProcessor`: Standard real-time DSP gain node.
+  - `MidiBus` & `UMPPacket`: MIDI 2.0 Universal MIDI Packet event parser and distribution bus.
+  - Comprehensive unit test suite in `go/bobtk/media/media_pillar_test.go`.
+
+## [1.0.5] - 2026-04-06
+### Added
+- **Qt6-Parity Layout & Widget System (Go Visual Pillar)**:
+  - `BoxLayout`: Horizontal (`QHBoxLayout`) and vertical (`QVBoxLayout`) box layout managers supporting dynamic stretch factors, spacing, and margins.
+  - `GridLayout`: 2D matrix layout manager (`QGridLayout`) with multi-row and multi-column spanning and proportional distribution.
+  - `StackedLayout`: Multi-view card switcher (`QStackedLayout`) with zero-overhead active widget rendering.
+  - Core Widget Primitives: `Button` (QPushButton), `Label` (QLabel), `LineEdit` (QLineEdit), `ProgressBar` (QProgressBar) with reactive event signals.
+  - Comprehensive unit test suite in `go/bobtk/visual/layout_test.go`.
+
+## [1.0.4] - 2026-04-06
+### Added
+- **Core Pillar Implementation (Go)**:
+  - `QuantumScheduler`: High-concurrency task execution pool modeled after Ultimate++ `CoWork`.
+  - `ReflectContext` & `Value`: Dynamic reflection, property binding, and change listeners modeled after U++ `Value` and Qt property systems.
+  - `EntityManager`: Cache-coherent entity component storage (ECS) hierarchy in Go.
+  - Comprehensive unit test suite in `go/bobtk/core/core_pillar_test.go`.
+
+## [1.0.3] - 2026-04-06
+### Added
+- **System Tray Subsystem**: Cross-platform system tray notification area abstraction (`SystemTrayIcon` in C++, `SystemTray` in Go) with dynamic context menu actions and tooltip guidance.
+- **Server Lifecycle Controller**: Centralized process and daemon supervision (`ServerProcessController` in C++, `ServerManager` in Go) capable of tracking active services (Broadway HTML5 gateway, local IPC daemon, realtime audio server) and providing graceful termination and forceful shutdown.
+- **Consolidated Single-Page Dashboard UI**: Redesigned dashboard layout condensing all subsystem views, status metrics, and parallel concepts across the 6 pillars into a singular high-value page with zero fragmented subpages.
+- **Rich Guidance & Tooltip Markers**: Integrated detailed tooltips with categories, descriptions, and keyboard shortcuts across all interactive cards and actions.
+- **Unified Runner Script**: Created `tools/run_dashboard.sh` for non-destructive test execution, dashboard launching, and server monitoring.
+
 ## [1.0.2] - 2024-05-19
 ### Added
 - Completed `UPP_ANALYSIS.md` detailing integration points for Ultimate++ `Core` utilities (Memory Allocation, CoWork concurrency, Serialization, and Callbacks) into the Bobtk 6-pillar framework.

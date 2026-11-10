@@ -2,17 +2,53 @@ package system
 
 import "fmt"
 
-// SystemPillar manages low-level OS integrations.
+// SystemPillar manages low-level OS integrations, servers, system tray, and file watchers.
 type SystemPillar struct {
-	initialized bool
+	initialized  bool
+	Servers      *ServerManager
+	Tray         *SystemTray
+	FSWatcher    *FileSystemWatcher
+	ClipboardMgr *Clipboard
+	NotifCenter  *NotificationCenter
 }
 
 func NewSystemPillar() *SystemPillar {
-	return &SystemPillar{initialized: false}
+	sm := NewServerManager()
+	return &SystemPillar{
+		initialized:  false,
+		Servers:      sm,
+		Tray:         NewSystemTray("utilities-system-monitor", sm),
+		FSWatcher:    NewFileSystemWatcher(),
+		ClipboardMgr: NewClipboard(),
+		NotifCenter:  NewNotificationCenter(),
+	}
 }
 
 func (s *SystemPillar) Initialize() {
-	if s.initialized { return }
+	if s.initialized {
+		return
+	}
+	_ = s.FSWatcher.AddPath("/app/config")
 	fmt.Println("SystemPillar initialized.")
 	s.initialized = true
+}
+
+func (s *SystemPillar) ServerManager() *ServerManager {
+	return s.Servers
+}
+
+func (s *SystemPillar) SystemTray() *SystemTray {
+	return s.Tray
+}
+
+func (s *SystemPillar) FileWatcher() *FileSystemWatcher {
+	return s.FSWatcher
+}
+
+func (s *SystemPillar) Clipboard() *Clipboard {
+	return s.ClipboardMgr
+}
+
+func (s *SystemPillar) NotificationCenter() *NotificationCenter {
+	return s.NotifCenter
 }

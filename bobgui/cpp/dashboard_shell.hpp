@@ -2,6 +2,7 @@
 #define BOBGUI_CPP_DASHBOARD_SHELL_HPP
 
 #include "app_shell.hpp"
+#include "system_tray.hpp"
 
 #include <utility>
 #include <vector>
@@ -187,6 +188,16 @@ public:
     return shell_.build_panel_tool_surface_preset ();
   }
 
+  SystemTrayIcon &system_tray ()
+  {
+    if (!tray_)
+      {
+        tray_.reset (new SystemTrayIcon ("utilities-system-monitor-symbolic"));
+        tray_->set_tooltip ("bgtk Dashboard Control Center");
+      }
+    return *tray_;
+  }
+
   void present ()
   {
     shell_.present ();
@@ -194,6 +205,7 @@ public:
 
 private:
   AppShell shell_;
+  std::unique_ptr<SystemTrayIcon> tray_;
 };
 
 } /* namespace cpp */
