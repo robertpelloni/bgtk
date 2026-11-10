@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## [1.6.1] - 2026-04-06
+### Documentation
+- **Build Validation Blockers Status Update**:
+  - Updated `docs/BUILD_VALIDATION_BLOCKERS_2026-04-05.md` resolving historical compiler and build tool availability blockers, noting availability of gcc 13.3.0, g++ 13.3.0, Meson 1.12.1, and Go 1.24.3 with automated diagnostic health tooling.
+
 ## [1.6.0] - 2026-04-06
 ### Documentation
 - **Deployment Instructions & Environment Diagnostics (DEPLOY.md)**:

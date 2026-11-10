@@ -1,7 +1,8 @@
-# Handoff Document - Bobtk Deployment Instructions & Health Diagnostics (v1.6.0)
+# Handoff Document - Bobtk Build Validation Documentation (v1.6.1)
 
 ## Current Status
-- Version bumped to `1.6.0` tracking global versioning governance.
+- Version bumped to `1.6.1` tracking global versioning governance.
+- Updated `docs/BUILD_VALIDATION_BLOCKERS_2026-04-05.md` resolving historical compiler and build tool availability blockers, noting availability of gcc 13.3.0, g++ 13.3.0, Meson 1.12.1, and Go 1.24.3 with automated diagnostic health tooling.
 - Updated `DEPLOY.md` documenting pre-flight diagnostics execution via `tools/check_health.sh` and `tools/run_dashboard.sh --check-health`.
 - Clarified Meson build setup instructions following options consolidation and `sysprof-capture-4` wrap fallback resolutions.
 - Implemented `ScrollBar` in Go Visual Pillar (`go/bobtk/visual/widgets.go`) achieving `QScrollBar` parity with horizontal/vertical orientations, page stepping, and change notifications.

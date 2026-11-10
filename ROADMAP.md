@@ -69,6 +69,7 @@
 - Resolve sysprof-capture dependency fallback in Meson build system (v1.5.8).
 - Implement ScrollBar widget in Go Visual Pillar (v1.5.9).
 - Update deployment guidelines and environment diagnostics in DEPLOY.md (v1.6.0).
+- Resolve historical build validation blockers report in docs (v1.6.1).
 
 ## Phase 4: UI and Frontend Expansion
 - Ensure every backend feature is extensively represented in the frontend UI.

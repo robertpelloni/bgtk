@@ -60,3 +60,4 @@
 - **Sysprof-Capture Fallback:** `meson.build` provides subproject wrap fallbacks and default configuration options for `sysprof-capture-4` ensuring clean configuration when sysprof is absent from host pkg-config.
 - **ScrollBar Widget:** `ScrollBar` in `go/bobtk/visual/widgets.go` provides horizontal/vertical scrolling, page steps (`PageUp`, `PageDown`), bounds clamping, and change signals (`QScrollBar` parity).
 - **Deployment Documentation:** `DEPLOY.md` provides instructions for running pre-flight diagnostic monitoring and building the repaired Meson build tree.
+- **Build Blocker Resolution:** `docs/BUILD_VALIDATION_BLOCKERS_2026-04-05.md` documents toolchain and build environment recovery across Meson 1.12.1, gcc/g++ 13.3.0, and Go 1.24.3.
