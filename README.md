@@ -8,8 +8,8 @@ including a duplicate renamed copy of the library sources under `bobgui/`.
 
 Be aware of what that means:
 
-- The README this replaces presented the renamed tree as a GNOME-hosted
-  project with official download sites, documentation and nightly flatpaks
+- An earlier README presented the renamed tree as a GNOME-hosted project
+  with official download sites, documentation and nightly flatpaks
   (`download.gnome.org/sources/bobgui`, `org.bobgui.Demo4`, …). **None of
   those exist** — they are upstream GTK links with the name swapped. The
   real project is at https://gitlab.gnome.org/GNOME/gtk.
@@ -40,7 +40,9 @@ Whether the renamed `bobgui/` copy compiles as-is is unverified.
 
 ## Status
 
-Dormant experiment. Upstream content dates to ~October 2024; the only 2026
-activity is an automated agent checkpoint commit (2026-10-19). If you want
-GTK, use GTK — this repo is a renaming playground around it, kept for the
-BQt/BobUI line of experiments (see also the `bqt` repo).
+Dormant experiment. Upstream content dates to ~October 2024; the only
+2026 activity is an agent checkpoint commit (2026-10-19), a README
+rewrite (2026-10-22), and a submodule re-pin (2026-11-09, JUCE
+submodule re-pinned to master). If you want GTK, use GTK — this repo
+is a renaming playground around it, kept for the BQt/BobUI line of
+experiments (see also the `bqt` repo).
