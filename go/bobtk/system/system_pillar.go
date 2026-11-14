@@ -16,3 +16,6 @@ func (s *SystemPillar) Initialize() {
 	fmt.Println("SystemPillar initialized.")
 	s.initialized = true
 }
+
+// Initialized reports whether Initialize has completed.
+func (s *SystemPillar) Initialized() bool { return s.initialized }

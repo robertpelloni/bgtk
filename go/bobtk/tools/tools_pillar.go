@@ -16,3 +16,6 @@ func (t *ToolsPillar) Initialize() {
 	fmt.Println("ToolsPillar initialized.")
 	t.initialized = true
 }
+
+// Initialized reports whether Initialize has completed.
+func (t *ToolsPillar) Initialized() bool { return t.initialized }

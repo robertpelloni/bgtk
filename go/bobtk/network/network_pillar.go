@@ -16,3 +16,6 @@ func (n *NetworkPillar) Initialize() {
 	fmt.Println("NetworkPillar initialized.")
 	n.initialized = true
 }
+
+// Initialized reports whether Initialize has completed.
+func (n *NetworkPillar) Initialized() bool { return n.initialized }

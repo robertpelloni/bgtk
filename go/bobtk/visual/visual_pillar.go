@@ -16,3 +16,6 @@ func (v *VisualPillar) Initialize() {
 	fmt.Println("VisualPillar initialized.")
 	v.initialized = true
 }
+
+// Initialized reports whether Initialize has completed.
+func (v *VisualPillar) Initialized() bool { return v.initialized }

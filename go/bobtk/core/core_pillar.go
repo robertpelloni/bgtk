@@ -25,3 +25,9 @@ func (c *CorePillar) Initialize() {
 	fmt.Println("CorePillar initialized.")
 	c.initialized = true
 }
+
+// Initialized reports whether Initialize has completed. It lets the
+// dashboard show live pillar state without reaching into private fields.
+func (c *CorePillar) Initialized() bool {
+	return c.initialized
+}

@@ -21,3 +21,6 @@ These dependencies are heavily used by the backend C build logic (Meson).
 ## Languages and Compilers
 - **C/C++**: The foundation of the framework using GObject architecture and modern C++ abstractions.
 - **Go 1.24.3**: Targeted for the new high-level architectural port.
+
+## Status note (2026-11-13)
+- Verified on disk: submodules/juce dirty pin (25531a05-dirty vs recorded d60b7a78), submodules/ultimatepp untracked. Wrap damage assessment is blocked behind the root meson.build splice repair (TODO.md). Dashboard represents JUCE/Ultimate++ honestly as Native/Planned, never as running.

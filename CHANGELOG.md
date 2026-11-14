@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## [1.1.0] - 2026-11-13
+### Added
+- Consolidated single-page dashboard (`go/bobtk/dashboard/` + `dashboard.html`): Overview health, 6 pillar run/control cards with live `Initialized()` state, native C++ catalog (`bobgui/cpp/` + `tools/`), build/logs/tray section, docs/next-steps. Every feature has a label, description and `?` tooltip; badges distinguish Go-today vs Native C++ vs Planned bridge. Endpoints: `/`, `/health`, `/api/status`, `/api/logs`, `POST /api/init/{id}`, `POST /api/init-all`, `POST /api/quit` (graceful). Tests in `dashboard_test.go`.
+- `Initialized()` accessors on all six Go pillars (additive, backwards compatible).
+- CLI flags on `go/main.go`: `-serve`, `-addr`, `-version` (default init-and-exit behavior unchanged).
+- Windows tray script `scripts/tray.ps1` (Open Dashboard / live Status / Quit Server) and unified `scripts/build.ps1` (Go vet/test/build, `-Native`, `-Serve`, BelowNormal default). Originals backed up to `scripts/archive/` nondestructively.
+- User manual `docs/manual/MANUAL.md`; `scripts/README.md`.
+
+### Fixed
+- Root `meson.build` duplicated `project('gtk'...)` header (rename splice) — parser now reaches line 343, exposing the next splice (unterminated `check_headers`). Full untangle tracked in `TODO.md`.
+
+### Verified
+- `go test ./...`, `go vet ./...`, `go build` green (Go 1.27.4). Dashboard run at BelowNormal on :8484: health OK, init-all 6/6, page contains tray/search controls; `/api/quit` proven on a second instance (:8485 down, :8484 untouched). Tray/build scripts parse clean. Meson 1.12.1 + Ninja present; native configure probed honestly (blocked at line 343).
+
 ## [1.0.2] - 2024-05-19
 ### Added
 - Completed `UPP_ANALYSIS.md` detailing integration points for Ultimate++ `Core` utilities (Memory Allocation, CoWork concurrency, Serialization, and Callbacks) into the Bobtk 6-pillar framework.

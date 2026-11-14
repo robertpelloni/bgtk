@@ -1,27 +1,28 @@
-# DEPLOYMENT INSTRUCTIONS
+# DEPLOY — Bobtk environment setup
 
-*Deployment procedures are currently in early development as the Go port and C++ integrations evolve.*
+## Go dashboard (works today, offline)
+Requires Go 1.24+ (verified 1.27.4 on Windows).
 
-1. **Clone the Repository:**
-   ```bash
-   git clone --recurse-submodules <repository_url>
-   ```
+```powershell
+git clone --recurse-submodules <repository_url>
+cd go
+go run . -serve -addr :8484   # dashboard at http://localhost:8484
+powershell -File ..\scripts\tray.ps1   # optional Windows tray icon
+```
 
-2. **Update Submodules:**
-   ```bash
-   git submodule update --init --recursive
-   ```
+Unified alternative: `powershell -File scripts/build.ps1 -Serve`. Version comes from the repo-root `VERSION` file at process start.
 
-3. **Building the Go Architecture:**
-   ```bash
-   cd go
-   go run main.go
-   ```
+## Native C++ (Meson) — currently blocked
+Requires Meson + Ninja (verified present: 1.12.1 / 1.12.1 on this laptop) and a C toolchain.
 
-4. **Building the C/C++ version:**
-   - **WARNING**: The C/C++ `meson.build` system is currently experiencing failures due to a blind mass rename operation (`gtk` -> `bobtk`) which broke Subproject Wrap references. Manual intervention is required before running:
-   ```bash
-   # Pending wrap repairs
-   meson setup _build
-   ninja -C _build
-   ```
+```bash
+meson setup _build
+meson compile -C _build
+meson test -C _build
+```
+
+**Known blocker (2026-11-13):** root `meson.build` splices a bobgui/GTK4 build file with a gtk/GTK3 one; configure fails at line 343 after this session's header fix. Repair queue: `TODO.md` → "Native build repair". Run probes at BelowNormal priority and into `$env:TEMP` until the tree is clean. Submodule pins (`submodules/juce` dirty, `ultimatepp` untracked) must be resolved before a reproducible native build — see `SUBMODULE_INVENTORY.md`.
+
+## Logs & operations
+- Dashboard logs: server stdout/stderr plus the in-page Live logs (last 300 lines, `GET /api/logs`).
+- Health check: `GET /health`. Graceful stop: dashboard **Quit server** button, tray **Quit Server**, or `POST /api/quit`.

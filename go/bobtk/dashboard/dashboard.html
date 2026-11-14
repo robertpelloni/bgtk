@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bobtk Dashboard — all pillars, native catalog, build &amp; tray on one page</title>
+<style>
+  :root{--ink:#1c2430;--muted:#5b6b7f;--line:#d7dee8;--bg:#f4f6f9;--card:#ffffff;--accent:#0f766e;--accent-ink:#ffffff;--warn:#b45309;--bad:#b42318;--ok:#067647;--code:#eef2f7}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+  header.top{position:sticky;top:0;z-index:20;background:#14202e;color:#eef2f7;padding:.7rem 1rem;border-bottom:3px solid var(--accent)}
+  header.top .row{display:flex;flex-wrap:wrap;gap:.6rem 1rem;align-items:center;max-width:1180px;margin:0 auto}
+  header.top h1{font-size:1.25rem;margin:0;font-weight:700;letter-spacing:.01em}
+  header.top .sub{color:#b9c6d6;font-size:.88rem}
+  nav.anchors{display:flex;flex-wrap:wrap;gap:.35rem;margin-left:auto}
+  nav.anchors a{color:#eef2f7;text-decoration:none;font-size:.85rem;padding:.28rem .6rem;border:1px solid #3b4f68;border-radius:6px}
+  nav.anchors a:hover{background:#22344c}
+  main{max-width:1180px;margin:0 auto;padding:1rem}
+  section{margin:0 0 1.4rem}
+  h2{font-size:1.08rem;margin:0 0 .3rem;font-weight:700}
+  .lede{color:var(--muted);margin:0 0 .7rem;max-width:75ch}
+  .toolbar{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin:.6rem 0}
+  label.f{display:flex;flex-direction:column;gap:.2rem;font-size:.85rem;font-weight:600}
+  label.f span.hint{font-weight:400;color:var(--muted)}
+  input[type=search]{padding:.5rem .6rem;border:1px solid var(--line);border-radius:6px;min-width:260px;font:inherit;background:#fff;color:var(--ink)}
+  button{font:inherit;font-weight:600;padding:.5rem .85rem;border-radius:6px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);cursor:pointer}
+  button.secondary{background:#fff;color:var(--accent)}
+  button.danger{background:#fff;color:var(--bad);border-color:var(--bad)}
+  button:disabled{opacity:.55;cursor:wait}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:.8rem}
+  .statgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:.8rem}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:.85rem .95rem}
+  .card h3{margin:.1rem 0 .3rem;font-size:1rem}
+  .card p{margin:.25rem 0;color:#35445a;font-size:.92rem}
+  .card .meta{font-size:.8rem;color:var(--muted)}
+  .badge{display:inline-block;font-size:.72rem;font-weight:700;padding:.12rem .5rem;border-radius:999px;border:1px solid var(--line);vertical-align:middle}
+  .badge.ok{color:var(--ok);border-color:var(--ok)} .badge.off{color:var(--warn);border-color:var(--warn)}
+  .badge.go{color:var(--accent);border-color:var(--accent)} .badge.native{color:#35445a} .badge.planned{color:var(--warn);border-color:var(--warn)}
+  .tip{display:inline-flex;align-items:center;justify-content:center;width:1.05rem;height:1.05rem;border-radius:50%;border:1px solid var(--muted);color:var(--muted);font-size:.7rem;font-weight:700;cursor:help;margin-left:.3rem;vertical-align:middle;background:#fff}
+  ul.feats{margin:.5rem 0 0;padding-left:1.1rem} ul.feats li{margin:.3rem 0;font-size:.9rem}
+  code,pre{font-family:Consolas,"Cascadia Mono",monospace;background:var(--code);border-radius:4px}
+  code{padding:.05rem .3rem;font-size:.85em}
+  pre{padding:.7rem;overflow:auto;font-size:.82rem;border:1px solid var(--line);max-height:300px;white-space:pre-wrap}
+  .kv{display:grid;grid-template-columns:auto 1fr;gap:.2rem .8rem;font-size:.92rem}
+  .kv dt{font-weight:600;color:#35445a}.kv dd{margin:0}
+  .notice{border:1px solid var(--warn);background:#fffaf0;border-radius:8px;padding:.7rem .9rem;font-size:.92rem}
+  footer{max-width:1180px;margin:0 auto;padding:0 1rem 2rem;color:var(--muted);font-size:.85rem}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="row">
+    <h1>Bobtk Dashboard</h1>
+    <span class="sub" id="identity">Loading live status…</span>
+    <nav class="anchors" aria-label="Page sections">
+      <a href="#overview">Overview</a><a href="#pillars">Pillars</a><a href="#catalog">Native catalog</a><a href="#build">Build, logs &amp; tray</a><a href="#docs">Docs &amp; next steps</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <section id="overview" aria-labelledby="h-overview">
+    <h2 id="h-overview">Overview — health first <span class="tip" tabindex="0" title="Highest-value information lives at the top: version, runtime, how many pillars are running, and whether the native C++ build is configured. Everything below is detail.">?</span></h2>
+    <p class="lede">One consolidated page for the whole project. There are no subpages: run controls, the native C++ catalog, build status, live logs and tray/quit controls are grouped below in value order.</p>
+    <div class="statgrid" id="stats" role="status" aria-live="polite"><p>Loading…</p></div>
+    <div class="toolbar">
+      <button type="button" id="initAll">Initialize all pillars</button>
+      <span class="hint" style="color:var(--muted);font-size:.85rem">Runs Core → Visual → Media → Network → System → Tools. Safe to repeat; each pillar ignores a second run.</span>
+      <button type="button" class="secondary" id="refresh">Refresh status</button>
+    </div>
+  </section>
+
+  <section id="pillars" aria-labelledby="h-pillars">
+    <h2 id="h-pillars">Pillars — run &amp; control <span class="tip" tabindex="0" title="The 6-pillar framework (Core, Visual, Media, Network, System, Tools) in Go (go/bobtk/) mirroring the C++ module layer (bobgui/cpp/module/). Each card lists its real backend features so nothing planned is hidden from the UI.">?</span></h2>
+    <p class="lede">Every backend feature is represented here with a plain-language description. Badges are honest: <strong>Go — works today</strong>, <strong>Native C++ header</strong>, <strong>Planned bridge</strong>.</p>
+    <div class="toolbar">
+      <label class="f">Search pillars &amp; features
+        <input type="search" id="q" placeholder="Try: audio, dashboard, websocket…" aria-describedby="qhint">
+        <span class="hint" id="qhint">Filters cards as you type. Clear the box to show everything again.</span>
+      </label>
+    </div>
+    <div class="grid" id="pillarGrid"><p>Loading pillars…</p></div>
+  </section>
+
+  <section id="catalog" aria-labelledby="h-catalog">
+    <h2 id="h-catalog">Native C++ framework catalog <span class="tip" tabindex="0" title="Read-only reference for the native layer: umbrella header bobgui/cpp/bobgui.hpp, module layer bobgui/cpp/module/, shells (App/Studio/Document/Dashboard), and CLI tools in tools/. These need the Meson build — see Build section for its real status.">?</span></h2>
+    <p class="lede">Grouped by pillar so related concepts sit together. This section replaces separate per-shell pages; use Search above to filter it together with the pillar cards.</p>
+    <div class="grid" id="catalogGrid"></div>
+  </section>
+
+  <section id="build" aria-labelledby="h-build">
+    <h2 id="h-build">Build, logs &amp; system tray <span class="tip" tabindex="0" title="Tray answer: this repo has no native tray icon today (GTK4 removed GtkStatusIcon and no systray code exists). The controls in this section are the tray-equivalent: live status, open/refresh, and Quit server which gracefully stops this dashboard process. A native Windows tray ships with the -tray flag — see HANDOFF.md.">?</span></h2>
+    <p class="lede">Build commands, live server logs, and the tray-equivalent controls, condensed into one place.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Build &amp; run <span class="tip" tabindex="0" title="Go dashboard needs only Go 1.24+. Native C++ needs Meson + Ninja and is configured separately; its status is shown live in Overview, never assumed.">?</span></h3>
+        <dl class="kv">
+          <dt>Go dashboard</dt><dd><code>cd go; go run . -serve -addr :8484</code></dd>
+          <dt>Go tests</dt><dd><code>cd go; go test ./...; go vet ./...</code></dd>
+          <dt>Unified script</dt><dd><code>powershell -File scripts/build.ps1</code></dd>
+          <dt>Native C++</dt><dd><code>meson setup _build; meson compile -C _build</code></dd>
+        </dl>
+        <p class="meta">Heavy native builds should run at BelowNormal priority on this laptop: <code>Start-Process meson -Priority BelowNormal</code> equivalent is wrapped in <code>scripts/build.ps1 -Priority BelowNormal</code>.</p>
+      </div>
+      <div class="card">
+        <h3>System tray &amp; quit <span class="tip" tabindex="0" title="Sensible tray features: show status, open dashboard, quit servers. Quit here stops only this dashboard process — it never kills unrelated processes.">?</span></h3>
+        <p><strong>Status:</strong> <span id="trayStatus">checking…</span></p>
+        <p>Native icon: <span id="trayNote">run <code>powershell -File scripts/tray.ps1</code> for a real Windows tray icon (Open Dashboard / Quit Server menu). Without it, the web controls below are the equivalent.</span></p>
+        <div class="toolbar">
+          <button type="button" class="secondary" id="openDash">Open dashboard (this page)</button>
+          <button type="button" class="danger" id="quitBtn">Quit server</button>
+        </div>
+        <p class="meta">“Quit server” asks this process to shut down gracefully. Restart with the Go dashboard command above.</p>
+      </div>
+    </div>
+    <h3 style="margin:.9rem 0 .3rem">Live logs <span class="tip" tabindex="0" title="Server-side ring buffer (last 300 lines): pillar initialization, listen address, quit requests and errors. Auto-refreshes with status every 5 seconds.">?</span></h3>
+    <pre id="logs" tabindex="0" aria-label="Live server logs">Loading logs…</pre>
+  </section>
+
+  <section id="docs" aria-labelledby="h-docs">
+    <h2 id="h-docs">Docs, manual &amp; next steps <span class="tip" tabindex="0" title="Single sources of truth: VERSION for the version string, ROADMAP.md for milestones, TODO.md for granular tasks, HANDOFF.md for session resumption, docs/manual/ for the user manual.">?</span></h2>
+    <div class="grid" id="docsGrid"></div>
+    <div class="notice" id="nextSteps" style="margin-top:.8rem">Loading next steps…</div>
+  </section>
+</main>
+<footer>Bobtk dashboard — single-page consolidation. Identity: muse-wonder-1.0 in Muse Code in C:\Users\hyper\workspace\bgtk on laptop. Status data is live from <code>/api/status</code>; anything not yet built is badged “Planned”, never presented as working.</footer>
+
+<script>
+"use strict";
+var CATALOG = [
+ {pillar:"Visual", items:[
+  ["AppShell + Workbench","Window shell: central view, sidebars, status bar, dock manager.","bobgui/cpp/app_shell.hpp, workbench.hpp"],
+  ["DashboardShell","Navigation/dashboard/context preset: set_dashboard_view, dashboard toolbars, dashboard_action_count.","bobgui/cpp/dashboard_shell.hpp — this page is its web counterpart"],
+  ["StudioShell / DocumentShell","Presets for studio and document apps on the same AppShell base.","bobgui/cpp/studio_shell.hpp, document_shell.hpp"],
+  ["ActionRegistry / CommandPalette / ToolSurface","One command registry feeding menus, toolbars, tool surfaces and the palette.","bobgui/cpp/action_registry.hpp, command_palette.hpp, tool_surface*.hpp, toolbar_builder.hpp"]]},
+ {pillar:"Core", items:[
+  ["Core subsystems","AutonomousController, BrainNode, ComputePipeline, SqlDatabase, EntityManager, FinChart, Translator, ModernLayout, MetaOrchestrator, QuantumScheduler, RealtimeKernel, ReflectContext, ScriptContext, StateMachine, Stream.","bobgui/cpp/core_subsystems.hpp"],
+  ["Handles & properties","ObjectHandle, Property, Signal, Timer, Settings, Animation, Database.","bobgui/cpp/module/core.hpp + core headers"]]},
+ {pillar:"Media / Network / System / Tools", items:[
+  ["Media","AudioDeviceManager, AudioProcessor, ThreeDNode, MapView, EffectShader, Timeline + audio widgets.","bobgui/cpp/media.hpp"],
+  ["Network","NetworkAccessManager, WebSocket, RemoteServer/Client, SyncEngine, WebView, CloudContext.","bobgui/cpp/network.hpp"],
+  ["System","FileSystemWatcher, LocalServer.","bobgui/cpp/module/system.hpp"],
+  ["Tools","ForgeContext, ReportDesigner/Preview, StudioManager, TestRunner; CLI builder/image/path tools.","bobgui/cpp/tools_subsystems.hpp, tools/"]]}
+];
+var DOCS = [
+ ["User manual","docs/manual/MANUAL.md","How to run the dashboard, what each section means, tray/quit, and troubleshooting."],
+ ["Roadmap","ROADMAP.md","Long-term milestones: native build green, cgo bridge, JUCE analysis, Qt-parity research."],
+ ["Task list","TODO.md","Granular next tasks with checkboxes — the queue the 15-minute loop works from."],
+ ["Handoff","HANDOFF.md","Session history and exact resume instructions for the next model."],
+ ["Deploy guide","DEPLOY.md","Environment setup for Go dashboard and native Meson build."],
+ ["Vision & ideas","VISION.md · IDEAS.md","Ultimate goals and aggressive expansion ideas, kept separate from committed plans."]
+];
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function badge(st){ if(st==="go") return '<span class="badge go">Go — works today</span>'; if(st==="native") return '<span class="badge native">Native C++ header</span>'; return '<span class="badge planned">Planned bridge</span>' }
+function render(d){
+  document.getElementById("identity").textContent = "v"+d.version+" · "+d.goVersion+" · "+d.os+"/"+d.arch+" · uptime "+d.uptimeSec+"s";
+  document.getElementById("stats").innerHTML =
+    '<div class="card"><h3>Version</h3><p><strong>'+esc(d.version)+'</strong></p><p class="meta">Single source: VERSION file. Never hardcode it elsewhere.</p></div>'
+    +'<div class="card"><h3>Pillars running</h3><p><strong>'+d.initializedCount+" / "+d.totalCount+'</strong></p><p class="meta">Live from each pillar\u2019s Initialized() flag.</p></div>'
+    +'<div class="card"><h3>Runtime</h3><p>'+esc(d.goVersion)+'</p><p class="meta">'+esc(d.os)+"/"+esc(d.arch)+'</p></div>'
+    +'<div class="card"><h3>Native C++ build</h3><p style="font-size:.88rem">'+esc(d.nativeBuild)+'</p><p class="meta">Checked on disk, not assumed.</p></div>';
+  var q=(document.getElementById("q").value||"").toLowerCase();
+  var html="";
+  d.pillars.forEach(function(p){
+    var hay=(p.title+" "+p.desc+" "+p.features.map(function(f){return f.name+" "+f.desc}).join(" ")).toLowerCase();
+    if(q && hay.indexOf(q)<0) return;
+    html+='<article class="card" data-pillar="'+esc(p.id)+'"><h3>'+esc(p.title)+' <span class="badge '+(p.initialized?"ok":"off")+'">'+(p.initialized?"Running":"Not started")+'</span><span class="tip" tabindex="0" title="'+esc(p.tooltip)+'">?</span></h3>'
+      +'<p>'+esc(p.desc)+'</p><p class="meta">Go: <code>'+esc(p.goPackage)+'</code> · Native: <code>'+esc(p.nativeFiles)+'</code></p>'
+      +'<div class="toolbar"><button type="button" data-init="'+esc(p.id)+'">'+(p.initialized?"Re-run Initialize (no-op)":"Initialize "+esc(p.title))+'</button></div>'
+      +'<ul class="feats">'+p.features.map(function(f){return '<li><strong>'+esc(f.name)+'</strong> '+badge(f.status)+'<span class="tip" tabindex="0" title="'+esc(f.tooltip)+'">?</span><br><span style="color:#35445a">'+esc(f.desc)+'</span></li>'}).join("")+'</ul></article>';
+  });
+  document.getElementById("pillarGrid").innerHTML = html || '<p>No pillar matches your search. Clear the search box to show everything.</p>';
+  document.querySelectorAll("[data-init]").forEach(function(b){ b.addEventListener("click", function(){ b.disabled=true; postInit(b.getAttribute("data-init")); }); });
+  var cat="";
+  CATALOG.forEach(function(g){
+    var items=g.items.filter(function(it){ return !q || (g.pillar+" "+it[0]+" "+it[1]).toLowerCase().indexOf(q)>=0 });
+    if(!items.length) return;
+    cat+='<article class="card"><h3>'+esc(g.pillar)+'</h3><ul class="feats">'+items.map(function(it){return '<li><strong>'+esc(it[0])+'</strong><br><span style="color:#35445a">'+esc(it[1])+'</span><br><span class="meta"><code>'+esc(it[2])+'</code></span></li>'}).join("")+'</ul></article>';
+  });
+  document.getElementById("catalogGrid").innerHTML = cat || '<p>No catalog entry matches your search.</p>';
+  document.getElementById("docsGrid").innerHTML = DOCS.map(function(x){return '<article class="card"><h3>'+esc(x[0])+'</h3><p><code>'+esc(x[1])+'</code></p><p>'+esc(x[2])+'</p></article>'}).join("");
+  document.getElementById("logs").textContent = (d.logs&&d.logs.length)? d.logs.join("\n") : "(no log lines yet — initialize a pillar)";
+  document.getElementById("trayStatus").textContent = d.initializedCount+" of "+d.totalCount+" pillars running · server up "+d.uptimeSec+"s";
+  document.getElementById("nextSteps").innerHTML = "<strong>What is not working yet (honest list):</strong> native C++ Meson build is not configured on this Windows machine; Go↔C++ cgo bridge is planned (badged above); native tray icon is not implemented — Quit server on this page is the supported equivalent. Next queue: <code>TODO.md</code>.";
+}
+function load(){ fetch("/api/status").then(function(r){return r.json()}).then(render).catch(function(e){ document.getElementById("logs").textContent="Status fetch failed: "+e; }); }
+function postInit(id){ fetch("/api/init/"+encodeURIComponent(id),{method:"POST"}).then(function(r){return r.json()}).then(render).catch(load); }
+document.getElementById("initAll").addEventListener("click",function(){ var b=this; b.disabled=true; fetch("/api/init-all",{method:"POST"}).then(function(r){return r.json()}).then(function(d){render(d); b.disabled=false;}).catch(function(){b.disabled=false; load();}); });
+document.getElementById("refresh").addEventListener("click",load);
+document.getElementById("q").addEventListener("input",load);
+document.getElementById("openDash").addEventListener("click",function(){ window.scrollTo({top:0,behavior:"smooth"}); });
+document.getElementById("quitBtn").addEventListener("click",function(){
+  if(!window.confirm("Quit the Bobtk dashboard server? You can restart it with: cd go; go run . -serve -addr :8484")) return;
+  fetch("/api/quit",{method:"POST"}).then(function(){ document.getElementById("trayStatus").textContent="server shutting down — restart with the command in Build & run"; }).catch(function(){ document.getElementById("trayStatus").textContent="server already stopped"; });
+});
+load(); setInterval(load, 5000);
+</script>
+</body>
+</html>

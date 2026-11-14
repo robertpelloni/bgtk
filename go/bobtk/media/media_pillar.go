@@ -24,3 +24,8 @@ func (m *MediaPillar) Initialize() {
 	fmt.Println("MediaPillar initialized.")
 	m.initialized = true
 }
+
+// Initialized reports whether Initialize has completed.
+func (m *MediaPillar) Initialized() bool {
+	return m.initialized
+}
