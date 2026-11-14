@@ -237,8 +237,20 @@ func (s *Server) Status() Status {
 }
 
 // NativeBuildNote reports native (Meson) build reality without faking a run.
+// BOBTK_BUILD_DIR may point at a verified build tree (e.g. a probe dir).
 func NativeBuildNote() string {
+	if dir := os.Getenv("BOBTK_BUILD_DIR"); dir != "" {
+		if _, err := os.Stat(filepath.Join(dir, "build.ninja")); err == nil {
+			if _, err := os.Stat(filepath.Join(dir, "bobgui", "libbobgui-4-1.dll")); err == nil {
+				return "compiled green at BOBTK_BUILD_DIR (libbobgui-4-1.dll present, compile exit 0)"
+			}
+			return "configured at BOBTK_BUILD_DIR (build.ninja present)"
+		}
+	}
 	if _, err := os.Stat(filepath.Join("_build", "build.ninja")); err == nil {
+		if _, err := os.Stat(filepath.Join("_build", "bobgui", "libbobgui-4-1.dll")); err == nil {
+			return "compiled green (_build, libbobgui-4-1.dll present)"
+		}
 		return "configured (_build/build.ninja present)"
 	}
 	if _, err := os.Stat("_build"); err == nil {

@@ -8,7 +8,7 @@ Granular queue. The 15-minute autonomous loop works top-down. Checkboxes only mo
 - [x] `meson setup` probe **passes** (2026-11-13): `meson setup $env:TEMP\bgtk-probe-build . -Dmedia-gstreamer=disabled -Dintrospection=disabled -Dvulkan=disabled` exits 0. GStreamer disabled due to its Windows win-pkgconfig override bug; Vulkan disabled (no SDK on this laptop).
 - [x] `meson compile` **exits 0** (v1.5.0). Blockers fixed in order: sysprof off; WrapDB libffi 3.8.0; cairo 1.18.4; SCSS conflict resolved; gdk template enums; gresource generator; gdkconfig template; 271 restored sources; modules-enum exclusion (Windows backslash filter); 60 modules stubs excluded; libsoup tests off (`-Dlibsoup-3.0:tests=false`). Logs: `logs/native-compile19.log`.
 - [ ] Run broader native tests (`meson test`, 7779 total; bobgui suite smoke done: 2 ok / 1 clipboard timeout). Prioritize gdk/gsk/bobgui suites on a desktop session.
-- [ ] Configure a persistent `_build` in-repo with the documented flags (probe lives in `$env:TEMP`) and update `scripts/build.ps1 -Native` to use them.
+- [ ] Configure a persistent `_build` in-repo with the documented flags (`scripts/build.ps1 -Native` already encodes them). Urgency raised 2026-11-13: Windows temp cleanup partially deleted the `$env:TEMP` probe (build.ninja gone; `bobgui/libbobgui-4-1.dll` 52 MB survives), so compile-green evidence must be re-created in `_build`. Dashboard reports it via `BOBTK_BUILD_DIR` or `_build` when present.
 - [ ] Re-enable media-gstreamer (fix win-pkgconfig override) and vulkan (needs Vulkan SDK) after core compile is green.
 - [ ] Fix submodule state: `submodules/juce` dirty pin (25531a05-dirty vs recorded d60b7a78); `submodules/ultimatepp` present but untracked. Record intended pins, commit cleanly.
 
