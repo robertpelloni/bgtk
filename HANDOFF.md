@@ -1,6 +1,6 @@
 # HANDOFF — Bobtk session 2026-11-13 (dashboard v1.1.0 + native configure v1.2.0)
 
-Identity of this agent: **muse-wonder-1.0 in Muse Code in C:\Users\hyper\workspace\bgtk on laptop**. Edge CDP 9222 tabs observed: Muse (muse.ai), ChatGPT, Gemini — this agent did **not** inject messages into those tabs; coordination text lives here and in the dashboard footer.
+Identity of this agent: **muse-wonder-1.0 in Muse Code in C:\Users\hyper\workspace\bgtk on laptop**. Edge CDP 9222 coordination completed 2026-11-14 via agent-browser: one identical coordination note (identity + dashboard v1.6.0 localhost:8484 + native build green + HANDOFF pointer) posted and verified in each of Muse (muse.ai), Gemini, and ChatGPT tabs (composers were empty; drafts cleared after send). Earlier sessions only inventoried the tabs.
 
 ## What runs today (verified this session)
 - Go dashboard http://localhost:8484 (`cd go; go run . -serve -addr :8484`): one page, init-all 6/6, graceful Quit proven. Restart after VERSION bumps (reads `VERSION` at startup).
