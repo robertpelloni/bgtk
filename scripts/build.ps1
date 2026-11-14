@@ -30,7 +30,12 @@ if ($Native) {
     if (-not (Get-Command meson -ErrorAction SilentlyContinue)) { throw "meson not on PATH — see DEPLOY.md" }
     Push-Location $root
     try {
-        if (-not (Test-Path "_build/build.ninja")) { meson setup _build }
+        # Flags verified green on Windows (v1.5.0): gstreamer/vulkan/sysprof/
+        # introspection off (see TODO.md), libsoup tests off.
+        if (-not (Test-Path "_build/build.ninja")) {
+            meson setup _build -Dmedia-gstreamer=disabled -Dintrospection=disabled -Dvulkan=disabled -Dsysprof=disabled -Dglib:sysprof=disabled
+            meson configure _build "-Dlibsoup-3.0:tests=false"
+        }
         meson compile -C _build
         Write-Host "Native build OK"
     } finally { Pop-Location }

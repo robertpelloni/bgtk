@@ -5,7 +5,7 @@ Identity of this agent: **muse-wonder-1.0 in Muse Code in C:\Users\hyper\workspa
 ## What runs today (verified this session)
 - Go dashboard http://localhost:8484 (`cd go; go run . -serve -addr :8484`): one page, init-all 6/6, graceful Quit proven. Restart after VERSION bumps (reads `VERSION` at startup).
 - `go test ./...`, `go vet ./...`, `go build` green (Go 1.27.4).
-- **Native configure green:** `meson setup $env:TEMP\bgtk-probe-build . -Dmedia-gstreamer=disabled -Dintrospection=disabled -Dvulkan=disabled` exits 0.
+- **Native configure + compile green (v1.5.0):** `meson setup $env:TEMP\bgtk-probe-build . -Dmedia-gstreamer=disabled -Dintrospection=disabled -Dvulkan=disabled -Dsysprof=disabled -Dglib:sysprof=disabled` + `meson configure <build> -Dlibsoup-3.0:tests=false`, then `meson compile -C $env:TEMP\bgtk-probe-build` exits 0. Test smoke (`--suite bobgui`): 2 ok, 1 clipboard timeout.
 
 ## Native build repair — how it was fixed (reproduce carefully)
 1. Root `meson.build` was two interleaved files (bobgui/GTK4 932 lines + GTK3 ~813). Restored clean bobgui file via `git restore --source=ce1de57f61 --worktree -- <file>`; spliced copies archived under `scripts/archive/` (`meson.build.spliced.txt`, `meson_options.gtk3.txt`, `meson-spliced/…`, `wraps-spliced/…`). Never regex-edit `meson.build` (AGENTS.md).
@@ -14,7 +14,7 @@ Identity of this agent: **muse-wonder-1.0 in Muse Code in C:\Users\hyper\workspa
 4. Disabled for probe: media-gstreamer (gstreamer win-pkgconfig override bug), vulkan (no SDK), introspection (speed).
 
 ## What is broken / not running
-1. Native **compile** in progress (BelowNormal, `logs/native-compile18.log`, monitored): blockers 1–10 fixed (sysprof off, WrapDB libffi 3.8.0, cairo 1.18.4, SCSS conflict, gdk template enums, gresource generator, gdkconfig template, 271 restored sources, modules-enum exclusion, modules stubs excluded). Main libraries/demos build; testsuite targets advancing. Not yet exited 0 — see `TODO.md`. Warning: restoring from `ce1de57f61` reverts the gdk enum fix; re-apply (CHANGELOG 1.2.1/1.3.0).
+1. Native compile is **green**; remaining native work: broader `meson test` run, persistent in-repo `_build`, re-enable GStreamer (win-pkgconfig bug) and Vulkan (needs SDK). Warning: restoring from `ce1de57f61` reverts the gdk enum fix; re-apply (CHANGELOG 1.2.1/1.3.0).
 2. cgo bridge: none; Go pillars flip state only (badged Planned in UI).
 3. Native tray icon: none in C++; use `scripts/tray.ps1`.
 4. Submodules: `submodules/juce` dirty (25531a05-dirty vs recorded d60b7a78; checked-out JUCE is 8.0.14); `submodules/ultimatepp` untracked. Needs a deliberate pin decision.

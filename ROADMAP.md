@@ -8,7 +8,7 @@ Single source of truth for long-term milestones. Granular tasks live in `TODO.md
 - [x] Tray-equivalent controls (Quit server) + real Windows tray script (`scripts/tray.ps1`).
 - [x] Unified build script (`scripts/build.ps1`), user manual (`docs/manual/MANUAL.md`).
 
-## Milestone 2 — Native C++ build green (configure done, compile in progress)
+## Milestone 2 — Native C++ build green (done in 1.5.0; hardening remains)
 - Spliced build files and C sources restored from the clean bobgui commit (`ce1de57f61`); wraps repaired (see CHANGELOG 1.2.0–1.4.0 for the full list). Canonical tree is bobgui (GTK4 lineage); GTK3 halves archived in `scripts/archive/`, not deleted.
 - `meson setup` exits 0 (flags in `TODO.md`). `meson compile` is progressing through all libraries/demos/testsuite with blockers fixed in order (currently `logs/native-compile18.log`).
 - Remaining in this milestone: compile exit 0 → `meson test` subset → re-enable GStreamer/Vulkan variants.

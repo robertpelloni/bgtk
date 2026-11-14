@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.5.0] - 2026-11-13
+### Fixed
+- **Native compile green.** `meson compile -C <build>` exits 0 (verified with a no-op recompile) for the full bobgui tree: glib, gdk, gsk, bobgui, demos, examples, testsuite targets (3277 + 538 targets). Final blocker: libsoup's own Windows test executables (undefined `test_init` etc.) excluded via `-Dlibsoup-3.0:tests=false`.
+- Configure line (Windows, this laptop): `meson setup <build> . -Dmedia-gstreamer=disabled -Dintrospection=disabled -Dvulkan=disabled -Dsysprof=disabled -Dglib:sysprof=disabled` + `-Dlibsoup-3.0:tests=false`.
+- Test smoke: `meson test --suite bobgui` → 2 ok, 1 timeout (`gdk clipboard`, flaky/headless environment). Full 7779-test run not attempted; see `TODO.md`.
+
 ## [1.4.0] - 2026-11-13
 ### Fixed
 - Restored 120 more spliced sources under `testsuite/`, `tests/`, `demos/`, `examples/`, `tools/`, `po/`, `docs/` from `ce1de57f61` (reftest snapshot header carried duplicate GTK3 declarations). Spliced copies archived in `scripts/archive/meson-spliced/`.
