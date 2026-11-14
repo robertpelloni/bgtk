@@ -105,7 +105,7 @@
       <div class="card">
         <h3>System tray &amp; quit <span class="tip" tabindex="0" title="Sensible tray features: show status, open dashboard, quit servers. Quit here stops only this dashboard process — it never kills unrelated processes.">?</span></h3>
         <p><strong>Status:</strong> <span id="trayStatus">checking…</span></p>
-        <p>Native icon: <span id="trayNote">run <code>powershell -File scripts/tray.ps1</code> for a real Windows tray icon (Open Dashboard / Quit Server menu). Without it, the web controls below are the equivalent.</span></p>
+        <p>Native icon: <span id="trayNote">run <code>go run . -serve -tray -addr :8484</code> (or <code>bobtk.exe -tray</code> next to a running server) for the native Windows tray icon (Open Dashboard / Status / Quit Server). <code>scripts/tray.ps1</code> remains as a fallback. Without either, the web controls below are the equivalent.</span></p>
         <div class="toolbar">
           <button type="button" class="secondary" id="openDash">Open dashboard (this page)</button>
           <button type="button" class="danger" id="quitBtn">Quit server</button>

@@ -25,11 +25,15 @@ Every `?` marker is a tooltip: hover or keyboard-focus it for extra detail. Butt
 
 ## System tray
 
-There is **no native tray icon in the C++ code** (GTK4 removed `GtkStatusIcon`; no systray code exists in this repo). The supported Windows tray is:
+Native Windows tray (v1.7.0, Go — no C++ tray exists; GTK4 removed `GtkStatusIcon`):
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File scripts/tray.ps1
+cd go; go run . -serve -tray -addr :8484   # server + tray in one process
+# or, next to an already-running server:
+bobtk.exe -tray -addr :8484
 ```
+
+Fallback without the Go binary: `powershell -ExecutionPolicy Bypass -File scripts/tray.ps1`.
 
 Menu: **Open Dashboard** (double-click works too), live **Status**, **Quit Server** (graceful — stops only the dashboard process), **Exit tray icon** (server keeps running). Without the tray, use **Quit server** in the dashboard's Build section; restart any time with the `go run` command above.
 

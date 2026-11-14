@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## [1.7.0] - 2026-11-14
+### Added
+- **Native Windows tray icon** (`go/bobtk/tray`, getlantern/systray — pure Go, no cgo): `bobtk.exe -serve -tray` runs server + tray in one process; `bobtk.exe -tray` controls a running server. Menu: Open Dashboard, live Status (auto-refresh), Quit Server (graceful), Exit tray only. Runtime-verified (server served, API quit worked with tray running). Dashboard tray section and manual updated; `scripts/tray.ps1` kept as fallback.
+- Cleaned stale `HANDOFF.md` (rewritten current: v1.6.0 state, repair reproduction, decisions list).
+
 ## [1.6.0] - 2026-11-14
 ### Fixed
 - **Persistent native build green:** in-repo `_build` (same verified flags) `meson compile` exits 0, verified by no-op recompile; `libbobgui-4-1.dll` (52 MB) built in `_build/bobgui/`. Dashboard now reports this directly (`compiled green (_build, ...)`). Build survived two disk-full stops (C: had filled; reclaimed Go build cache 4.5 GB; kept `-j 4` for final links). Watch disk: `_build` is ~2.5 GB.

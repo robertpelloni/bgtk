@@ -15,7 +15,7 @@ Granular queue. The 15-minute autonomous loop works top-down. Checkboxes only mo
 
 ## Dashboard & UI
 - [x] Consolidated single-page dashboard with tooltips/labels (1.1.0).
-- [ ] Native tray icon in C++ (or Go systray lib when network allows) to replace `scripts/tray.ps1`.
+- [x] Native tray icon in Go (`go/bobtk/tray`, getlantern/systray, `-tray` flag; combined `-serve -tray` mode runtime-verified). `scripts/tray.ps1` kept as fallback. C++ tray still open if ever needed.
 - [ ] Add per-feature dashboard actions as bridges land (e.g. Media play/stop once cgo exists).
 
 ## Bridges & parity
@@ -27,4 +27,4 @@ Granular queue. The 15-minute autonomous loop works top-down. Checkboxes only mo
 
 ## Housekeeping
 - [ ] Decide fate of root `check-version.py` / `plan_step_complete.py` (archive copies exist in `scripts/archive/`; root copies kept for now).
-- [ ] Remove stale `HANDOFF.md` claims as milestones land (XKB bug already fixed in tree; meson wrap story superseded by splice finding).
+- [x] Remove stale `HANDOFF.md` claims (rewritten current 2026-11-14).
