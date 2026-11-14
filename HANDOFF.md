@@ -14,7 +14,7 @@ Identity of this agent: **muse-wonder-1.0 in Muse Code in C:\Users\hyper\workspa
 4. Disabled for probe: media-gstreamer (gstreamer win-pkgconfig override bug), vulkan (no SDK), introspection (speed).
 
 ## What is broken / not running
-1. Native **compile** in progress (BelowNormal, `logs/native-compile10.log`, monitored): blockers 1–8 fixed (sysprof off, WrapDB libffi 3.8.0, cairo 1.18.4, SCSS conflict, gdk template enums, gresource generator, gdkconfig template, 150 restored C sources). Not yet exited 0 — keep fixing failures in order; see `TODO.md`. Warning: restoring from `ce1de57f61` reverts the gdk enum fix; re-apply (CHANGELOG 1.2.1/1.3.0).
+1. Native **compile** in progress (BelowNormal, `logs/native-compile18.log`, monitored): blockers 1–10 fixed (sysprof off, WrapDB libffi 3.8.0, cairo 1.18.4, SCSS conflict, gdk template enums, gresource generator, gdkconfig template, 271 restored sources, modules-enum exclusion, modules stubs excluded). Main libraries/demos build; testsuite targets advancing. Not yet exited 0 — see `TODO.md`. Warning: restoring from `ce1de57f61` reverts the gdk enum fix; re-apply (CHANGELOG 1.2.1/1.3.0).
 2. cgo bridge: none; Go pillars flip state only (badged Planned in UI).
 3. Native tray icon: none in C++; use `scripts/tray.ps1`.
 4. Submodules: `submodules/juce` dirty (25531a05-dirty vs recorded d60b7a78; checked-out JUCE is 8.0.14); `submodules/ultimatepp` untracked. Needs a deliberate pin decision.
