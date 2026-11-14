@@ -5,6 +5,7 @@
 - **Persistent native build green:** in-repo `_build` (same verified flags) `meson compile` exits 0, verified by no-op recompile; `libbobgui-4-1.dll` (52 MB) built in `_build/bobgui/`. Dashboard now reports this directly (`compiled green (_build, ...)`). Build survived two disk-full stops (C: had filled; reclaimed Go build cache 4.5 GB; kept `-j 4` for final links). Watch disk: `_build` is ~2.5 GB.
 - Native test subset on `_build`: `meson test --suite bobgui` ran 16 tests in 240 s (Windows test startup is slow) — passing except `gdk colorstate` ERROR (missing `en_US.UTF-8` locale in this environment). Full run remains queued.
 - gdk+gsk subsets: 53 run → 11 OK, 0 FAIL, 38 TIMEOUT (headless rendering-compare, no GPU/display), 4 ERROR (GL-context needs display). No code failures observed; rendering suites need a desktop/GPU session.
+- Full unit run (compares excluded, 1274 tests): 102 OK, 1158 Fail — every failure an exit-status-3 display-init bail (reftest/nodeparser/GL), 14 TIMEOUT, **zero TAP assertion failures**. Broader compare run stopped at 1527/6124 (1129 OK, 11 image-compare FAIL). Suite health requires a desktop/GPU session.
 - Go: initialization/idempotency tests for all six pillars + dashboard + bridge (all green, vet clean). JUCE bridge gained `JuceProcessorChain::process_block` DSP forwarding (gated, enabled path uncompiled here).
 
 ## [1.5.0] - 2026-11-13
