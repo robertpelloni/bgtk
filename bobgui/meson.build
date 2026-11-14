@@ -1003,7 +1003,7 @@ bobguimarshal_h = bobguimarshalers[1]
 # be parsed into the umbrella typebuiltins; their enums are excluded here.
 bobgui_builtin_headers = []
 foreach h : bobgui_public_headers
-  if not h.full_path().contains('/modules/')
+  if not h.full_path().replace('\\', '/').contains('/modules/')
     bobgui_builtin_headers += h
   endif
 endforeach
