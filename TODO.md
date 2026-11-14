@@ -3,9 +3,11 @@
 Granular queue. The 15-minute autonomous loop works top-down. Checkboxes only move on verified evidence.
 
 ## Native build repair (highest value)
-- [ ] Untangle spliced `meson.build`: bobgui/GTK4 block (lines ~1–334, `bobgui_*` vars, `GETTEXT_PACKAGE bobgui40`) vs gtk/GTK3 block (from ~line 342, `gtk_*` vars, `gtk30`, `PACKAGE_NAME gtk+`). Keep bobgui canonical; archive the GTK3 half to `scripts/archive/` before deleting.
-- [ ] Re-run probe after each splice fix: `meson setup $env:TEMP\bgtk-probe-build .` (BelowNormal). Next known error: line 343 `check_headers` list unterminated by the splice.
-- [ ] Audit `subprojects/*.wrap` for rename damage (missing `revision` keys etc.), fix, then `meson setup _build` + compile on Windows.
+- [x] Untangle spliced `meson.build`: restored clean bobgui file from git history (`ce1de57f61`, 932 lines); spliced file archived at `scripts/archive/meson.build.spliced.txt`; GTK3 `meson_options.txt` archived to `scripts/archive/meson_options.gtk3.txt`.
+- [x] Truncate orphan GTK3 tails in 8 wraps (backups in `scripts/archive/wraps-spliced/`); add missing `[provide]` mappings: libffi, zlib, intl (proxy-libintl); pin pango `main` → `1.56.4` (glib 2.84 era); switch pixman centricular fork → upstream `pixman-0.46.4` (exports `idep_pixman`); add wraps: libsoup-3.0 (3.6.5), sqlite3, nghttp2, libpsl (WrapDB).
+- [x] `meson setup` probe **passes** (2026-11-13): `meson setup $env:TEMP\bgtk-probe-build . -Dmedia-gstreamer=disabled -Dintrospection=disabled -Dvulkan=disabled` exits 0. GStreamer disabled due to its Windows win-pkgconfig override bug; Vulkan disabled (no SDK on this laptop).
+- [ ] First `meson compile -C $env:TEMP\bgtk-probe-build` attempt (BelowNormal); fix or record first C compile blockers (expect rename fallout in sources).
+- [ ] Re-enable media-gstreamer (fix win-pkgconfig override) and vulkan (needs Vulkan SDK) after core compile is green.
 - [ ] Fix submodule state: `submodules/juce` dirty pin (25531a05-dirty vs recorded d60b7a78); `submodules/ultimatepp` present but untracked. Record intended pins, commit cleanly.
 
 ## Dashboard & UI
@@ -14,7 +16,7 @@ Granular queue. The 15-minute autonomous loop works top-down. Checkboxes only mo
 - [ ] Add per-feature dashboard actions as bridges land (e.g. Media play/stop once cgo exists).
 
 ## Bridges & parity
-- [ ] Analyze JUCE UI widgets for intermixing (carried from Phase 1).
+- [x] Analyze JUCE UI widgets for intermixing → `docs/JUCE_ANALYSIS.md` (Media-first; note CHANGELOG [4.0.8] bridge files do not exist).
 - [ ] Research missing Qt6/Qt7 features vs C++ baseline; write `docs/QT_PARITY_MATRIX.md`.
 - [ ] First cgo bridge spike (Core or Media) behind a build tag, off by default.
 

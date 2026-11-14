@@ -1,4 +1,3 @@
-<<<<<<< HEAD:docs/reference/bobgui/images/meson.build
 # commented-out ui files need more work
 
 ui_files = [
@@ -103,17 +102,4 @@ if get_option('screenshots')
                                            '--css', '@INPUT1@',
                                            '@INPUT0@', '@OUTPUT@' ])
   endforeach
-=======
-if x11_enabled
-  doc_shooter_sources = [
-    'shadow.c',
-    'shooter.c',
-    'widgets.c',
-    '../../tests/gtkgears.c',
-  ]
-
-  doc_shooter = executable('doc-shooter', doc_shooter_sources,
-                           include_directories: [ confinc, gdkinc, gtkinc, testinc, ],
-                           dependencies: libgtk_dep)
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:docs/tools/meson.build
 endif

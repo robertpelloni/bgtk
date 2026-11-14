@@ -8,7 +8,3 @@ depth = 1
 [provide]
 cairo = libcairo_dep
 cairo-gobject = libcairogobject_dep
-directory=cairo
-url=https://github.com/centricular/cairo.git
-push-url=git@github.com:centricular/cairo.git
-revision=meson

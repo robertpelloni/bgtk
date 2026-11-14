@@ -6,7 +6,3 @@ depth = 1
 
 [provide]
 dependency_names = epoxy
-directory=libepoxy
-url=https://github.com/anholt/libepoxy.git
-push-url=git@github.com:anholt/libepoxy.git
-revision=master

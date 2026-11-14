@@ -1,5 +1,9 @@
 [wrap-git]
-directory=pixman
-url=https://github.com/centricular/pixman.git
-push-url=git@github.com:centricular/pixman.git
-revision=meson
+directory = pixman
+url = https://gitlab.freedesktop.org/pixman/pixman.git
+push-url = ssh://git@gitlab.freedesktop.org/pixman/pixman.git
+revision = pixman-0.46.4
+depth = 1
+
+[provide]
+pixman-1 = idep_pixman

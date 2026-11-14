@@ -9,7 +9,3 @@ depth = 1
 harfbuzz = libharfbuzz_dep
 harfbuzz-subset = libharfbuzz_subset_dep
 
-directory=harfbuzz
-url=https://github.com/centricular/harfbuzz.git
-push-url=git@github.com:centricular/harfbuzz.git
-revision=meson

@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [1.2.0] - 2026-11-13
+### Fixed
+- **Native build configure green.** Root `meson.build` splice (bobgui/GTK4 + gtk/GTK3 interleaved) repaired by restoring the clean 932-line bobgui file from git history (`ce1de57f61`); spliced file archived at `scripts/archive/meson.build.spliced.txt`, GTK3 `meson_options.txt` archived alongside. Same restoration applied to 43 spliced files under `gdk/`, `bobgui/`, `po/`, `tools/`, `docs/reference/`, `demos/`, `examples/`, `tests/`, `testsuite/` (spliced copies in `scripts/archive/meson-spliced/`).
+- Wraps: truncated orphan GTK3 tails in 8 wraps (backups `scripts/archive/wraps-spliced/`); added missing `[provide]` for libffi/zlib/intl; pinned pango `main`→`1.56.4`; pixman centricular fork→upstream `pixman-0.46.4`; added libsoup-3.0 3.6.5, sqlite3, nghttp2, libpsl wraps.
+- Verified: `meson setup <build> . -Dmedia-gstreamer=disabled -Dintrospection=disabled -Dvulkan=disabled` exits 0 (all root deps resolve: glib 2.84, pango, cairo, gdk-pixbuf, graphene, libsoup, sqlite). Compile attempt is next (`TODO.md`).
+
+### Added
+- `docs/JUCE_ANALYSIS.md`: JUCE 8.0.14 module→pillar mapping (Media-first), with correction that CHANGELOG [4.0.8] bridge headers do not exist.
+
 ## [1.1.0] - 2026-11-13
 ### Added
 - Consolidated single-page dashboard (`go/bobtk/dashboard/` + `dashboard.html`): Overview health, 6 pillar run/control cards with live `Initialized()` state, native C++ catalog (`bobgui/cpp/` + `tools/`), build/logs/tray section, docs/next-steps. Every feature has a label, description and `?` tooltip; badges distinguish Go-today vs Native C++ vs Planned bridge. Endpoints: `/`, `/health`, `/api/status`, `/api/logs`, `POST /api/init/{id}`, `POST /api/init-all`, `POST /api/quit` (graceful). Tests in `dashboard_test.go`.

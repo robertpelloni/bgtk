@@ -28,4 +28,3 @@ xgettext_args = [
 ]
 
 i18n.gettext('bobgui40', args: xgettext_args)
-i18n.gettext('gtk30', preset : 'glib')
