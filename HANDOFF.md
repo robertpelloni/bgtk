@@ -5,7 +5,7 @@ Identity of this agent: **muse-wonder-1.0 in Muse Code in C:\Users\hyper\workspa
 ## What runs today (verified this session)
 - Go dashboard http://localhost:8484 (`cd go; go run . -serve -addr :8484`): one page, init-all 6/6, graceful Quit proven. Restart after VERSION bumps (reads `VERSION` at startup).
 - `go test ./...`, `go vet ./...`, `go build` green (Go 1.27.4).
-- **Native configure + compile green (v1.5.0):** `meson setup $env:TEMP\bgtk-probe-build . -Dmedia-gstreamer=disabled -Dintrospection=disabled -Dvulkan=disabled -Dsysprof=disabled -Dglib:sysprof=disabled` + `meson configure <build> -Dlibsoup-3.0:tests=false`, then `meson compile -C $env:TEMP\bgtk-probe-build` exits 0. Test smoke (`--suite bobgui`): 2 ok, 1 clipboard timeout.
+- **Native configure + compile green (v1.6.0, persistent):** in-repo `_build` with `-Dmedia-gstreamer=disabled -Dintrospection=disabled -Dvulkan=disabled -Dsysprof=disabled -Dglib:sysprof=disabled -Dlibsoup-3.0:tests=false`; `meson compile -C _build` exits 0 (no-op recompile verified). Test subset: 16 run, only `gdk colorstate` ERROR (missing en_US.UTF-8 locale). Disk is tight — keep >2 GB free.
 
 ## Native build repair — how it was fixed (reproduce carefully)
 1. Root `meson.build` was two interleaved files (bobgui/GTK4 932 lines + GTK3 ~813). Restored clean bobgui file via `git restore --source=ce1de57f61 --worktree -- <file>`; spliced copies archived under `scripts/archive/` (`meson.build.spliced.txt`, `meson_options.gtk3.txt`, `meson-spliced/…`, `wraps-spliced/…`). Never regex-edit `meson.build` (AGENTS.md).

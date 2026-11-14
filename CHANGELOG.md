@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.6.0] - 2026-11-14
+### Fixed
+- **Persistent native build green:** in-repo `_build` (same verified flags) `meson compile` exits 0, verified by no-op recompile; `libbobgui-4-1.dll` (52 MB) built in `_build/bobgui/`. Dashboard now reports this directly (`compiled green (_build, ...)`). Build survived two disk-full stops (C: had filled; reclaimed Go build cache 4.5 GB; kept `-j 4` for final links). Watch disk: `_build` is ~2.5 GB.
+- Native test subset on `_build`: `meson test --suite bobgui` ran 16 tests in 240 s (Windows test startup is slow) — passing except `gdk colorstate` ERROR (missing `en_US.UTF-8` locale in this environment). Full run remains queued.
+- Go: initialization/idempotency tests for all six pillars + dashboard + bridge (all green, vet clean). JUCE bridge gained `JuceProcessorChain::process_block` DSP forwarding (gated, enabled path uncompiled here).
+
 ## [1.5.0] - 2026-11-13
 ### Fixed
 - **Native compile green.** `meson compile -C <build>` exits 0 (verified with a no-op recompile) for the full bobgui tree: glib, gdk, gsk, bobgui, demos, examples, testsuite targets (3277 + 538 targets). Final blocker: libsoup's own Windows test executables (undefined `test_init` etc.) excluded via `-Dlibsoup-3.0:tests=false`.

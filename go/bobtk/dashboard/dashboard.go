@@ -247,11 +247,13 @@ func NativeBuildNote() string {
 			return "configured at BOBTK_BUILD_DIR (build.ninja present)"
 		}
 	}
-	if _, err := os.Stat(filepath.Join("_build", "build.ninja")); err == nil {
-		if _, err := os.Stat(filepath.Join("_build", "bobgui", "libbobgui-4-1.dll")); err == nil {
-			return "compiled green (_build, libbobgui-4-1.dll present)"
+	for _, dir := range []string{"_build", filepath.Join("..", "_build")} {
+		if _, err := os.Stat(filepath.Join(dir, "build.ninja")); err == nil {
+			if _, err := os.Stat(filepath.Join(dir, "bobgui", "libbobgui-4-1.dll")); err == nil {
+				return "compiled green (_build, libbobgui-4-1.dll present)"
+			}
+			return "configured (_build/build.ninja present)"
 		}
-		return "configured (_build/build.ninja present)"
 	}
 	if _, err := os.Stat("_build"); err == nil {
 		return "partial _build directory present — run meson setup to configure"
