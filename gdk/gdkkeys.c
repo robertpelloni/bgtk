@@ -168,13 +168,6 @@ gdk_keymap_class_init (GdkKeymapClass *klass)
                   NULL,
                   G_TYPE_NONE,
                   0);
-		  G_OBJECT_CLASS_TYPE (object_class),
-		  G_SIGNAL_RUN_LAST,
-		  G_STRUCT_OFFSET (GdkKeymapClass, keys_changed),
-		  NULL, NULL,
-		  NULL,
-		  G_TYPE_NONE,
-		  0);
 
   /**
    * GdkKeymap::state-changed:

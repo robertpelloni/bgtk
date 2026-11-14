@@ -1469,34 +1469,6 @@ bobgui_recent_manager_clamp_to_size (BobguiRecentManager *manager,
   g_strfreev (uris);
 }
 
-static void
-gtk_recent_manager_clamp_to_size (GtkRecentManager *manager,
-                                  const gint        size)
-{
-  GtkRecentManagerPrivate *priv = manager->priv;
-  gchar **uris;
-  gsize n_uris, i;
-
-  if (G_UNLIKELY (!priv->recent_items) || G_UNLIKELY (size < 0))
-    return;
-
-  uris = g_bookmark_file_get_uris (priv->recent_items, &n_uris);
-
-  if (n_uris < size)
-  {
-    g_strfreev (uris);
-    return;
-  }
-
-  for (i = 0; i < n_uris - size; i++)
-    {
-      const gchar *uri = uris[i];
-      g_bookmark_file_remove_item (priv->recent_items, uri, NULL);
-    }
-
-  g_strfreev (uris);
-}
-
 /*****************
  * BobguiRecentInfo *
  *****************/

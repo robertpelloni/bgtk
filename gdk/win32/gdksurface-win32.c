@@ -2578,13 +2578,6 @@ BobguiShowSurfaceHWND (GdkSurface *surface,
     impl->maximizing = TRUE;
 
   return ShowWindow (GDK_SURFACE_HWND (surface), cmd_show);
-  GdkWin32Surface *impl = GDK_WIN32_SURFACE (window);
-
-  /* Ensure that maximized window size is corrected later on */
-  if (cmd_show == SW_MAXIMIZE)
-    impl->maximizing = TRUE;
-
-  return ShowWindow (GDK_SURFACE_HWND (window), cmd_show);
 }
 
 static void
@@ -3142,7 +3135,6 @@ gdk_win32_toplevel_set_property (GObject      *object,
 
       if (GDK_SURFACE (surface)->modal_hint)
         gdk_win32_push_modal_surface (surface);
-        _gdk_push_modal_window (surface);
 
       g_object_notify_by_pspec (G_OBJECT (surface), pspec);
       break;

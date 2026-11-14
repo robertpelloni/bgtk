@@ -652,66 +652,6 @@ gsk_vulkan_device_get_vk_sampler (GskVulkanDevice     *self,
   return self->vk_samplers[sampler];
 }
 
-VkSamplerYcbcrConversion
-gsk_vulkan_device_get_vk_conversion (GskVulkanDevice *self,
-                                     VkFormat         vk_format,
-                                     VkSampler       *out_sampler)
-{
-  ConversionCacheEntry lookup;
-  ConversionCacheEntry *entry;
-  GdkDisplay *display;
-
-  lookup = (ConversionCacheEntry) {
-    .vk_format = vk_format,
-  };
-  entry = g_hash_table_lookup (self->conversion_cache, &lookup);
-  if (entry)
-    {
-      if (out_sampler)
-        *out_sampler = entry->vk_sampler;
-
-      return entry->vk_conversion;
-    }
-
-  display = gsk_gpu_device_get_display (GSK_GPU_DEVICE (self));
-
-  entry = g_memdup (&lookup, sizeof (ConversionCacheEntry));
-
-  GSK_VK_CHECK (vkCreateSamplerYcbcrConversion, display->vk_device,
-                                                &(VkSamplerYcbcrConversionCreateInfo) {
-                                                    .sType = VK_STRUCTURE_TYPE_SAMPLER_YCBCR_CONVERSION_CREATE_INFO,
-                                                    .format = vk_format,
-                                                    .ycbcrModel = VK_SAMPLER_YCBCR_MODEL_CONVERSION_YCBCR_601,
-                                                    .ycbcrRange = VK_SAMPLER_YCBCR_RANGE_ITU_NARROW,
-                                                    .components = (VkComponentMapping) {
-                                                        VK_COMPONENT_SWIZZLE_IDENTITY,
-                                                        VK_COMPONENT_SWIZZLE_IDENTITY,
-                                                        VK_COMPONENT_SWIZZLE_IDENTITY,
-                                                        VK_COMPONENT_SWIZZLE_IDENTITY
-                                                    },
-                                                    .xChromaOffset = VK_CHROMA_LOCATION_COSITED_EVEN,
-                                                    .yChromaOffset = VK_CHROMA_LOCATION_COSITED_EVEN,
-                                                    .chromaFilter = VK_FILTER_LINEAR,
-                                                    .forceExplicitReconstruction = VK_FALSE
-                                                },
-                                                NULL,
-                                                &entry->vk_conversion);
-
-  entry->vk_sampler = gsk_vulkan_device_create_sampler (self,
-                                                        entry->vk_conversion,
-                                                        VK_FILTER_LINEAR,
-                                                        VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_EDGE,
-                                                        VK_SAMPLER_MIPMAP_MODE_NEAREST,
-                                                        0.0f);
-
-  g_hash_table_insert (self->conversion_cache, entry, entry);
-
-  if (out_sampler)
-    *out_sampler = entry->vk_sampler;
-
-  return entry->vk_conversion;
-}
-
 VkRenderPass
 gsk_vulkan_device_get_vk_render_pass (GskVulkanDevice    *self,
                                       VkFormat            format,

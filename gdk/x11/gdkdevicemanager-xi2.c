@@ -672,7 +672,6 @@ remove_device (GdkX11DeviceManagerXI2 *device_manager,
                            GINT_TO_POINTER (device_id));
 
       device_manager->devices = g_list_remove (device_manager->devices, device);
-      g_signal_emit_by_name (device_manager, "device-removed", device);
       g_object_run_dispose (G_OBJECT (device));
       g_object_unref (device);
     }
@@ -1091,8 +1090,6 @@ handle_property_change (GdkX11DeviceManagerXI2 *device_manager,
           device_get_tool_serial_and_id (device, &serial_id, &tool_id))
         {
           GdkDeviceToolType tool_type;
-          seat = gdk_device_get_seat (device);
-          tool = gdk_seat_get_tool (seat, serial_id, tool_id);
 
           seat = gdk_device_get_seat (device);
           tool_type = device_get_tool_type (device);
@@ -1102,10 +1099,6 @@ handle_property_change (GdkX11DeviceManagerXI2 *device_manager,
               tool = gdk_seat_get_tool (seat, serial_id, tool_id, tool_type);
 
               if (!tool && serial_id > 0)
-              GdkDeviceToolType tool_type;
-
-              tool_type = device_get_tool_type (device);
-              if (tool_type != GDK_DEVICE_TOOL_TYPE_UNKNOWN)
                 {
                   tool = gdk_device_tool_new (serial_id, tool_id, tool_type, 0);
                   gdk_seat_default_add_tool (GDK_SEAT_DEFAULT (seat), tool);
@@ -1282,7 +1275,6 @@ get_event_surface (GdkEventTranslator *translator,
         XIGesturePinchEvent *xev = (XIGesturePinchEvent *) ev;
 
         surface = gdk_x11_surface_lookup_for_display (display, xev->event);
-        window = gdk_x11_window_lookup_for_display (display, xev->event);
       }
       break;
     case XI_GestureSwipeBegin:
@@ -1292,7 +1284,6 @@ get_event_surface (GdkEventTranslator *translator,
         XIGestureSwipeEvent *xev = (XIGestureSwipeEvent *) ev;
 
         surface = gdk_x11_surface_lookup_for_display (display, xev->event);
-        window = gdk_x11_window_lookup_for_display (display, xev->event);
       }
       break;
 #endif /* XINPUT_2_4 */
@@ -1930,9 +1921,6 @@ gdk_x11_device_manager_xi2_translate_event (GdkEventTranslator *translator,
         double x, y;
 
         const char *event_name = "";
-
-#ifdef G_ENABLE_DEBUG
-        const char* event_name = "";
         switch (xev->evtype)
           {
           case XI_GesturePinchBegin:
@@ -1975,50 +1963,6 @@ gdk_x11_device_manager_xi2_translate_event (GdkEventTranslator *translator,
                                               xev->delta_y,
                                               xev->scale,
                                               xev->delta_angle * G_PI / 180);
-          }
-#endif
-
-        GDK_NOTE(EVENTS,
-                 g_message ("pinch gesture %s:\twindow %ld\n\tfinger_count: %u%s",
-                            event_name,
-                            xev->event,
-                            xev->detail,
-                            xev->flags & XIGesturePinchEventCancelled ? "\n\tcancelled" : ""));
-
-        event->touchpad_pinch.type = GDK_TOUCHPAD_PINCH;
-        event->touchpad_pinch.phase =
-            _gdk_x11_device_xi2_gesture_type_to_phase (xev->evtype, xev->flags);
-        event->touchpad_pinch.window = window;
-        event->touchpad_pinch.time = xev->time;
-        event->touchpad_pinch.x = (gdouble) xev->event_x / scale;
-        event->touchpad_pinch.y = (gdouble) xev->event_y / scale;
-        event->touchpad_pinch.x_root = (gdouble) xev->root_x / scale;
-        event->touchpad_pinch.y_root = (gdouble) xev->root_y / scale;
-        event->touchpad_pinch.dx = xev->delta_x;
-        event->touchpad_pinch.dy = xev->delta_y;
-        event->touchpad_pinch.scale = xev->scale;
-        event->touchpad_pinch.angle_delta = xev->delta_angle * G_PI / 180;
-        event->touchpad_pinch.n_fingers = xev->detail;
-
-        device = g_hash_table_lookup (device_manager->id_table,
-                                      GUINT_TO_POINTER (xev->deviceid));
-        gdk_event_set_device (event, device);
-
-        source_device = g_hash_table_lookup (device_manager->id_table,
-                                             GUINT_TO_POINTER (xev->sourceid));
-        gdk_event_set_source_device (event, source_device);
-        gdk_event_set_seat (event, gdk_device_get_seat (device));
-
-        event->touchpad_pinch.state = _gdk_x11_device_xi2_translate_state (&xev->mods, NULL, &xev->group);
-
-        if (xev->evtype == XI_GesturePinchBegin || xev->evtype == XI_GesturePinchEnd)
-          {
-            if (!set_screen_from_root (display, event, xev->root))
-              {
-                return_val = FALSE;
-                break;
-              }
-          }
 
         if (ev->evtype == XI_GesturePinchBegin)
           set_user_time (event);
@@ -2035,9 +1979,6 @@ gdk_x11_device_manager_xi2_translate_event (GdkEventTranslator *translator,
         double x, y;
 
         const char *event_name = "";
-
-#ifdef G_ENABLE_DEBUG
-        const char* event_name = "";
         switch (xev->evtype)
           {
           case XI_GestureSwipeBegin:
@@ -2078,55 +2019,12 @@ gdk_x11_device_manager_xi2_translate_event (GdkEventTranslator *translator,
                                               xev->detail,
                                               xev->delta_x,
                                               xev->delta_y);
-          }
-#endif
-
-        GDK_NOTE(EVENTS,
-                 g_message ("swipe gesture %s:\twindow %ld\n\tfinger_count: %u%s",
-                            event_name,
-                            xev->event,
-                            xev->detail,
-                            xev->flags & XIGestureSwipeEventCancelled ? "\n\tcancelled" : ""));
-
-        event->touchpad_swipe.type = GDK_TOUCHPAD_SWIPE;
-        event->touchpad_pinch.phase =
-            _gdk_x11_device_xi2_gesture_type_to_phase (xev->evtype, xev->flags);
-        event->touchpad_swipe.window = window;
-        event->touchpad_swipe.time = xev->time;
-        event->touchpad_swipe.x = (gdouble) xev->event_x / scale;
-        event->touchpad_swipe.y = (gdouble) xev->event_y / scale;
-        event->touchpad_swipe.x_root = (gdouble) xev->root_x / scale;
-        event->touchpad_swipe.y_root = (gdouble) xev->root_y / scale;
-        event->touchpad_swipe.dx = xev->delta_x;
-        event->touchpad_swipe.dy = xev->delta_y;
-        event->touchpad_swipe.n_fingers = xev->detail;
-
-        device = g_hash_table_lookup (device_manager->id_table,
-                                      GUINT_TO_POINTER (xev->deviceid));
-        gdk_event_set_device (event, device);
-
-        source_device = g_hash_table_lookup (device_manager->id_table,
-                                             GUINT_TO_POINTER (xev->sourceid));
-        gdk_event_set_source_device (event, source_device);
-        gdk_event_set_seat (event, gdk_device_get_seat (device));
-
-        event->touchpad_swipe.state = _gdk_x11_device_xi2_translate_state (&xev->mods, NULL, &xev->group);
-
-        if (xev->evtype == XI_GestureSwipeBegin || xev->evtype == XI_GestureSwipeEnd)
-          {
-            if (!set_screen_from_root (display, event, xev->root))
-              {
-                return_val = FALSE;
-                break;
-              }
-          }
 
         if (ev->evtype == XI_GestureSwipeBegin)
           set_user_time (event);
       }
       break;
 #endif /* XINPUT_2_4 */
-#endif  /* XINPUT_2_4 */
 
     case XI_Enter:
     case XI_Leave:

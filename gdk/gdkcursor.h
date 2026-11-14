@@ -47,10 +47,6 @@ GdkCursor* gdk_cursor_new_from_texture   (GdkTexture      *texture,
                                           int              hotspot_x,
                                           int              hotspot_y,
                                           GdkCursor       *fallback);
-GdkCursor* gdk_cursor_new_for_display	 (GdkDisplay      *display,
-					  GdkCursorType    cursor_type);
-GDK_DEPRECATED_IN_3_16_FOR(gdk_cursor_new_for_display)
-GdkCursor* gdk_cursor_new		 (GdkCursorType	   cursor_type);
 GDK_AVAILABLE_IN_ALL
 GdkCursor*  gdk_cursor_new_from_name     (const char      *name,
                                           GdkCursor       *fallback);

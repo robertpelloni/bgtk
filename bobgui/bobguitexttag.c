@@ -61,10 +61,10 @@
  * `BobguiTextBuffer` before using them with that buffer.
  *
  * [method@Bobgui.TextBuffer.create_tag] is the best way to create tags.
- * See “bobgui4-demo� for numerous examples.
+ * See “bobgui4-demo” for numerous examples.
  *
- * For each property of `BobguiTextTag`, there is a “set� property, e.g.
- * “font-set� corresponds to “font�. These “set� properties reflect
+ * For each property of `BobguiTextTag`, there is a “set” property, e.g.
+ * “font-set” corresponds to “font”. These “set” properties reflect
  * whether a property has been set or not.
  *
  * They are maintained by BOBGUI and you should not set them independently.
@@ -2499,7 +2499,7 @@ bobgui_text_tag_get_priority (BobguiTextTag *tag)
  * the priorities of all the other tags in the table to maintain
  * a unique priority for each tag.
  *
- * Higher priority tags “win� if two tags both set the same text
+ * Higher priority tags “win” if two tags both set the same text
  * attribute. When adding a tag to a tag table, it will be assigned
  * the highest priority in the table by default; so normally the
  * precedence of a set of tags is the order in which they were added

@@ -214,7 +214,6 @@ _gdk_broadway_display_open (const char *display_name)
   if (broadway_display->server == NULL)
     {
       GDK_DEBUG (MISC, "Unable to init Broadway server: %s", error->message);
-      GDK_NOTE (MISC, g_message ("Unable to init Broadway server: %s\n", error->message));
       g_error_free (error);
       return NULL;
     }

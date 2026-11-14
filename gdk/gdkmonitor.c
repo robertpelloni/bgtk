@@ -413,22 +413,6 @@ gdk_monitor_get_height_mm (GdkMonitor *monitor)
   return monitor->height_mm;
 }
 
-/*< private >
- * gdk_monitor_get_connector:
- * @monitor: a #GdkMonitor
- *
- * Gets the name of the monitor's connector, if available.
- *
- * Returns: (transfer none) (nullable): the name of the connector
- */
-const char *
-gdk_monitor_get_connector (GdkMonitor *monitor)
-{
-  g_return_val_if_fail (GDK_IS_MONITOR (monitor), NULL);
-
-  return monitor->connector;
-}
-
 /**
  * gdk_monitor_get_connector:
  * @monitor: a `GdkMonitor`
@@ -454,12 +438,6 @@ gdk_monitor_get_connector (GdkMonitor *monitor)
  * @monitor: a `GdkMonitor`
  *
  * Gets the name or PNP ID of the monitor's manufacturer.
- * Gets the name or PNP ID of the monitor's manufacturer, if available.
- *
- * Note that this value might also vary depending on actual
- * display backend.
- *
- * PNP ID registry is located at https://uefi.org/pnp_id_list
  *
  * Note that this value might also vary depending on actual
  * display backend.
@@ -607,17 +585,6 @@ gdk_monitor_set_model (GdkMonitor *monitor,
 void
 gdk_monitor_set_connector (GdkMonitor *monitor,
                            const char *connector)
-{
-  g_free (monitor->connector);
-  monitor->connector = g_strdup (connector);
-
-  /* g_object_notify (G_OBJECT (monitor), "connector"); */
-}
-
-void
-gdk_monitor_set_position (GdkMonitor *monitor,
-                          int         x,
-                          int         y)
 {
   g_free (monitor->connector);
   monitor->connector = g_strdup (connector);

@@ -25,12 +25,6 @@
 #include "config.h"
 
 #include "version/gdkversionmacros.h"
-#include "gdkversionmacros.h"
-#include "gdkmain.h"
-
-#include "gdkprofilerprivate.h"
-#include "gdkinternals.h"
-#include "gdkintl.h"
 
 #include "gdkresources.h"
 
@@ -43,15 +37,12 @@
 #include "gdkprivate.h"
 #include <glib/gprintf.h>
 
-#include "gdkconstructor.h"
-
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <ctype.h>
 
 #include <fribidi.h>
-
 
 /* BOBGUI has a general architectural assumption that gsize is pointer-sized
  * (equivalent to uintptr_t), making it non-portable to architectures like
@@ -106,13 +97,6 @@ G_STATIC_ASSERT (G_ALIGNOF (gsize) == G_ALIGNOF (void *));
  * If it is defined, no compiler warnings will be produced for uses
  * of deprecated GDK APIs.
  */
-typedef struct _GdkPredicate  GdkPredicate;
-
-struct _GdkPredicate
-{
-  GdkEventFunc func;
-  gpointer data;
-};
 
 typedef struct _GdkThreadsDispatch GdkThreadsDispatch;
 
@@ -357,26 +341,6 @@ gdk_pre_parse (void)
       "debugging purposes.\n",
       gdk_debug_keys,
       G_N_ELEMENTS (gdk_debug_keys));
-  /* We set the fallback program class here, rather than lazily in
-   * gdk_get_program_class, since we don't want -name to override it.
-   */
-  gdk_progclass = g_strdup (g_get_prgname ());
-  if (gdk_progclass && gdk_progclass[0])
-    gdk_progclass[0] = g_ascii_toupper (gdk_progclass[0]);
-  
-#ifdef G_ENABLE_DEBUG
-  {
-    gchar *debug_string = getenv("GDK_DEBUG");
-    if (debug_string != NULL)
-      _gdk_debug_flags = g_parse_debug_string (debug_string,
-                                              (GDebugKey *) gdk_debug_keys,
-                                              G_N_ELEMENTS (gdk_debug_keys));
-    if (g_getenv ("GTK_TRACE_FD"))
-      gdk_profiler_start (atoi (g_getenv ("GTK_TRACE_FD")));
-    else if (g_getenv ("GTK_TRACE"))
-      gdk_profiler_start (-1);
-  }
-#endif  /* G_ENABLE_DEBUG */
 
   disabled_features = gdk_parse_debug_var ("GDK_DISABLE",
       "GDK_DISABLE can be set to values which cause GDK to disable\n"
@@ -444,26 +408,6 @@ gboolean
 gdk_running_in_sandbox (void)
 {
   return g_file_test ("/.flatpak-info", G_FILE_TEST_EXISTS);
-}
-
-gboolean
-gdk_should_use_portal (void)
-{
-  static const char *use_portal = NULL;
-
-  if (G_UNLIKELY (use_portal == NULL))
-    {
-      if (gdk_running_in_sandbox ())
-        use_portal = "1";
-      else
-        {
-          use_portal = g_getenv ("GTK_USE_PORTAL");
-          if (!use_portal)
-            use_portal = "";
-        }
-    }
-
-  return use_portal[0] == '1';
 }
 
 #define DBUS_BUS_NAME "org.freedesktop.DBus"
@@ -762,99 +706,4 @@ gdk_source_set_static_name_by_id (guint           tag,
     return;
 
   g_source_set_static_name (source, name);
-}
-
-PangoDirection
-gdk_unichar_direction (gunichar ch)
-{
-  FriBidiCharType fribidi_ch_type;
-
-  G_STATIC_ASSERT (sizeof (FriBidiChar) == sizeof (gunichar));
-
-  fribidi_ch_type = fribidi_get_bidi_type (ch);
-
-  if (!FRIBIDI_IS_STRONG (fribidi_ch_type))
-    return PANGO_DIRECTION_NEUTRAL;
-  else if (FRIBIDI_IS_RTL (fribidi_ch_type))
-    return PANGO_DIRECTION_RTL;
-  else
-    return PANGO_DIRECTION_LTR;
-}
-
-#ifdef G_HAS_CONSTRUCTORS
-#ifdef G_DEFINE_CONSTRUCTOR_NEEDS_PRAGMA
-#pragma G_DEFINE_CONSTRUCTOR_PRAGMA_ARGS(stash_startup_id)
-#pragma G_DEFINE_CONSTRUCTOR_PRAGMA_ARGS(stash_autostart_id)
-#endif
-G_DEFINE_CONSTRUCTOR(stash_startup_id)
-G_DEFINE_CONSTRUCTOR(stash_autostart_id)
-#endif
-
-static char *desktop_startup_id = NULL;
-static char *desktop_autostart_id = NULL;
-
-static void
-stash_startup_id (void)
-{
-  const char *startup_id = g_getenv ("DESKTOP_STARTUP_ID");
-
-  if (startup_id == NULL || startup_id[0] == '\0')
-    return;
-
-  if (!g_utf8_validate (startup_id, -1, NULL))
-    {
-      g_warning ("DESKTOP_STARTUP_ID contains invalid UTF-8");
-      return;
-    }
-
-  desktop_startup_id = g_strdup (startup_id);
-}
-
-static void
-stash_autostart_id (void)
-{
-  const char *autostart_id = g_getenv ("DESKTOP_AUTOSTART_ID");
-  desktop_autostart_id = g_strdup (autostart_id ? autostart_id : "");
-}
-
-const gchar *
-gdk_get_desktop_startup_id (void)
-{
-  static gsize init = 0;
-
-  if (g_once_init_enter (&init))
-    {
-#ifndef G_HAS_CONSTRUCTORS
-      stash_startup_id ();
-#endif
-      /* Clear the environment variable so it won't be inherited by
-       * child processes and confuse things.
-       */
-      g_unsetenv ("DESKTOP_STARTUP_ID");
-
-      g_once_init_leave (&init, 1);
-    }
-
-  return desktop_startup_id;
-}
-
-const gchar *
-gdk_get_desktop_autostart_id (void)
-{
-  static gsize init = 0;
-
-  if (g_once_init_enter (&init))
-    {
-#ifndef G_HAS_CONSTRUCTORS
-      stash_autostart_id ();
-#endif
-      /* Clear the environment variable so it won't be inherited by
-       * child processes and confuse things.
-       */
-      g_unsetenv ("DESKTOP_AUTOSTART_ID");
-
-      g_once_init_leave (&init, 1);
-    }
-
-  return desktop_autostart_id;
 }

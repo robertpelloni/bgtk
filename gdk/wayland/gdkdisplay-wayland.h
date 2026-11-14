@@ -46,7 +46,6 @@
 #include <gdk/wayland/cursor-shape-v1-client-protocol.h>
 #include <gdk/wayland/xdg-toplevel-icon-v1-client-protocol.h>
 #include <gdk/wayland/xx-session-management-v1-client-protocol.h>
-#include <gdk/wayland/primary-selection-unstable-v1-client-protocol.h>
 
 #include <glib.h>
 #include <gdk/gdkkeys.h>
@@ -63,11 +62,6 @@
 G_BEGIN_DECLS
 
 typedef struct _GdkWaylandColor GdkWaylandColor;
-#define GDK_WAYLAND_MAX_THEME_SCALE 4
-#define GDK_WAYLAND_THEME_SCALES_COUNT GDK_WAYLAND_MAX_THEME_SCALE
-
-#define GDK_ZWP_POINTER_GESTURES_V1_VERSION 1
-
 typedef struct _GdkWaylandSelection GdkWaylandSelection;
 
 typedef struct {
@@ -105,10 +99,6 @@ struct _GdkWaylandDisplay
   uint32_t zxdg_shell_v6_id;
   GdkWaylandShellVariant shell_variant;
 
-  uint32_t xdg_wm_base_id;
-  uint32_t zxdg_shell_v6_id;
-  GdkWaylandShellVariant shell_variant;
-
   /* Wayland fields below */
   struct wl_display *wl_display;
   struct wl_registry *wl_registry;
@@ -125,8 +115,6 @@ struct _GdkWaylandDisplay
   struct wl_subcompositor *subcompositor;
   struct zwp_pointer_gestures_v1 *pointer_gestures;
   struct zwp_primary_selection_device_manager_v1 *primary_selection_manager;
-  struct gtk_primary_selection_device_manager *gtk_primary_selection_manager;
-  struct zwp_primary_selection_device_manager_v1 *zwp_primary_selection_manager_v1;
   struct zwp_tablet_manager_v2 *tablet_manager;
   struct zxdg_exporter_v1 *xdg_exporter;
   struct zxdg_exporter_v2 *xdg_exporter_v2;
@@ -143,11 +131,10 @@ struct _GdkWaylandDisplay
   struct wp_single_pixel_buffer_manager_v1 *single_pixel_buffer;
   struct wp_cursor_shape_manager_v1 *cursor_shape;
   struct xdg_toplevel_icon_manager_v1 *toplevel_icon;
-  struct xdg_session_manager_v1 *xdg_session_manager;
-  struct xdg_session_v1 *xdg_session;
+  struct xx_session_manager_v1 *xx_session_manager;
+  struct xx_session_v1 *xx_session;
 
   GdkWaylandColor *color;
-  uint32_t xdg_output_version;
 
   GList *async_roundtrips;
 
@@ -167,13 +154,6 @@ struct _GdkWaylandDisplay
 
   GSource *event_source;
   GSource *poll_source;
-
-  uint32_t server_decoration_mode;
-  int compositor_version;
-  int seat_version;
-  int data_device_manager_version;
-  int gtk_shell_version;
-  int xdg_output_manager_version;
 
   uint32_t server_decoration_mode;
 
@@ -202,15 +182,13 @@ void       gdk_wayland_display_dispatch_queue (GdkDisplay            *display,
 GdkDisplay *_gdk_wayland_display_open (const char *display_name);
 
 gboolean                gdk_wayland_display_register_session    (GdkDisplay *display,
-                                                                 enum xdg_session_manager_v1_reason reason,
+                                                                 enum xx_session_manager_v1_reason reason,
                                                                  const char *name);
 
 void                    gdk_wayland_display_unregister_session  (GdkDisplay *display);
 
 const char *            gdk_wayland_display_get_session_id      (GdkDisplay *display);
 
-void                    gdk_wayland_display_remove_session_toplevel (GdkDisplay *display,
-                                                                     const char *name);
 
 G_END_DECLS
 

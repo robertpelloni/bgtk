@@ -16,8 +16,6 @@
  */
 
 #pragma once
-#ifndef __GDK_PROFILER_PRIVATE_H__
-#define __GDK_PROFILER_PRIVATE_H__
 
 #include "gdk/gdkframeclock.h"
 #include "gdk/gdkdisplay.h"
@@ -95,26 +93,3 @@ void    gdk_profiler_set_int_counter    (guint  id,
 
 G_END_DECLS
 
-G_BEGIN_DECLS
-
-void     gdk_profiler_start              (int         fd);
-void     gdk_profiler_stop               (void);
-gboolean gdk_profiler_is_running         (void);
-void     gdk_profiler_add_mark           (gint64      start,
-                                          guint64     duration,
-                                          const char *name,
-                                          const char *message);
-guint    gdk_profiler_define_counter     (const char *name,
-                                          const char *description);
-void     gdk_profiler_set_counter        (guint       id,
-                                          gint64      time,
-                                          double      value);
-guint    gdk_profiler_define_int_counter (const char *name,
-                                          const char *description);
-void     gdk_profiler_set_int_counter    (guint       id,
-                                          gint64      time,
-                                          gint64      value);
-
-G_END_DECLS
-
-#endif  /* __GDK_PROFILER_PRIVATE_H__ */

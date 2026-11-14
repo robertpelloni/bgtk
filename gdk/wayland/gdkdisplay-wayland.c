@@ -64,7 +64,7 @@
 #include "presentation-time-client-protocol.h"
 #include "color-management-v1-client-protocol.h"
 #include "color-representation-v1-client-protocol.h"
-#include <wayland/xdg-session-management-v1-client-protocol.h>
+#include "xx-session-management-v1-client-protocol.h"
 
 #include "wm-button-layout-translation.h"
 
@@ -82,12 +82,6 @@
                                                                        #expr); \
                                          } G_STMT_END
 #endif
-#include "gdk-private.h"
-#include "pointer-gestures-unstable-v1-client-protocol.h"
-#include "tablet-unstable-v2-client-protocol.h"
-#include "xdg-shell-unstable-v6-client-protocol.h"
-#include "xdg-foreign-unstable-v1-client-protocol.h"
-#include "server-decoration-client-protocol.h"
 
 /**
  * GdkWaylandDisplay:
@@ -138,9 +132,6 @@
 #define XDG_WM_DIALOG_VERSION           1
 #define XDG_TOPLEVEL_ICON_VERSION       1
 #define XDG_WM_BASE_VERSION             7
-#define GTK_SHELL1_VERSION       4
-
-static void _gdk_wayland_display_load_cursor_theme (GdkWaylandDisplay *display_wayland);
 
 G_DEFINE_TYPE (GdkWaylandDisplay, gdk_wayland_display, GDK_TYPE_DISPLAY)
 
@@ -189,6 +180,9 @@ init_skip_protocols (GdkWaylandDisplay *display_wayland)
 
   if (!GDK_DISPLAY_DEBUG_CHECK (GDK_DISPLAY (display_wayland), COLOR_MANAGEMENT))
     g_strv_builder_add (strv, wp_color_manager_v1_interface.name);
+
+  if (!GDK_DISPLAY_DEBUG_CHECK (GDK_DISPLAY (display_wayland), SESSION_MANAGEMENT))
+    g_strv_builder_add (strv, xx_session_manager_v1_interface.name);
 
   if (help)
     {
@@ -266,39 +260,6 @@ _gdk_wayland_display_async_roundtrip (GdkWaylandDisplay *display_wayland)
 
 /* }}} */
 /* {{{ Global dependency handling */
-static void
-xdg_wm_base_ping (void               *data,
-                  struct xdg_wm_base *xdg_wm_base,
-                  uint32_t            serial)
-{
-  GDK_NOTE (EVENTS,
-            g_message ("ping, shell %p, serial %u\n", xdg_wm_base, serial));
-
-  xdg_wm_base_pong (xdg_wm_base, serial);
-}
-
-static const struct xdg_wm_base_listener xdg_wm_base_listener = {
-  xdg_wm_base_ping,
-};
-
-static void
-zxdg_shell_v6_ping (void                 *data,
-                    struct zxdg_shell_v6 *xdg_shell,
-                    uint32_t              serial)
-{
-  GdkWaylandDisplay *display_wayland = data;
-
-  _gdk_wayland_display_update_serial (display_wayland, serial);
-
-  GDK_NOTE (EVENTS,
-            g_message ("ping, shell %p, serial %u\n", xdg_shell, serial));
-
-  zxdg_shell_v6_pong (xdg_shell, serial);
-}
-
-static const struct zxdg_shell_v6_listener zxdg_shell_v6_listener = {
-  zxdg_shell_v6_ping,
-};
 
 static gboolean
 is_known_global (gpointer key, gpointer value, gpointer user_data)
@@ -480,96 +441,6 @@ static const struct wl_shm_listener wl_shm_listener = {
 
  /* }}} */
 /* {{{ server_decoration listener */
-static void
-linux_dmabuf_done (void *data,
-                   struct zwp_linux_dmabuf_feedback_v1 *zwp_linux_dmabuf_feedback_v1)
-{
-  GDK_DEBUG (MISC, "dmabuf feedback done");
-}
-
-static void
-linux_dmabuf_format_table (void *data,
-                           struct zwp_linux_dmabuf_feedback_v1 *zwp_linux_dmabuf_feedback_v1,
-                           int32_t fd,
-                           uint32_t size)
-{
-  GdkWaylandDisplay *display_wayland = data;
-
-  display_wayland->linux_dmabuf_n_formats = size / 16;
-  display_wayland->linux_dmabuf_formats = mmap (NULL, size, PROT_READ, MAP_PRIVATE, fd, 0);
-
-  GDK_DEBUG (MISC, "got dmabuf format table (%lu entries)", display_wayland->linux_dmabuf_n_formats);
-}
-
-static void
-linux_dmabuf_main_device (void *data,
-                          struct zwp_linux_dmabuf_feedback_v1 *zwp_linux_dmabuf_feedback_v1,
-                          struct wl_array *device)
-{
-  dev_t dev G_GNUC_UNUSED;
-
-  memcpy (&dev, device->data, sizeof (dev_t));
-
-  GDK_DEBUG (MISC, "got dmabuf main device: %u %u", major (dev), minor (dev));
-}
-
-static void
-linux_dmabuf_tranche_done (void *data,
-                           struct zwp_linux_dmabuf_feedback_v1 *zwp_linux_dmabuf_feedback_v1)
-{
-  GDK_DEBUG (MISC, "dmabuf feedback tranche done");
-}
-
-static void
-linux_dmabuf_tranche_target_device (void *data,
-                                    struct zwp_linux_dmabuf_feedback_v1 *zwp_linux_dmabuf_feedback_v1,
-                                    struct wl_array *device)
-{
-  dev_t dev G_GNUC_UNUSED;
-
-  memcpy (&dev, device->data, sizeof (dev_t));
-
-  GDK_DEBUG (MISC, "got dmabuf tranche target device: %u %u", major (dev), minor (dev));
-}
-
-static void
-linux_dmabuf_tranche_formats (void *data,
-                              struct zwp_linux_dmabuf_feedback_v1 *zwp_linux_dmabuf_feedback_v1,
-                              struct wl_array *indices)
-{
-  GdkWaylandDisplay *display_wayland = data;
-
-  GDK_DEBUG (MISC, "got dmabuf tranche formats (%lu entries):", indices->size / sizeof (guint16));
-  guint16 *pos;
-
-  wl_array_for_each (pos, indices)
-    {
-      LinuxDmabufFormat *fmt G_GNUC_UNUSED = &display_wayland->linux_dmabuf_formats[*pos];
-      uint32_t f G_GNUC_UNUSED = fmt->fourcc;
-      uint64_t m G_GNUC_UNUSED = fmt->modifier;
-      GDK_DEBUG (MISC, "  %.4s:%#" G_GINT64_MODIFIER "x", (char *) &f, m);
-    }
-}
-
-static void
-linux_dmabuf_tranche_flags (void *data,
-                            struct zwp_linux_dmabuf_feedback_v1 *zwp_linux_dmabuf_feedback_v1,
-                            uint32_t flags)
-{
-  GDK_DEBUG (MISC,
-             "got dmabuf tranche flags: %s",
-             flags & ZWP_LINUX_DMABUF_FEEDBACK_V1_TRANCHE_FLAGS_SCANOUT ? "scanout" : "");
-}
-
-static const struct zwp_linux_dmabuf_feedback_v1_listener linux_dmabuf_feedback_listener = {
-  linux_dmabuf_done,
-  linux_dmabuf_format_table,
-  linux_dmabuf_main_device,
-  linux_dmabuf_tranche_done,
-  linux_dmabuf_tranche_target_device,
-  linux_dmabuf_tranche_formats,
-  linux_dmabuf_tranche_flags,
-};
 
 static void
 server_decoration_manager_default_mode (void                                          *data,
@@ -595,9 +466,9 @@ static const struct org_kde_kwin_server_decoration_manager_listener server_decor
 /* {{{ session listener */
 
 static void
-session_listener_created (void                  *data,
-                          struct xdg_session_v1 *xdg_session_v1,
-                          const char            *id)
+session_listener_created (void                 *data,
+                          struct xx_session_v1 *xx_session_v1,
+                          const char           *id)
 {
   GdkWaylandDisplay *display_wayland = data;
 
@@ -611,8 +482,8 @@ session_listener_created (void                  *data,
 }
 
 static void
-session_listener_restored (void                  *data,
-                           struct xdg_session_v1 *xdg_session_v1)
+session_listener_restored (void                 *data,
+                           struct xx_session_v1 *xx_session_v1)
 {
   GdkWaylandDisplay *display_wayland = data;
 
@@ -620,15 +491,15 @@ session_listener_restored (void                  *data,
 }
 
 static void
-session_listener_replaced (void                  *data,
-                           struct xdg_session_v1 *xdg_session_v1)
+session_listener_replaced (void                 *data,
+                           struct xx_session_v1 *xx_session_v1)
 {
   GdkWaylandDisplay *display_wayland = data;
 
   GDK_DEBUG (MISC, "session replaced: %s", display_wayland->session_id);
 }
 
-static const struct xdg_session_v1_listener xdg_session_listener = {
+static const struct xx_session_v1_listener xx_session_listener = {
   .created = session_listener_created,
   .restored = session_listener_restored,
   .replaced = session_listener_replaced,
@@ -636,35 +507,6 @@ static const struct xdg_session_v1_listener xdg_session_listener = {
 
 /* }}} */
 /* {{{ wl_registry listener */
-
-static void
-server_decoration_manager_default_mode (void                                          *data,
-                                        struct org_kde_kwin_server_decoration_manager *manager,
-                                        uint32_t                                       mode)
-{
-  g_assert (mode <= ORG_KDE_KWIN_SERVER_DECORATION_MANAGER_MODE_SERVER);
-  const char *modes[] = {
-    [ORG_KDE_KWIN_SERVER_DECORATION_MANAGER_MODE_NONE]   = "none",
-    [ORG_KDE_KWIN_SERVER_DECORATION_MANAGER_MODE_CLIENT] = "client",
-    [ORG_KDE_KWIN_SERVER_DECORATION_MANAGER_MODE_SERVER] = "server",
-  };
-  GdkWaylandDisplay *display_wayland = data;
-  g_debug ("Compositor prefers decoration mode '%s'", modes[mode]);
-  display_wayland->server_decoration_mode = mode;
-}
-
-static const struct org_kde_kwin_server_decoration_manager_listener server_decoration_listener = {
-  .default_mode = server_decoration_manager_default_mode
-};
-
-gboolean
-gdk_wayland_display_prefers_ssd (GdkDisplay *display)
-{
-  GdkWaylandDisplay *display_wayland = GDK_WAYLAND_DISPLAY (display);
-  if (display_wayland->server_decoration_manager)
-    return display_wayland->server_decoration_mode == ORG_KDE_KWIN_SERVER_DECORATION_MANAGER_MODE_SERVER;
-  return FALSE;
-}
 
 static void
 gdk_registry_handle_global (void               *data,
@@ -723,11 +565,11 @@ gdk_registry_handle_global (void               *data,
                           &xdg_wm_dialog_v1_interface,
                           MIN (version, XDG_WM_DIALOG_VERSION));
     }
-  else if (match_global (display_wayland, interface, version, xdg_session_manager_v1_interface.name, 0))
+  else if (match_global (display_wayland, interface, version, xx_session_manager_v1_interface.name, 0))
     {
-      display_wayland->xdg_session_manager =
+      display_wayland->xx_session_manager =
         wl_registry_bind (display_wayland->wl_registry, id,
-                          &xdg_session_manager_v1_interface,
+                          &xx_session_manager_v1_interface,
                           version);
     }
   else if (match_global (display_wayland, interface, version, bobgui_shell1_interface.name, 0))
@@ -774,28 +616,19 @@ gdk_registry_handle_global (void               *data,
         wl_registry_bind (display_wayland->wl_registry, id, &wl_subcompositor_interface, SUBCOMPOSITOR_VERSION);
     }
   else if (match_global (display_wayland, interface, version, zwp_pointer_gestures_v1_interface.name, 0))
-  else if (strcmp (interface, "zwp_pointer_gestures_v1") == 0)
     {
       display_wayland->pointer_gestures =
         wl_registry_bind (display_wayland->wl_registry,
                           id, &zwp_pointer_gestures_v1_interface,
                           MIN (version, POINTER_GESTURES_VERSION));
-                          MIN (version, GDK_ZWP_POINTER_GESTURES_V1_VERSION));
     }
   else if (match_global (display_wayland, interface, version, zwp_primary_selection_device_manager_v1_interface.name, 0))
     {
-      display_wayland->gtk_primary_selection_manager =
+      display_wayland->primary_selection_manager =
         wl_registry_bind(display_wayland->wl_registry, id,
                          &zwp_primary_selection_device_manager_v1_interface, PRIMARY_SELECTION_VERSION);
     }
   else if (match_global (display_wayland, interface, version, zwp_tablet_manager_v2_interface.name, 0))
-  else if (strcmp (interface, "zwp_primary_selection_device_manager_v1") == 0)
-    {
-      display_wayland->zwp_primary_selection_manager_v1 =
-        wl_registry_bind(display_wayland->wl_registry, id,
-                         &zwp_primary_selection_device_manager_v1_interface, 1);
-    }
-  else if (strcmp (interface, "zwp_tablet_manager_v2") == 0)
     {
       display_wayland->tablet_manager =
         wl_registry_bind(display_wayland->wl_registry, id,
@@ -912,23 +745,6 @@ gdk_registry_handle_global (void               *data,
       display_wayland->toplevel_icon =
         wl_registry_bind (display_wayland->wl_registry, id,
                           &xdg_toplevel_icon_manager_v1_interface, XDG_TOPLEVEL_ICON_VERSION);
-    }
-  else if (strcmp(interface, "zxdg_output_manager_v1") == 0)
-    {
-      display_wayland->xdg_output_manager_version = MIN (version, 3);
-      display_wayland->xdg_output_manager =
-        wl_registry_bind (display_wayland->wl_registry, id,
-                          &zxdg_output_manager_v1_interface,
-                          display_wayland->xdg_output_manager_version);
-      display_wayland->xdg_output_version = version;
-      _gdk_wayland_screen_init_xdg_output (display_wayland->screen);
-      _gdk_wayland_display_async_roundtrip (display_wayland);
-    }
-  else if (strcmp (interface, xdg_toplevel_tag_manager_v1_interface.name) == 0)
-    {
-      display_wayland->xdg_toplevel_tag =
-        wl_registry_bind (display_wayland->wl_registry, id,
-                          &xdg_toplevel_tag_manager_v1_interface, 1);
     }
 
   g_hash_table_insert (display_wayland->known_globals,
@@ -1129,8 +945,8 @@ gdk_wayland_display_dispose (GObject *object)
   g_clear_pointer (&display_wayland->color, gdk_wayland_color_free);
   g_clear_pointer (&display_wayland->system_bell, xdg_system_bell_v1_destroy);
   g_clear_pointer (&display_wayland->toplevel_icon, xdg_toplevel_icon_manager_v1_destroy);
-  g_clear_pointer (&display_wayland->xdg_session, xdg_session_v1_destroy);
-  g_clear_pointer (&display_wayland->xdg_session_manager, xdg_session_manager_v1_destroy);
+  g_clear_pointer (&display_wayland->xx_session, xx_session_v1_destroy);
+  g_clear_pointer (&display_wayland->xx_session_manager, xx_session_manager_v1_destroy);
 
   g_clear_pointer (&display_wayland->shm, wl_shm_destroy);
   g_clear_pointer (&display_wayland->wl_registry, wl_registry_destroy);
@@ -1155,8 +971,6 @@ gdk_wayland_display_finalize (GObject *object)
   g_clear_object (&display_wayland->settings_portal);
 
   g_strfreev (display_wayland->skip_protocols);
-
-  wl_display_disconnect(display_wayland->wl_display);
 
   G_OBJECT_CLASS (gdk_wayland_display_parent_class)->finalize (object);
 }
@@ -1212,82 +1026,6 @@ gdk_wayland_display_make_default (GdkDisplay *display)
   startup_id = gdk_get_startup_notification_id ();
   if (startup_id)
     display_wayland->startup_notification_id = g_strdup (startup_id);
-  startup_id = gdk_get_desktop_startup_id ();
-  if (startup_id)
-    display_wayland->startup_notification_id = g_strdup (startup_id);
-}
-
-static gboolean
-gdk_wayland_display_has_pending (GdkDisplay *display)
-{
-  return FALSE;
-}
-
-static GdkWindow *
-gdk_wayland_display_get_default_group (GdkDisplay *display)
-{
-  g_return_val_if_fail (GDK_IS_DISPLAY (display), NULL);
-
-  return NULL;
-}
-
-
-static gboolean
-gdk_wayland_display_supports_selection_notification (GdkDisplay *display)
-{
-  return FALSE;
-}
-
-static gboolean
-gdk_wayland_display_request_selection_notification (GdkDisplay *display,
-						    GdkAtom     selection)
-
-{
-    return FALSE;
-}
-
-static gboolean
-gdk_wayland_display_supports_clipboard_persistence (GdkDisplay *display)
-{
-  return FALSE;
-}
-
-static void
-gdk_wayland_display_store_clipboard (GdkDisplay    *display,
-				     GdkWindow     *clipboard_window,
-				     guint32        time_,
-				     const GdkAtom *targets,
-				     gint           n_targets)
-{
-}
-
-static gboolean
-gdk_wayland_display_supports_shapes (GdkDisplay *display)
-{
-  return FALSE;
-}
-
-static gboolean
-gdk_wayland_display_supports_input_shapes (GdkDisplay *display)
-{
-  return TRUE;
-}
-
-static gboolean
-gdk_wayland_display_supports_composite (GdkDisplay *display)
-{
-  return FALSE;
-}
-
-static void
-gdk_wayland_display_before_process_all_updates (GdkDisplay *display)
-{
-}
-
-static void
-gdk_wayland_display_after_process_all_updates (GdkDisplay *display)
-{
-  /* Post the damage here instead? */
 }
 
 static gulong
@@ -1295,33 +1033,6 @@ gdk_wayland_display_get_next_serial (GdkDisplay *display)
 {
   static gulong serial = 0;
   return ++serial;
-}
-
-/**
- * gdk_wayland_display_set_startup_notification_id:
- * @display: (type GdkWaylandDisplay): a #GdkDisplay
- * @startup_id: the startup notification ID (must be valid utf8)
- *
- * Sets the startup notification ID for a display.
- *
- * This is usually taken from the value of the DESKTOP_STARTUP_ID
- * environment variable, but in some cases (such as the application not
- * being launched using exec()) it can come from other sources.
- *
- * The startup ID is also what is used to signal that the startup is
- * complete (for example, when opening a window or when calling
- * gdk_notify_startup_complete()).
- *
- * Since: 3.22
- **/
-void
-gdk_wayland_display_set_startup_notification_id (GdkDisplay *display,
-                                                 const char *startup_id)
-{
-  GdkWaylandDisplay *display_wayland = GDK_WAYLAND_DISPLAY (display);
-
-  g_free (display_wayland->startup_notification_id);
-  display_wayland->startup_notification_id = g_strdup (startup_id);
 }
 
 static void
@@ -1337,7 +1048,8 @@ gdk_wayland_display_notify_startup_complete (GdkDisplay  *display,
 
   if (startup_id == NULL)
     {
-      startup_id = display_wayland->startup_notification_id;
+      startup_id = free_this = display_wayland->startup_notification_id;
+      display_wayland->startup_notification_id = NULL;
 
       if (startup_id == NULL)
         return;
@@ -1347,8 +1059,6 @@ gdk_wayland_display_notify_startup_complete (GdkDisplay  *display,
     bobgui_shell1_set_startup_id (display_wayland->bobgui_shell, startup_id);
 
   g_free (free_this);
-  if (display_wayland->gtk_shell)
-    gtk_shell1_set_startup_id (display_wayland->gtk_shell, startup_id);
 }
 
 static GdkKeymap *
@@ -1682,27 +1392,27 @@ gdk_wayland_display_query_registry (GdkDisplay *display,
 }
 
 gboolean
-gdk_wayland_display_register_session (GdkDisplay                         *display,
-                                      enum xdg_session_manager_v1_reason  reason,
-                                      const char                         *name)
+gdk_wayland_display_register_session (GdkDisplay                        *display,
+                                      enum xx_session_manager_v1_reason  reason,
+                                      const char                        *name)
 {
   GdkWaylandDisplay *display_wayland = GDK_WAYLAND_DISPLAY (display);
 
   GDK_DEBUG (MISC, "register session %s, reason %u", name, reason);
 
-  if (!display_wayland->xdg_session_manager)
+  if (!display_wayland->xx_session_manager)
     return FALSE;
 
   g_clear_pointer (&display_wayland->session_id, g_free);
   display_wayland->session_id = g_strdup (name);
 
-  display_wayland->xdg_session =
-    xdg_session_manager_v1_get_session (display_wayland->xdg_session_manager,
-                                        reason,
-                                        name);
-  xdg_session_v1_add_listener (display_wayland->xdg_session,
-                               &xdg_session_listener,
-                               display_wayland);
+  display_wayland->xx_session =
+    xx_session_manager_v1_get_session (display_wayland->xx_session_manager,
+                                       reason,
+                                       name);
+  xx_session_v1_add_listener (display_wayland->xx_session,
+                              &xx_session_listener,
+                              display_wayland);
 
   wl_display_roundtrip (display_wayland->wl_display);
   return TRUE;
@@ -1713,14 +1423,14 @@ gdk_wayland_display_unregister_session (GdkDisplay *display)
 {
   GdkWaylandDisplay *display_wayland = GDK_WAYLAND_DISPLAY (display);
 
-  if (!display_wayland->xdg_session_manager)
+  if (!display_wayland->xx_session_manager)
     return;
 
-  if (display_wayland->xdg_session)
-    xdg_session_v1_remove (display_wayland->xdg_session);
+  if (display_wayland->xx_session)
+    xx_session_v1_remove (display_wayland->xx_session);
 
   g_clear_pointer (&display_wayland->session_id, g_free);
-  g_clear_pointer (&display_wayland->xdg_session, xdg_session_v1_destroy);
+  g_clear_pointer (&display_wayland->xx_session, xx_session_v1_destroy);
 }
 
 const char *
@@ -1729,34 +1439,6 @@ gdk_wayland_display_get_session_id (GdkDisplay *display)
   GdkWaylandDisplay *display_wayland = GDK_WAYLAND_DISPLAY (display);
 
   return display_wayland->session_id;
-}
-
-static gint
-cmp_toplevel_session_id (GdkToplevel *toplevel,
-                         const char  *expected)
-{
-  return g_strcmp0 (gdk_wayland_toplevel_get_session_id (toplevel), expected);
-}
-
-void
-gdk_wayland_display_remove_session_toplevel (GdkDisplay *display,
-                                             const char *name)
-{
-  GdkWaylandDisplay *display_wayland = GDK_WAYLAND_DISPLAY (display);
-  GList *found_toplevel = NULL;
-
-  if (!display_wayland->xdg_session)
-    return;
-
-  found_toplevel = g_list_find_custom (display_wayland->toplevels, name,
-                                       (GCompareFunc) cmp_toplevel_session_id);
-  if (found_toplevel)
-    {
-      gdk_wayland_toplevel_remove_from_session (found_toplevel->data);
-      return;
-    }
-
-  xdg_session_v1_remove_toplevel (display_wayland->xdg_session, name);
 }
 
 /* }}} */

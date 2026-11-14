@@ -41,10 +41,6 @@
 
 #ifdef HAVE_EGL
 # include <epoxy/egl.h>
-#include "gdkwin32langnotification.h"
-
-#ifndef IMAGE_FILE_MACHINE_ARM64
-# define IMAGE_FILE_MACHINE_ARM64 0xAA64
 #endif
 
 #ifndef IMAGE_FILE_MACHINE_ARM64
@@ -783,8 +779,6 @@ _gdk_win32_display_open (const char *display_name)
 
       gdk_win32_display_lang_notification_init (win32_display);
       _gdk_drag_init ();
-  _gdk_win32_lang_notification_init ();
-  _gdk_dnd_init ();
 
       display->clipboard = gdk_win32_clipboard_new (display);
       display->primary_clipboard = gdk_clipboard_new (display);
@@ -886,286 +880,6 @@ gdk_win32_display_get_name (GdkDisplay *display)
   return display_name_cache;
 }
 
-static GdkScreen *
-gdk_win32_display_get_default_screen (GdkDisplay *display)
-{
-  g_return_val_if_fail (GDK_IS_WIN32_DISPLAY (display), NULL);
-
-  return GDK_WIN32_DISPLAY (display)->screen;
-}
-
-static GdkWindow *
-gdk_win32_display_get_default_group (GdkDisplay *display)
-{
-  g_return_val_if_fail (GDK_IS_DISPLAY (display), NULL);
-
-  g_warning ("gdk_display_get_default_group not yet implemented");
-
-  return NULL;
-}
-
-static gboolean
-gdk_win32_display_supports_selection_notification (GdkDisplay *display)
-{
-  g_return_val_if_fail (GDK_IS_DISPLAY (display), FALSE);
-
-  return TRUE;
-}
-
-/*
- * maybe this should be integrated with the default message loop - or maybe not ;-)
- */
-static LRESULT CALLBACK
-inner_clipboard_window_procedure (HWND   hwnd,
-                                  UINT   message,
-                                  WPARAM wparam,
-                                  LPARAM lparam)
-{
-  switch (message)
-    {
-    case WM_DESTROY: /* remove us from chain */
-      {
-        RemoveClipboardFormatListener (hwnd);
-        PostQuitMessage (0);
-        return 0;
-      }
-    case WM_CLIPBOARDUPDATE:
-      {
-        HWND hwnd_owner;
-        HWND stored_hwnd_owner;
-        HWND hwnd_opener;
-        GdkEvent *event;
-        GdkWindow *owner;
-        GdkWindow *stored_owner;
-        GdkWin32Selection *win32_sel = _gdk_win32_selection_get ();
-
-        hwnd_owner = GetClipboardOwner ();
-
-        if ((hwnd_owner == NULL) &&
-            (GetLastError () != ERROR_SUCCESS))
-            WIN32_API_FAILED ("GetClipboardOwner");
-
-        hwnd_opener = GetOpenClipboardWindow ();
-
-        GDK_NOTE (DND, g_print (" drawclipboard owner: %p; opener %p ", hwnd_owner, hwnd_opener));
-
-#ifdef G_ENABLE_DEBUG
-        if (_gdk_debug_flags & GDK_DEBUG_DND)
-          {
-            if (win32_sel->clipboard_opened_for != INVALID_HANDLE_VALUE ||
-                OpenClipboard (hwnd))
-              {
-                UINT nFormat = 0;
-
-                while ((nFormat = EnumClipboardFormats (nFormat)) != 0)
-                  g_print ("%s ", _gdk_win32_cf_to_string (nFormat));
-
-                if (win32_sel->clipboard_opened_for == INVALID_HANDLE_VALUE)
-                  CloseClipboard ();
-              }
-            else
-              {
-                WIN32_API_FAILED ("OpenClipboard");
-              }
-          }
-#endif
-
-        GDK_NOTE (DND, g_print (" \n"));
-
-        owner = gdk_win32_window_lookup_for_display (_gdk_display, hwnd_owner);
-        if (owner == NULL)
-          owner = gdk_win32_window_foreign_new_for_display (_gdk_display, hwnd_owner);
-
-        stored_owner = _gdk_win32_display_get_selection_owner (gdk_display_get_default (),
-                                                               GDK_SELECTION_CLIPBOARD);
-
-        if (stored_owner)
-          stored_hwnd_owner = GDK_WINDOW_HWND (stored_owner);
-        else
-          stored_hwnd_owner = NULL;
-
-        if (stored_hwnd_owner != hwnd_owner)
-          {
-            if (win32_sel->clipboard_opened_for != INVALID_HANDLE_VALUE)
-              {
-                CloseClipboard ();
-                GDK_NOTE (DND, g_print ("Closed clipboard @ %s:%d\n", __FILE__, __LINE__));
-              }
-
-            win32_sel->clipboard_opened_for = INVALID_HANDLE_VALUE;
-
-            _gdk_win32_clear_clipboard_queue ();
-          }
-
-        event = gdk_event_new (GDK_OWNER_CHANGE);
-        event->owner_change.window = gdk_get_default_root_window ();
-        event->owner_change.owner = owner;
-        event->owner_change.reason = GDK_OWNER_CHANGE_NEW_OWNER;
-        event->owner_change.selection = GDK_SELECTION_CLIPBOARD;
-        event->owner_change.time = _gdk_win32_get_next_tick (0);
-        event->owner_change.selection_time = GDK_CURRENT_TIME;
-        _gdk_win32_append_event (event);
-
-        /* clear error to avoid confusing SetClipboardViewer() return */
-        SetLastError (0);
-        return 0;
-      }
-    default:
-      /* Otherwise call DefWindowProcW(). */
-      GDK_NOTE (EVENTS, g_print (" DefWindowProcW"));
-      return DefWindowProc (hwnd, message, wparam, lparam);
-    }
-}
-
-static LRESULT CALLBACK
-_clipboard_window_procedure (HWND   hwnd,
-                             UINT   message,
-                             WPARAM wparam,
-                             LPARAM lparam)
-{
-  LRESULT retval;
-
-  GDK_NOTE (EVENTS, g_print ("%s%*s%s %p",
-			     (debug_indent > 0 ? "\n" : ""),
-			     debug_indent, "",
-			     _gdk_win32_message_to_string (message), hwnd));
-  debug_indent += 2;
-  retval = inner_clipboard_window_procedure (hwnd, message, wparam, lparam);
-  debug_indent -= 2;
-
-  GDK_NOTE (EVENTS, g_print (" => %" G_GINT64_FORMAT "%s", (gint64) retval, (debug_indent == 0 ? "\n" : "")));
-
-  return retval;
-}
-
-/*
- * Creates a hidden window and adds it to the clipboard chain
- */
-static gboolean
-register_clipboard_notification (GdkDisplay *display)
-{
-  GdkWin32Display *display_win32 = GDK_WIN32_DISPLAY (display);
-  WNDCLASS wclass = { 0, };
-  ATOM klass;
-
-  wclass.lpszClassName = "GdkClipboardNotification";
-  wclass.lpfnWndProc = _clipboard_window_procedure;
-  wclass.hInstance = _gdk_app_hmodule;
-
-  klass = RegisterClass (&wclass);
-  if (!klass)
-    return FALSE;
-
-  display_win32->clipboard_hwnd = CreateWindow (MAKEINTRESOURCE (klass),
-                                                NULL, WS_POPUP,
-                                                0, 0, 0, 0, NULL, NULL,
-                                                _gdk_app_hmodule, NULL);
-
-  if (display_win32->clipboard_hwnd == NULL)
-    goto failed;
-
-  SetLastError (0);
-
-  if (AddClipboardFormatListener (display_win32->clipboard_hwnd) == FALSE)
-    goto failed;
-
-  return TRUE;
-
-failed:
-  g_critical ("Failed to install clipboard viewer");
-  UnregisterClass (MAKEINTRESOURCE (klass), _gdk_app_hmodule);
-  return FALSE;
-}
-
-static gboolean
-gdk_win32_display_request_selection_notification (GdkDisplay *display,
-                                                  GdkAtom     selection)
-
-{
-  GdkWin32Display *display_win32 = GDK_WIN32_DISPLAY (display);
-  gboolean ret = FALSE;
-  gchar *selection_name = gdk_atom_name (selection);
-
-  GDK_NOTE (DND,
-            g_print ("gdk_display_request_selection_notification (..., %s)",
-                     selection_name));
-
-  if (selection == GDK_SELECTION_CLIPBOARD ||
-      selection == GDK_SELECTION_PRIMARY)
-    {
-      if (display_win32->clipboard_hwnd == NULL)
-        {
-          if (register_clipboard_notification (display))
-            GDK_NOTE (DND, g_print (" registered"));
-          else
-            GDK_NOTE (DND, g_print (" failed to register"));
-        }
-      ret = (display_win32->clipboard_hwnd != NULL);
-    }
-  else
-    {
-      GDK_NOTE (DND, g_print (" unsupported"));
-      ret = FALSE;
-    }
-
-  g_free (selection_name);
-
-  GDK_NOTE (DND, g_print (" -> %s\n", ret ? "TRUE" : "FALSE"));
-  return ret;
-}
-
-static gboolean
-gdk_win32_display_supports_clipboard_persistence (GdkDisplay *display)
-{
-  return TRUE;
-}
-
-static void
-gdk_win32_display_store_clipboard (GdkDisplay    *display,
-                                   GdkWindow     *clipboard_window,
-                                   guint32        time_,
-                                   const GdkAtom *targets,
-                                   gint           n_targets)
-{
-  GdkEvent tmp_event;
-  SendMessage (GDK_WINDOW_HWND (clipboard_window), WM_RENDERALLFORMATS, 0, 0);
-
-  memset (&tmp_event, 0, sizeof (tmp_event));
-  tmp_event.selection.type = GDK_SELECTION_NOTIFY;
-  tmp_event.selection.window = clipboard_window;
-  tmp_event.selection.send_event = FALSE;
-  tmp_event.selection.selection = _gdk_win32_selection_atom (GDK_WIN32_ATOM_INDEX_CLIPBOARD_MANAGER);
-  tmp_event.selection.target = 0;
-  tmp_event.selection.property = GDK_NONE;
-  tmp_event.selection.requestor = 0;
-  tmp_event.selection.time = GDK_CURRENT_TIME;
-
-  gdk_event_put (&tmp_event);
-}
-
-static gboolean
-gdk_win32_display_supports_shapes (GdkDisplay *display)
-{
-  g_return_val_if_fail (GDK_IS_DISPLAY (display), FALSE);
-
-  return TRUE;
-}
-
-static gboolean
-gdk_win32_display_supports_input_shapes (GdkDisplay *display)
-{
-  g_return_val_if_fail (GDK_IS_DISPLAY (display), FALSE);
-
-  /* Partially supported, see WM_NCHITTEST handler. */
-  return TRUE;
-}
-
-static gboolean
-gdk_win32_display_supports_composite (GdkDisplay *display)
-{
-  return FALSE;
-}
-
 static void
 gdk_win32_display_beep (GdkDisplay *display)
 {
@@ -1195,20 +909,6 @@ gdk_win32_display_dispose (GObject *object)
 
   gdk_win32_com_clear (&self->d3d12_device);
   gdk_win32_com_clear (&self->dxgi_factory);
-  if (display_win32->clipboard_hwnd != NULL)
-    {
-      DestroyWindow (display_win32->clipboard_hwnd);
-      display_win32->clipboard_hwnd = NULL;
-    }
-
-  if (display_win32->have_at_least_win81)
-    {
-      if (display_win32->shcore_funcs.hshcore != NULL)
-        {
-          FreeLibrary (display_win32->shcore_funcs.hshcore);
-          display_win32->shcore_funcs.hshcore = NULL;
-        }
-    }
 
   G_OBJECT_CLASS (gdk_win32_display_parent_class)->dispose (object);
 }
@@ -1234,7 +934,6 @@ gdk_win32_display_finalize (GObject *object)
   g_free (display_win32->pointer_device_items);
   g_object_unref (display_win32->cb_dnd_items->clipdrop);
   g_free (display_win32->cb_dnd_items);
-  _gdk_win32_lang_notification_exit ();
 
   g_list_store_remove_all (G_LIST_STORE (display_win32->monitors));
   g_object_unref (display_win32->monitors);
@@ -1410,73 +1109,6 @@ _gdk_win32_enable_hidpi (GdkWin32Display *display)
 
 gboolean
 _gdk_win32_check_processor (GdkWin32ProcessorCheckType check_type)
-{
-  static gsize checked = 0;
-  static gboolean is_arm64 = FALSE;
-  static gboolean is_wow64 = FALSE;
-
-  if (g_once_init_enter (&checked))
-    {
-      gboolean fallback_wow64_check = FALSE;
-      HMODULE kernel32 = LoadLibraryW (L"kernel32.dll");
-
-      if (kernel32 != NULL)
-        {
-          typedef BOOL (WINAPI *funcIsWow64Process2) (HANDLE, USHORT *, USHORT *);
-
-          funcIsWow64Process2 isWow64Process2 =
-            (funcIsWow64Process2) GetProcAddress (kernel32, "IsWow64Process2");
-
-          if (isWow64Process2 != NULL)
-            {
-              USHORT proc_cpu = 0;
-              USHORT native_cpu = 0;
-
-              isWow64Process2 (GetCurrentProcess (), &proc_cpu, &native_cpu);
-
-              if (native_cpu == IMAGE_FILE_MACHINE_ARM64)
-                is_arm64 = TRUE;
-
-              if (proc_cpu != IMAGE_FILE_MACHINE_UNKNOWN)
-                is_wow64 = TRUE;
-            }
-          else
-            {
-              fallback_wow64_check = TRUE;
-            }
-
-          FreeLibrary (kernel32);
-        }
-      else
-        {
-          fallback_wow64_check = TRUE;
-        }
-
-      if (fallback_wow64_check)
-        IsWow64Process (GetCurrentProcess (), &is_wow64);
-
-      g_once_init_leave (&checked, 1);
-    }
-
-  switch (check_type)
-    {
-      case GDK_WIN32_ARM64:
-        return is_arm64;
-        break;
-
-      case GDK_WIN32_WOW64:
-        return is_wow64;
-        break;
-
-      default:
-        g_warning ("unknown CPU check type");
-        return FALSE;
-        break;
-    }
-}
-
-static void
-gdk_win32_display_init (GdkWin32Display *display)
 {
   static gsize checked = 0;
   static gboolean is_arm64 = FALSE;
@@ -1787,16 +1419,6 @@ gdk_win32_display_class_init (GdkWin32DisplayClass *klass)
   display_class->notify_startup_complete = gdk_win32_display_notify_startup_complete;
 
   display_class->get_keymap = _gdk_win32_display_get_keymap;
-  display_class->push_error_trap = gdk_win32_display_push_error_trap;
-  display_class->pop_error_trap = gdk_win32_display_pop_error_trap;
-  display_class->get_selection_owner = _gdk_win32_display_get_selection_owner;
-  display_class->set_selection_owner = _gdk_win32_display_set_selection_owner;
-  display_class->send_selection_notify = _gdk_win32_display_send_selection_notify;
-  display_class->get_selection_property = _gdk_win32_display_get_selection_property;
-  display_class->convert_selection = _gdk_win32_display_convert_selection;
-  display_class->text_property_to_utf8_list = _gdk_win32_display_text_property_to_utf8_list;
-  display_class->utf8_to_string_target = _gdk_win32_display_utf8_to_string_target;
-  display_class->make_gl_context_current = gdk_win32_display_make_gl_context_current;
 
   display_class->get_monitors = gdk_win32_display_get_monitors;
 

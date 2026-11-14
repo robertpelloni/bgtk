@@ -378,15 +378,8 @@ menu_item_removed (int      position,
                    gpointer user_data)
 {
   GNSMenu *menu = user_data;
-  @try
-  {
-    [menu removeItemAtIndex:position];
-  }
-  @catch(NSException *err)
-    {
-      g_critical("GNSMenu removeItemAtIndex: %d raised exception %s", position,
-                 [[err reason] UTF8String]);
-    }
+
+  [menu removeItemAtIndex:position];
 }
 
 @implementation GNSMenu

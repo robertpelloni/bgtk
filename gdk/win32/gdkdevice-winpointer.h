@@ -1,6 +1,5 @@
 /* GDK - The GIMP Drawing Kit
  * Copyright (C) 2020 the BOBGUI team
- * Copyright (C) 2020 the GTK team
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -17,8 +16,6 @@
  */
 
 #pragma once
-#ifndef __GDK_DEVICE_WINPOINTER_H__
-#define __GDK_DEVICE_WINPOINTER_H__
 
 #include <gdk/gdkdeviceprivate.h>
 
@@ -55,9 +52,6 @@ struct _GdkDeviceWinpointer
 
   GdkDeviceTool *tool_pen;
   GdkDeviceTool *tool_eraser;
-  double *last_axis_data;
-  unsigned num_axes;
-  GdkModifierType last_button_mask;
 };
 
 struct _GdkDeviceWinpointerClass
@@ -69,4 +63,3 @@ GType gdk_device_winpointer_get_type (void) G_GNUC_CONST;
 
 G_END_DECLS
 
-#endif /* __GDK_DEVICE_WINPOINTER_H__ */

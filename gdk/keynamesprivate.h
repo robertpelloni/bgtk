@@ -6878,7 +6878,7 @@ NC_("keyboard label", "Begin")
 NC_("keyboard label", "Print")
 NC_("keyboard label", "Insert")
 NC_("keyboard label", "Num_Lock")
-/* Translators: KP_ means “key pad” here */
+/* Translators: KP_ means 'key pad' here */
 NC_("keyboard label", "KP_Space")
 NC_("keyboard label", "KP_Tab")
 NC_("keyboard label", "KP_Enter")

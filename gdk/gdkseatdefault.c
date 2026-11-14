@@ -277,10 +277,6 @@ gdk_seat_default_get_devices (GdkSeat             *seat,
 
 static GList *
 gdk_seat_default_get_tools (GdkSeat *seat)
-static GdkDeviceTool *
-gdk_seat_default_get_tool (GdkSeat *seat,
-                           guint64  serial,
-                           guint64  hw_id)
 {
   GdkSeatDefaultPrivate *priv;
   GdkDeviceTool *tool;
@@ -296,9 +292,6 @@ gdk_seat_default_get_tool (GdkSeat *seat,
     {
       tool = g_ptr_array_index (priv->tools, i);
       tools = g_list_prepend (tools, tool);
-
-      if (tool->serial == serial && tool->hw_id == hw_id)
-        return tool;
     }
 
   return tools;
@@ -446,7 +439,6 @@ gdk_seat_default_remove_tool (GdkSeatDefault *seat,
   priv = gdk_seat_default_get_instance_private (seat);
 
   if (tool != gdk_seat_get_tool (GDK_SEAT (seat), tool->serial, tool->hw_id, tool->type))
-  if (tool != gdk_seat_get_tool (GDK_SEAT (seat), tool->serial, tool->hw_id))
     return;
 
   g_signal_emit_by_name (seat, "tool-removed", tool);

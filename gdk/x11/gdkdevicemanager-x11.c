@@ -51,8 +51,6 @@ _gdk_x11_device_manager_new (GdkDisplay *display)
 
           GDK_DISPLAY_DEBUG (display, INPUT, "Creating XI2 (version %d.%d) device manager",
                                              major, minor);
-          major = 2;
-          minor = 4;
 
           device_manager_xi2 = g_object_new (GDK_TYPE_X11_DEVICE_MANAGER_XI2,
                                              "display", display,
@@ -62,18 +60,6 @@ _gdk_x11_device_manager_new (GdkDisplay *display)
                                              NULL);
 
           return device_manager_xi2;
-              GDK_NOTE (INPUT, g_message ("Creating XI2 (version %d.%d) device manager",
-                                          major, minor));
-
-              device_manager_xi2 = g_object_new (GDK_TYPE_X11_DEVICE_MANAGER_XI2,
-                                                 "display", display,
-                                                 "opcode", opcode,
-                                                 "major", major,
-                                                 "minor", minor,
-                                                 NULL);
-
-              return GDK_DEVICE_MANAGER (device_manager_xi2);
-            }
         }
     }
 

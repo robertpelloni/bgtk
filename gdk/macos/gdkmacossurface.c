@@ -126,7 +126,8 @@ _gdk_macos_surface_frame_presented (GdkMacosSurface *self,
       timings->predicted_presentation_time = presentation_time;
     }
 
-  gdk_surface_thaw_updates (GDK_SURFACE (self));
+  if (GDK_SURFACE_IS_MAPPED (GDK_SURFACE (self)))
+    gdk_surface_thaw_updates (GDK_SURFACE (self));
 }
 
 void

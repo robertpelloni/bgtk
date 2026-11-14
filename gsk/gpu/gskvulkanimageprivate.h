@@ -46,7 +46,6 @@ GskGpuImage *           gsk_vulkan_image_new_dmabuf                     (GskVulk
 GskGpuImage *           gsk_vulkan_image_new_for_dmabuf                 (GskVulkanDevice        *device,
                                                                          gsize                   width,
                                                                          gsize                   height,
-                                                                         GdkColorState          *color_state,
                                                                          const GdkDmabuf        *dmabuf,
                                                                          gboolean                premultiplied,
                                                                          GskGpuConversion        conv);
@@ -91,13 +90,6 @@ VkImageView             gsk_vulkan_image_get_vk_image_view              (GskVulk
 VkFormat                gsk_vulkan_image_get_vk_format                  (GskVulkanImage         *self);
 VkFramebuffer           gsk_vulkan_image_get_vk_framebuffer             (GskVulkanImage         *self,
                                                                          VkRenderPass            pass);
-
-static inline guint
-gsk_vulkan_mipmap_levels (gsize width,
-                          gsize height)
-{
-  return g_bit_nth_msf (MAX (MAX (width, height) - 1, 1), -1) + 1;
-}
 
 G_END_DECLS
 

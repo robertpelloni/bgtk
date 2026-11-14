@@ -74,31 +74,6 @@ void     _gdk_wintab_set_tablet_active (GdkDeviceManagerWin32 *device_manager);
 GdkEvent *gdk_wintab_make_event        (GdkDisplay            *display,
                                         MSG                   *msg,
                                         GdkSurface            *surface);
-typedef void
-(*crossing_cb_t)(GdkDisplay *display,
-                 GdkDevice *device,
-                 GdkWindow *window,
-                 POINT *screen_pt,
-                 guint32 time_);
-
-void     gdk_winpointer_initialize_window (GdkWindow *window);
-gboolean gdk_winpointer_should_forward_message (MSG *msg);
-void     gdk_winpointer_input_events (GdkDisplay *display,
-                                      GdkWindow *window,
-                                      crossing_cb_t crossing_cb,
-                                      MSG *msg);
-gboolean gdk_winpointer_get_message_info (GdkDisplay *display,
-                                          MSG *msg,
-                                          GdkDevice **device,
-                                          guint32 *time_);
-void     gdk_winpointer_interaction_ended (MSG *msg);
-void     gdk_winpointer_finalize_window (GdkWindow *window);
-
-void     _gdk_wintab_set_tablet_active (void);
-gboolean gdk_wintab_input_events       (GdkDisplay *display,
-                                        GdkEvent   *event,
-                                        MSG        *msg,
-                                        GdkWindow  *window);
 
 G_END_DECLS
 

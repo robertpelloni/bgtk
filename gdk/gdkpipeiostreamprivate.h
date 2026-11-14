@@ -24,10 +24,5 @@ G_BEGIN_DECLS
 
 GIOStream *             gdk_pipe_io_stream_new                          (void);
 
-#ifdef GDK_WINDOWING_QUARTZ
-NSArray * _gtk_file_filter_get_as_pattern_nsstrings (GtkFileFilter *filter);
-#endif
-
-
 G_END_DECLS
 

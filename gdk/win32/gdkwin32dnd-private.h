@@ -46,23 +46,6 @@ struct _GdkWin32Drag
 
   /* The drag protocol being used */
   GdkDragProtocol  protocol;
-  guint scale;              /* Temporarily caches the HiDPI scale */
-  gint hot_x;             /* Hotspot offset from the top-left of the drag-window, scaled (can be added to GDK space coordinates) */
-  gint hot_y;
-  gint last_x;            /* Coordinates from last event, in GDK space */
-  gint last_y;
-  gint start_x;           /* Coordinates of the drag start, in GDK space */
-  gint start_y;
-  DWORD last_key_state;     /* Key state from last event */
-  HMONITOR last_monitor;  /* While dragging we keep track of the monitor the cursor
-                             is currently on. As the cursor moves between monitors,
-                             we move the invisible dnd ipc window to the top-left
-                             corner of the current monitor, because OLE2 does not
-                             work correctly if the source window and the dest window
-                             are on monitors with different scales (say one is 125%
-                             and the other 100%) and the drag-initiating application
-                             (effectively driving the DND) is not per-monitor DPI aware
-                           */
 
   /* The surface used for grabs.
    * Usually the same as GdkDrag->source_surface

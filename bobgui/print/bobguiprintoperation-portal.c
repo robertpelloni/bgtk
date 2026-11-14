@@ -510,12 +510,6 @@ prepare_print_response (GDBusConnection *connection,
   if (options)
     g_variant_unref (options);
 
-      if (portal->print_cb)
-	  portal->print_cb (portal->op, portal->parent, portal->do_print, portal->result);
-
-      if (portal->destroy)
-	  portal->destroy (portal);
-    }
   if (portal->loop)
     g_main_loop_quit (portal->loop);
 

@@ -308,7 +308,6 @@ vk_to_char_fuzzy (GdkWin32KeymapLayoutInfo *info,
            * AltGr + q ('@'), but NOT the same as Shift + AltGr + q (not mapped). */
           !(mod_bits & ~KBDSHIFT) &&
           (lock_bits & CAPLOK))
-	  (lock_bits & CAPLOK))
         mod_bits ^= KBDSHIFT;
 
       /* Key supporting combination of capslock + altgr */

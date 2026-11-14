@@ -1059,7 +1059,6 @@ _gdk_device_translate_screen_coord (GdkDevice *device,
 
   axis_width = axis_info.max_value - axis_info.min_value;
 
-G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   if (axis_info.use == GDK_AXIS_X)
     {
       if (axis_width > 0)
@@ -1078,7 +1077,6 @@ G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 
       offset = - surface_root_y;
     }
-G_GNUC_END_IGNORE_DEPRECATIONS
 
   if (axis_value)
     *axis_value = offset + scale * (value - axis_info.min_value);

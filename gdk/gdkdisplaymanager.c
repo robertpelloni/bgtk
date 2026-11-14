@@ -38,8 +38,6 @@
 
 #ifdef GDK_WINDOWING_ANDROID
 #include "android/gdkandroiddisplay-private.h"
-#ifdef GDK_WINDOWING_QUARTZ
-#include "quartz/gdkprivate-quartz.h"
 #endif
 
 #ifdef GDK_WINDOWING_BROADWAY
@@ -57,7 +55,6 @@
 
 #ifdef GDK_WINDOWING_WAYLAND
 #include "wayland/gdkdisplay-wayland.h"
-#include "wayland/gdkprivate-wayland.h"
 #endif
 
 /**
@@ -156,9 +153,6 @@ gdk_display_manager_class_init (GdkDisplayManagerClass *klass)
                   G_TYPE_NONE,
                   1,
                   GDK_TYPE_DISPLAY);
-  g_signal_set_va_marshaller (signals[DISPLAY_OPENED],
-                              G_TYPE_FROM_CLASS (klass),
-                              _gdk_marshal_VOID__OBJECTv);
 
   /**
    * GdkDisplayManager:default-display:

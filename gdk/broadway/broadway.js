@@ -170,19 +170,6 @@ function bytesToDataUri(uint8) {
     return parts.join('');
 }
 
-  const options = {
-    get passive() { // This function will be called when the browser
-                    //   attempts to access the passive property.
-      passiveSupported = true;
-      return false;
-    }
-  };
-
-  window.addEventListener("test", null, options);
-  window.removeEventListener("test", null, options);
-} catch(err) {
-  passiveSupported = false;
-}
 /* Helper functions for debugging */
 var logDiv = null;
 function log(str) {
@@ -195,25 +182,6 @@ function log(str) {
     }
     logDiv.insertBefore(document.createElement('br'), logDiv.firstChild);
     logDiv.insertBefore(document.createTextNode(str), logDiv.firstChild);
-}
-/* Helper functions for touch identifier to make it unique on Android */
-var globalTouchIdentifier = Math.round(Date.now() / 1000);
-function touchIdentifierStart(tId)
-{
-    if (isAndroidChrome) {
-	if (tId == 0) {
-	    return ++globalTouchIdentifier;
-	}
-	return globalTouchIdentifier + tId;
-    }
-    return tId;
-}
-function touchIdentifier(tId)
-{
-    if (isAndroidChrome) {
-	return globalTouchIdentifier + tId;
-    }
-    return tId;
 }
 
 function getStackTrace()
@@ -400,59 +368,6 @@ function cmdCreateSurface(id, x, y, width, height)
 }
 
 function restackSurfaces() {
-function cmdShowSurface(id)
-{
-    var surface = surfaces[id];
-
-    if (surface.visible)
-	return;
-    surface.visible = true;
-
-    var xOffset = surface.x;
-    var yOffset = surface.y;
-
-    surface.toplevelElement.style["left"] = xOffset + "px";
-    surface.toplevelElement.style["top"] = yOffset + "px";
-    surface.toplevelElement.style["visibility"] = "visible";
-
-    restackWindows();
-}
-
-function cmdHideSurface(id)
-{
-    if (grab.window == id)
-	doUngrab();
-
-    var surface = surfaces[id];
-
-    if (!surface.visible)
-	return;
-    surface.visible = false;
-
-    var element = surface.toplevelElement;
-
-    element.style["visibility"] = "hidden";
-}
-
-function cmdSetTransientFor(id, parentId)
-{
-    var surface = surfaces[id];
-
-    if (surface === undefined) return;
-    if (surface.transientParent == parentId)
-	return;
-
-    surface.transientParent = parentId;
-    if (parentId != 0 && surfaces[parentId]) {
-	moveToHelper(surface, stackingOrder.indexOf(surfaces[parentId])+1);
-    }
-
-    if (surface.visible) {
-	restackWindows();
-    }
-}
-
-function restackWindows() {
     for (var i = 0; i < stackingOrder.length; i++) {
         var surface = stackingOrder[i];
         surface.div.style.zIndex = i;
@@ -471,64 +386,12 @@ function moveToHelper(surface, position) {
         var child = surfaces[cid];
         if (child.transientParent == surface.id)
             moveToHelper(child, stackingOrder.indexOf(surface) + 1);
-	var child = surfaces[cid];
-	if (child.transientParent == surface.id) {
-	    moveToHelper(child, stackingOrder.indexOf(surface) + 1);
-	}
     }
 }
 
 function cmdRoundtrip(id, tag)
 {
     sendInput(BROADWAY_EVENT_ROUNDTRIP_NOTIFY, [id, tag]);
-    if (grab.window == id)
-	doUngrab();
-
-    var surface = surfaces[id];
-    var i = stackingOrder.indexOf(surface);
-    if (i >= 0)
-	stackingOrder.splice(i, 1);
-    var canvas = surface.canvas;
-    canvas.parentNode.removeChild(canvas);
-    if (id == windowWithMouse) {
-	windowWithMouse = 0;
-    }
-    if (id == realWindowWithMouse) {
-	realWindowWithMouse = 0;
-	firstTouchDownId = null;
-    }
-    delete surfaces[id];
-}
-
-function cmdMoveResizeSurface(id, has_pos, x, y, has_size, w, h)
-{
-    var surface = surfaces[id];
-    if (has_pos) {
-	surface.positioned = true;
-	surface.x = x;
-	surface.y = y;
-    }
-    if (has_size) {
-	surface.width = w;
-	surface.height = h;
-    }
-
-    if (has_size)
-	resizeCanvas(surface.canvas, w, h);
-
-    if (surface.visible) {
-	if (has_pos) {
-	    var xOffset = surface.x;
-	    var yOffset = surface.y;
-
-	    var element = surface.canvas;
-
-	    element.style["left"] = xOffset + "px";
-	    element.style["top"] = yOffset + "px";
-	}
-    }
-
-    sendConfigureNotify(surface);
 }
 
 function cmdRaiseSurface(id)
@@ -536,10 +399,6 @@ function cmdRaiseSurface(id)
     var surface = surfaces[id];
     if (surface)
         moveToHelper(surface);
-
-    if (surface === undefined) return;
-    moveToHelper(surface);
-    restackWindows();
 }
 
 function cmdLowerSurface(id)
@@ -547,10 +406,6 @@ function cmdLowerSurface(id)
     var surface = surfaces[id];
     if (surface)
         moveToHelper(surface, 0);
-
-    if (surface === undefined) return;
-    moveToHelper(surface, 0);
-    restackWindows();
 }
 
 function TransformNodes(node_data, div, nodes, display_commands) {
@@ -776,9 +631,6 @@ TransformNodes.prototype.insertNode = function(parent, previousSibling, is_tople
     var id = this.decode_uint32();
     var newNode = null;
     var oldNode = null;
-    var imageData = decodeBuffer (context, surface.imageData, w, h, data, debugDecoding);
-    context.imageSmoothingEnabled = false;
-    context.putImageData(imageData, 0, 0);
 
     switch (type)
     {
@@ -1579,7 +1431,6 @@ function updateKeyboardStatus() {
 		                                  // to bring real value here.
 	    }
             fakeInput.focus();
-	    //if (isAndroidChrome) fakeInput.click();
 	}
         else
             fakeInput.blur();
@@ -3185,13 +3036,6 @@ function handleKeyDown(e) {
         if (!ignoreKeyEvent(ev))
             sendInput(BROADWAY_EVENT_KEY_PRESS, [keysym, lastState]);
         suppress = true;
-	// If it is a key or key combination that might trigger
-	// browser behaviors or it has no corresponding keyPress
-	// event, then send it immediately
-	if (!ignoreKeyEvent(ev)) {
-	    sendInput("k", [keysym, lastState]);
-	}
-	suppress = true;
     }
 
     if (! ignoreKeyEvent(ev)) {
@@ -3236,9 +3080,6 @@ function handleKeyPress(e) {
     // Send the translated keysym
     if (keysym > 0)
         sendInput (BROADWAY_EVENT_KEY_PRESS, [keysym, lastState]);
-    if (keysym > 0) {
-	sendInput ("k", [keysym, lastState]);
-    }
 
     // Stop keypress events just in case
     return cancelEvent(ev);
@@ -3253,7 +3094,6 @@ function handleKeyUp(e) {
         keysym = fev.keysym;
     else {
         //log("Key event (keyCode = " + ev.keyCode + ") not found on keyDownList");
-	//log("Key event (keyCode = " + ev.keyCode + ") not found on keyDownList");
 	if (isAndroidChrome && (ev.keyCode == 229)) {
 	    var i, fev = null, len = inputList.length, str;
 	    for (i = 0; i < len; i++) {
@@ -3262,16 +3102,12 @@ function handleKeyUp(e) {
 		case "deleteContentBackward":
 		    sendInput(BROADWAY_EVENT_KEY_PRESS, [65288, lastState]);
 		    sendInput(BROADWAY_EVENT_KEY_RELEASE, [65288, lastState]);
-		    sendInput ("k", [65288, lastState]);
-		    sendInput ("K", [65288, lastState]);
 		    break;
 		case "insertText":
 		    if (fev.data !== undefined) {
 			for (let sym of fev.data) {
 			    sendInput(BROADWAY_EVENT_KEY_PRESS, [sym.codePointAt(0), lastState]);
 			    sendInput(BROADWAY_EVENT_KEY_RELEASE, [sym.codePointAt(0), lastState]);
-			    sendInput ("k", [sym.codePointAt(0), lastState]);
-			    sendInput ("K", [sym.codePointAt(0), lastState]);
 			}
 		    }
 		    break;
@@ -3286,12 +3122,6 @@ function handleKeyUp(e) {
 
     if (keysym > 0)
         sendInput (BROADWAY_EVENT_KEY_RELEASE, [keysym, lastState]);
-	keysym = 0;
-    }
-
-    if (keysym > 0) {
-	sendInput ("K", [keysym, lastState]);
-    }
     return cancelEvent(ev);
 }
 
@@ -3387,7 +3217,6 @@ function onTouchStart(ev) {
         }
 
         sendInput (BROADWAY_EVENT_TOUCH, [0, id, touchId, isEmulated, pos.rootX, pos.rootY, pos.winX, pos.winY, lastState]);
-        sendInput ("t", [0, id, touchId, isEmulated, pos.rootX, pos.rootY, pos.winX, pos.winY, lastState]);
     }
 }
 
@@ -3411,7 +3240,6 @@ function onTouchMove(ev) {
         }
 
         sendInput (BROADWAY_EVENT_TOUCH, [1, id, touchId, isEmulated, pos.rootX, pos.rootY, pos.winX, pos.winY, lastState]);
-        sendInput ("t", [1, id, touchId, isEmulated, pos.rootX, pos.rootY, pos.winX, pos.winY, lastState]);
     }
 }
 
@@ -3436,7 +3264,6 @@ function onTouchEnd(ev) {
         }
 
         sendInput (BROADWAY_EVENT_TOUCH, [2, id, touchId, isEmulated, pos.rootX, pos.rootY, pos.winX, pos.winY, lastState]);
-        sendInput ("t", [2, id, touchId, isEmulated, pos.rootX, pos.rootY, pos.winX, pos.winY, lastState]);
     }
 }
 

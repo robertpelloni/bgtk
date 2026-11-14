@@ -317,9 +317,6 @@ gdk_display_class_init (GdkDisplayClass *class)
 		  G_TYPE_NONE,
 		  1,
 		  G_TYPE_BOOLEAN);
-  g_signal_set_va_marshaller (signals[CLOSED],
-                              G_OBJECT_CLASS_TYPE (object_class),
-                              _gdk_marshal_VOID__BOOLEANv);
 
   /**
    * GdkDisplay::seat-added:
@@ -353,25 +350,6 @@ gdk_display_class_init (GdkDisplayClass *class)
 
   /**
    * GdkDisplay::setting-changed:
-   * GdkDisplay::monitor-added:
-   * @display: the objedct on which the signal is emitted
-   * @monitor: the monitor that was just added
-   *
-   * The ::monitor-added signal is emitted whenever a monitor is
-   * added.
-   *
-   * Since: 3.22
-   */
-  signals[MONITOR_ADDED] =
-    g_signal_new (g_intern_static_string ("monitor-added"),
-		  G_OBJECT_CLASS_TYPE (object_class),
-		  G_SIGNAL_RUN_LAST,
-		  0, NULL, NULL,
-                  NULL,
-		  G_TYPE_NONE, 1, GDK_TYPE_MONITOR);
-
-  /**
-   * GdkDisplay::monitor-removed:
    * @display: the object on which the signal is emitted
    * @setting: the name of the setting that changed
    *
@@ -384,7 +362,6 @@ gdk_display_class_init (GdkDisplayClass *class)
 		  0, NULL, NULL,
                   NULL,
 		  G_TYPE_NONE, 1, G_TYPE_STRING | G_SIGNAL_TYPE_STATIC_SCOPE);
-		  G_TYPE_NONE, 1, GDK_TYPE_MONITOR);
 }
 
 static void
@@ -392,10 +369,6 @@ free_pointer_info (GdkPointerSurfaceInfo *info)
 {
   g_clear_object (&info->surface_under_pointer);
   g_free (info);
-  if (info->toplevel_under_pointer)
-    g_object_unref (info->toplevel_under_pointer);
-  g_clear_object (&info->last_slave);
-  g_slice_free (GdkPointerWindowInfo, info);
 }
 
 static void
@@ -883,38 +856,6 @@ _gdk_display_has_device_grab (GdkDisplay *display,
   return NULL;
 }
 
-GdkTouchGrabInfo *
-_gdk_display_has_touch_grab (GdkDisplay       *display,
-                             GdkDevice        *device,
-                             GdkEventSequence *sequence,
-                             gulong            serial)
-{
-  guint i;
-
-  g_return_val_if_fail (display, NULL);
-
-  if (!display->touch_implicit_grabs)
-    return NULL;
-
-  for (i = 0; i < display->touch_implicit_grabs->len; i++)
-    {
-      GdkTouchGrabInfo *info;
-
-      info = &g_array_index (display->touch_implicit_grabs,
-                             GdkTouchGrabInfo, i);
-
-      if (info->device == device && info->sequence == sequence)
-        {
-          if (serial >= info->serial)
-            return info;
-          else
-            return NULL;
-        }
-    }
-
-  return NULL;
-}
-
 /* Returns true if last grab was ended
  * If if_child is non-NULL, end the grab only if the grabbed
  * surface is the same as if_child or a descendant of it */
@@ -945,67 +886,6 @@ _gdk_display_end_device_grab (GdkDisplay *display,
 }
 
 GdkPointerSurfaceInfo *
-/* Returns TRUE if device events are not blocked by any grab */
-gboolean
-_gdk_display_check_grab_ownership (GdkDisplay *display,
-                                   GdkDevice  *device,
-                                   gulong      serial)
-{
-  GHashTableIter iter;
-  gpointer key, value;
-  GdkGrabOwnership higher_ownership, device_ownership;
-  gboolean device_is_keyboard;
-
-  g_return_val_if_fail (display, TRUE);
-
-  if (!display->device_grabs)
-    return TRUE; /* No hash table, no grabs. */
-
-  g_hash_table_iter_init (&iter, display->device_grabs);
-  higher_ownership = device_ownership = GDK_OWNERSHIP_NONE;
-  device_is_keyboard = (gdk_device_get_source (device) == GDK_SOURCE_KEYBOARD);
-
-  while (g_hash_table_iter_next (&iter, &key, &value))
-    {
-      GdkDeviceGrabInfo *grab;
-      GdkDevice *dev;
-      GList *grabs;
-
-      dev = key;
-      grabs = value;
-      grabs = grab_list_find (grabs, serial);
-
-      if (!grabs)
-        continue;
-
-      /* Discard device if it's not of the same type */
-      if ((device_is_keyboard && gdk_device_get_source (dev) != GDK_SOURCE_KEYBOARD) ||
-          (!device_is_keyboard && gdk_device_get_source (dev) == GDK_SOURCE_KEYBOARD))
-        continue;
-
-      grab = grabs->data;
-
-      if (dev == device)
-        device_ownership = grab->ownership;
-      else
-        {
-          if (grab->ownership > higher_ownership)
-            higher_ownership = grab->ownership;
-        }
-    }
-
-  if (higher_ownership > device_ownership)
-    {
-      /* There's a higher priority ownership
-       * going on for other device(s)
-       */
-      return FALSE;
-    }
-
-  return TRUE;
-}
-
-GdkPointerWindowInfo *
 _gdk_display_get_pointer_info (GdkDisplay *display,
                                GdkDevice  *device)
 {
@@ -2541,7 +2421,7 @@ gdk_display_emit_opened (GdkDisplay *display)
  * gdk_display_get_setting:
  * @display: a `GdkDisplay`
  * @name: the name of the setting
- * @value: (out caller-allocates): location to store the value of the setting
+ * @value: location to store the value of the setting
  *
  * Retrieves a desktop-wide setting such as double-click time
  * for the @display.

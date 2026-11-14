@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.3.0] - 2026-11-13
+### Fixed
+- Restored 150 spliced C sources under `gdk/`, `gsk/`, `bobgui/` from the last clean bobgui commit (`ce1de57f61`) after GTK3-era headers (`gdkmain.h`, `gdkwindow.h`, …) broke GTK4 include paths; 175 post-clean additions (incl. `bobgui/cpp/` wrappers) kept untouched. Spliced copies archived in `scripts/archive/meson-spliced/`.
+- Fixed nested `<gresource>` in `gdk/gen-gdk-gresources-xml.py` and restored spliced `gdk/gdkconfig.h.meson`.
+- Re-applied the gdk template-enum fix (restoration had reverted it): `gdk/meson.build` uses `gnome.mkenums` with `gdkenumtypes.{h,c}.template`.
+- Compile status at release: re-running (`logs/native-compile10.log`); completion tracked in `TODO.md`.
+
 ## [1.2.1] - 2026-11-13
 ### Fixed
 - Native compile blockers, in order: sysprof disabled on Windows (`-Dsysprof=disabled -Dglib:sysprof=disabled`); libffi centricular fork replaced with WrapDB libffi 3.8.0; cairo 1.18.2 → 1.18.4 (MinGW `dcommon.h` duplicate enum operators); unresolved merge conflict resolved in `bobgui/theme/Default/Default-light.scss` (kept bobgui side); `gdk` enum generation switched from `gnome.mkenums_simple` (Windows argument-quoting failure) to template-based `gnome.mkenums` with new `gdk/gdkenumtypes.h.template` / `gdkenumtypes.c.template`.

@@ -289,22 +289,6 @@ gdk_cursor_equal (gconstpointer a,
   if (ca->callback != cb->callback ||
       ca->data != cb->data)
     return FALSE;
-/**
- * gdk_cursor_new_for_display:
- * @display: the #GdkDisplay for which the cursor will be created
- * @cursor_type: cursor to create
- *
- * Creates a new cursor from the set of builtin cursors.
- *
- * Returns: (nullable) (transfer full): a new #GdkCursor, or %NULL on failure
- *
- * Since: 2.2
- **/
-GdkCursor*
-gdk_cursor_new_for_display (GdkDisplay    *display,
-                            GdkCursorType  cursor_type)
-{
-  g_return_val_if_fail (GDK_IS_DISPLAY (display), NULL);
 
   return TRUE;
 }

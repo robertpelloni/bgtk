@@ -528,7 +528,6 @@ enum_monitor (HMONITOR hmonitor,
       DEVMODEW dm;
       DWORD i_monitor;
       DWORD frequency;
-      GdkWin32MonitorRotation orientation;
 
       memset (&dd, 0, sizeof (dd));
       dd.cb = sizeof (dd);
@@ -547,36 +546,12 @@ enum_monitor (HMONITOR hmonitor,
         continue;
 
       dm.dmSize = sizeof (dm);
-      dm.dmDriverExtra = 0;
-      frequency = 0;
-      orientation = GDK_WIN32_MONITOR_ROTATION_UNKNOWN;
 
       /* Grab refresh rate for this adapter while we're at it */
-      if (EnumDisplaySettingsExW (dd.DeviceName, ENUM_CURRENT_SETTINGS, &dm, 0))
-        {
-          if ((dm.dmFields & DM_DISPLAYORIENTATION) == DM_DISPLAYORIENTATION)
-            {
-              switch (dm.dmDisplayOrientation)
-                {
-                default:
-                case DMDO_DEFAULT:
-                  orientation = GDK_WIN32_MONITOR_ROTATION_0;
-                  break;
-                case DMDO_90:
-                  orientation = GDK_WIN32_MONITOR_ROTATION_90;
-                  break;
-                case DMDO_180:
-                  orientation = GDK_WIN32_MONITOR_ROTATION_180;
-                  break;
-                case DMDO_270:
-                  orientation = GDK_WIN32_MONITOR_ROTATION_270;
-                  break;
-                }
-            }
-
-          if ((dm.dmFields & DM_DISPLAYFREQUENCY) == DM_DISPLAYFREQUENCY)
-            frequency = dm.dmDisplayFrequency;
-        }
+      if (EnumDisplaySettingsW (dd.DeviceName, ENUM_CURRENT_SETTINGS, &dm))
+        frequency = dm.dmDisplayFrequency;
+      else
+        frequency = 0;
 
       /* Enumerate monitors connected to this display adapter */
       for (i_monitor = 0; TRUE; i_monitor++)
@@ -727,7 +702,6 @@ enum_monitor (HMONITOR hmonitor,
            * keep remove == TRUE and be removed further up the stack.
            */
           w32mon->remove = FALSE;
-          w32mon->orientation = orientation;
 
           /* One virtual monitor per display adapter */
           if (w32mon->madeup)
@@ -752,58 +726,6 @@ prune_monitors (EnumMonitorData *data)
       if (m->remove)
         g_ptr_array_remove_index (data->monitors, i--);
     }
-}
-
-const gchar *
-_gdk_win32_monitor_get_pixel_structure (GdkMonitor *monitor)
-{
-  GdkWin32Monitor *w32_m;
-  BOOL enabled = TRUE;
-  unsigned int smoothing_orientation = FE_FONTSMOOTHINGORIENTATIONRGB;
-  UINT cleartype = FE_FONTSMOOTHINGCLEARTYPE;
-
-  g_return_val_if_fail (monitor != NULL, NULL);
-
-  w32_m = GDK_WIN32_MONITOR (monitor);
-
-  SystemParametersInfoW (SPI_GETFONTSMOOTHING, 0, &enabled, 0);
-  SystemParametersInfoW (SPI_GETFONTSMOOTHINGTYPE, 0, &cleartype, 0);
-
-  if (!enabled ||
-      (cleartype == FE_FONTSMOOTHINGSTANDARD) ||
-      !SystemParametersInfoW (SPI_GETFONTSMOOTHINGORIENTATION, 0, &smoothing_orientation, 0))
-    return "none";
-
-  if (smoothing_orientation == FE_FONTSMOOTHINGORIENTATIONBGR)
-    switch (w32_m->orientation)
-      {
-      default:
-      case GDK_WIN32_MONITOR_ROTATION_UNKNOWN:
-        return "none";
-      case GDK_WIN32_MONITOR_ROTATION_0:
-        return "bgr";
-      case GDK_WIN32_MONITOR_ROTATION_90:
-        return "vbgr";
-      case GDK_WIN32_MONITOR_ROTATION_180:
-        return "rgb";
-      case GDK_WIN32_MONITOR_ROTATION_270:
-        return "vrgb";
-      }
-  else
-    switch (w32_m->orientation)
-      {
-      default:
-      case GDK_WIN32_MONITOR_ROTATION_UNKNOWN:
-        return "none";
-      case GDK_WIN32_MONITOR_ROTATION_0:
-        return "rgb";
-      case GDK_WIN32_MONITOR_ROTATION_90:
-        return "vrgb";
-      case GDK_WIN32_MONITOR_ROTATION_180:
-        return "bgr";
-      case GDK_WIN32_MONITOR_ROTATION_270:
-        return "vbgr";
-      }
 }
 
 GPtrArray *
@@ -836,50 +758,6 @@ _gdk_win32_display_get_monitor_list (GdkWin32Display *win32_display)
       data.have_monitor_devices = FALSE;
       EnumDisplayMonitors (NULL, NULL, enum_monitor, (LPARAM) &data);
       prune_monitors (&data);
-    }
-
-  _gdk_offset_x = G_MININT;
-  _gdk_offset_y = G_MININT;
-
-  for (i = 0; i < data.monitors->len; i++)
-    {
-      GdkWin32Monitor *m;
-      GdkRectangle rect;
-      int scale;
-
-      m = g_ptr_array_index (data.monitors, i);
-      gdk_monitor_get_geometry (GDK_MONITOR (m), &rect);
-      scale = gdk_monitor_get_scale_factor (GDK_MONITOR (m));
-
-      /* Calculate offset */
-      _gdk_offset_x = MAX (_gdk_offset_x, -rect.x * scale);
-      _gdk_offset_y = MAX (_gdk_offset_y, -rect.y * scale);
-    }
-
-  GDK_NOTE (MISC, g_print ("Multi-monitor offset: (%d,%d)\n",
-                           _gdk_offset_x, _gdk_offset_y));
-
-  /* Translate monitor coords into GDK coordinate space */
-  for (i = 0; i < data.monitors->len; i++)
-    {
-      GdkWin32Monitor *m;
-      GdkRectangle rect;
-      int scale = 0;
-
-      m = g_ptr_array_index (data.monitors, i);
-
-      gdk_monitor_get_geometry (GDK_MONITOR (m), &rect);
-      scale = gdk_monitor_get_scale_factor (GDK_MONITOR (m));
-
-      rect.x += _gdk_offset_x / scale;
-      rect.y += _gdk_offset_y / scale;
-      gdk_monitor_set_position (GDK_MONITOR (m), rect.x, rect.y);
-
-      m->work_rect.x += _gdk_offset_x / scale;
-      m->work_rect.y += _gdk_offset_y / scale;
-
-      GDK_NOTE (MISC, g_print ("Monitor %d: %dx%d@%+d%+d\n", i,
-                               rect.width, rect.height, rect.x, rect.y));
     }
 
   return data.monitors;

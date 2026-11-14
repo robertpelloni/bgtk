@@ -163,8 +163,6 @@ bobgui_printer_cups_finalize (GObject *object)
 
   G_GNUC_END_IGNORE_DEPRECATIONS
 
-  G_GNUC_END_IGNORE_DEPRECATIONS
-
   g_free (printer->media_default);
   g_list_free_full (printer->media_supported, g_free);
   g_list_free_full (printer->media_size_supported, g_free);

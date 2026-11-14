@@ -141,12 +141,6 @@ guint    _gdk_x11_device_xi2_translate_state      (XIModifierState *mods_state,
                                                    XIGroupState    *group_state);
 guint _gdk_x11_device_xi2_gesture_type_to_phase (int evtype, int flags);
 int      _gdk_x11_device_xi2_get_id               (GdkX11DeviceXI2 *device);
-
-#ifdef XINPUT_2_4
-guint _gdk_x11_device_xi2_gesture_type_to_phase (int evtype, int flags);
-#endif
-
-gint     _gdk_x11_device_xi2_get_id               (GdkX11DeviceXI2 *device);
 void     _gdk_device_xi2_unset_scroll_valuators   (GdkX11DeviceXI2 *device);
 
 

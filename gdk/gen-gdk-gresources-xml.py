@@ -61,15 +61,10 @@ xml = '''<?xml version='1.0' encoding='UTF-8'?>
     <file alias='cursor/w-resize'>cursors/w_resize_cursor.png</file>
     <file alias='cursor/zoom-in'>cursors/zoom_in_cursor.png</file>
     <file alias='cursor/zoom-out'>cursors/zoom_out_cursor.png</file>
-  <gresource prefix='/org/gtk/libgdk'>
-
 '''
 
 def get_files(subdir,extension):
   return sorted(filter(lambda x: x.endswith((extension)), os.listdir(os.path.join(srcdir,subdir))))
-
-for f in get_files('resources/glsl', '.glsl'):
-  xml += '    <file alias=\'glsl/{0}\'>resources/glsl/{0}</file>\n'.format(f)
 
 xml += '''
   </gresource>
@@ -81,8 +76,5 @@ if len(sys.argv) > 2:
   with open(tmpfile, 'w') as f:
     f.write(xml)
   replace_if_changed(tmpfile, outfile)
-  f = open(outfile, 'w', encoding='utf-8')
-  f.write(xml)
-  f.close()
 else:
   print(xml)

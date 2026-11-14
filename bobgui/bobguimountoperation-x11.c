@@ -96,7 +96,7 @@ get_cardinal (GdkDisplay *display,
 
   gdk_x11_display_error_trap_push (display);
   type = None;
-  result = XGetWindowProperty (GDK_DISPLAY_XDISPLAY (display),
+  result = XGetWindowProperty (xdisplay,
                                xwindow,
                                atom,
                                0, G_MAXLONG,
@@ -142,7 +142,7 @@ get_utf8_property (GdkDisplay *display,
   gdk_x11_display_error_trap_push (display);
   type = None;
   val = NULL;
-  result = XGetWindowProperty (GDK_DISPLAY_XDISPLAY (display),
+  result = XGetWindowProperty (xdisplay,
                                xwindow,
                                atom,
                                0, G_MAXLONG,
@@ -364,7 +364,7 @@ read_rgb_icon (GdkDisplay *display,
   gdk_x11_display_error_trap_push (display);
   type = None;
   data = NULL;
-  result = XGetWindowProperty (GDK_DISPLAY_XDISPLAY (display),
+  result = XGetWindowProperty (xdisplay,
                                xwindow,
                                gdk_x11_get_xatom_by_name_for_display (display, "_NET_WM_ICON"),
                                0, G_MAXLONG,
@@ -491,7 +491,7 @@ get_window_list (GdkDisplay *display,
 
   gdk_x11_display_error_trap_push (display);
   type = None;
-  result = XGetWindowProperty (GDK_DISPLAY_XDISPLAY (display),
+  result = XGetWindowProperty (xdisplay,
                                xwindow,
                                atom,
                                0, G_MAXLONG,

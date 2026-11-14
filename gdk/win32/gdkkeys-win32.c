@@ -18,8 +18,6 @@
 /*
  * Modified by the BOBGUI+ Team and others 1997-2000.  See the AUTHORS
  * file for a list of people on the BOBGUI+ Team.  See the ChangeLog
- * Modified by the GTK+ Team and others 1997-2020.  See the AUTHORS
- * file for a list of people on the GTK+ Team.  See the ChangeLog
  * files for a list of changes.  These files are distributed with
  * BOBGUI+ at ftp://ftp.bobgui.org/pub/bobgui/.
  */
@@ -44,14 +42,6 @@
 #include <errno.h>
 
 #define GDK_MOD2_MASK (1 << 4)
-
-#include "gdkprivate-win32.h"
-#include "gdkinternals.h"
-#include "gdkkeysyms.h"
-#include "gdkkeysprivate.h"
-#include "gdkwin32keys.h"
-
-#include "gdkkeys-win32.h"
 
 /* GdkWin32Keymap */
 
@@ -88,9 +78,6 @@ struct _GdkWin32Keymap
 G_DEFINE_TYPE (GdkWin32Keymap, gdk_win32_keymap, GDK_TYPE_KEYMAP)
 
 /* forward declarations */
-guint _gdk_keymap_serial = 0;
-static GdkKeymap *default_keymap = NULL;
-
 static void update_keymap              (GdkWin32Keymap *gdk_keymap);
 static void clear_keyboard_layout_info (gpointer        data);
 
@@ -111,7 +98,6 @@ gdk_win32_keymap_init (GdkWin32Keymap *keymap)
 
   keymap->layout_handles = g_array_new (FALSE, FALSE,
                                         sizeof (GdkWin32KeymapLayoutInfo));
-
   keymap->active_layout = 0;
 
   keymap->gdkwin32_keymap_impl = &gdkwin32_keymap_impl;
@@ -127,7 +113,6 @@ gdk_win32_keymap_constructed (GObject *object)
   GdkWin32Keymap *keymap;
 
   keymap = GDK_WIN32_KEYMAP (object);
-
   update_keymap (keymap);
 }
 
@@ -600,487 +585,6 @@ gdk_mod_mask_to_mod_bits (GdkModifierType mod_mask)
 static void
 update_keymap (GdkWin32Keymap *keymap)
 {
-}
-
-static void
-init_vk_lookup_table (GdkWin32Keymap           *keymap,
-                      GdkWin32KeymapLayoutInfo *info)
-{
-  keymap->gdkwin32_keymap_impl->init_vk_lookup_table (info);
-}
-
-static BYTE
-keystate_to_modbits (GdkWin32Keymap           *keymap,
-                     GdkWin32KeymapLayoutInfo *info,
-                     const BYTE                keystate[256])
-{
-  return keymap->gdkwin32_keymap_impl->keystate_to_modbits (info, keystate);
-}
-
-static BYTE
-modbits_to_level (GdkWin32Keymap           *keymap,
-                  GdkWin32KeymapLayoutInfo *info,
-                  BYTE                      modbits)
-{
-  return keymap->gdkwin32_keymap_impl->modbits_to_level (info, modbits);
-}
-
-static WCHAR
-vk_to_char_fuzzy (GdkWin32Keymap           *keymap,
-                  GdkWin32KeymapLayoutInfo *info,
-                  BYTE                      mod_bits,
-                  BYTE                      lock_bits,
-                  BYTE                     *consumed_mod_bits,
-                  gboolean                 *is_dead,
-                  BYTE                      vk)
-{
-  return keymap->gdkwin32_keymap_impl->vk_to_char_fuzzy (info, mod_bits, lock_bits,
-                                                         consumed_mod_bits, is_dead, vk);
-}
-
-/*
- * Return the keyboard layout according to the user's keyboard layout
- * substitution preferences.
- *
- * The result is heap-allocated and should be freed with g_free().
- */
-static char*
-get_keyboard_layout_substituted_name (const char *layout_name)
-{
-  HKEY     hkey     = 0;
-  DWORD    var_type = REG_SZ;
-  char    *result   = NULL;
-  DWORD    buf_len  = 0;
-  LSTATUS  status;
-
-  static const char *substitute_path = "Keyboard Layout\\Substitutes";
-
-  status = RegOpenKeyExA (HKEY_CURRENT_USER, substitute_path, 0,
-                          KEY_QUERY_VALUE, &hkey);
-  if (status != ERROR_SUCCESS)
-    {
-      /* No substitute set for this value, not sure if this is a normal case */
-      g_warning("Could not open registry key '%s'. Error code: %d",
-                substitute_path, (int)status);
-
-      goto fail1;
-    }
-
-  status = RegQueryValueExA (hkey, layout_name, 0, &var_type, 0, &buf_len);
-  if (status != ERROR_SUCCESS)
-    {
-      g_debug("Could not query registry key '%s\\%s'. Error code: %d",
-              substitute_path, layout_name, (int)status);
-      goto fail2;
-    }
-
-  /* Allocate buffer */
-  result = (char*) g_malloc (buf_len);
-
-  /* Retrieve substitute name */
-  status = RegQueryValueExA (hkey, layout_name, 0, &var_type,
-                             (LPBYTE) result, &buf_len);
-  if (status != ERROR_SUCCESS)
-    {
-      g_warning("Could not obtain registry value at key '%s\\%s'. "
-                "Error code: %d",
-                substitute_path, layout_name, (int)status);
-      goto fail3;
-    }
-
-  RegCloseKey (hkey);
-  return result;
-
-fail3:
-  g_free (result);
-fail2:
-  RegCloseKey (hkey);
-fail1:
-  return NULL;
-}
-
-/* 
- * Get the file path of the keyboard layout dll.
- * The result is heap-allocated and should be freed with g_free().
- */
-static char*
-get_keyboard_layout_file (const char *layout_name)
-{
-  char    *final_layout_name = NULL;
-  HKEY     hkey              = 0;
-  DWORD    var_type          = REG_SZ;
-  char    *result            = NULL;
-  DWORD    file_name_len     = 0;
-  int      dir_len           = 0;
-  int      buf_len           = 0;
-  LSTATUS  status;
-
-  static const char prefix[] = "SYSTEM\\CurrentControlSet\\Control\\"
-                               "Keyboard Layouts\\";
-  char kbdKeyPath[sizeof (prefix) + KL_NAMELENGTH];
-
-  /* The user may have a keyboard substitute configured */
-  final_layout_name = get_keyboard_layout_substituted_name (layout_name);
-  if (final_layout_name != NULL)
-    {
-      g_debug ("Substituting keyboard layout name from '%s' to '%s'",
-               layout_name, final_layout_name);
-      g_snprintf (kbdKeyPath, sizeof (prefix) + KL_NAMELENGTH, "%s%s",
-                  prefix, final_layout_name);
-      g_free (final_layout_name);
-      final_layout_name = NULL;
-    }
-  else
-    {
-      g_debug ("Could not get substitute keyboard layout name for '%s', "
-               "will use '%s' directly", layout_name, layout_name);
-      g_snprintf (kbdKeyPath, sizeof (prefix) + KL_NAMELENGTH, "%s%s",
-                  prefix, layout_name);
-    }
-
-  status = RegOpenKeyExA (HKEY_LOCAL_MACHINE, (LPCSTR) kbdKeyPath, 0,
-                          KEY_QUERY_VALUE, &hkey);
-  if (status != ERROR_SUCCESS)
-    {
-      g_warning("Could not open registry key '%s'. Error code: %d",
-                kbdKeyPath, (int)status);
-      goto fail1;
-    }
-
-  /* Get sizes */
-  status = RegQueryValueExA (hkey, "Layout File", 0, &var_type, 0,
-                             &file_name_len);
-  if (status != ERROR_SUCCESS)
-    {
-      g_warning("Could not query registry key '%s\\Layout File'. Error code: %d",
-                kbdKeyPath, (int)status);
-      goto fail2;
-    }
-
-  dir_len = GetSystemDirectoryA (0, 0); /* includes \0 */
-  if (dir_len == 0)
-    {
-      g_warning("GetSystemDirectoryA failed. Error: %d", (int)GetLastError());
-      goto fail2;
-    }
-
-  /* Allocate buffer */
-  buf_len = dir_len + (int) strlen ("\\") + file_name_len;
-  result = (char*) g_malloc (buf_len);
-
-  /* Append system directory. The -1 is because dir_len includes \0 */
-  if (GetSystemDirectoryA (&result[0], dir_len) != dir_len - 1)
-    goto fail3;
-
-  /* Append directory separator */
-  result[dir_len - 1] = '\\';
-
-  /* Append file name */
-  status = RegQueryValueExA (hkey, "Layout File", 0, &var_type,
-                             (LPBYTE) &result[dir_len], &file_name_len);
-  if (status != ERROR_SUCCESS)
-    {
-      goto fail3;
-    }
-
-  result[dir_len + file_name_len] = '\0';
-
-  RegCloseKey (hkey);
-  return result;
-
-fail3:
-  g_free (result);
-fail2:
-  RegCloseKey (hkey);
-fail1:
-  return NULL;
-}
-
-static void
-clear_keyboard_layout_info (gpointer data)
-{
-  GdkWin32KeymapLayoutInfo *layout_info = (GdkWin32KeymapLayoutInfo*) data;
-
-  g_free (layout_info->file);
-
-  if (layout_info->key_entries != NULL)
-    g_array_unref (layout_info->key_entries);
-
-  if (layout_info->reverse_lookup_table != NULL)
-    g_hash_table_destroy (layout_info->reverse_lookup_table);
-
-  if (layout_info->lib != NULL)
-    FreeLibrary (layout_info->lib);
-
-  memset (layout_info, 0, sizeof (GdkWin32KeymapLayoutInfo));
-}
-
-#define DEFINE_SPECIAL(map)                 \
-  map (VK_CANCEL,     GDK_KEY_Cancel)       \
-  map (VK_BACK,       GDK_KEY_BackSpace)    \
-  map (VK_CLEAR,      GDK_KEY_Clear)        \
-  map (VK_RETURN,     GDK_KEY_Return)       \
-  map (VK_LSHIFT,     GDK_KEY_Shift_L)      \
-  map (VK_LCONTROL,   GDK_KEY_Control_L)    \
-  map (VK_LMENU,      GDK_KEY_Alt_L)        \
-  map (VK_PAUSE,      GDK_KEY_Pause)        \
-  map (VK_ESCAPE,     GDK_KEY_Escape)       \
-  map (VK_PRIOR,      GDK_KEY_Prior)        \
-  map (VK_NEXT,       GDK_KEY_Next)         \
-  map (VK_END,        GDK_KEY_End)          \
-  map (VK_HOME,       GDK_KEY_Home)         \
-  map (VK_LEFT,       GDK_KEY_Left)         \
-  map (VK_UP,         GDK_KEY_Up)           \
-  map (VK_RIGHT,      GDK_KEY_Right)        \
-  map (VK_DOWN,       GDK_KEY_Down)         \
-  map (VK_SELECT,     GDK_KEY_Select)       \
-  map (VK_PRINT,      GDK_KEY_Print)        \
-  map (VK_EXECUTE,    GDK_KEY_Execute)      \
-  map (VK_INSERT,     GDK_KEY_Insert)       \
-  map (VK_DELETE,     GDK_KEY_Delete)       \
-  map (VK_HELP,       GDK_KEY_Help)         \
-  map (VK_LWIN,       GDK_KEY_Meta_L)       \
-  map (VK_RWIN,       GDK_KEY_Meta_R)       \
-  map (VK_APPS,       GDK_KEY_Menu)         \
-  map (VK_DECIMAL,    GDK_KEY_KP_Decimal)   \
-  map (VK_MULTIPLY,   GDK_KEY_KP_Multiply)  \
-  map (VK_ADD,        GDK_KEY_KP_Add)       \
-  map (VK_SEPARATOR,  GDK_KEY_KP_Separator) \
-  map (VK_SUBTRACT,   GDK_KEY_KP_Subtract)  \
-  map (VK_DIVIDE,     GDK_KEY_KP_Divide)    \
-  map (VK_NUMPAD0,    GDK_KEY_KP_0)         \
-  map (VK_NUMPAD1,    GDK_KEY_KP_1)         \
-  map (VK_NUMPAD2,    GDK_KEY_KP_2)         \
-  map (VK_NUMPAD3,    GDK_KEY_KP_3)         \
-  map (VK_NUMPAD4,    GDK_KEY_KP_4)         \
-  map (VK_NUMPAD5,    GDK_KEY_KP_5)         \
-  map (VK_NUMPAD6,    GDK_KEY_KP_6)         \
-  map (VK_NUMPAD7,    GDK_KEY_KP_7)         \
-  map (VK_NUMPAD8,    GDK_KEY_KP_8)         \
-  map (VK_NUMPAD9,    GDK_KEY_KP_9)         \
-  map (VK_F1,         GDK_KEY_F1)           \
-  map (VK_F2,         GDK_KEY_F2)           \
-  map (VK_F3,         GDK_KEY_F3)           \
-  map (VK_F4,         GDK_KEY_F4)           \
-  map (VK_F5,         GDK_KEY_F5)           \
-  map (VK_F6,         GDK_KEY_F6)           \
-  map (VK_F7,         GDK_KEY_F7)           \
-  map (VK_F8,         GDK_KEY_F8)           \
-  map (VK_F9,         GDK_KEY_F9)           \
-  map (VK_F10,        GDK_KEY_F10)          \
-  map (VK_F11,        GDK_KEY_F11)          \
-  map (VK_F12,        GDK_KEY_F12)          \
-  map (VK_F13,        GDK_KEY_F13)          \
-  map (VK_F14,        GDK_KEY_F14)          \
-  map (VK_F15,        GDK_KEY_F15)          \
-  map (VK_F16,        GDK_KEY_F16)          \
-  map (VK_F17,        GDK_KEY_F17)          \
-  map (VK_F18,        GDK_KEY_F18)          \
-  map (VK_F19,        GDK_KEY_F19)          \
-  map (VK_F20,        GDK_KEY_F20)          \
-  map (VK_F21,        GDK_KEY_F21)          \
-  map (VK_F22,        GDK_KEY_F22)          \
-  map (VK_F23,        GDK_KEY_F23)          \
-  map (VK_F24,        GDK_KEY_F24)          \
-  map (VK_NUMLOCK,    GDK_KEY_Num_Lock)     \
-  map (VK_SCROLL,     GDK_KEY_Scroll_Lock)  \
-  map (VK_RSHIFT,     GDK_KEY_Shift_R)      \
-  map (VK_RCONTROL,   GDK_KEY_Control_R)    \
-  map (VK_RMENU,      GDK_KEY_Alt_R)        \
-  map (VK_CAPITAL,    GDK_KEY_Caps_Lock)
-
-
-#define DEFINE_DEAD(map)                                                      \
-  map ('"',                          /* 0x022 */ GDK_KEY_dead_diaeresis)      \
-  map ('\'',                         /* 0x027 */ GDK_KEY_dead_acute)          \
-  map (GDK_KEY_asciicircum,          /* 0x05e */ GDK_KEY_dead_circumflex)     \
-  map (GDK_KEY_grave,                /* 0x060 */ GDK_KEY_dead_grave)          \
-  map (GDK_KEY_asciitilde,           /* 0x07e */ GDK_KEY_dead_tilde)          \
-  map (GDK_KEY_diaeresis,            /* 0x0a8 */ GDK_KEY_dead_diaeresis)      \
-  map (GDK_KEY_degree,               /* 0x0b0 */ GDK_KEY_dead_abovering)      \
-  map (GDK_KEY_acute,                /* 0x0b4 */ GDK_KEY_dead_acute)          \
-  map (GDK_KEY_periodcentered,       /* 0x0b7 */ GDK_KEY_dead_abovedot)       \
-  map (GDK_KEY_cedilla,              /* 0x0b8 */ GDK_KEY_dead_cedilla)        \
-  map (GDK_KEY_breve,                /* 0x1a2 */ GDK_KEY_dead_breve)          \
-  map (GDK_KEY_ogonek,               /* 0x1b2 */ GDK_KEY_dead_ogonek)         \
-  map (GDK_KEY_caron,                /* 0x1b7 */ GDK_KEY_dead_caron)          \
-  map (GDK_KEY_doubleacute,          /* 0x1bd */ GDK_KEY_dead_doubleacute)    \
-  map (GDK_KEY_abovedot,             /* 0x1ff */ GDK_KEY_dead_abovedot)       \
-  map (0x1000384,              /* Greek tonos */ GDK_KEY_dead_acute)          \
-  map (GDK_KEY_Greek_accentdieresis, /* 0x7ae */ GDK_KEY_Greek_accentdieresis)
-
-
-static guint
-vk_and_mod_bits_to_gdk_keysym (GdkWin32Keymap     *keymap,
-                               GdkWin32KeymapLayoutInfo *info,
-                               guint               vk,
-                               BYTE                mod_bits,
-                               BYTE                lock_bits,
-                               BYTE               *consumed_mod_bits)
-
-{
-  gboolean is_dead = FALSE;
-  gunichar c;
-  guint    sym;
-
-  if (consumed_mod_bits)
-    *consumed_mod_bits = 0;
-
-  /* Handle special key: Tab */
-  if (vk == VK_TAB)
-    {
-      if (consumed_mod_bits)
-        *consumed_mod_bits = mod_bits & KBDSHIFT;
-      return (mod_bits & KBDSHIFT) ? GDK_KEY_ISO_Left_Tab : GDK_KEY_Tab;
-    }
-
-  /* Handle other special keys */
-  switch (vk)
-    {
-      #define MAP(a_vk, a_gdk) case a_vk: return a_gdk;
-
-      DEFINE_SPECIAL (MAP)
-
-      /* Non-bijective mappings: */
-      MAP (VK_SHIFT,    GDK_KEY_Shift_L)
-      MAP (VK_CONTROL,  GDK_KEY_Control_L)
-      MAP (VK_MENU,     GDK_KEY_Alt_L)
-      MAP (VK_SNAPSHOT, GDK_KEY_Print)
-
-      #undef MAP
-    }
-
-  /* Handle regular keys (including dead keys) */
-  c = vk_to_char_fuzzy (keymap, info, mod_bits, lock_bits,
-                        consumed_mod_bits, &is_dead, vk);
-
-  if (c == WCH_NONE)
-    return GDK_KEY_VoidSymbol;
-
-  sym = gdk_unicode_to_keyval (c);
-
-  if (is_dead)
-    {
-      switch (sym)
-	{
-	  #define MAP(a_nondead, a_dead) case a_nondead: return a_dead;
-	  DEFINE_DEAD (MAP)
-	  #undef MAP
-	}
-    }
-
-  return sym;
-}
-
-static gint
-gdk_keysym_to_key_entry_index (GdkWin32KeymapLayoutInfo *info,
-                               guint               sym)
-{
-  gunichar c;
-  gintptr  index;
-
-  if (info->reverse_lookup_table == NULL)
-    return -1;
-
-  /* Special cases */
-  if (sym == GDK_KEY_Tab)
-    return VK_TAB;
-  if (sym == GDK_KEY_ISO_Left_Tab)
-    return 256;
-
-  /* Generic non-printable keys */
-  switch (sym)
-    {
-      #define MAP(a_vk, a_gdk) case a_gdk: return a_vk;
-      DEFINE_SPECIAL (MAP)
-      #undef MAP
-    }
-
-  /* Fix up dead keys */
-  #define MAP(a_nondead, a_dead) \
-    if (sym == a_dead)           \
-      sym = a_nondead;
-  DEFINE_DEAD (MAP)
-  #undef MAP
-
-  /* Try converting to Unicode and back */
-  c = gdk_keyval_to_unicode (sym);
-
-  index = -1;
-  if (g_hash_table_lookup_extended (info->reverse_lookup_table,
-                                    GINT_TO_POINTER (c),
-                                    NULL, (gpointer*) &index))
-    {
-      return index;
-    }
-  else
-    {
-      return -1;
-    }
-}
-
-static GdkModifierType
-mod_bits_to_gdk_mod_mask (BYTE mod_bits)
-{
-  GdkModifierType result = 0;
-  if (mod_bits & KBDSHIFT)
-    result |= GDK_SHIFT_MASK;
-  if (mod_bits & KBDCTRL)
-    result |= GDK_CONTROL_MASK;
-  if (mod_bits & KBDALT)
-    result |= GDK_MOD1_MASK;
-  if ((mod_bits & KBDALTGR) == KBDALTGR)
-    result |= GDK_MOD2_MASK;
-  if (mod_bits & KBDKANA)
-    result |= GDK_MOD3_MASK;
-  if (mod_bits & KBDROYA)
-    result |= GDK_MOD4_MASK;
-  if (mod_bits & KBDLOYA)
-    result |= GDK_MODIFIER_RESERVED_13_MASK;
-  if (mod_bits & KBDGRPSELTAP)
-    result |= GDK_MODIFIER_RESERVED_14_MASK;
-  return result;
-}
-
-static BYTE
-gdk_mod_mask_to_mod_bits (GdkModifierType mod_mask)
-{
-  BYTE result = 0;
-  if (mod_mask & GDK_SHIFT_MASK)
-    result |= KBDSHIFT;
-  if (mod_mask & GDK_CONTROL_MASK)
-    result |= KBDCTRL;
-  if (mod_mask & GDK_MOD1_MASK)
-    result |= KBDALT;
-  if (mod_mask & GDK_MOD2_MASK)
-    result |= KBDALTGR;
-  if (mod_mask & GDK_MOD3_MASK)
-    result |= KBDKANA;
-  if (mod_mask & GDK_MOD4_MASK)
-    result |= KBDROYA;
-  if (mod_mask & GDK_MODIFIER_RESERVED_13_MASK)
-    result |= KBDLOYA;
-  if (mod_mask & GDK_MODIFIER_RESERVED_14_MASK)
-    result |= KBDGRPSELTAP;
-  return result;
-}
-
-
-/* keypad decimal mark depends on active keyboard layout
- * return current decimal mark as unicode character
- */
-guint32
-_gdk_win32_keymap_get_decimal_mark (GdkWin32Keymap *keymap)
-{
-  guint32 c = MapVirtualKeyW (VK_DECIMAL, MAPVK_VK_TO_CHAR);
-  if (!c)
-    c = (guint32) '.';
-  return c;
-}
-
-static void
-update_keymap (GdkWin32Keymap *keymap)
-{
   HKL  current_layout;
   BOOL changed = FALSE;
   int  n_layouts;
@@ -1089,8 +593,6 @@ update_keymap (GdkWin32Keymap *keymap)
 
 
   if (keymap->current_serial == gdk_win32_display_get_keymap_serial (display) &&
-
-  if (keymap->current_serial == _gdk_keymap_serial &&
       keymap->layout_handles->len > 0)
     {
       return;
@@ -1160,9 +662,6 @@ update_keymap (GdkWin32Keymap *keymap)
     }
 
   keymap->current_serial = gdk_win32_display_get_keymap_serial (display);
-    ActivateKeyboardLayout (current_layout, 0);
-
-  keymap->current_serial = _gdk_keymap_serial;
 }
 
 guint8
@@ -1205,26 +704,6 @@ _gdk_win32_keymap_get_active_group (GdkWin32Keymap *keymap)
 
   return 0;
 }
-
-GdkModifierType
-_gdk_win32_keymap_get_mod_mask (GdkWin32Keymap *keymap)
-{
-  GdkWin32KeymapLayoutInfo *layout_info;
-  BYTE                      keystate[256] = {0};
-  BYTE                      mod_bits;
-    
-  update_keymap (keymap);
-
-  layout_info = &g_array_index (keymap->layout_infos, GdkWin32KeymapLayoutInfo,
-                                keymap->active_layout);
-    
-  GetKeyboardState (keystate);
-    
-  mod_bits = keystate_to_modbits (keymap, layout_info, keystate);
-
-  return mod_bits_to_gdk_mod_mask (mod_bits);
-}
-
 
 GdkModifierType
 _gdk_win32_keymap_get_mod_mask (GdkWin32Keymap *keymap)
@@ -1297,12 +776,6 @@ gdk_win32_keymap_have_bidi_layouts (GdkKeymap *gdk_keymap)
 
   keymap = GDK_WIN32_KEYMAP (gdk_keymap);
 
-  gint            group;
-  
-  g_return_val_if_fail (GDK_IS_KEYMAP (gdk_keymap), FALSE);
-
-  keymap = GDK_WIN32_KEYMAP (gdk_keymap);
-
   update_keymap (keymap);
 
   for (group = 0; group < keymap->layout_handles->len; group++)
@@ -1351,15 +824,7 @@ gdk_win32_keymap_get_entries_for_keyval (GdkKeymap     *gdk_keymap,
   guint           len = retval->len;
 
   g_return_val_if_fail (GDK_IS_KEYMAP (gdk_keymap), FALSE);
-  GArray         *retval;
-  gint            group;
-
-  g_return_val_if_fail (GDK_IS_KEYMAP (gdk_keymap), FALSE);
-  g_return_val_if_fail (keys != NULL, FALSE);
-  g_return_val_if_fail (n_keys != NULL, FALSE);
   g_return_val_if_fail (keyval != 0, FALSE);
-
-  keymap = GDK_WIN32_KEYMAP (gdk_keymap);
 
   keymap = GDK_WIN32_KEYMAP (gdk_keymap);
 
@@ -1371,7 +836,6 @@ gdk_win32_keymap_get_entries_for_keyval (GdkKeymap     *gdk_keymap,
                                                        GdkWin32KeymapLayoutInfo,
                                                        group);
       int entry_index = gdk_keysym_to_key_entry_index (info, keyval);
-      gint entry_index = gdk_keysym_to_key_entry_index (info, keyval);
 
       while (entry_index >= 0)
         {
@@ -1423,25 +887,6 @@ gdk_win32_keymap_get_entries_for_keyval (GdkKeymap     *gdk_keymap,
    }
 
   return retval->len > len;
-
-          entry_index = entry->next;
-        }
-   }
-
-  if (retval->len > 0)
-    {
-      *keys = (GdkKeymapKey*) retval->data;
-      *n_keys = retval->len;
-    }
-  else
-    {
-      *keys = NULL;
-      *n_keys = 0;
-    }
-
-  g_array_free (retval, retval->len > 0 ? FALSE : TRUE);
-
-  return *n_keys > 0;
 }
 
 static gboolean
@@ -1455,7 +900,6 @@ gdk_win32_keymap_get_entries_for_keycode (GdkKeymap     *gdk_keymap,
   GArray         *key_array;
   GArray         *keyval_array;
   int             group;
-  gint            group;
   BYTE            vk;
 
   g_return_val_if_fail (GDK_IS_KEYMAP (gdk_keymap), FALSE);
@@ -1543,10 +987,6 @@ gdk_win32_keymap_lookup_key (GdkKeymap          *gdk_keymap,
   if (key->level < 0 || key->level > info->max_level)
     return 0;
 
-    return 0;
-  if (key->level < 0 || key->level > info->max_level)
-    return 0;
-  
   modbits = info->level_to_modbits[key->level];
   sym = vk_and_mod_bits_to_gdk_keysym (keymap, info, key->keycode, modbits, 0, NULL);
 
@@ -1570,8 +1010,6 @@ gdk_win32_keymap_translate_keyboard_state (GdkKeymap       *gdk_keymap,
   guint                     tmp_keyval;
   int                       tmp_effective_group;
   int                       tmp_level;
-  gint                      tmp_effective_group;
-  gint                      tmp_level;
   BYTE                      consumed_mod_bits;
 
   GdkWin32KeymapLayoutInfo *layout_info;
@@ -1646,10 +1084,6 @@ gdk_win32_keymap_translate_keyboard_state (GdkKeymap       *gdk_keymap,
 
 static char **
 gdk_win32_keymap_get_layout_names (GdkKeymap *gdk_keymap)
-
-static void
-gdk_win32_keymap_add_virtual_modifiers (GdkKeymap       *keymap,
-                                        GdkModifierType *state)
 {
   GdkWin32Keymap *keymap = GDK_WIN32_KEYMAP (gdk_keymap);
 
@@ -1714,7 +1148,7 @@ gdk_win32_keymap_get_active_layout_index (GdkKeymap *gdk_keymap)
 static void
 gdk_win32_keymap_class_init (GdkWin32KeymapClass *klass)
 {
-  GObjectClass   *object_class = G_OBJECT_CLASS (klass);
+  GObjectClass *object_class = G_OBJECT_CLASS (klass);
   GdkKeymapClass *keymap_class = GDK_KEYMAP_CLASS (klass);
 
   object_class->constructed = gdk_win32_keymap_constructed;

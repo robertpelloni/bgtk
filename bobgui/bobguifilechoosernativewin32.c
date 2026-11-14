@@ -50,9 +50,6 @@ typedef struct {
 
   IFileDialogEvents *events;
 
-  GtkWidget *grab_widget;
-
-  IFileDialogEvents *events;
   HWND parent;
   gboolean skip_response;
   gboolean save;

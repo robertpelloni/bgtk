@@ -65,6 +65,7 @@ struct _GdkX11DeviceXI2Class
 
 G_DEFINE_TYPE (GdkX11DeviceXI2, gdk_x11_device_xi2, GDK_TYPE_DEVICE)
 
+
 static void gdk_x11_device_xi2_finalize     (GObject      *object);
 static void gdk_x11_device_xi2_get_property (GObject      *object,
                                              guint         prop_id,
@@ -617,7 +618,6 @@ _gdk_x11_device_xi2_translate_event_mask (GdkX11DeviceManagerXI2 *device_manager
 
 #ifdef XINPUT_2_4
   /* XInput 2.4 includes touchpad gesture support */
-  /* XInput 2.4 includes multitouch support */
   if (minor >= 4 &&
       event_mask & GDK_TOUCHPAD_GESTURE_MASK)
     {

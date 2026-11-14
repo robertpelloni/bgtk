@@ -93,29 +93,5 @@ BOOL      gdk_win32_private_wglMakeCurrent       (HDC hdc,
                                                   HGLRC hglrc);
 void      gdk_win32_private_wglDeleteContext     (HGLRC hglrc);
 
-void
-_gdk_win32_window_invalidate_egl_framebuffer (GdkWindow *window);
-#include "gdkvisual.h"
-#include "gdkwindow.h"
-
-G_BEGIN_DECLS
-
-void
-gdk_win32_window_invalidate_egl_framebuffer (GdkWindow      *window);
-
-GdkGLContext *
-gdk_win32_window_create_gl_context          (GdkWindow      *window,
-                                             gboolean        attached,
-                                             GdkGLContext   *share,
-                                             GError        **error);
-
-void
-gdk_win32_window_invalidate_for_new_frame   (GdkWindow      *window,
-                                             cairo_region_t *update_area);
-
-gboolean
-gdk_win32_display_make_gl_context_current   (GdkDisplay     *display,
-                                             GdkGLContext   *context);
-
 G_END_DECLS
 

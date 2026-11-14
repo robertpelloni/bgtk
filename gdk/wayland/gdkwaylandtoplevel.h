@@ -67,8 +67,4 @@ GDK_AVAILABLE_IN_ALL
 void                     gdk_wayland_toplevel_set_application_id (GdkToplevel *toplevel,
                                                                   const char  *application_id);
 
-GDK_AVAILABLE_IN_4_18
-gboolean                 gdk_wayland_toplevel_set_tag            (GdkToplevel *toplevel,
-                                                                  const char  *tag);
-
 G_END_DECLS

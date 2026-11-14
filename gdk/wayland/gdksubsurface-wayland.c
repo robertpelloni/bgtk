@@ -70,14 +70,6 @@ wl_output_transform_to_gdk (enum wl_output_transform transform)
   else
     tf = (GdkDihedral) transform;
   return tf;
-  g_clear_object (&self->texture);
-  g_clear_pointer (&self->frame_callback, wl_callback_destroy);
-  g_clear_pointer (&self->opaque_region, wl_region_destroy);
-  g_clear_pointer (&self->viewport, wp_viewport_destroy);
-  g_clear_pointer (&self->subsurface, wl_subsurface_destroy);
-  g_clear_pointer (&self->surface, wl_surface_destroy);
-
-  G_OBJECT_CLASS (gdk_wayland_subsurface_parent_class)->finalize (object);
 }
 
 G_STATIC_ASSERT ((int) WL_OUTPUT_TRANSFORM_NORMAL == (int) GDK_DIHEDRAL_NORMAL);

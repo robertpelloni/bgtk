@@ -406,7 +406,6 @@ gsk_gpu_upload_texture_op_try (GskGpuFrame      *frame,
             {
               gdk_debug_message ("Unoptimized upload for %s", G_OBJECT_TYPE_NAME (texture));
             }
-          gdk_debug_message ("Unoptimized upload for %s", G_OBJECT_TYPE_NAME (texture));
         }
 
       if (gdk_texture_get_format (texture) != gsk_gpu_image_get_format (image))

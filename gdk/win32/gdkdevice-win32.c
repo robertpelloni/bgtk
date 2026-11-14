@@ -86,35 +86,6 @@ gdk_device_win32_query_state (GdkDevice        *device,
     {
       scale = GDK_WIN32_DISPLAY (display)->surface_scale;
       hwnd = NULL;
-  screen = gdk_window_get_screen (window);
-  impl = GDK_WINDOW_IMPL_WIN32 (window->impl);
-
-  hwnd = GDK_WINDOW_HWND (window);
-  _gdk_win32_get_cursor_pos (&point);
-
-  if (root_x)
-    *root_x = (point.x + _gdk_offset_x) / impl->window_scale;
-
-  if (root_y)
-    *root_y = (point.y + _gdk_offset_y) / impl->window_scale;
-
-  if (window == gdk_screen_get_root_window (screen))
-    {
-      if (win_x)
-        *win_x = (point.x + _gdk_offset_x) / impl->window_scale;
-
-      if (win_y)
-        *win_y = (point.y + _gdk_offset_y) / impl->window_scale;
-    }
-  else
-    {
-      ScreenToClient (hwnd, &point);
-
-      if (win_x)
-        *win_x = point.x / impl->window_scale;
-
-      if (win_y)
-        *win_y = point.y / impl->window_scale;
     }
 
   _gdk_win32_get_cursor_pos (display, &point);
@@ -130,18 +101,7 @@ gdk_device_win32_query_state (GdkDevice        *device,
 
   if (hwnd && child_surface)
     {
-      if (window == gdk_screen_get_root_window (screen))
-        {
-          /* Always use WindowFromPoint when searching from the root window.
-          *  Only WindowFromPoint is able to look through transparent
-          *  layered windows.
-          */
-          hwndc = GetAncestor (WindowFromPoint (point), GA_ROOT);
-        }
-      else
-        {
-          hwndc = ChildWindowFromPoint (hwnd, point);
-        }
+      hwndc = ChildWindowFromPoint (hwnd, point);
 
       if (hwndc && hwndc != hwnd)
         *child_surface = gdk_win32_display_handle_table_lookup_ (display, hwndc);
@@ -210,10 +170,6 @@ _gdk_device_win32_surface_at_position (GdkDevice       *device,
 
   if (!_gdk_win32_get_cursor_pos (display, &screen_pt))
     return NULL;
-  if (!_gdk_win32_get_cursor_pos (&screen_pt))
-    return NULL;
-
-  hwnd = WindowFromPoint (screen_pt);
 
   /* Use WindowFromPoint instead of ChildWindowFromPoint(Ex).
   *  Only WindowFromPoint is able to look through transparent
@@ -232,39 +188,6 @@ _gdk_device_win32_surface_at_position (GdkDevice       *device,
   if (surface && (win_x || win_y))
     {
       impl = GDK_WIN32_SURFACE (surface);
-      /* Use WindowFromPoint instead of ChildWindowFromPoint(Ex).
-      *  Only WindowFromPoint is able to look through transparent
-      *  layered windows.
-      */
-      hwnd = GetAncestor (hwnd, GA_ROOT);
-    }
-
-  /* Verify that we're really inside the client area of the window */
-  GetClientRect (hwnd, &rect);
-  screen_to_client (hwnd, screen_pt, &client_pt);
-  if (!PtInRect (&rect, client_pt))
-    hwnd = NULL;
-
-  if (!get_toplevel && hwnd == NULL)
-    {
-      /* If we didn't hit any window, return the root window */
-      /* note that the root window ain't a toplevel window */
-      window = gdk_get_default_root_window ();
-      impl = GDK_WINDOW_IMPL_WIN32 (window->impl);
-
-      if (win_x)
-        *win_x = (screen_pt.x + _gdk_offset_x) / impl->window_scale;
-      if (win_y)
-        *win_y = (screen_pt.y + _gdk_offset_y) / impl->window_scale;
-
-      return window;
-    }
-
-  window = gdk_win32_handle_table_lookup (hwnd);
-
-  if (window && (win_x || win_y))
-    {
-      impl = GDK_WINDOW_IMPL_WIN32 (window->impl);
 
       if (win_x)
         *win_x = client_pt.x / impl->surface_scale;

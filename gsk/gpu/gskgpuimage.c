@@ -1,7 +1,6 @@
 #include "config.h"
 
 #include "gskgpuimageprivate.h"
-#include "gdkcolorstateprivate.h"
 
 typedef struct _GskGpuImagePrivate GskGpuImagePrivate;
 

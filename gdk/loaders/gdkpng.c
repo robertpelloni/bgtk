@@ -490,17 +490,6 @@ gdk_load_png (GBytes      *bytes,
         }
     }
 
-  if (options && png_get_text (png, info, &text, &num_texts))
-    {
-      for (i = 0; i < num_texts; i++)
-        {
-          if (text->compression != -1)
-            continue;
-
-          g_hash_table_insert (options, g_strdup (text->key), g_strdup (text->text));
-        }
-    }
-
   g_free (row_pointers);
   png_destroy_read_struct (&png, &info, NULL);
 

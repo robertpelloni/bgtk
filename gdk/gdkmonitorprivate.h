@@ -62,13 +62,6 @@ void            gdk_monitor_set_connector       (GdkMonitor *monitor,
                                                  const char *connector);
 void            gdk_monitor_set_geometry        (GdkMonitor *monitor,
                                                  const GdkRectangle *geometry);
-const char *    gdk_monitor_get_connector       (GdkMonitor *monitor);
-void            gdk_monitor_set_position        (GdkMonitor *monitor,
-                                                 int         x,
-                                                 int         y);
-void            gdk_monitor_set_size            (GdkMonitor *monitor,
-                                                 int         width,
-                                                 int         height);
 void            gdk_monitor_set_physical_size   (GdkMonitor *monitor,
                                                  int         width_mm,
                                                  int         height_mm);

@@ -1190,13 +1190,13 @@ request_password (gpointer data)
         {
           case IPP_OP_PRINT_JOB:
             if (job_title != NULL && printer_name != NULL)
-              prompt = g_strdup_printf ( _("Authentication is required to print document “%s� on printer %s"), job_title, printer_name);
+              prompt = g_strdup_printf ( _("Authentication is required to print document “%s” on printer %s"), job_title, printer_name);
             else
               prompt = g_strdup_printf ( _("Authentication is required to print a document on %s"), hostname);
             break;
           case IPP_OP_GET_JOB_ATTRIBUTES:
             if (job_title != NULL)
-              prompt = g_strdup_printf ( _("Authentication is required to get attributes of job “%s�"), job_title);
+              prompt = g_strdup_printf ( _("Authentication is required to get attributes of job “%s”"), job_title);
             else
               prompt = g_strdup ( _("Authentication is required to get attributes of a job"));
             break;
@@ -1480,9 +1480,9 @@ request_auth_info (gpointer user_data)
   if (job_title != NULL)
     {
       if (printer_name != NULL)
-        prompt = g_strdup_printf ( _("Authentication is required to print document “%s� on printer %s"), job_title, printer_name);
+        prompt = g_strdup_printf ( _("Authentication is required to print document “%s” on printer %s"), job_title, printer_name);
       else
-        prompt = g_strdup_printf ( _("Authentication is required to print document “%s�"), job_title);
+        prompt = g_strdup_printf ( _("Authentication is required to print document “%s”"), job_title);
     }
   else
     {
@@ -2579,55 +2579,55 @@ get_reason_msg_desc (guint i,
   switch (i)
     {
       case 0:
-        reason_msg_desc = g_strdup_printf (_("Printer “%s� is low on toner."),
+        reason_msg_desc = g_strdup_printf (_("Printer “%s” is low on toner."),
                                            printer_name);
         break;
       case 1:
-        reason_msg_desc = g_strdup_printf (_("Printer “%s� has no toner left."),
+        reason_msg_desc = g_strdup_printf (_("Printer “%s” has no toner left."),
                                            printer_name);
         break;
       case 2:
         /* Translators: "Developer" like on photo development context */
-        reason_msg_desc = g_strdup_printf (_("Printer “%s� is low on developer."),
+        reason_msg_desc = g_strdup_printf (_("Printer “%s” is low on developer."),
                                            printer_name);
         break;
       case 3:
         /* Translators: "Developer" like on photo development context */
-        reason_msg_desc = g_strdup_printf (_("Printer “%s� is out of developer."),
+        reason_msg_desc = g_strdup_printf (_("Printer “%s” is out of developer."),
                                            printer_name);
         break;
       case 4:
         /* Translators: "marker" is one color bin of the printer */
-        reason_msg_desc = g_strdup_printf (_("Printer “%s� is low on at least one marker supply."),
+        reason_msg_desc = g_strdup_printf (_("Printer “%s” is low on at least one marker supply."),
                                            printer_name);
         break;
       case 5:
         /* Translators: "marker" is one color bin of the printer */
-        reason_msg_desc = g_strdup_printf (_("Printer “%s� is out of at least one marker supply."),
+        reason_msg_desc = g_strdup_printf (_("Printer “%s” is out of at least one marker supply."),
                                            printer_name);
         break;
       case 6:
-        reason_msg_desc = g_strdup_printf (_("The cover is open on printer “%s�."),
+        reason_msg_desc = g_strdup_printf (_("The cover is open on printer “%s”."),
                                            printer_name);
         break;
       case 7:
-        reason_msg_desc = g_strdup_printf (_("The door is open on printer “%s�."),
+        reason_msg_desc = g_strdup_printf (_("The door is open on printer “%s”."),
                                            printer_name);
         break;
       case 8:
-        reason_msg_desc = g_strdup_printf (_("Printer “%s� is low on paper."),
+        reason_msg_desc = g_strdup_printf (_("Printer “%s” is low on paper."),
                                            printer_name);
         break;
       case 9:
-        reason_msg_desc = g_strdup_printf (_("Printer “%s� is out of paper."),
+        reason_msg_desc = g_strdup_printf (_("Printer “%s” is out of paper."),
                                            printer_name);
         break;
       case 10:
-        reason_msg_desc = g_strdup_printf (_("Printer “%s� is currently offline."),
+        reason_msg_desc = g_strdup_printf (_("Printer “%s” is currently offline."),
                                            printer_name);
         break;
       case 11:
-        reason_msg_desc = g_strdup_printf (_("There is a problem on printer “%s�."),
+        reason_msg_desc = g_strdup_printf (_("There is a problem on printer “%s”."),
                                            printer_name);
         break;
       default:
@@ -3092,7 +3092,6 @@ create_cups_printer_from_avahi_data (AvahiConnectionTestData *data)
   set_info_state_message (info);
 
   printer = bobgui_print_backend_find_printer (BOBGUI_PRINT_BACKEND (data->backend), data->printer_name);
-
   if (printer == NULL && data->UUID != NULL)
     printer = find_printer_by_uuid (data->backend, data->UUID);
 

@@ -172,7 +172,6 @@ gdk_x_io_error (Display *display)
            g_get_prgname (),
            errno, g_strerror (errno),
            display ? DisplayString (display) : "");
-           display ? DisplayString (display) : gdk_get_display_arg_name ());
 
   _exit (1);
 }
@@ -309,96 +308,4 @@ _gdk_x11_region_get_xrectangles (const cairo_region_t *region,
 
   *n_rects = n;
   *rects = rectangles;
-}
-
-/**
- * gdk_x11_grab_server:
- * 
- * Call gdk_x11_display_grab() on the default display. 
- * To ungrab the server again, use gdk_x11_ungrab_server(). 
- *
- * gdk_x11_grab_server()/gdk_x11_ungrab_server() calls can be nested.
- **/ 
-void
-gdk_x11_grab_server (void)
-{
-  gdk_x11_display_grab (gdk_display_get_default ());
-}
-
-/**
- * gdk_x11_ungrab_server:
- *
- * Ungrab the default display after it has been grabbed with 
- * gdk_x11_grab_server(). 
- **/
-void
-gdk_x11_ungrab_server (void)
-{
-  gdk_x11_display_ungrab (gdk_display_get_default ());
-}
-
-/**
- * gdk_x11_get_default_screen:
- * 
- * Gets the default GTK+ screen number.
- * 
- * Returns: returns the screen number specified by
- *   the --display command line option or the DISPLAY environment
- *   variable when gdk_init() calls XOpenDisplay().
- **/
-gint
-gdk_x11_get_default_screen (void)
-{
-  return gdk_x11_screen_get_number (gdk_screen_get_default ());
-}
-
-/**
- * gdk_x11_get_default_root_xwindow:
- * 
- * Gets the root window of the default screen 
- * (see gdk_x11_get_default_screen()).  
- * 
- * Returns: an Xlib Window.
- **/
-Window
-gdk_x11_get_default_root_xwindow (void)
-{
-  return GDK_SCREEN_XROOTWIN (gdk_screen_get_default ());
-}
-
-/**
- * gdk_x11_get_default_xdisplay:
- * 
- * Gets the default GTK+ display.
- * 
- * Returns: (transfer none): the Xlib Display* for
- * the display specified in the `--display` command
- * line option or the `DISPLAY` environment variable.
- **/
-Display *
-gdk_x11_get_default_xdisplay (void)
-{
-  return GDK_DISPLAY_XDISPLAY (gdk_display_get_default ());
-}
-
-/**
- * gdk_x11_get_parent_relative_pattern:
- *
- * Used with gdk_window_set_background_pattern() to inherit background from
- * parent window. Useful for imitating transparency when compositing is not
- * available. Otherwise behaves like a transparent pattern.
- *
- * Since: 3.24.2
- *
- * Deprecated: 3.24: Don't use this function
- **/
-cairo_pattern_t *
-gdk_x11_get_parent_relative_pattern (void)
-{
-  static cairo_pattern_t *parent_relative_pattern = NULL;
-
-  if (G_UNLIKELY (parent_relative_pattern == NULL))
-    parent_relative_pattern = cairo_pattern_create_rgba (0.0, 0.0, 0.0, 0.0);
-
-  return parent_relative_pattern;
 }

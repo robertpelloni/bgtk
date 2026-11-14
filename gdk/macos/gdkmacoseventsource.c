@@ -126,7 +126,7 @@ static guint run_loop_n_pollfds;    /* Number of file descriptors in the array *
  * we need to make sure that the poll function is always called even
  * when there are no file descriptors that need to be polled. To do
  * this, we add a dummy GPollFD to our event source with a file
- * descriptor of “-1�. Then any time that GLib is polling the event
+ * descriptor of “-1”. Then any time that GLib is polling the event
  * source, it will call our poll function.
  */
 static GPollFD event_poll_fd;
@@ -187,18 +187,6 @@ static const char *const state_names[]  = {
   "POLLING_RESTART",
   "POLLING_DESCRIPTORS"
 };
-
-#if MAC_OS_X_VERSION_MIN_REQUIRED < 101200
-typedef enum
-  {
-   GDK_QUARTZ_EVENT_MASK_ANY = NSAnyEventMask,
-  } GdkQuartzEventMask;
-#else
-typedef enum
-  {
-   GDK_QUARTZ_EVENT_MASK_ANY = NSEventMaskAny,
-  } GdkQuartzEventMask;
-#endif
 
 static SelectThreadState select_thread_state = BEFORE_START;
 

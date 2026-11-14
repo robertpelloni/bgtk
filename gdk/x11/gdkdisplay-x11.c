@@ -48,9 +48,6 @@
 #include "gdkvulkancontext-x11.h"
 
 #include "gdkprivate.h"
-#include "gdkglcontext-x11.h"
-#include "gdk-private.h"
-#include "gdkprofilerprivate.h"
 
 #include <glib.h>
 #include <glib/gprintf.h>
@@ -593,49 +590,6 @@ static char *
 get_cm_name (GdkDisplay *display)
 {
   return g_strdup_printf ("_NET_WM_CM_S%d", DefaultScreen (GDK_DISPLAY_XDISPLAY (display)));
-}
-
-static void
-gdk_check_edge_constraints_changed (GdkWindow *window)
-{
-  GdkToplevelX11 *toplevel = _gdk_x11_window_get_toplevel (window);
-  GdkDisplay *display = GDK_WINDOW_DISPLAY (window);
-
-  Atom type;
-  gint format;
-  gulong nitems;
-  gulong bytes_after;
-  guchar *data;
-  gulong *constraints;
-
-  type = None;
-  gdk_x11_display_error_trap_push (display);
-  XGetWindowProperty (GDK_DISPLAY_XDISPLAY (display),
-                      GDK_WINDOW_XID (window),
-                      gdk_x11_get_xatom_by_name_for_display (display, "_GTK_EDGE_CONSTRAINTS"),
-                      0, G_MAXLONG, False, XA_CARDINAL, &type,
-                      &format, &nitems,
-                      &bytes_after, &data);
-  gdk_x11_display_error_trap_pop_ignored (display);
-
-  if (type != None)
-    {
-      constraints = (gulong *)data;
-
-      /* The GDK enum for these states does not begin at zero so, to avoid
-       * messing around with shifts, just make the passed value and GDK's
-       * enum values match by shifting to the first tiled state.
-       */
-      toplevel->edge_constraints = constraints[0] << 9;
-
-      XFree (constraints);
-    }
-  else
-    {
-      toplevel->edge_constraints = 0;
-    }
-
-  do_net_wm_state_changes (window);
 }
 
 static Window
@@ -1304,9 +1258,6 @@ _gdk_wm_protocols_filter (const XEvent  *xevent,
 
               if (GDK_PROFILER_IS_RUNNING)
                 _gdk_frame_clock_add_timings_to_profiler (clock, timings);
-              if (gdk_profiler_is_running ())
-                _gdk_frame_clock_add_timings_to_profiler (clock, timings);
-#endif /* G_ENABLE_DEBUG */
             }
         }
     }
@@ -2170,9 +2121,6 @@ G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   if (startup_id)
     gdk_x11_display_set_startup_notification_id (display, startup_id);
 G_GNUC_END_IGNORE_DEPRECATIONS
-  startup_id = gdk_get_desktop_startup_id ();
-  if (startup_id)
-    gdk_x11_display_set_startup_notification_id (display, startup_id);
 }
 
 static void
@@ -2872,16 +2820,6 @@ gdk_x11_display_get_default_seat (GdkDisplay *display)
   gboolean result = FALSE;
 
   seats = gdk_display_list_seats (display);
-
-  /* Shortcut only one seat being available.
-   * This path always triggers for core events, so we can freely use XInput below. */
-  if (g_list_length (seats) == 1)
-    {
-      GdkSeat *seat = seats->data;
-
-      g_list_free (seats);
-      return seat;
-    }
 
   gdk_x11_display_error_trap_push (display);
   result = XIGetClientPointer (GDK_DISPLAY_XDISPLAY (display),

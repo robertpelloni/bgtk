@@ -1,6 +1,5 @@
 /* GDK - The GIMP Drawing Kit
  * Copyright (C) 2021 the BOBGUI team
- * Copyright (C) 2021 the GTK team
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -138,10 +137,6 @@
 
 #define PA_ACTIVATE MA_ACTIVATE
 #define PA_NOACTIVATE MA_NOACTIVATE
-
-#ifndef GC_ALLGESTURES
-#define GC_ALLGESTURES 0x1
-#endif
 
 typedef DWORD POINTER_INPUT_TYPE;
 typedef UINT32 POINTER_FLAGS;
@@ -309,16 +304,6 @@ typedef struct tagPOINTER_DEVICE_CURSOR_INFO {
 } POINTER_DEVICE_CURSOR_INFO;
 
 #endif /* POINTER_FLAG_NONE */
-
-#if WINVER < 0x0601
-
-typedef struct tagGESTURECONFIG {
-  DWORD dwID;
-  DWORD dwWant;
-  DWORD dwBlock;
-} GESTURECONFIG,*PGESTURECONFIG;
-
-#endif /* WINVER < 0x0601 */
 
 #ifndef MICROSOFT_TABLETPENSERVICE_PROPERTY
 #define MICROSOFT_TABLETPENSERVICE_PROPERTY _T("MicrosoftTabletPenServiceProperty")

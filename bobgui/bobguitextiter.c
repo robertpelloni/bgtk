@@ -248,8 +248,6 @@ iter_init_common (BobguiTextIter *_iter,
 
   memset (iter, 0, sizeof (BobguiTextRealIter));
 
-  memset (iter, 0, sizeof (GtkTextRealIter));
-
   iter->tree = tree;
 
   iter->chars_changed_stamp =

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+<<<<<<< HEAD:bobgui/emoji/gresource.xml.in
+  <gresource prefix="/org/bobgui/libbobgui/emoji/">
+=======
+  <gresource prefix="/org/gtk/libgtk/emoji/">
+>>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/emoji/gresource.xml.in
+    <file>@lang@.data</file>
+  </gresource>
+</gresources>

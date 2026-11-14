@@ -38,29 +38,6 @@
 #include "gdkprivate.h"
 #include "win32/gdkprivate-win32.h"
 
-#include <pshpack1.h>
-typedef struct {
-  WORD      dlgVer;
-  WORD      signature;
-  DWORD     helpID;
-  DWORD     exStyle;
-  DWORD     style;
-  WORD      cDlgItems;
-  short     x;
-  short     y;
-  short     cx;
-  short     cy;
-  short     menu;
-  short     windowClass;
-  WCHAR     title;
-  WORD      pointsize;
-  WORD      weight;
-  BYTE      italic;
-  BYTE      charset;
-  WCHAR     typeface[LF_FACESIZE];
-} DLGTEMPLATEEX;
-#include <poppack.h>
-
 #define MAX_PAGE_RANGES 20
 #define STATUS_POLLING_TIME 2000
 
@@ -713,7 +690,6 @@ devmode_to_settings (BobguiPrintSettings *settings,
 		     HANDLE hDevMode)
 {
   LPDEVMODEW devmode;
-  char *devmode_name;
 
   devmode = GlobalLock (hDevMode);
   
@@ -728,10 +704,6 @@ devmode_to_settings (BobguiPrintSettings *settings,
 			      extra);
       g_free (extra);
     }
-
-  devmode_name = g_utf16_to_utf8 (devmode->dmDeviceName, -1, NULL, NULL, NULL);
-  gtk_print_settings_set (settings, "win32-devmode-name", devmode_name);
-  g_free (devmode_name);
   
   char *devmode_name = g_utf16_to_utf8 (devmode->dmDeviceName, -1, NULL, NULL, NULL);
   bobgui_print_settings_set (settings, "win32-devmode-name", devmode_name);
@@ -1479,18 +1451,9 @@ pageDlgProc (HWND wnd, UINT message, WPARAM wparam, LPARAM lparam)
 static HPROPSHEETPAGE
 create_application_page (BobguiPrintOperation *op)
 {
-  return FALSE;
-}
-
-static HPROPSHEETPAGE
-create_application_page (GtkPrintOperation *op,
-                         HWND hwndOwner,
-                         int scale)
-{
-  const LONG DBU_DEFAULT = GetDialogBaseUnits ();
-  int dbu_x = LOWORD (DBU_DEFAULT);
-  int dbu_y = HIWORD (DBU_DEFAULT);
-  HWND measure_dialog = NULL;
+  HPROPSHEETPAGE hpage;
+  PROPSHEETPAGEW page;
+  DLGTEMPLATE *template;
   HGLOBAL htemplate;
   LONG base_units;
   WORD baseunitX, baseunitY;
@@ -1502,6 +1465,26 @@ create_application_page (GtkPrintOperation *op,
   bobgui_widget_get_preferred_size (op->priv->custom_widget,
                                  &requisition, NULL);
 
+  base_units = GetDialogBaseUnits ();
+  baseunitX = LOWORD (base_units);
+  baseunitY = HIWORD (base_units);
+  
+  htemplate = GlobalAlloc (GMEM_MOVEABLE, 
+			   sizeof (DLGTEMPLATE) + sizeof (WORD) * 3);
+  template = GlobalLock (htemplate);
+  template->style = WS_CHILDWINDOW | DS_CONTROL;
+  template->dwExtendedStyle = WS_EX_CONTROLPARENT;
+  template->cdit = 0;
+  template->x = MulDiv (0, 4, baseunitX);
+  template->y = MulDiv (0, 8, baseunitY);
+  template->cx = MulDiv (requisition.width, 4, baseunitX);
+  template->cy = MulDiv (requisition.height, 8, baseunitY);
+  
+  array = (WORD *) (template+1);
+  *array++ = 0; /* menu */
+  *array++ = 0; /* class */
+  *array++ = 0; /* title */
+  
   memset (&page, 0, sizeof (page));
   page.dwSize = sizeof (page);
   page.dwFlags = PSP_DLGINDIRECT | PSP_USETITLE | PSP_PREMATURE;
@@ -1757,12 +1740,6 @@ bobgui_print_operation_run_with_dialog (BobguiPrintOperation *op,
     {
       invisible = bobgui_window_new ();
       parentHWnd = get_parent_hwnd (invisible);
-      scale = gtk_widget_get_scale_factor (invisible);
-    }
-  else
-    {
-      parentHWnd = get_parent_hwnd (GTK_WIDGET (parent));
-      scale = gtk_widget_get_scale_factor (GTK_WIDGET (parent));
     }
   else
     parentHWnd = get_parent_hwnd (BOBGUI_WIDGET (parent));
@@ -1817,7 +1794,7 @@ bobgui_print_operation_run_with_dialog (BobguiPrintOperation *op,
   g_signal_emit_by_name (op, "create-custom-widget",
 			 &op->priv->custom_widget);
   if (op->priv->custom_widget) {
-    prop_page = create_application_page (op, parentHWnd, scale);
+    prop_page = create_application_page (op);
     printdlgex->nPropertyPages = 1;
     printdlgex->lphPropertyPages = &prop_page;
   } else {

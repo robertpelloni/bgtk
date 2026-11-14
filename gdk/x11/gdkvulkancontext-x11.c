@@ -70,11 +70,6 @@ gdk_x11_vulkan_context_empty_frame (GdkDrawContext *draw_context)
 }
 
 static void
-gdk_x11_vulkan_context_empty_frame (GdkDrawContext *draw_context)
-{
-}
-
-static void
 gdk_x11_vulkan_context_class_init (GdkX11VulkanContextClass *klass)
 {
   GdkVulkanContextClass *context_class = GDK_VULKAN_CONTEXT_CLASS (klass);

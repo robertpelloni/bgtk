@@ -459,9 +459,6 @@ gdk_seat_get_tool (GdkSeat          *seat,
  */
 GList *
 gdk_seat_get_tools (GdkSeat *seat)
-gdk_seat_get_tool (GdkSeat *seat,
-                   guint64  serial,
-                   guint64  hw_id)
 {
   GdkSeatClass *seat_class;
 
@@ -469,5 +466,4 @@ gdk_seat_get_tool (GdkSeat *seat,
 
   seat_class = GDK_SEAT_GET_CLASS (seat);
   return seat_class->get_tools (seat);
-  return seat_class->get_tool (seat, serial, hw_id);
 }

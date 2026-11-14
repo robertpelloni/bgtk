@@ -55,8 +55,5 @@ G_BEGIN_DECLS
 #define GDK_POINTER_TO_XID(pointer) GPOINTER_TO_UINT(pointer)
 
 
-GDK_DEPRECATED_IN_3_24
-cairo_pattern_t *gdk_x11_get_parent_relative_pattern (void);
-
 G_END_DECLS
 

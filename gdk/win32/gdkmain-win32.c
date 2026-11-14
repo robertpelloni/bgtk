@@ -42,15 +42,6 @@
 /* Whether GDK initialized COM */
 gboolean
 gdk_win32_ensure_com (void)
-/* for CFSTR_SHELLIDLIST */
-#include <shlobj.h>
-
-static gboolean gdk_synchronize = FALSE;
-
-BOOL WINAPI
-DllMain (HINSTANCE hinstDLL,
-	 DWORD     dwReason,
-	 LPVOID    reserved)
 {
   static gsize co_initialized = 0;
 
@@ -128,30 +119,6 @@ gdk_win32_ensure_ole (void)
 void
 _gdk_win32_api_failed (const char *where,
                        const char *api)
-_gdk_win32_windowing_init (void)
-{
-  gchar buf[10];
-
-  if (gdk_synchronize)
-    GdiSetBatchLimit (1);
-
-  _gdk_app_hmodule = GetModuleHandle (NULL);
-  _gdk_display_hdc = CreateDC ("DISPLAY", NULL, NULL, NULL);
-  _gdk_input_locale = GetKeyboardLayout (0);
-  _gdk_win32_keymap_set_active_layout (GDK_WIN32_KEYMAP (_gdk_win32_display_get_keymap (_gdk_display)), _gdk_input_locale);
-  GetLocaleInfo (MAKELCID (LOWORD (_gdk_input_locale), SORT_DEFAULT),
-		 LOCALE_IDEFAULTANSICODEPAGE,
-		 buf, sizeof (buf));
-  _gdk_input_codepage = atoi (buf);
-  GDK_NOTE (EVENTS, g_print ("input_locale:%p, codepage:%d\n",
-			     _gdk_input_locale, _gdk_input_codepage));
-
-  _gdk_win32_selection_init ();
-}
-
-void
-_gdk_win32_api_failed (const gchar *where,
-                       const gchar *api)
 {
   DWORD error_code = GetLastError ();
   char *msg = g_win32_error_message (error_code);
