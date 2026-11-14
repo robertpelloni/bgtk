@@ -999,8 +999,18 @@ bobguimarshalers = gnome.genmarshal('bobguimarshalers',
 
 bobguimarshal_h = bobguimarshalers[1]
 
+# Modules headers duplicate core types (e.g. BobguiLayoutManager) and cannot
+# be parsed into the umbrella typebuiltins; their enums are excluded here.
+bobgui_builtin_headers = []
+foreach h : bobgui_public_headers
+  if not h.full_path().contains('/modules/')
+    bobgui_builtin_headers += h
+  endif
+endforeach
+bobgui_builtin_headers += bobgui_deprecated_headers + bobgui_print_headers
+
 bobguitypebuiltins = gnome.mkenums('bobguitypebuiltins',
-  sources: bobgui_public_headers + bobgui_deprecated_headers + bobgui_print_headers,
+  sources: bobgui_builtin_headers,
   c_template: 'bobguitypebuiltins.c.template',
   h_template: 'bobguitypebuiltins.h.template',
   install_dir: bobgui_includedir / 'bobgui-4.0/bobgui',
