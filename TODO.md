@@ -21,7 +21,8 @@ Granular queue. The 15-minute autonomous loop works top-down. Checkboxes only mo
 - [x] Analyze JUCE UI widgets for intermixing → `docs/JUCE_ANALYSIS.md` (Media-first; note CHANGELOG [4.0.8] bridge files do not exist).
 - [x] Research missing Qt6/Qt7 features vs C++ baseline → `docs/QT_PARITY_MATRIX.md` (top gaps: declarative/QML layer, charting, SQL model/view).
 - [x] JUCE bridge spike: `bobgui/cpp/juce_audio_bridge.hpp` (device enumeration + sample rate, `BOBGUI_WITH_JUCE`-gated, syntax-verified guard-off). Next: processBlock forwarding.
-- [ ] First cgo bridge spike (Core or Media) behind a build tag, off by default.
+- [x] First cgo bridge spike: `go/bobtk/bridge` behind `bobtk_cgo` tag (stub tested green by default). cgo compile currently blocked on this laptop: Go 1.27.4 cgo vs GCC 15.2 pe-bigobj objects (see `bridge_cgo.go` note) — needs older GCC or newer Go.
+- [ ] Link bridge against `libbobgui` from `_build` (Media `processBlock` forwarding) once cgo toolchain unblocks.
 
 ## Housekeeping
 - [ ] Decide fate of root `check-version.py` / `plan_step_complete.py` (archive copies exist in `scripts/archive/`; root copies kept for now).
