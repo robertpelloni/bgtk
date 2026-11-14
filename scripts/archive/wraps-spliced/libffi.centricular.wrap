@@ -1,0 +1,8 @@
+[wrap-git]
+directory=libffi
+url=https://github.com/centricular/libffi.git
+push-url=git@github.com:centricular/libffi.git
+revision=meson
+
+[provide]
+libffi = ffi_dep

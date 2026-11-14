@@ -1,18 +1,20 @@
 /*** BEGIN file-header ***/
 #include "config.h"
 #include "gdk.h"
+#include "gdkenumtypes.h"
 
 /*** END file-header ***/
 
 /*** BEGIN file-production ***/
-/* enumerations from "@filename@" */
+/* enumerations from "@basename@" */
+
 /*** END file-production ***/
 
 /*** BEGIN value-header ***/
 GType
 @enum_name@_get_type (void)
 {
-  static volatile gsize g_define_type_id__volatile = 0;
+  static gsize g_define_type_id__volatile = 0;
 
   if (g_once_init_enter (&g_define_type_id__volatile))
     {
@@ -37,5 +39,5 @@ GType
 /*** END value-tail ***/
 
 /*** BEGIN file-tail ***/
- /**/
+
 /*** END file-tail ***/

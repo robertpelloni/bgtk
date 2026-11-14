@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## [1.2.1] - 2026-11-13
+### Fixed
+- Native compile blockers, in order: sysprof disabled on Windows (`-Dsysprof=disabled -Dglib:sysprof=disabled`); libffi centricular fork replaced with WrapDB libffi 3.8.0; cairo 1.18.2 → 1.18.4 (MinGW `dcommon.h` duplicate enum operators); unresolved merge conflict resolved in `bobgui/theme/Default/Default-light.scss` (kept bobgui side); `gdk` enum generation switched from `gnome.mkenums_simple` (Windows argument-quoting failure) to template-based `gnome.mkenums` with new `gdk/gdkenumtypes.h.template` / `gdkenumtypes.c.template`.
+- Compile status at release: progressing through project targets (gdk/gsk/bobgui generation steps pass); full-build completion tracked in `TODO.md`.
+
 ## [1.2.0] - 2026-11-13
 ### Fixed
 - **Native build configure green.** Root `meson.build` splice (bobgui/GTK4 + gtk/GTK3 interleaved) repaired by restoring the clean 932-line bobgui file from git history (`ce1de57f61`); spliced file archived at `scripts/archive/meson.build.spliced.txt`, GTK3 `meson_options.txt` archived alongside. Same restoration applied to 43 spliced files under `gdk/`, `bobgui/`, `po/`, `tools/`, `docs/reference/`, `demos/`, `examples/`, `tests/`, `testsuite/` (spliced copies in `scripts/archive/meson-spliced/`).

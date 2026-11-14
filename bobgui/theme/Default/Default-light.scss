@@ -7,15 +7,7 @@
 $variant: 'light';
 $contrast: 'normal';
 
-<<<<<<< HEAD:bobgui/theme/Default/Default-light.scss
 @import 'colors';
 @import 'drawing';
 @import 'common';
 @import 'colors-public';
-=======
-@import '../Adwaita/colors';
-@import 'colors-hc';
-@import '../Adwaita/colors-public'; // export public colors
-@import '../Adwaita/drawing';
-@import '../Adwaita/common';
->>>>>>> origin/4627-printing-Unref-old-spool_io-before-setting-new-one-gtk3:gtk/theme/HighContrast/gtk-contained.scss

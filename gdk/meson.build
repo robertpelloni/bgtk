@@ -164,11 +164,10 @@ gdkresources = gnome.compile_resources('gdkresources',
 
 gdk_headers = gdk_public_headers
 
-gdk_enums = gnome.mkenums_simple('gdkenumtypes',
+gdk_enums = gnome.mkenums('gdkenumtypes',
   sources: gdk_public_headers,
-  decorator: 'GDK_AVAILABLE_IN_ALL',
-  body_prefix: '#include "config.h"',
-  header_prefix: '#include "version/gdkversionmacros.h"\n',
+  c_template: 'gdkenumtypes.c.template',
+  h_template: 'gdkenumtypes.h.template',
   install_dir: bobgui_includedir / 'bobgui-4.0/gdk',
   install_header: true,
 )
