@@ -69,56 +69,12 @@ typedef enum
 } GdkDragProtocol;
 
 GQuark                  gdk_win32_hresult_error_quark                   (void) G_GNUC_CONST;
-  gchar *name;
-  HCURSOR hcursor;
-};
-
-struct _GdkWin32SingleFont
-{
-  HFONT hfont;
-  UINT charset;
-  UINT codepage;
-  FONTSIGNATURE fs;
-};
-
-typedef enum {
-  GDK_WIN32_PE_STATIC,
-  GDK_WIN32_PE_AVAILABLE,
-  GDK_WIN32_PE_INUSE
-} GdkWin32PalEntryState;
-
-struct _GdkColormapPrivateWin32
-{
-  HPALETTE hpal;
-  gint current_size;		/* Current size of hpal */
-  GdkWin32PalEntryState *use;
-  gint private_val;
-
-  GHashTable *hash;
-  GdkColorInfo *info;
-};
-
-typedef enum {
-  GDK_WIN32_TABLET_INPUT_API_NONE = 0,
-  GDK_WIN32_TABLET_INPUT_API_WINTAB,
-  GDK_WIN32_TABLET_INPUT_API_WINPOINTER
-} GdkWin32TabletInputAPI;
-
-GType _gdk_gc_win32_get_type (void);
 
 gulong _gdk_win32_get_next_tick (gulong suggested_tick);
 BOOL _gdk_win32_get_cursor_pos (GdkDisplay *display,
                                 LPPOINT     lpPoint);
 
 void gdk_win32_surface_enable_transparency (GdkSurface *surface);
-BOOL _gdk_win32_get_cursor_pos (LPPOINT lpPoint);
-
-void _gdk_window_init_position     (GdkWindow *window);
-void _gdk_window_move_resize_child (GdkWindow *window,
-				    gint       x,
-				    gint       y,
-				    gint       width,
-				    gint       height);
 
 void _gdk_win32_dnd_exit (void);
 
@@ -237,26 +193,10 @@ gboolean                gdk_win32_check_hresult                         (HRESULT
                                                                          ...) G_GNUC_PRINTF(3,4);
 
 extern LRESULT CALLBACK _gdk_win32_surface_procedure (HWND, UINT, WPARAM, LPARAM);
-extern gint		 _gdk_input_ignore_core;
-extern GdkWin32TabletInputAPI _gdk_win32_tablet_input_api;
 
 /* These are thread specific, but GDK/win32 works OK only when invoked
  * from a single thread anyway.
  */
-extern HKL		 _gdk_input_locale;
-extern gboolean		 _gdk_input_locale_is_ime;
-extern UINT		 _gdk_input_codepage;
-
-extern guint		 _gdk_keymap_serial;
-
-/* The singleton selection object pointer */
-extern GdkWin32Selection *_win32_selection;
-
-void _gdk_win32_dnd_do_dragdrop (void);
-void _gdk_win32_ole2_dnd_property_change (GdkAtom       type,
-					  gint          format,
-					  const guchar *data,
-					  gint          nelements);
 
 typedef enum {
   GDK_WIN32_MODAL_OP_NONE = 0x0,
@@ -267,30 +207,6 @@ typedef enum {
 } GdkWin32ModalOpKind;
 
 #define GDK_WIN32_MODAL_OP_SIZEMOVE_MASK (GDK_WIN32_MODAL_OP_SIZE | GDK_WIN32_MODAL_OP_MOVE)
-
-/* Non-zero while a modal sizing, moving, or dnd operation is in progress */
-extern GdkWin32ModalOpKind _modal_operation_in_progress;
-
-extern HWND		_modal_move_resize_window;
-
-void  _gdk_win32_begin_modal_call (GdkWin32ModalOpKind kind);
-void  _gdk_win32_end_modal_call (GdkWin32ModalOpKind kind);
-
-
-/* Options */
-extern gint		 _gdk_max_colors;
-
-#define GDK_WIN32_COLORMAP_DATA(cmap) ((GdkColormapPrivateWin32 *) GDK_COLORMAP (cmap)->windowing_data)
-
-extern GdkCursor *_gdk_win32_grab_cursor;
-
-/* Convert a pixbuf to an HICON (or HCURSOR).  Supports alpha under
- * Windows XP, thresholds alpha otherwise.
- */
-HICON _gdk_win32_pixbuf_to_hicon   (GdkPixbuf *pixbuf);
-HICON _gdk_win32_pixbuf_to_hcursor (GdkPixbuf *pixbuf,
-				    gint       x_hotspot,
-				    gint       y_hotspot);
 
 void _gdk_win32_display_init_cursors (GdkWin32Display     *display);
 void _gdk_win32_display_finalize_cursors (GdkWin32Display *display);
@@ -339,42 +255,6 @@ HICON _gdk_win32_create_hicon_for_texture (GdkTexture *texture,
 
 gboolean _gdk_win32_display_has_pending (GdkDisplay *display);
 void _gdk_win32_display_queue_events (GdkDisplay *display);
-
-gboolean _gdk_win32_selection_owner_set_for_display (GdkDisplay *display,
-						     GdkWindow  *owner,
-						     GdkAtom     selection,
-						     guint32     time,
-						     gboolean    send_event);
-GdkWindow *_gdk_win32_display_get_selection_owner   (GdkDisplay *display,
-						     GdkAtom     selection);
-gboolean   _gdk_win32_display_set_selection_owner   (GdkDisplay *display,
-						     GdkWindow  *owner,
-						     GdkAtom     selection,
-						     guint32     time,
-						     gboolean    send_event);
-void       _gdk_win32_display_send_selection_notify (GdkDisplay      *display,
-						     GdkWindow       *requestor,
-						     GdkAtom   	      selection,
-						     GdkAtom          target,
-						     GdkAtom          property,
-						     guint32          time);
-gint      _gdk_win32_display_get_selection_property (GdkDisplay *display,
-						     GdkWindow  *requestor,
-						     guchar    **data,
-						     GdkAtom    *ret_type,
-						     gint       *ret_format);
-void      _gdk_win32_display_convert_selection (GdkDisplay *display,
-						GdkWindow *requestor,
-						GdkAtom    selection,
-						GdkAtom    target,
-						guint32    time);
-gint      _gdk_win32_display_text_property_to_utf8_list (GdkDisplay    *display,
-							 GdkAtom        encoding,
-							 gint           format,
-							 const guchar  *text,
-							 gint           length,
-							 gchar       ***list);
-gchar     *_gdk_win32_display_utf8_to_string_target (GdkDisplay *display, const gchar *str);
 
 guint8     _gdk_win32_keymap_get_active_group    (GdkWin32Keymap *keymap);
 guint8     _gdk_win32_keymap_get_rshift_scancode (GdkWin32Keymap *keymap);
@@ -469,4 +349,3 @@ this_module (void)
   return (HMODULE) &__ImageBase;
 }
 
-#endif /* __GDK_PRIVATE_WIN32_H__ */
