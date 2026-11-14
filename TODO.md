@@ -26,5 +26,5 @@ Granular queue. The 15-minute autonomous loop works top-down. Checkboxes only mo
 - [ ] Link bridge against `libbobgui` from `_build` (Media `processBlock` forwarding) once cgo toolchain unblocks.
 
 ## Housekeeping
-- [ ] Decide fate of root `check-version.py` / `plan_step_complete.py` (archive copies exist in `scripts/archive/`; root copies kept for now).
+- [x] Decide fate of root `check-version.py` / `plan_step_complete.py`: removed from root 2026-11-14 (archive copies in `scripts/archive/` are canonical; originals in git history).
 - [x] Remove stale `HANDOFF.md` claims (rewritten current 2026-11-14).
