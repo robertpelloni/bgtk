@@ -17,7 +17,7 @@ Granular queue. The 15-minute autonomous loop works top-down. Checkboxes only mo
 
 ## Bridges & parity
 - [x] Analyze JUCE UI widgets for intermixing → `docs/JUCE_ANALYSIS.md` (Media-first; note CHANGELOG [4.0.8] bridge files do not exist).
-- [ ] Research missing Qt6/Qt7 features vs C++ baseline; write `docs/QT_PARITY_MATRIX.md`.
+- [x] Research missing Qt6/Qt7 features vs C++ baseline → `docs/QT_PARITY_MATRIX.md` (top gaps: declarative/QML layer, charting, SQL model/view).
 - [ ] First cgo bridge spike (Core or Media) behind a build tag, off by default.
 
 ## Housekeeping
