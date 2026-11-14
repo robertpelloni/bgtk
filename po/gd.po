@@ -73,15 +73,9 @@ msgstr "Brataichean dì-bhugachadh GDK a tha ri shuidheachadh"
 
 #. Placeholder in --gdk-debug=FLAGS in --help output
 #. Placeholder in --gdk-no-debug=FLAGS in --help output
-<<<<<<< HEAD
 #. Placeholder in --bobgui-debug=FLAGS in --help output
 #. Placeholder in --bobgui-no-debug=FLAGS in --help output
 #: gdk/gdk.c:244 gdk/gdk.c:247 bobgui/bobguimain.c:471 bobgui/bobguimain.c:474
-=======
-#. Placeholder in --gtk-debug=FLAGS in --help output
-#. Placeholder in --gtk-no-debug=FLAGS in --help output
-#: gdk/gdk.c:244 gdk/gdk.c:247 gtk/gtkmain.c:471 gtk/gtkmain.c:474
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "FLAGS"
 msgstr "FLAGS"
 
@@ -594,13 +588,8 @@ msgctxt "Action name"
 msgid "Edit"
 msgstr "Deasaich"
 
-<<<<<<< HEAD
 #: bobgui/a11y/bobguicellaccessible.c:259 bobgui/a11y/bobguicolorswatchaccessible.c:149
 #: bobgui/a11y/bobguientryaccessible.c:1557 bobgui/a11y/bobguiexpanderaccessible.c:281
-=======
-#: gtk/a11y/gtkcellaccessible.c:259 gtk/a11y/gtkcolorswatchaccessible.c:149
-#: gtk/a11y/gtkentryaccessible.c:1557 gtk/a11y/gtkexpanderaccessible.c:281
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "Action name"
 msgid "Activate"
 msgstr "Cuir an gnìomh"
@@ -657,11 +646,7 @@ msgctxt "Action description"
 msgid "Presses the combobox"
 msgstr "Brùthaidh seo an combobox"
 
-<<<<<<< HEAD
 #: bobgui/a11y/bobguientryaccessible.c:1566
-=======
-#: gtk/a11y/gtkentryaccessible.c:1566
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "Action description"
 msgid "Activates the entry"
 msgstr "Cuiridh seo an gnìomh an t-innteart"
@@ -704,7 +689,6 @@ msgctxt "Stock label"
 msgid "_Close"
 msgstr "_Dùin"
 
-<<<<<<< HEAD
 #: bobgui/a11y/bobguiimageaccessible.c:59 bobgui/bobguiheaderbar.c:415 bobgui/bobguiwindow.c:9229
 msgid "Minimize"
 msgstr "Fìor-lùghdaich"
@@ -714,17 +698,6 @@ msgid "Maximize"
 msgstr "Làn-mheudaich"
 
 #: bobgui/a11y/bobguiimageaccessible.c:61 bobgui/bobguiheaderbar.c:439 bobgui/bobguiwindow.c:9195
-=======
-#: gtk/a11y/gtkimageaccessible.c:59 gtk/gtkheaderbar.c:415 gtk/gtkwindow.c:9229
-msgid "Minimize"
-msgstr "Fìor-lùghdaich"
-
-#: gtk/a11y/gtkimageaccessible.c:60 gtk/gtkheaderbar.c:439 gtk/gtkwindow.c:9238
-msgid "Maximize"
-msgstr "Làn-mheudaich"
-
-#: gtk/a11y/gtkimageaccessible.c:61 gtk/gtkheaderbar.c:439 gtk/gtkwindow.c:9195
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Restore"
 msgstr "Aisig"
 
@@ -1270,7 +1243,6 @@ msgstr ""
 "an t-innteart seo atharrachadh, slaod samplair-dath an-seo no dèan briogadh "
 "deas air agus tagh “Sàbhail an dath an-seo”."
 
-<<<<<<< HEAD
 #: bobgui/deprecated/bobguicolorseldialog.c:191 bobgui/deprecated/bobguifontsel.c:1689
 #: bobgui/bobguifilechoosernative.c:540 bobgui/bobguifilechoosernative.c:632
 #: bobgui/bobguifilechooserwidget.c:1476 bobgui/bobguifilechooserwidget.c:6383
@@ -1281,18 +1253,6 @@ msgstr ""
 #: bobgui/bobguiwindow.c:12698 bobgui/inspector/css-editor.c:201
 #: bobgui/ui/bobguiappchooserdialog.ui:61 bobgui/ui/bobguiassistant.ui:125
 #: bobgui/ui/bobguicolorchooserdialog.ui:34 bobgui/ui/bobguifontchooserdialog.ui:31
-=======
-#: gtk/deprecated/gtkcolorseldialog.c:191 gtk/deprecated/gtkfontsel.c:1689
-#: gtk/gtkfilechoosernative.c:540 gtk/gtkfilechoosernative.c:632
-#: gtk/gtkfilechooserwidget.c:1476 gtk/gtkfilechooserwidget.c:6383
-#: gtk/gtkmessagedialog.c:952 gtk/gtkmessagedialog.c:965
-#: gtk/gtkmountoperation.c:545 gtk/gtkpagesetupunixdialog.c:196
-#: gtk/gtkprintbackend.c:763 gtk/gtkprinteroptionwidget.c:545
-#: gtk/gtkprintunixdialog.c:673 gtk/gtkprintunixdialog.c:746
-#: gtk/gtkwindow.c:12698 gtk/inspector/css-editor.c:201
-#: gtk/ui/gtkappchooserdialog.ui:61 gtk/ui/gtkassistant.ui:125
-#: gtk/ui/gtkcolorchooserdialog.ui:34 gtk/ui/gtkfontchooserdialog.ui:31
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "_Cancel"
 msgstr "_Sguir dheth"
 
@@ -1338,13 +1298,8 @@ msgstr "_Ro-shealladh:"
 msgid "_Apply"
 msgstr "Cuir _an sàs"
 
-<<<<<<< HEAD
 #: bobgui/deprecated/bobguifontsel.c:1698 bobgui/bobguimessagedialog.c:944
 #: bobgui/bobguimessagedialog.c:966 bobgui/bobguiprintbackend.c:764 bobgui/bobguiwindow.c:12699
-=======
-#: gtk/deprecated/gtkfontsel.c:1698 gtk/gtkmessagedialog.c:944
-#: gtk/gtkmessagedialog.c:966 gtk/gtkprintbackend.c:764 gtk/gtkwindow.c:12699
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "_OK"
 msgstr "_Ceart ma-tha"
 
@@ -1494,11 +1449,7 @@ msgstr "Às-chuir dhan phasgan seo seach do cwd"
 msgid "Invalid size %s\n"
 msgstr "Tha am meud %s mì-dhligheach\n"
 
-<<<<<<< HEAD
 #: bobgui/encodesymbolic.c:279 bobgui/bobgui-builder-tool.c:671
-=======
-#: gtk/encodesymbolic.c:279 gtk/gtk-builder-tool.c:671
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Can't load file: %s\n"
 msgstr "Chan urrainn dhuinn am faidhle a luchdadh: %s\n"
@@ -1513,7 +1464,6 @@ msgstr "Chan urrainn dhuinn am faidhle %s a shàbhaladh: %s\n"
 msgid "Can't close stream"
 msgstr "Chan urrainn dhuinn an sruth a dhùnadh"
 
-<<<<<<< HEAD
 #: bobgui/bobguiaboutdialog.c:114 bobgui/ui/bobguiaboutdialog.ui:206
 msgid "License"
 msgstr "Ceadachas"
@@ -1571,70 +1521,10 @@ msgid "GNU Affero General Public License, version 3 or later"
 msgstr "GNU Affero General Public License, tionndadh 3 no as ùire"
 
 #: bobgui/bobguiaboutdialog.c:128
-=======
-#: gtk/gtkaboutdialog.c:114 gtk/ui/gtkaboutdialog.ui:206
-msgid "License"
-msgstr "Ceadachas"
-
-#: gtk/gtkaboutdialog.c:115
-msgid "Custom License"
-msgstr "Ceadachas gnàthaichte"
-
-#: gtk/gtkaboutdialog.c:116
-msgid "GNU General Public License, version 2 or later"
-msgstr "GNU General Public License, tionndadh 2 no as ùire"
-
-#: gtk/gtkaboutdialog.c:117
-msgid "GNU General Public License, version 3 or later"
-msgstr "GNU General Public License, tionndadh 3 no as ùire"
-
-#: gtk/gtkaboutdialog.c:118
-msgid "GNU Lesser General Public License, version 2.1 or later"
-msgstr "GNU Lesser General Public License, tionndadh 2.1 no as ùire"
-
-#: gtk/gtkaboutdialog.c:119
-msgid "GNU Lesser General Public License, version 3 or later"
-msgstr "GNU Lesser General Public License, tionndadh 3 no as ùire"
-
-#: gtk/gtkaboutdialog.c:120
-msgid "BSD 2-Clause License"
-msgstr "BSD 2-Clause License"
-
-#: gtk/gtkaboutdialog.c:121
-msgid "The MIT License (MIT)"
-msgstr "The MIT License (MIT)"
-
-#: gtk/gtkaboutdialog.c:122
-msgid "Artistic License 2.0"
-msgstr "Artistic License 2.0"
-
-#: gtk/gtkaboutdialog.c:123
-msgid "GNU General Public License, version 2 only"
-msgstr "GNU General Public License, tionndadh 2 a-mhàin"
-
-#: gtk/gtkaboutdialog.c:124
-msgid "GNU General Public License, version 3 only"
-msgstr "GNU General Public License, tionndadh 3 a-mhàin"
-
-#: gtk/gtkaboutdialog.c:125
-msgid "GNU Lesser General Public License, version 2.1 only"
-msgstr "GNU Lesser General Public License, tionndadh 2.1 a-mhàin"
-
-#: gtk/gtkaboutdialog.c:126
-msgid "GNU Lesser General Public License, version 3 only"
-msgstr "GNU Lesser General Public License, tionndadh 3 a-mhàin"
-
-#: gtk/gtkaboutdialog.c:127
-msgid "GNU Affero General Public License, version 3 or later"
-msgstr "GNU Affero General Public License, tionndadh 3 no as ùire"
-
-#: gtk/gtkaboutdialog.c:128
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #| msgid "GNU General Public License, version 3 only"
 msgid "GNU Affero General Public License, version 3 only"
 msgstr "GNU Affero General Public License, tionndadh 3 a-mhàin"
 
-<<<<<<< HEAD
 #: bobgui/bobguiaboutdialog.c:697
 msgid "C_redits"
 msgstr "U_rram"
@@ -1653,40 +1543,15 @@ msgid "Could not show link"
 msgstr "Cha b’ urrainn dhuinn an ceangal a shealltainn"
 
 #: bobgui/bobguiaboutdialog.c:1035
-=======
-#: gtk/gtkaboutdialog.c:697
-msgid "C_redits"
-msgstr "U_rram"
-
-#: gtk/gtkaboutdialog.c:705
-msgid "_License"
-msgstr "_Ceadachas"
-
-#: gtk/gtkaboutdialog.c:714 gtk/gtkcustompaperunixdialog.c:329
-#: gtk/gtkmessagedialog.c:948 gtk/ui/gtkassistant.ui:144
-msgid "_Close"
-msgstr "_Dùin"
-
-#: gtk/gtkaboutdialog.c:998
-msgid "Could not show link"
-msgstr "Cha b’ urrainn dhuinn an ceangal a shealltainn"
-
-#: gtk/gtkaboutdialog.c:1035
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Website"
 msgstr "Làrach-lìn"
 
 #. used for the application menu on MacOS.  %s is replaced with the application name.
-<<<<<<< HEAD
 #: bobgui/bobguiaboutdialog.c:1085 bobgui/ui/bobguiapplication-quartz.ui:7
-=======
-#: gtk/gtkaboutdialog.c:1085 gtk/ui/gtkapplication-quartz.ui:7
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "About %s"
 msgstr "Mu dhèidhinn %s"
 
-<<<<<<< HEAD
 #: bobgui/bobguiaboutdialog.c:2312
 msgid "Created by"
 msgstr "Air a chruthachadh le"
@@ -1700,32 +1565,13 @@ msgid "Translated by"
 msgstr "Air eadar-theangachadh le"
 
 #: bobgui/bobguiaboutdialog.c:2330
-=======
-#: gtk/gtkaboutdialog.c:2312
-msgid "Created by"
-msgstr "Air a chruthachadh le"
-
-#: gtk/gtkaboutdialog.c:2315
-msgid "Documented by"
-msgstr "An stiùireadh le"
-
-#: gtk/gtkaboutdialog.c:2325
-msgid "Translated by"
-msgstr "Air eadar-theangachadh le"
-
-#: gtk/gtkaboutdialog.c:2330
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Artwork by"
 msgstr "An obair-ealain le"
 
 #. Translators: this is the license preamble; the string at the end
 #. * contains the name of the license as link text.
 #.
-<<<<<<< HEAD
 #: bobgui/bobguiaboutdialog.c:2490
-=======
-#: gtk/gtkaboutdialog.c:2490
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid ""
 "This program comes with absolutely no warranty.\n"
@@ -1739,13 +1585,8 @@ msgstr ""
 #. * translated on keyboards used for your language, don't translate
 #. * this.
 #.
-<<<<<<< HEAD
 #: bobgui/bobguiaccellabel.c:181 bobgui/bobguishortcutlabel.c:102
 #: bobgui/bobguishortcutlabel.c:138
-=======
-#: gtk/gtkaccellabel.c:181 gtk/gtkshortcutlabel.c:102
-#: gtk/gtkshortcutlabel.c:138
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "keyboard label"
 msgid "Shift"
 msgstr "Shift"
@@ -1755,13 +1596,8 @@ msgstr "Shift"
 #. * translated on keyboards used for your language, don't translate
 #. * this.
 #.
-<<<<<<< HEAD
 #: bobgui/bobguiaccellabel.c:187 bobgui/bobguishortcutlabel.c:105
 #: bobgui/bobguishortcutlabel.c:140
-=======
-#: gtk/gtkaccellabel.c:187 gtk/gtkshortcutlabel.c:105
-#: gtk/gtkshortcutlabel.c:140
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "keyboard label"
 msgid "Ctrl"
 msgstr "Ctrl"
@@ -1771,13 +1607,8 @@ msgstr "Ctrl"
 #. * translated on keyboards used for your language, don't translate
 #. * this.
 #.
-<<<<<<< HEAD
 #: bobgui/bobguiaccellabel.c:193 bobgui/bobguishortcutlabel.c:108
 #: bobgui/bobguishortcutlabel.c:142
-=======
-#: gtk/gtkaccellabel.c:193 gtk/gtkshortcutlabel.c:108
-#: gtk/gtkshortcutlabel.c:142
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "keyboard label"
 msgid "Alt"
 msgstr "Alt"
@@ -1787,13 +1618,8 @@ msgstr "Alt"
 #. * translated on keyboards used for your language, don't translate
 #. * this.
 #.
-<<<<<<< HEAD
 #: bobgui/bobguiaccellabel.c:845 bobgui/bobguishortcutlabel.c:114
 #: bobgui/bobguishortcutlabel.c:152
-=======
-#: gtk/gtkaccellabel.c:845 gtk/gtkshortcutlabel.c:114
-#: gtk/gtkshortcutlabel.c:152
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "keyboard label"
 msgid "Super"
 msgstr "Super"
@@ -1803,13 +1629,8 @@ msgstr "Super"
 #. * translated on keyboards used for your language, don't translate
 #. * this.
 #.
-<<<<<<< HEAD
 #: bobgui/bobguiaccellabel.c:858 bobgui/bobguishortcutlabel.c:117
 #: bobgui/bobguishortcutlabel.c:154
-=======
-#: gtk/gtkaccellabel.c:858 gtk/gtkshortcutlabel.c:117
-#: gtk/gtkshortcutlabel.c:154
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "keyboard label"
 msgid "Hyper"
 msgstr "Hyper"
@@ -1819,31 +1640,18 @@ msgstr "Hyper"
 #. * translated on keyboards used for your language, don't translate
 #. * this.
 #.
-<<<<<<< HEAD
 #: bobgui/bobguiaccellabel.c:872 bobgui/bobguishortcutlabel.c:111
 #: bobgui/bobguishortcutlabel.c:156
-=======
-#: gtk/gtkaccellabel.c:872 gtk/gtkshortcutlabel.c:111
-#: gtk/gtkshortcutlabel.c:156
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "keyboard label"
 msgid "Meta"
 msgstr "Meta"
 
-<<<<<<< HEAD
 #: bobgui/bobguiaccellabel.c:889
-=======
-#: gtk/gtkaccellabel.c:889
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "keyboard label"
 msgid "Space"
 msgstr "Space"
 
-<<<<<<< HEAD
 #: bobgui/bobguiaccellabel.c:892 bobgui/bobguishortcutlabel.c:181
-=======
-#: gtk/gtkaccellabel.c:892 gtk/gtkshortcutlabel.c:181
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "keyboard label"
 msgid "Backslash"
 msgstr "Backslash"
@@ -1852,55 +1660,33 @@ msgstr "Backslash"
 msgid "Other application…"
 msgstr "Aplacaid eile…"
 
-<<<<<<< HEAD
 #: bobgui/bobguiappchooserdialog.c:204 bobgui/bobguiappchooserdialog.c:211
 #: bobgui/bobguiappchooserdialog.c:228 bobgui/ui/bobguiappchooserdialog.ui:5
-=======
-#: gtk/gtkappchooserdialog.c:204 gtk/gtkappchooserdialog.c:211
-#: gtk/gtkappchooserdialog.c:228 gtk/ui/gtkappchooserdialog.ui:5
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Select Application"
 msgstr "Tagh aplacaid"
 
 #. Translators: %s is a filename
-<<<<<<< HEAD
 #: bobgui/bobguiappchooserdialog.c:206
-=======
-#: gtk/gtkappchooserdialog.c:206
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Opening “%s”."
 msgstr "A’ fosgladh “%s”."
 
-<<<<<<< HEAD
 #: bobgui/bobguiappchooserdialog.c:207
-=======
-#: gtk/gtkappchooserdialog.c:207
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "No applications found for “%s”"
 msgstr "Cha deach aplacaid a lorg a dh’fhosglas “%s”"
 
 #. Translators: %s is a file type description
-<<<<<<< HEAD
 #: bobgui/bobguiappchooserdialog.c:213
-=======
-#: gtk/gtkappchooserdialog.c:213
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Opening “%s” files."
 msgstr "A’ fosgladh faidhlichean “%s”."
 
-<<<<<<< HEAD
 #: bobgui/bobguiappchooserdialog.c:215
-=======
-#: gtk/gtkappchooserdialog.c:215
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "No applications found for “%s” files"
 msgstr "Cha deach aplacaid a lorg airson faidhlichean “%s”"
 
-<<<<<<< HEAD
 #: bobgui/bobguiappchooserdialog.c:308
 msgid "Forget association"
 msgstr "Dìochuimhnich an co-cheangal"
@@ -1914,26 +1700,10 @@ msgid "Default Application"
 msgstr "An aplacaid bhunaiteach"
 
 #: bobgui/bobguiappchooserwidget.c:676
-=======
-#: gtk/gtkappchooserdialog.c:308
-msgid "Forget association"
-msgstr "Dìochuimhnich an co-cheangal"
-
-#: gtk/gtkappchooserdialog.c:451
-msgid "Failed to start GNOME Software"
-msgstr "Cha deach leinn GNOME Software a thòiseachadh"
-
-#: gtk/gtkappchooserwidget.c:626
-msgid "Default Application"
-msgstr "An aplacaid bhunaiteach"
-
-#: gtk/gtkappchooserwidget.c:676
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "No applications found for “%s”."
 msgstr "Cha deach aplacaid a lorg airson “%s”."
 
-<<<<<<< HEAD
 #: bobgui/bobguiappchooserwidget.c:759
 msgid "Recommended Applications"
 msgstr "Aplacaidean a mholamaid"
@@ -1948,22 +1718,6 @@ msgstr "Aplacaidean eile"
 
 #: bobgui/bobguiapplicationwindow.c:345 bobgui/bobguiprintoperation-unix.c:484
 #: bobgui/bobguiprintoperation-win32.c:1453 bobgui/inspector/prop-editor.c:1686
-=======
-#: gtk/gtkappchooserwidget.c:759
-msgid "Recommended Applications"
-msgstr "Aplacaidean a mholamaid"
-
-#: gtk/gtkappchooserwidget.c:774
-msgid "Related Applications"
-msgstr "Aplacaidean co-cheangailte"
-
-#: gtk/gtkappchooserwidget.c:788
-msgid "Other Applications"
-msgstr "Aplacaidean eile"
-
-#: gtk/gtkapplicationwindow.c:345 gtk/gtkprintoperation-unix.c:484
-#: gtk/gtkprintoperation-win32.c:1453 gtk/inspector/prop-editor.c:1686
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Application"
 msgstr "Aplacaid"
 
@@ -1992,56 +1746,32 @@ msgstr "Chan eil eileamaid <%s> ceadaichte aig an leibheil as àirde"
 msgid "Text may not appear inside <%s>"
 msgstr "Chan fhaod teacsa a bhith am broinn <%s>"
 
-<<<<<<< HEAD
 #: bobgui/bobgui-builder-tool.c:124
-=======
-#: gtk/gtk-builder-tool.c:124
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Packing property %s::%s not found\n"
 msgstr "Cha deach roghainn pacaididh %s::%s a lorg\n"
 
-<<<<<<< HEAD
 #: bobgui/bobgui-builder-tool.c:126
-=======
-#: gtk/gtk-builder-tool.c:126
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Cell property %s::%s not found\n"
 msgstr "Cha deach roghainn cealla %s::%s a lorg\n"
 
-<<<<<<< HEAD
 #: bobgui/bobgui-builder-tool.c:128
-=======
-#: gtk/gtk-builder-tool.c:128
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Property %s::%s not found\n"
 msgstr "Cha deach roghainn %s::%s a lorg\n"
 
-<<<<<<< HEAD
 #: bobgui/bobgui-builder-tool.c:136
-=======
-#: gtk/gtk-builder-tool.c:136
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Couldn't parse value for %s::%s: %s\n"
 msgstr "Cha b’ urrainn dhuinn luach a pharsadh airson %s::%s: %s\n"
 
-<<<<<<< HEAD
 #: bobgui/bobgui-builder-tool.c:692
-=======
-#: gtk/gtk-builder-tool.c:692
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Can't parse file: %s\n"
 msgstr "Chan urrainn dhuinn am faidhle a pharsadh: %s\n"
 
-<<<<<<< HEAD
 #: bobgui/bobgui-builder-tool.c:1056
-=======
-#: gtk/gtk-builder-tool.c:1056
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid ""
 "Usage:\n"
@@ -2090,11 +1820,7 @@ msgstr ""
 #. * text direction of RTL and specify "calendar:YM", then the year
 #. * will appear to the right of the month.
 #.
-<<<<<<< HEAD
 #: bobgui/bobguicalendar.c:815
-=======
-#: gtk/gtkcalendar.c:815
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "calendar:MY"
 msgstr "calendar:MY"
 
@@ -2102,11 +1828,7 @@ msgstr "calendar:MY"
 #. * first day of the week to calendar:week_start:1 if you want Monday
 #. * to be the first day of the week, and so on.
 #.
-<<<<<<< HEAD
 #: bobgui/bobguicalendar.c:853
-=======
-#: gtk/gtkcalendar.c:853
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "calendar:week_start:0"
 msgstr "calendar:week_start:1"
 
@@ -2115,11 +1837,7 @@ msgstr "calendar:week_start:1"
 #. *
 #. * If you don't understand this, leave it as "2000"
 #.
-<<<<<<< HEAD
 #: bobgui/bobguicalendar.c:1881
-=======
-#: gtk/gtkcalendar.c:1881
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "year measurement template"
 msgid "2000"
 msgstr "2000"
@@ -2134,11 +1852,7 @@ msgstr "2000"
 #. * digits. That needs support from your system and locale definition
 #. * too.
 #.
-<<<<<<< HEAD
 #: bobgui/bobguicalendar.c:1912 bobgui/bobguicalendar.c:2608
-=======
-#: gtk/gtkcalendar.c:1912 gtk/gtkcalendar.c:2608
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgctxt "calendar:day:digits"
 msgid "%d"
@@ -2154,11 +1868,7 @@ msgstr "%d"
 #. * digits. That needs support from your system and locale definition
 #. * too.
 #.
-<<<<<<< HEAD
 #: bobgui/bobguicalendar.c:1944 bobgui/bobguicalendar.c:2474
-=======
-#: gtk/gtkcalendar.c:1944 gtk/gtkcalendar.c:2474
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgctxt "calendar:week:digits"
 msgid "%d"
@@ -2174,11 +1884,7 @@ msgstr "%d"
 #. *
 #. * "%Y" is appropriate for most locales.
 #.
-<<<<<<< HEAD
 #: bobgui/bobguicalendar.c:2241
-=======
-#: gtk/gtkcalendar.c:2241
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "calendar year format"
 msgid "%Y"
 msgstr "%Y"
@@ -2430,11 +2136,7 @@ msgstr "Cruthaich dath gnàthaichte"
 msgid "Custom color %d: %s"
 msgstr "Dath gnàthaichte %d: %s"
 
-<<<<<<< HEAD
 #: bobgui/bobguicolorplane.c:409
-=======
-#: gtk/gtkcolorplane.c:409
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Color Plane"
 msgstr "Plèana dhathan"
 
@@ -2463,11 +2165,7 @@ msgid "default:mm"
 msgstr "default:mm"
 
 #. And show the custom paper dialog
-<<<<<<< HEAD
 #: bobgui/bobguicustompaperunixdialog.c:405 bobgui/bobguiprintunixdialog.c:3336
-=======
-#: gtk/gtkcustompaperunixdialog.c:405 gtk/gtkprintunixdialog.c:3336
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Manage Custom Sizes"
 msgstr "Stiùirich na meudan gnàthaichte"
 
@@ -2520,7 +2218,6 @@ msgstr "_Deas:"
 msgid "Paper Margins"
 msgstr "Marghain a’ phàipeir"
 
-<<<<<<< HEAD
 #: bobgui/bobguientry.c:9564 bobgui/bobguilabel.c:6680 bobgui/bobguitextview.c:9491
 msgid "Cu_t"
 msgstr "_Gearr"
@@ -2543,36 +2240,11 @@ msgid "Select _All"
 msgstr "Tagh a _h-uile"
 
 #: bobgui/bobguientry.c:9596 bobgui/bobguitextview.c:9524
-=======
-#: gtk/gtkentry.c:9564 gtk/gtklabel.c:6680 gtk/gtktextview.c:9491
-msgid "Cu_t"
-msgstr "_Gearr"
-
-#: gtk/gtkentry.c:9568 gtk/gtklabel.c:6681 gtk/gtktextview.c:9495
-msgid "_Copy"
-msgstr "Dèan _lethbhreac"
-
-#: gtk/gtkentry.c:9572 gtk/gtklabel.c:6682 gtk/gtktextview.c:9497
-msgid "_Paste"
-msgstr "_Cuir ann"
-
-#: gtk/gtkentry.c:9575 gtk/gtkfilechooserwidget.c:1477
-#: gtk/gtkfilechooserwidget.c:2277 gtk/gtklabel.c:6684 gtk/gtktextview.c:9500
-msgid "_Delete"
-msgstr "_Sguab às"
-
-#: gtk/gtkentry.c:9586 gtk/gtklabel.c:6693 gtk/gtktextview.c:9514
-msgid "Select _All"
-msgstr "Tagh a _h-uile"
-
-#: gtk/gtkentry.c:9596 gtk/gtktextview.c:9524
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #| msgctxt "keyboard label"
 #| msgid "Insert"
 msgid "Insert _Emoji"
 msgstr "Cuir a-steach _Emoji"
 
-<<<<<<< HEAD
 #: bobgui/bobguientry.c:9772 bobgui/bobguitextview.c:9749
 msgid "Select all"
 msgstr "Tagh na h-uile"
@@ -2594,47 +2266,16 @@ msgid "Caps Lock is on"
 msgstr "Tha CapsLock air"
 
 #: bobgui/bobguientry.c:11126
-=======
-#: gtk/gtkentry.c:9772 gtk/gtktextview.c:9749
-msgid "Select all"
-msgstr "Tagh na h-uile"
-
-#: gtk/gtkentry.c:9775 gtk/gtktextview.c:9752
-msgid "Cut"
-msgstr "Gearr"
-
-#: gtk/gtkentry.c:9778 gtk/gtktextview.c:9755
-msgid "Copy"
-msgstr "Dèan lethbhreac"
-
-#: gtk/gtkentry.c:9781 gtk/gtktextview.c:9758
-msgid "Paste"
-msgstr "Cuir ann"
-
-#: gtk/gtkentry.c:10851
-msgid "Caps Lock is on"
-msgstr "Tha CapsLock air"
-
-#: gtk/gtkentry.c:11126
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #| msgctxt "keyboard label"
 #| msgid "Insert"
 msgid "Insert Emoji"
 msgstr "Cuir a-steach Emoji"
 
-<<<<<<< HEAD
 #: bobgui/bobguifilechooserbutton.c:107
 msgid "Select a File"
 msgstr "Tagh faidhle"
 
 #: bobgui/bobguifilechooserbutton.c:108 bobgui/bobguiplacessidebar.c:1109
-=======
-#: gtk/gtkfilechooserbutton.c:107
-msgid "Select a File"
-msgstr "Tagh faidhle"
-
-#: gtk/gtkfilechooserbutton.c:108 gtk/gtkplacessidebar.c:1109
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Desktop"
 msgstr "An deasg"
 
@@ -2642,11 +2283,7 @@ msgstr "An deasg"
 msgid "(None)"
 msgstr "(Chan eil gin)"
 
-<<<<<<< HEAD
 #: bobgui/bobguifilechooserbutton.c:2158
-=======
-#: gtk/gtkfilechooserbutton.c:2158
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Other…"
 msgstr "Eile…"
 
@@ -2655,7 +2292,6 @@ msgid "_Name"
 msgstr "_Ainm"
 
 #. Open item is always present
-<<<<<<< HEAD
 #: bobgui/bobguifilechoosernative.c:541 bobgui/bobguifilechoosernative.c:626
 #: bobgui/bobguiplacessidebar.c:3594 bobgui/bobguiplacessidebar.c:3662
 #: bobgui/bobguiplacesview.c:1629
@@ -2667,19 +2303,6 @@ msgid "_Save"
 msgstr "_Sàbhail"
 
 #: bobgui/bobguifilechoosernativequartz.c:331 bobgui/ui/bobguifilechooserwidget.ui:392
-=======
-#: gtk/gtkfilechoosernative.c:541 gtk/gtkfilechoosernative.c:626
-#: gtk/gtkplacessidebar.c:3594 gtk/gtkplacessidebar.c:3662
-#: gtk/gtkplacesview.c:1629
-msgid "_Open"
-msgstr "F_osgail"
-
-#: gtk/gtkfilechoosernative.c:626 gtk/inspector/css-editor.c:202
-msgid "_Save"
-msgstr "_Sàbhail"
-
-#: gtk/gtkfilechoosernativequartz.c:331 gtk/ui/gtkfilechooserwidget.ui:392
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Select which types of files are shown"
 msgstr "Tagh dè na seòrsachan nam faidhlichean a thèid a shealltainn"
 
@@ -2692,7 +2315,6 @@ msgstr "Tagh dè na seòrsachan nam faidhlichean a thèid a shealltainn"
 msgid "%1$s on %2$s"
 msgstr "%1$s air %2$s"
 
-<<<<<<< HEAD
 #: bobgui/bobguifilechooserwidget.c:370
 msgid "Type name of new folder"
 msgstr "Sgrìobh ainm a’ phasgain ùir"
@@ -2702,17 +2324,6 @@ msgid "The folder could not be created"
 msgstr "Cha b’ urrainn dhuinn am pasgan a chruthachadh"
 
 #: bobgui/bobguifilechooserwidget.c:802
-=======
-#: gtk/gtkfilechooserwidget.c:370
-msgid "Type name of new folder"
-msgstr "Sgrìobh ainm a’ phasgain ùir"
-
-#: gtk/gtkfilechooserwidget.c:789
-msgid "The folder could not be created"
-msgstr "Cha b’ urrainn dhuinn am pasgan a chruthachadh"
-
-#: gtk/gtkfilechooserwidget.c:802
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid ""
 "The folder could not be created, as a file with the same name already "
 "exists.  Try using a different name for the folder, or rename the file first."
@@ -2721,35 +2332,22 @@ msgstr ""
 "ann mu thràth air a bheil an t-ainm seo. Feuch ainm eile no thoir ainm eile "
 "air an t-seann-fhaidhle an toiseach."
 
-<<<<<<< HEAD
 #: bobgui/bobguifilechooserwidget.c:817
 msgid "You need to choose a valid filename."
 msgstr "Feumaidh tu ainm dligheach a thaghadh dhan fhaidhle."
 
 #: bobgui/bobguifilechooserwidget.c:820
-=======
-#: gtk/gtkfilechooserwidget.c:817
-msgid "You need to choose a valid filename."
-msgstr "Feumaidh tu ainm dligheach a thaghadh dhan fhaidhle."
-
-#: gtk/gtkfilechooserwidget.c:820
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Cannot create a file under %s as it is not a folder"
 msgstr ""
 "Cha ghabh faidhle a chruthachadh fo %s a chionn ’s nach e pasgan tha ann"
 
-<<<<<<< HEAD
 #: bobgui/bobguifilechooserwidget.c:830
-=======
-#: gtk/gtkfilechooserwidget.c:830
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Cannot create file as the filename is too long"
 msgstr ""
 "Cha ghabh am faidhle a chruthachadh a chionn ’s gu bheil ainm an fhaidhle ro "
 "fhada"
 
-<<<<<<< HEAD
 #: bobgui/bobguifilechooserwidget.c:831
 msgid "Try using a shorter name."
 msgstr "Feuch an cleachd thu ainm nas giorra."
@@ -2835,107 +2433,15 @@ msgid "File names starting with a “.” are hidden"
 msgstr "Thèid ainmean fhaidhlichean a thòisicheas le “.” fhalach"
 
 #: bobgui/bobguifilechooserwidget.c:1472
-=======
-#: gtk/gtkfilechooserwidget.c:831
-msgid "Try using a shorter name."
-msgstr "Feuch an cleachd thu ainm nas giorra."
-
-#: gtk/gtkfilechooserwidget.c:841
-msgid "You may only select folders"
-msgstr "Chan fhaod thu ach pasganan a thaghadh"
-
-#: gtk/gtkfilechooserwidget.c:842
-msgid "The item that you selected is not a folder try using a different item."
-msgstr "Chan e pasgan a tha san rud a thagh thu; feuch rud eile."
-
-#: gtk/gtkfilechooserwidget.c:850
-msgid "Invalid file name"
-msgstr "Tha ainm an fhaidhle mì-dhligheach"
-
-#: gtk/gtkfilechooserwidget.c:859
-msgid "The folder contents could not be displayed"
-msgstr "Cha b’ urrainn dhuinn susbaint a’ phasgain a shealltainn"
-
-#: gtk/gtkfilechooserwidget.c:867
-msgid "The file could not be deleted"
-msgstr "Cha b’ urrainn dhuinn am faidhle a sguabadh às"
-
-#: gtk/gtkfilechooserwidget.c:875
-msgid "The file could not be moved to the Trash"
-msgstr "Cha b’ urrainn dhuinn am faidhle a ghluasad dhan sgudal"
-
-#: gtk/gtkfilechooserwidget.c:1020
-msgid "A folder with that name already exists"
-msgstr "Tha pasgan ann air a bheil an t-ainm seo mu thràth"
-
-#: gtk/gtkfilechooserwidget.c:1022
-msgid "A file with that name already exists"
-msgstr "Tha faidhle ann air a bheil an t-ainm seo mu thràth"
-
-#: gtk/gtkfilechooserwidget.c:1057
-msgid "A folder cannot be called “.”"
-msgstr "Chan urrainn dhut “.” a thoirt air pasgan"
-
-#: gtk/gtkfilechooserwidget.c:1058
-msgid "A file cannot be called “.”"
-msgstr "Chan urrainn dhut “.” a thoirt air faidhle"
-
-#: gtk/gtkfilechooserwidget.c:1061
-msgid "A folder cannot be called “..”"
-msgstr "Chan urrainn dhut “..” a thoirt air pasgan"
-
-#: gtk/gtkfilechooserwidget.c:1062
-msgid "A file cannot be called “..”"
-msgstr "Chan urrainn dhut “..” a thoirt air faidhle"
-
-#: gtk/gtkfilechooserwidget.c:1065
-msgid "Folder names cannot contain “/”"
-msgstr "Chan fhaod “/” a bhith ann an ainm pasgain"
-
-#: gtk/gtkfilechooserwidget.c:1066
-msgid "File names cannot contain “/”"
-msgstr "Chan fhaod “/” a bhith ann an ainm faidhle"
-
-#: gtk/gtkfilechooserwidget.c:1092
-msgid "Folder names should not begin with a space"
-msgstr "Cha bu chòir do dh’ainm pasgan tòiseachadh le beàrn"
-
-#: gtk/gtkfilechooserwidget.c:1093
-msgid "File names should not begin with a space"
-msgstr "Cha bu chòir do dh’ainm faidhle tòiseachadh le beàrn"
-
-#: gtk/gtkfilechooserwidget.c:1097
-msgid "Folder names should not end with a space"
-msgstr "Cha bu chòir do dh’ainm pasgan crìochnachadh le beàrn"
-
-#: gtk/gtkfilechooserwidget.c:1098
-msgid "File names should not end with a space"
-msgstr "Cha bu chòir do dh’ainm faidhle crìochnachadh le beàrn"
-
-#: gtk/gtkfilechooserwidget.c:1101
-msgid "Folder names starting with a “.” are hidden"
-msgstr "Thèid ainmean phasgain a thòisicheas le “.” fhalach"
-
-#: gtk/gtkfilechooserwidget.c:1102
-msgid "File names starting with a “.” are hidden"
-msgstr "Thèid ainmean fhaidhlichean a thòisicheas le “.” fhalach"
-
-#: gtk/gtkfilechooserwidget.c:1472
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Are you sure you want to permanently delete “%s”?"
 msgstr "A bheil thu cinnteach gu bheil thu airson “%s” a sguabadh às gu buan?"
 
-<<<<<<< HEAD
 #: bobgui/bobguifilechooserwidget.c:1475
-=======
-#: gtk/gtkfilechooserwidget.c:1475
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "If you delete an item, it will be permanently lost."
 msgstr "Ma sguabas tu às nì, chan fhaigh thu air ais idir e."
 
-<<<<<<< HEAD
 #: bobgui/bobguifilechooserwidget.c:1609
 msgid "The file could not be renamed"
 msgstr "Cha b’ urrainn dhuinn ainm ùr a thoirt air an fhaidhle"
@@ -2982,70 +2488,16 @@ msgid "Show _Time"
 msgstr "Seall an _t-àm"
 
 #: bobgui/bobguifilechooserwidget.c:2285
-=======
-#: gtk/gtkfilechooserwidget.c:1609
-msgid "The file could not be renamed"
-msgstr "Cha b’ urrainn dhuinn ainm ùr a thoirt air an fhaidhle"
-
-#: gtk/gtkfilechooserwidget.c:1923
-msgid "Could not select file"
-msgstr "Cha b’ urrainn dhuinn am faidhle a thaghadh"
-
-#: gtk/gtkfilechooserwidget.c:2272
-msgid "_Visit File"
-msgstr "_Tadhail air an fhaidhle seo"
-
-#: gtk/gtkfilechooserwidget.c:2273
-msgid "_Open With File Manager"
-msgstr "F_osgail le manaidsear nam faidhlichean"
-
-#: gtk/gtkfilechooserwidget.c:2274
-msgid "_Copy Location"
-msgstr "Dèan lethbhreac dhen _ionad"
-
-#: gtk/gtkfilechooserwidget.c:2275
-msgid "_Add to Bookmarks"
-msgstr "_Cuir ris na comharran-lìn"
-
-#: gtk/gtkfilechooserwidget.c:2276 gtk/gtkplacessidebar.c:2710
-#: gtk/ui/gtkfilechooserwidget.ui:526
-msgid "_Rename"
-msgstr "Thoi_r ainm ùr air"
-
-#: gtk/gtkfilechooserwidget.c:2278
-msgid "_Move to Trash"
-msgstr "_Gluais dhan sgudal"
-
-#: gtk/gtkfilechooserwidget.c:2282
-msgid "Show _Hidden Files"
-msgstr "Seall faidhlichean _falaichte"
-
-#: gtk/gtkfilechooserwidget.c:2283
-msgid "Show _Size Column"
-msgstr "Seall colbh a’ _mheud"
-
-#: gtk/gtkfilechooserwidget.c:2284
-msgid "Show _Time"
-msgstr "Seall an _t-àm"
-
-#: gtk/gtkfilechooserwidget.c:2285
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Sort _Folders before Files"
 msgstr "Seòrsaich _pasganan ro fhaidhlichean"
 
 #. this is the header for the location column in the print dialog
-<<<<<<< HEAD
 #: bobgui/bobguifilechooserwidget.c:2609 bobgui/inspector/css-node-tree.ui:141
 #: bobgui/ui/bobguifilechooserwidget.ui:207 bobgui/ui/bobguiprintunixdialog.ui:123
-=======
-#: gtk/gtkfilechooserwidget.c:2609 gtk/inspector/css-node-tree.ui:141
-#: gtk/ui/gtkfilechooserwidget.ui:207 gtk/ui/gtkprintunixdialog.ui:123
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Location"
 msgstr "Ionad"
 
 #. Label
-<<<<<<< HEAD
 #: bobgui/bobguifilechooserwidget.c:2702
 msgid "_Name:"
 msgstr "_Ainm:"
@@ -3055,22 +2507,10 @@ msgid "Searching"
 msgstr "Lorg"
 
 #: bobgui/bobguifilechooserwidget.c:3329 bobgui/bobguifilechooserwidget.c:3343
-=======
-#: gtk/gtkfilechooserwidget.c:2702
-msgid "_Name:"
-msgstr "_Ainm:"
-
-#: gtk/gtkfilechooserwidget.c:3324
-msgid "Searching"
-msgstr "Lorg"
-
-#: gtk/gtkfilechooserwidget.c:3329 gtk/gtkfilechooserwidget.c:3343
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Searching in %s"
 msgstr "’Ga lorg an-seo: %s"
 
-<<<<<<< HEAD
 #: bobgui/bobguifilechooserwidget.c:3353
 msgid "Enter location"
 msgstr "Cuir a-steach ionad"
@@ -3085,27 +2525,10 @@ msgid "Modified"
 msgstr "Air atharrachadh"
 
 #: bobgui/bobguifilechooserwidget.c:4671
-=======
-#: gtk/gtkfilechooserwidget.c:3353
-msgid "Enter location"
-msgstr "Cuir a-steach ionad"
-
-#: gtk/gtkfilechooserwidget.c:3355
-msgid "Enter location or URL"
-msgstr "Cuir a-steach ionad no URL"
-
-#: gtk/gtkfilechooserwidget.c:4393 gtk/gtkfilechooserwidget.c:7297
-#: gtk/ui/gtkfilechooserwidget.ui:235
-msgid "Modified"
-msgstr "Air atharrachadh"
-
-#: gtk/gtkfilechooserwidget.c:4671
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Could not read the contents of %s"
 msgstr "Cha b’ urrainn susbaint %s a leughadh"
 
-<<<<<<< HEAD
 #: bobgui/bobguifilechooserwidget.c:4675
 msgid "Could not read the contents of the folder"
 msgstr "Cha b’ urrainn susbaint a’ phasgain a leughadh"
@@ -3127,35 +2550,11 @@ msgid "%-e %b"
 msgstr "%-e %b"
 
 #: bobgui/bobguifilechooserwidget.c:4823
-=======
-#: gtk/gtkfilechooserwidget.c:4675
-msgid "Could not read the contents of the folder"
-msgstr "Cha b’ urrainn susbaint a’ phasgain a leughadh"
-
-#: gtk/gtkfilechooserwidget.c:4805 gtk/gtkfilechooserwidget.c:4853
-msgid "%H:%M"
-msgstr "%H:%M"
-
-#: gtk/gtkfilechooserwidget.c:4807 gtk/gtkfilechooserwidget.c:4855
-msgid "%l:%M %p"
-msgstr "%l:%M %p"
-
-#: gtk/gtkfilechooserwidget.c:4811
-msgid "Yesterday"
-msgstr "An-dè"
-
-#: gtk/gtkfilechooserwidget.c:4819
-msgid "%-e %b"
-msgstr "%-e %b"
-
-#: gtk/gtkfilechooserwidget.c:4823
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "%-e %b %Y"
 msgstr "%-e %b %Y"
 
 #. Translators: We don't know whether this printer is
 #. * available to print to.
-<<<<<<< HEAD
 #: bobgui/bobguifilechooserwidget.c:5058 bobgui/inspector/prop-editor.c:1689
 #: modules/printbackends/cloudprint/bobguiprintbackendcloudprint.c:748
 msgid "Unknown"
@@ -3166,39 +2565,19 @@ msgid "Home"
 msgstr "Dhachaigh"
 
 #: bobgui/bobguifilechooserwidget.c:5590
-=======
-#: gtk/gtkfilechooserwidget.c:5058 gtk/inspector/prop-editor.c:1689
-#: modules/printbackends/cloudprint/gtkprintbackendcloudprint.c:748
-msgid "Unknown"
-msgstr "Neo-aithnichte"
-
-#: gtk/gtkfilechooserwidget.c:5097 gtk/gtkplacessidebar.c:1094
-msgid "Home"
-msgstr "Dhachaigh"
-
-#: gtk/gtkfilechooserwidget.c:5590
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Cannot change to folder because it is not local"
 msgstr ""
 "Chan urrainn dhuinn leum a ghearradh gun phasgan a chionn ’s nach eil e "
 "ionadail"
 
-<<<<<<< HEAD
 #: bobgui/bobguifilechooserwidget.c:6376 bobgui/bobguiprintunixdialog.c:664
-=======
-#: gtk/gtkfilechooserwidget.c:6376 gtk/gtkprintunixdialog.c:664
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "A file named “%s” already exists.  Do you want to replace it?"
 msgstr ""
 "Tha faidhle air a bheil “%s” ann mu thràth. A bheil thu airson am fear ùr a "
 "chur an àite an t-seann-fhir?"
 
-<<<<<<< HEAD
 #: bobgui/bobguifilechooserwidget.c:6379 bobgui/bobguiprintunixdialog.c:668
-=======
-#: gtk/gtkfilechooserwidget.c:6379 gtk/gtkprintunixdialog.c:668
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid ""
 "The file already exists in “%s”.  Replacing it will overwrite its contents."
@@ -3206,7 +2585,6 @@ msgstr ""
 "Tha am faidhle seo ann an “%s” mu thràth. Ma chuireas tu am fear ùr ’na "
 "àite, sgrìobhar thairis air an t-susbaint ann."
 
-<<<<<<< HEAD
 #: bobgui/bobguifilechooserwidget.c:6384 bobgui/bobguiprintunixdialog.c:676
 msgid "_Replace"
 msgstr "_Cuir ’na àite"
@@ -3220,21 +2598,6 @@ msgid "Could not send the search request"
 msgstr "Cha b’ urrainn dhuinn an t-iarratas luirg a chur"
 
 #: bobgui/bobguifilechooserwidget.c:7507
-=======
-#: gtk/gtkfilechooserwidget.c:6384 gtk/gtkprintunixdialog.c:676
-msgid "_Replace"
-msgstr "_Cuir ’na àite"
-
-#: gtk/gtkfilechooserwidget.c:6598
-msgid "You do not have access to the specified folder."
-msgstr "Chan eil inntrigeadh agad dhan phasgan seo."
-
-#: gtk/gtkfilechooserwidget.c:7221
-msgid "Could not send the search request"
-msgstr "Cha b’ urrainn dhuinn an t-iarratas luirg a chur"
-
-#: gtk/gtkfilechooserwidget.c:7507
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Accessed"
 msgstr "Air inntrigeadh"
 
@@ -3247,7 +2610,6 @@ msgstr "Air inntrigeadh"
 msgid "File System"
 msgstr "Siostam-fhaidhlichean"
 
-<<<<<<< HEAD
 #: bobgui/bobguifontbutton.c:368 bobgui/bobguifontbutton.c:498
 msgid "Sans 12"
 msgstr "Sans 12"
@@ -3257,17 +2619,6 @@ msgid "Pick a Font"
 msgstr "Tagh cruth-clò"
 
 #: bobgui/bobguifontbutton.c:1355
-=======
-#: gtk/gtkfontbutton.c:368 gtk/gtkfontbutton.c:498
-msgid "Sans 12"
-msgstr "Sans 12"
-
-#: gtk/gtkfontbutton.c:481 gtk/gtkfontbutton.c:615
-msgid "Pick a Font"
-msgstr "Tagh cruth-clò"
-
-#: gtk/gtkfontbutton.c:1355
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "font"
 msgid "None"
 msgstr "Chan eil gin"
@@ -3276,7 +2627,6 @@ msgstr "Chan eil gin"
 msgid "OpenGL context creation failed"
 msgstr "Cha b’ urrainn dhuinn co-theacs OpenGL a chruthachadh"
 
-<<<<<<< HEAD
 #: bobgui/bobguiheaderbar.c:391
 msgid "Application menu"
 msgstr "Clàr-taice na h-aplacaid"
@@ -3286,43 +2636,20 @@ msgid "Close"
 msgstr "Dùin"
 
 #: bobgui/bobguiicontheme.c:2341 bobgui/bobguiicontheme.c:2406
-=======
-#: gtk/gtkheaderbar.c:391
-msgid "Application menu"
-msgstr "Clàr-taice na h-aplacaid"
-
-#: gtk/gtkheaderbar.c:458 gtk/gtkwindow.c:9265
-msgid "Close"
-msgstr "Dùin"
-
-#: gtk/gtkicontheme.c:2341 gtk/gtkicontheme.c:2406
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Icon '%s' not present in theme %s"
 msgstr "Chan eil an ìomhaigheag “%s” san ùrlar %s"
 
-<<<<<<< HEAD
 #: bobgui/bobguiicontheme.c:4080 bobgui/bobguiicontheme.c:4447
 msgid "Failed to load icon"
 msgstr "Dh’fhàillig luchdadh na h-ìomhaigheige"
 
 #: bobgui/bobguiimmodule.c:547
-=======
-#: gtk/gtkicontheme.c:4080 gtk/gtkicontheme.c:4447
-msgid "Failed to load icon"
-msgstr "Dh’fhàillig luchdadh na h-ìomhaigheige"
-
-#: gtk/gtkimmodule.c:547
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "input method menu"
 msgid "Simple"
 msgstr "Simplidh"
 
-<<<<<<< HEAD
 #: bobgui/bobguiimmodule.c:563
-=======
-#: gtk/gtkimmodule.c:563
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "input method menu"
 msgid "None"
 msgstr "Chan eil gin"
@@ -3338,7 +2665,6 @@ msgctxt "input method menu"
 msgid "System (%s)"
 msgstr "Siostam (%s)"
 
-<<<<<<< HEAD
 #: bobgui/bobguiinfobar.c:1168 bobgui/bobguimessagedialog.c:385
 msgid "Information"
 msgstr "Fiosrachadh"
@@ -3352,47 +2678,18 @@ msgid "Warning"
 msgstr "Rabhadh"
 
 #: bobgui/bobguiinfobar.c:1180 bobgui/bobguimessagedialog.c:397
-=======
-#: gtk/gtkinfobar.c:1168 gtk/gtkmessagedialog.c:385
-msgid "Information"
-msgstr "Fiosrachadh"
-
-#: gtk/gtkinfobar.c:1172 gtk/gtkmessagedialog.c:389
-msgid "Question"
-msgstr "Ceist"
-
-#: gtk/gtkinfobar.c:1176 gtk/gtkmessagedialog.c:393
-msgid "Warning"
-msgstr "Rabhadh"
-
-#: gtk/gtkinfobar.c:1180 gtk/gtkmessagedialog.c:397
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Error"
 msgstr "Mearachd"
 
 #. Open Link
-<<<<<<< HEAD
 #: bobgui/bobguilabel.c:6661
-=======
-#: gtk/gtklabel.c:6661
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "_Open Link"
 msgstr "_Fosgail an ceangal"
 
 #. Copy Link Address
-<<<<<<< HEAD
 #: bobgui/bobguilabel.c:6670
 msgid "Copy _Link Address"
 msgstr "Dèan lethbhreac de sheòladh a’ _cheangail"
-=======
-#: gtk/gtklabel.c:6670
-msgid "Copy _Link Address"
-msgstr "Dèan lethbhreac de sheòladh a’ _cheangail"
-
-#: gtk/gtk-launch.c:40
-msgid "Show program version"
-msgstr "Seall tionndadh a’ phrògraim"
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 
 #: bobgui/bobgui-launch.c:40
 msgid "Show program version"
@@ -3450,19 +2747,11 @@ msgstr "%s: chan eil aplacaid mar sin (%s) ann"
 msgid "%s: error launching application: %s\n"
 msgstr "%s: mearachd a’ cur na h-aplacaid air bhog: %s\n"
 
-<<<<<<< HEAD
 #: bobgui/bobguilinkbutton.c:374
 msgid "Copy URL"
 msgstr "Dèan lethbhreac dhen URL"
 
 #: bobgui/bobguilinkbutton.c:522
-=======
-#: gtk/gtklinkbutton.c:374
-msgid "Copy URL"
-msgstr "Dèan lethbhreac dhen URL"
-
-#: gtk/gtklinkbutton.c:522
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Invalid URI"
 msgstr "URI mì-dhligheach"
 
@@ -3498,7 +2787,6 @@ msgstr ""
 "Tha poileasaidh an t-siostaim a’ bacadh atharraichean.\n"
 "Cuir fios gu rianaire an t-siostaim agad"
 
-<<<<<<< HEAD
 #. Description of --bobgui-module=MODULES in --help output
 #: bobgui/bobguimain.c:464
 msgid "Load additional BOBGUI+ modules"
@@ -3506,20 +2794,10 @@ msgstr "Luchdaich mòidealan BOBGUI+ a bharrachd"
 
 #. Placeholder in --bobgui-module=MODULES in --help output
 #: bobgui/bobguimain.c:465
-=======
-#. Description of --gtk-module=MODULES in --help output
-#: gtk/gtkmain.c:464
-msgid "Load additional GTK+ modules"
-msgstr "Luchdaich mòidealan GTK+ a bharrachd"
-
-#. Placeholder in --gtk-module=MODULES in --help output
-#: gtk/gtkmain.c:465
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "MODULES"
 msgstr "MODULES"
 
 #. Description of --g-fatal-warnings in --help output
-<<<<<<< HEAD
 #: bobgui/bobguimain.c:467
 msgid "Make all warnings fatal"
 msgstr "Dèan rabhadh marbhtach dhen a h-uile rabhadh"
@@ -3535,28 +2813,10 @@ msgid "BOBGUI+ debugging flags to unset"
 msgstr "Brataichean dì-bhugachadh BOBGUI+ a tha ri dhì-shuidheachadh"
 
 #: bobgui/bobguimain.c:808 bobgui/bobguimain.c:1002
-=======
-#: gtk/gtkmain.c:467
-msgid "Make all warnings fatal"
-msgstr "Dèan rabhadh marbhtach dhen a h-uile rabhadh"
-
-#. Description of --gtk-debug=FLAGS in --help output
-#: gtk/gtkmain.c:470
-msgid "GTK+ debugging flags to set"
-msgstr "Brataichean dì-bhugachadh GTK+ a tha ri shuidheachadh"
-
-#. Description of --gtk-no-debug=FLAGS in --help output
-#: gtk/gtkmain.c:473
-msgid "GTK+ debugging flags to unset"
-msgstr "Brataichean dì-bhugachadh GTK+ a tha ri dhì-shuidheachadh"
-
-#: gtk/gtkmain.c:808 gtk/gtkmain.c:1002
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Cannot open display: %s"
 msgstr "Cha ghabh na leanas a thaisbeanadh: %s"
 
-<<<<<<< HEAD
 #: bobgui/bobguimain.c:920
 msgid "BOBGUI+ Options"
 msgstr "Roghainnean BOBGUI+"
@@ -3564,26 +2824,13 @@ msgstr "Roghainnean BOBGUI+"
 #: bobgui/bobguimain.c:920
 msgid "Show BOBGUI+ Options"
 msgstr "Seall roghainnean BOBGUI+"
-=======
-#: gtk/gtkmain.c:920
-msgid "GTK+ Options"
-msgstr "Roghainnean GTK+"
-
-#: gtk/gtkmain.c:920
-msgid "Show GTK+ Options"
-msgstr "Seall roghainnean GTK+"
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 
 #. Translate to default:RTL if you want your widgets
 #. * to be RTL, otherwise translate to default:LTR.
 #. * Do *not* translate it to "predefinito:LTR", if it
 #. * it isn't default:LTR or default:RTL it will not work
 #.
-<<<<<<< HEAD
 #: bobgui/bobguimain.c:1270
-=======
-#: gtk/gtkmain.c:1270
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "default:LTR"
 msgstr "default:LTR"
 
@@ -3657,7 +2904,6 @@ msgstr ""
 "an sàs."
 
 #. translators: this string is a name for the 'less' command
-<<<<<<< HEAD
 #: bobgui/bobguimountoperation-x11.c:954
 msgid "Terminal Pager"
 msgstr "Pèidsear tèirmineil"
@@ -3679,38 +2925,11 @@ msgid "Z Shell"
 msgstr "Z Shell"
 
 #: bobgui/bobguimountoperation-x11.c:1055
-=======
-#: gtk/gtkmountoperation-x11.c:954
-msgid "Terminal Pager"
-msgstr "Pèidsear tèirmineil"
-
-#: gtk/gtkmountoperation-x11.c:955
-msgid "Top Command"
-msgstr "Sàr-àithne"
-
-#: gtk/gtkmountoperation-x11.c:956
-msgid "Bourne Again Shell"
-msgstr "Bourne Again Shell"
-
-#: gtk/gtkmountoperation-x11.c:957
-msgid "Bourne Shell"
-msgstr "Bourne Shell"
-
-#: gtk/gtkmountoperation-x11.c:958
-msgid "Z Shell"
-msgstr "Z Shell"
-
-#: gtk/gtkmountoperation-x11.c:1055
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Cannot end process with PID %d: %s"
 msgstr "Cha ghabh am pròiseas a chrìochnachadh le PID %d: %s"
 
-<<<<<<< HEAD
 #: bobgui/bobguinotebook.c:5121 bobgui/bobguinotebook.c:7386
-=======
-#: gtk/gtknotebook.c:5121 gtk/gtknotebook.c:7386
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Page %u"
 msgstr "Duilleag %u"
@@ -3742,11 +2961,7 @@ msgstr ""
 " Barr: %s %s\n"
 " Bonn: %s %s"
 
-<<<<<<< HEAD
 #: bobgui/bobguipagesetupunixdialog.c:878 bobgui/bobguiprintunixdialog.c:3390
-=======
-#: gtk/gtkpagesetupunixdialog.c:878 gtk/gtkprintunixdialog.c:3390
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Manage Custom Sizes…"
 msgstr "Stiùirich na meudan gnàthaiche…"
 
@@ -3755,26 +2970,17 @@ msgstr "Stiùirich na meudan gnàthaiche…"
 msgid "Page Setup"
 msgstr "Suidheachadh na duilleige"
 
-<<<<<<< HEAD
 #: bobgui/bobguipathbar.c:1572
-=======
-#: gtk/gtkpathbar.c:1572
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "File System Root"
 msgstr "Root an t-siostaim fhaidhlichean"
 
 #. translators: %s is the name of a cloud provider for files
-<<<<<<< HEAD
 #: bobgui/bobguiplacessidebar.c:981
-=======
-#: gtk/gtkplacessidebar.c:981
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 #| msgid "Open '%s'"
 msgid "Open %s"
 msgstr "Fosgail %s"
 
-<<<<<<< HEAD
 #: bobgui/bobguiplacessidebar.c:1070
 msgid "Recent"
 msgstr "Air a chleachdadh o chionn goirid"
@@ -3784,33 +2990,17 @@ msgid "Recent files"
 msgstr "Faidhlichean o chionn goirid"
 
 #: bobgui/bobguiplacessidebar.c:1082
-=======
-#: gtk/gtkplacessidebar.c:1070
-msgid "Recent"
-msgstr "Air a chleachdadh o chionn goirid"
-
-#: gtk/gtkplacessidebar.c:1072
-msgid "Recent files"
-msgstr "Faidhlichean o chionn goirid"
-
-#: gtk/gtkplacessidebar.c:1082
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #| msgid "_Start"
 msgid "Starred"
 msgstr "Rionnag"
 
 #. TODO: Rename to 'Starred files'
-<<<<<<< HEAD
 #: bobgui/bobguiplacessidebar.c:1085
-=======
-#: gtk/gtkplacessidebar.c:1085
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #| msgctxt "printer option"
 #| msgid "Printer Profile"
 msgid "Favorite files"
 msgstr "Na faidhlichean as fhearr leat"
 
-<<<<<<< HEAD
 #: bobgui/bobguiplacessidebar.c:1096
 msgid "Open your personal folder"
 msgstr "Fosgail am pasgan pearsanta agad"
@@ -3837,39 +3027,10 @@ msgstr "Fosgail an sgudal"
 
 #: bobgui/bobguiplacessidebar.c:1248 bobgui/bobguiplacessidebar.c:1276
 #: bobgui/bobguiplacessidebar.c:1484
-=======
-#: gtk/gtkplacessidebar.c:1096
-msgid "Open your personal folder"
-msgstr "Fosgail am pasgan pearsanta agad"
-
-#: gtk/gtkplacessidebar.c:1111
-msgid "Open the contents of your desktop in a folder"
-msgstr "Fosgail susbaint an deasga agad ann am pasgan"
-
-#: gtk/gtkplacessidebar.c:1125
-msgid "Enter Location"
-msgstr "Cuir a-steach ionad"
-
-#: gtk/gtkplacessidebar.c:1127
-msgid "Manually enter a location"
-msgstr "Cuir a-steach ionad a làimh"
-
-#: gtk/gtkplacessidebar.c:1137
-msgid "Trash"
-msgstr "Sgudal"
-
-#: gtk/gtkplacessidebar.c:1139
-msgid "Open the trash"
-msgstr "Fosgail an sgudal"
-
-#: gtk/gtkplacessidebar.c:1248 gtk/gtkplacessidebar.c:1276
-#: gtk/gtkplacessidebar.c:1484
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Mount and open “%s”"
 msgstr "Munntaich is fosgail “%s”"
 
-<<<<<<< HEAD
 #: bobgui/bobguiplacessidebar.c:1364
 msgid "Open the contents of the file system"
 msgstr "Fosgail susbaint an t-siosaim-fhaidhlichean"
@@ -3895,55 +3056,19 @@ msgid "Other Locations"
 msgstr "Ionadan eile"
 
 #: bobgui/bobguiplacessidebar.c:1528
-=======
-#: gtk/gtkplacessidebar.c:1364
-msgid "Open the contents of the file system"
-msgstr "Fosgail susbaint an t-siosaim-fhaidhlichean"
-
-#: gtk/gtkplacessidebar.c:1448
-msgid "New bookmark"
-msgstr "Comharra-lìn ùr"
-
-#: gtk/gtkplacessidebar.c:1450
-msgid "Add a new bookmark"
-msgstr "Cuir comharra-lìn ùr ris"
-
-#: gtk/gtkplacessidebar.c:1463
-msgid "Connect to Server"
-msgstr "Ceangail ri frithealaiche"
-
-#: gtk/gtkplacessidebar.c:1465
-msgid "Connect to a network server address"
-msgstr "Ceangail ris an t-seòladh aig frithealaiche lìonraidh"
-
-#: gtk/gtkplacessidebar.c:1527
-msgid "Other Locations"
-msgstr "Ionadan eile"
-
-#: gtk/gtkplacessidebar.c:1528
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Show other locations"
 msgstr "Seall ionadan eile"
 
 #. Adjust start/stop items to reflect the type of the drive
-<<<<<<< HEAD
 #: bobgui/bobguiplacessidebar.c:2324 bobgui/bobguiplacessidebar.c:3682
 msgid "_Start"
 msgstr "_Tòisich"
 
 #: bobgui/bobguiplacessidebar.c:2325 bobgui/bobguiplacessidebar.c:3683
-=======
-#: gtk/gtkplacessidebar.c:2324 gtk/gtkplacessidebar.c:3682
-msgid "_Start"
-msgstr "_Tòisich"
-
-#: gtk/gtkplacessidebar.c:2325 gtk/gtkplacessidebar.c:3683
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "_Stop"
 msgstr "_Sguir dheth"
 
 #. start() for type G_DRIVE_START_STOP_TYPE_SHUTDOWN is normally not used
-<<<<<<< HEAD
 #: bobgui/bobguiplacessidebar.c:2332
 msgid "_Power On"
 msgstr "_Cuir cumhachd air"
@@ -3965,34 +3090,10 @@ msgid "_Start Multi-disk Device"
 msgstr "_Tòisich uidheam ioma-dhiosga"
 
 #: bobgui/bobguiplacessidebar.c:2343
-=======
-#: gtk/gtkplacessidebar.c:2332
-msgid "_Power On"
-msgstr "_Cuir cumhachd air"
-
-#: gtk/gtkplacessidebar.c:2333
-msgid "_Safely Remove Drive"
-msgstr "Thoir an draibh air falbh gu _sàbhailte"
-
-#: gtk/gtkplacessidebar.c:2337
-msgid "_Connect Drive"
-msgstr "_Ceangal an draibh"
-
-#: gtk/gtkplacessidebar.c:2338
-msgid "_Disconnect Drive"
-msgstr "_Bris an ceangal gun draibh"
-
-#: gtk/gtkplacessidebar.c:2342
-msgid "_Start Multi-disk Device"
-msgstr "_Tòisich uidheam ioma-dhiosga"
-
-#: gtk/gtkplacessidebar.c:2343
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "_Stop Multi-disk Device"
 msgstr "_Sguir dhen uidheam ioma-dhiosga"
 
 #. stop() for type G_DRIVE_START_STOP_TYPE_PASSWORD is normally not used
-<<<<<<< HEAD
 #: bobgui/bobguiplacessidebar.c:2348
 msgid "_Unlock Device"
 msgstr "_Thoir a’ ghlas far an uidheam"
@@ -4002,31 +3103,15 @@ msgid "_Lock Device"
 msgstr "G_lais an t-uidheam"
 
 #: bobgui/bobguiplacessidebar.c:2387 bobgui/bobguiplacessidebar.c:3363
-=======
-#: gtk/gtkplacessidebar.c:2348
-msgid "_Unlock Device"
-msgstr "_Thoir a’ ghlas far an uidheam"
-
-#: gtk/gtkplacessidebar.c:2349
-msgid "_Lock Device"
-msgstr "G_lais an t-uidheam"
-
-#: gtk/gtkplacessidebar.c:2387 gtk/gtkplacessidebar.c:3363
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Unable to start “%s”"
 msgstr "Cha ghabh “%s” a thòiseachadh"
 
-<<<<<<< HEAD
 #: bobgui/bobguiplacessidebar.c:2417
-=======
-#: gtk/gtkplacessidebar.c:2417
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Unable to access “%s”"
 msgstr "Cha ghabh %s inntrigeadh"
 
-<<<<<<< HEAD
 #: bobgui/bobguiplacessidebar.c:2635
 msgid "This name is already taken"
 msgstr "Tha an t-ainm seo ’ga chleachdadh mar-thà"
@@ -4038,60 +3123,30 @@ msgid "Name"
 msgstr "Ainm"
 
 #: bobgui/bobguiplacessidebar.c:2904
-=======
-#: gtk/gtkplacessidebar.c:2635
-msgid "This name is already taken"
-msgstr "Tha an t-ainm seo ’ga chleachdadh mar-thà"
-
-#: gtk/gtkplacessidebar.c:2704 gtk/inspector/actions.ui:43
-#: gtk/inspector/css-node-tree.ui:39 gtk/inspector/object-tree.ui:110
-#: gtk/ui/gtkfilechooserwidget.ui:189 gtk/ui/gtkfilechooserwidget.ui:500
-msgid "Name"
-msgstr "Ainm"
-
-#: gtk/gtkplacessidebar.c:2904
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Unable to unmount “%s”"
 msgstr "Cha ghabh “%s” a dì-mhunntachadh"
 
-<<<<<<< HEAD
 #: bobgui/bobguiplacessidebar.c:3080
-=======
-#: gtk/gtkplacessidebar.c:3080
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Unable to stop “%s”"
 msgstr "Cha ghabh sguir dhe “%s”"
 
-<<<<<<< HEAD
 #: bobgui/bobguiplacessidebar.c:3109
-=======
-#: gtk/gtkplacessidebar.c:3109
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Unable to eject “%s”"
 msgstr "Cha ghabh “%s” a ghluasad a-mach"
 
-<<<<<<< HEAD
 #: bobgui/bobguiplacessidebar.c:3138 bobgui/bobguiplacessidebar.c:3167
-=======
-#: gtk/gtkplacessidebar.c:3138 gtk/gtkplacessidebar.c:3167
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Unable to eject %s"
 msgstr "Cha ghabh %s a ghluasad a-mach"
 
-<<<<<<< HEAD
 #: bobgui/bobguiplacessidebar.c:3315
-=======
-#: gtk/gtkplacessidebar.c:3315
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Unable to poll “%s” for media changes"
 msgstr "Cha ghabh “%s” a phòladh airson atharrachadh a’ mheadhain"
 
-<<<<<<< HEAD
 #: bobgui/bobguiplacessidebar.c:3599 bobgui/bobguiplacessidebar.c:3665
 #: bobgui/bobguiplacesview.c:1639
 msgid "Open in New _Tab"
@@ -4139,87 +3194,25 @@ msgid "Searching for network locations"
 msgstr "A’ lorg ionadan lìonraidh"
 
 #: bobgui/bobguiplacesview.c:901
-=======
-#: gtk/gtkplacessidebar.c:3599 gtk/gtkplacessidebar.c:3665
-#: gtk/gtkplacesview.c:1639
-msgid "Open in New _Tab"
-msgstr "Fosgail ann an _taba ùr"
-
-#: gtk/gtkplacessidebar.c:3605 gtk/gtkplacessidebar.c:3668
-#: gtk/gtkplacesview.c:1650
-msgid "Open in New _Window"
-msgstr "Fosgail ann an _uinneag ùr"
-
-#: gtk/gtkplacessidebar.c:3672
-msgid "_Add Bookmark"
-msgstr "_Cuir ris na comharran-lìn"
-
-#: gtk/gtkplacessidebar.c:3673
-msgid "_Remove"
-msgstr "Thoi_r air falbh"
-
-#: gtk/gtkplacessidebar.c:3674
-msgid "Rename…"
-msgstr "Thoir ainm ùr air…"
-
-#: gtk/gtkplacessidebar.c:3678 gtk/gtkplacesview.c:1684
-msgid "_Mount"
-msgstr "_Munntaich"
-
-#: gtk/gtkplacessidebar.c:3679 gtk/gtkplacesview.c:1674
-msgid "_Unmount"
-msgstr "Dì-mhu_nntaich"
-
-#: gtk/gtkplacessidebar.c:3680
-msgid "_Eject"
-msgstr "_Gluais a-mach"
-
-#: gtk/gtkplacessidebar.c:3681
-msgid "_Detect Media"
-msgstr "_Aithnich meadhanan"
-
-#: gtk/gtkplacessidebar.c:4127 gtk/gtkplacesview.c:1118
-msgid "Computer"
-msgstr "Coimpiutair"
-
-#: gtk/gtkplacesview.c:894
-msgid "Searching for network locations"
-msgstr "A’ lorg ionadan lìonraidh"
-
-#: gtk/gtkplacesview.c:901
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "No network locations found"
 msgstr "Cha deach ionad lìonraidh a lorg"
 
 #. if it wasn't cancelled show a dialog
-<<<<<<< HEAD
 #: bobgui/bobguiplacesview.c:1228 bobgui/bobguiplacesview.c:1303
-=======
-#: gtk/gtkplacesview.c:1228 gtk/gtkplacesview.c:1303
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Unable to access location"
 msgstr "Cha ghabh an t-ionad inntrigeadh"
 
 #. Restore from Cancel to Connect
-<<<<<<< HEAD
 #: bobgui/bobguiplacesview.c:1246 bobgui/ui/bobguiplacesview.ui:449
-=======
-#: gtk/gtkplacesview.c:1246 gtk/ui/gtkplacesview.ui:449
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Con_nect"
 msgstr "C_eangail"
 
 #. if it wasn't cancelled show a dialog
-<<<<<<< HEAD
 #: bobgui/bobguiplacesview.c:1366
-=======
-#: gtk/gtkplacesview.c:1366
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Unable to unmount volume"
 msgstr "Cha ghabh an draibh a dì-mhunntachadh"
 
 #. Allow to cancel the operation
-<<<<<<< HEAD
 #: bobgui/bobguiplacesview.c:1466
 msgid "Cance_l"
 msgstr "_Sguir dheth"
@@ -4241,29 +3234,6 @@ msgid "Networks"
 msgstr "Lìonraidhean"
 
 #: bobgui/bobguiplacesview.c:2013 bobgui/bobguiplacesview.c:2022
-=======
-#: gtk/gtkplacesview.c:1466
-msgid "Cance_l"
-msgstr "_Sguir dheth"
-
-#: gtk/gtkplacesview.c:1674
-msgid "_Disconnect"
-msgstr "_Dì-cheangail"
-
-#: gtk/gtkplacesview.c:1684
-msgid "_Connect"
-msgstr "_Ceangail"
-
-#: gtk/gtkplacesview.c:1825
-msgid "Unable to get remote server location"
-msgstr "Cha deach leinn ionad cèin an fhrithealaiche fhaighinn"
-
-#: gtk/gtkplacesview.c:2013 gtk/gtkplacesview.c:2022
-msgid "Networks"
-msgstr "Lìonraidhean"
-
-#: gtk/gtkplacesview.c:2013 gtk/gtkplacesview.c:2022
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "On This Computer"
 msgstr "Air a’ choimpiutair seo"
 
@@ -4271,11 +3241,7 @@ msgstr "Air a’ choimpiutair seo"
 #. * should be based on the free space available.
 #. * i.e. 1 GB / 24 GB available.
 #.
-<<<<<<< HEAD
 #: bobgui/bobguiplacesviewrow.c:134
-=======
-#: gtk/gtkplacesviewrow.c:134
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "%s / %s available"
 msgid_plural "%s / %s available"
@@ -4284,21 +3250,12 @@ msgstr[1] "%s / %s ri fhaighinn"
 msgstr[2] "%s / %s ri fhaighinn"
 msgstr[3] "%s / %s ri fhaighinn"
 
-<<<<<<< HEAD
 #: bobgui/bobguiplacesviewrow.c:481
 msgid "Disconnect"
 msgstr "Dì-cheangail"
 
 #: bobgui/bobguiplacesviewrow.c:481 bobgui/ui/bobguiplacesviewrow.ui:72
 #: bobgui/ui/bobguisidebarrow.ui:60
-=======
-#: gtk/gtkplacesviewrow.c:481
-msgid "Disconnect"
-msgstr "Dì-cheangail"
-
-#: gtk/gtkplacesviewrow.c:481 gtk/ui/gtkplacesviewrow.ui:72
-#: gtk/ui/gtksidebarrow.ui:60
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Unmount"
 msgstr "Dì-mhunntaich"
 
@@ -4327,128 +3284,72 @@ msgstr "Chan eil seo ri fhaighinn"
 msgid "%s job #%d"
 msgstr "Obair %s, #%d"
 
-<<<<<<< HEAD
 #: bobgui/bobguiprintoperation.c:1802
-=======
-#: gtk/gtkprintoperation.c:1802
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "print operation status"
 msgid "Initial state"
 msgstr "An staid thùsail"
 
-<<<<<<< HEAD
 #: bobgui/bobguiprintoperation.c:1803
-=======
-#: gtk/gtkprintoperation.c:1803
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "print operation status"
 msgid "Preparing to print"
 msgstr "Ag ullachadh airson clò-bhualadh"
 
-<<<<<<< HEAD
 #: bobgui/bobguiprintoperation.c:1804
-=======
-#: gtk/gtkprintoperation.c:1804
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "print operation status"
 msgid "Generating data"
 msgstr "A’ gintinn an dàta"
 
-<<<<<<< HEAD
 #: bobgui/bobguiprintoperation.c:1805
-=======
-#: gtk/gtkprintoperation.c:1805
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "print operation status"
 msgid "Sending data"
 msgstr "A’ cur an dàta"
 
-<<<<<<< HEAD
 #: bobgui/bobguiprintoperation.c:1806
-=======
-#: gtk/gtkprintoperation.c:1806
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "print operation status"
 msgid "Waiting"
 msgstr "A’ feitheamh"
 
-<<<<<<< HEAD
 #: bobgui/bobguiprintoperation.c:1807
-=======
-#: gtk/gtkprintoperation.c:1807
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "print operation status"
 msgid "Blocking on issue"
 msgstr "Bacadh aig àm cuir a-mach"
 
-<<<<<<< HEAD
 #: bobgui/bobguiprintoperation.c:1808
-=======
-#: gtk/gtkprintoperation.c:1808
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "print operation status"
 msgid "Printing"
 msgstr "’Ga chlò-bhualadh"
 
-<<<<<<< HEAD
 #: bobgui/bobguiprintoperation.c:1809
-=======
-#: gtk/gtkprintoperation.c:1809
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "print operation status"
 msgid "Finished"
 msgstr "Deiseil"
 
-<<<<<<< HEAD
 #: bobgui/bobguiprintoperation.c:1810
-=======
-#: gtk/gtkprintoperation.c:1810
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "print operation status"
 msgid "Finished with error"
 msgstr "Deiseil ach thachair mearachd"
 
-<<<<<<< HEAD
 #: bobgui/bobguiprintoperation.c:2374
-=======
-#: gtk/gtkprintoperation.c:2374
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Preparing %d"
 msgstr "Ag ullachadh %d"
 
-<<<<<<< HEAD
 #: bobgui/bobguiprintoperation.c:2376 bobgui/bobguiprintoperation.c:3005
-=======
-#: gtk/gtkprintoperation.c:2376 gtk/gtkprintoperation.c:3005
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Preparing"
 msgstr "Ag ullachadh"
 
-<<<<<<< HEAD
 #: bobgui/bobguiprintoperation.c:2379
-=======
-#: gtk/gtkprintoperation.c:2379
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Printing %d"
 msgstr "A’ clò-bhualadh %d"
 
-<<<<<<< HEAD
 #: bobgui/bobguiprintoperation.c:3036
-=======
-#: gtk/gtkprintoperation.c:3036
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Error creating print preview"
 msgstr "Mearachd a’ cruthachadh ro-shealladh a’ chlò-bhualaidh"
 
-<<<<<<< HEAD
 #: bobgui/bobguiprintoperation.c:3039
-=======
-#: gtk/gtkprintoperation.c:3039
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "The most probable reason is that a temporary file could not be created."
 msgstr ""
@@ -4456,13 +3357,8 @@ msgstr ""
 "chruthachadh."
 
 #. window
-<<<<<<< HEAD
 #: bobgui/bobguiprintoperation-portal.c:230 bobgui/bobguiprintoperation-portal.c:541
 #: bobgui/bobguiprintoperation-portal.c:618 bobgui/bobguiprintunixdialog.c:3412
-=======
-#: gtk/gtkprintoperation-portal.c:230 gtk/gtkprintoperation-portal.c:541
-#: gtk/gtkprintoperation-portal.c:618 gtk/gtkprintunixdialog.c:3412
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Print"
 msgstr "Clò-bhuail"
 
@@ -4475,13 +3371,8 @@ msgid "Out of paper"
 msgstr "Chan eil pàipear air fhàgail"
 
 #. Translators: this is a printer status.
-<<<<<<< HEAD
 #: bobgui/bobguiprintoperation-win32.c:621
 #: modules/printbackends/cups/bobguiprintbackendcups.c:2596
-=======
-#: gtk/gtkprintoperation-win32.c:621
-#: modules/printbackends/cups/gtkprintbackendcups.c:2596
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Paused"
 msgstr "’Na stad"
 
@@ -4548,7 +3439,6 @@ msgstr "A’ faighinn fiosrachadh on chlò-bhualadair…"
 #. Translators: These strings name the possible arrangements of
 #. * multiple pages on a sheet when printing
 #.
-<<<<<<< HEAD
 #: bobgui/bobguiprintunixdialog.c:3119
 #: modules/printbackends/cups/bobguiprintbackendcups.c:5434
 msgid "Left to right, top to bottom"
@@ -4610,69 +3500,6 @@ msgid "Bottom to top"
 msgstr "Bonn gu barr"
 
 #: bobgui/bobguiprogressbar.c:729
-=======
-#: gtk/gtkprintunixdialog.c:3119
-#: modules/printbackends/cups/gtkprintbackendcups.c:5434
-msgid "Left to right, top to bottom"
-msgstr "Clì gu deas, barr gu bonn"
-
-#: gtk/gtkprintunixdialog.c:3119
-#: modules/printbackends/cups/gtkprintbackendcups.c:5434
-msgid "Left to right, bottom to top"
-msgstr "Clì gu deas, barr gu bonn"
-
-#: gtk/gtkprintunixdialog.c:3120
-#: modules/printbackends/cups/gtkprintbackendcups.c:5435
-msgid "Right to left, top to bottom"
-msgstr "Deas gu clì, barr gu bonn"
-
-#: gtk/gtkprintunixdialog.c:3120
-#: modules/printbackends/cups/gtkprintbackendcups.c:5435
-msgid "Right to left, bottom to top"
-msgstr "Deas gu clì, bun gu barr"
-
-#: gtk/gtkprintunixdialog.c:3121
-#: modules/printbackends/cups/gtkprintbackendcups.c:5436
-msgid "Top to bottom, left to right"
-msgstr "Barr gu bonn, clì gu deas"
-
-#: gtk/gtkprintunixdialog.c:3121
-#: modules/printbackends/cups/gtkprintbackendcups.c:5436
-msgid "Top to bottom, right to left"
-msgstr "Barr gu bonn, deas gu clì"
-
-#: gtk/gtkprintunixdialog.c:3122
-#: modules/printbackends/cups/gtkprintbackendcups.c:5437
-msgid "Bottom to top, left to right"
-msgstr "Bonn gu barr, clì gu deas"
-
-#: gtk/gtkprintunixdialog.c:3122
-#: modules/printbackends/cups/gtkprintbackendcups.c:5437
-msgid "Bottom to top, right to left"
-msgstr "Bonn gu barr, deas gu clì"
-
-#: gtk/gtkprintunixdialog.c:3126 gtk/gtkprintunixdialog.c:3139
-msgid "Page Ordering"
-msgstr "Òrdugh nan duilleagan"
-
-#: gtk/gtkprintunixdialog.c:3155
-msgid "Left to right"
-msgstr "Clì gu deas"
-
-#: gtk/gtkprintunixdialog.c:3156
-msgid "Right to left"
-msgstr "Deas gu clì"
-
-#: gtk/gtkprintunixdialog.c:3168
-msgid "Top to bottom"
-msgstr "Barr gu bonn"
-
-#: gtk/gtkprintunixdialog.c:3169
-msgid "Bottom to top"
-msgstr "Bonn gu barr"
-
-#: gtk/gtkprogressbar.c:729
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgctxt "progress bar label"
 msgid "%.0f %%"
@@ -4761,33 +3588,19 @@ msgctxt "recent menu label"
 msgid "%d. %s"
 msgstr "%d. %s"
 
-<<<<<<< HEAD
 #: bobgui/bobguirecentmanager.c:1053 bobgui/bobguirecentmanager.c:1066
 #: bobgui/bobguirecentmanager.c:1203 bobgui/bobguirecentmanager.c:1213
 #: bobgui/bobguirecentmanager.c:1265 bobgui/bobguirecentmanager.c:1274
-=======
-#: gtk/gtkrecentmanager.c:1053 gtk/gtkrecentmanager.c:1066
-#: gtk/gtkrecentmanager.c:1203 gtk/gtkrecentmanager.c:1213
-#: gtk/gtkrecentmanager.c:1265 gtk/gtkrecentmanager.c:1274
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Unable to find an item with URI '%s'"
 msgstr "Chan urrainn dhuinn nì aig a bheil an URI “%s” a lorg"
 
-<<<<<<< HEAD
 #: bobgui/bobguirecentmanager.c:1289
-=======
-#: gtk/gtkrecentmanager.c:1289
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Unable to move the item with URI '%s' to '%s'"
 msgstr "Chan urrainn dhuinn nì aig a bheil an URI “%s” a ghluasad gu “%s”"
 
-<<<<<<< HEAD
 #: bobgui/bobguirecentmanager.c:2507
-=======
-#: gtk/gtkrecentmanager.c:2507
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "No registered application with name '%s' for item with URI '%s' found"
 msgstr ""
@@ -4818,11 +3631,7 @@ msgctxt "keyboard side marker"
 msgid "R"
 msgstr "D"
 
-<<<<<<< HEAD
 #: bobgui/bobguishortcutssection.c:451
-=======
-#: gtk/gtkshortcutssection.c:451
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "_Show All"
 msgstr "_Seall na h-uile"
 
@@ -4862,7 +3671,6 @@ msgstr "Toraidhean an luirg"
 msgid "Search Shortcuts"
 msgstr "Ath-ghoiridean luirg"
 
-<<<<<<< HEAD
 #: bobgui/bobguishortcutswindow.c:1053 bobgui/ui/bobguiemojichooser.ui:314
 #: bobgui/ui/bobguifilechooserwidget.ui:310
 msgid "No Results Found"
@@ -4870,15 +3678,6 @@ msgstr "Cha deach toradh a lorg"
 
 #: bobgui/bobguishortcutswindow.c:1060 bobgui/ui/bobguiemojichooser.ui:328
 #: bobgui/ui/bobguifilechooserwidget.ui:324 bobgui/ui/bobguiplacesview.ui:406
-=======
-#: gtk/gtkshortcutswindow.c:1053 gtk/ui/gtkemojichooser.ui:314
-#: gtk/ui/gtkfilechooserwidget.ui:310
-msgid "No Results Found"
-msgstr "Cha deach toradh a lorg"
-
-#: gtk/gtkshortcutswindow.c:1060 gtk/ui/gtkemojichooser.ui:328
-#: gtk/ui/gtkfilechooserwidget.ui:324 gtk/ui/gtkplacesview.ui:406
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Try a different search"
 msgstr "Feuch lorg eile"
 
@@ -5020,11 +3819,7 @@ msgid ""
 "Serialized data is malformed. First section isn't BOBGUITEXTBUFFERCONTENTS-0001"
 msgstr ""
 "Tha an serialized data droch-chumta. Chan eil a’ chiad earrann ’na "
-<<<<<<< HEAD
 "BOBGUITEXTBUFFERCONTENTS-0001"
-=======
-"GTKTEXTBUFFERCONTENTS-0001"
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 
 #: bobgui/bobguitextutil.c:57
 msgid "LRM _Left-to-right mark"
@@ -5089,7 +3884,6 @@ msgctxt "volume percentage"
 msgid "%d %%"
 msgstr "%d %%"
 
-<<<<<<< HEAD
 #: bobgui/bobguiwindow.c:9213
 msgid "Move"
 msgstr "Gluais"
@@ -5103,49 +3897,22 @@ msgid "Always on Top"
 msgstr "Air a’ bharr an-còmhnaidh"
 
 #: bobgui/bobguiwindow.c:12686
-=======
-#: gtk/gtkwindow.c:9213
-msgid "Move"
-msgstr "Gluais"
-
-#: gtk/gtkwindow.c:9221
-msgid "Resize"
-msgstr "Atharraich am meud"
-
-#: gtk/gtkwindow.c:9252
-msgid "Always on Top"
-msgstr "Air a’ bharr an-còmhnaidh"
-
-#: gtk/gtkwindow.c:12686
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Do you want to use BOBGUI+ Inspector?"
 msgstr "A bheil thu airson Sgrùdaire BOBGUI+ a chleachdadh?"
 
-<<<<<<< HEAD
 #: bobgui/bobguiwindow.c:12688
-=======
-#: gtk/gtkwindow.c:12688
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid ""
 "BOBGUI+ Inspector is an interactive debugger that lets you explore and modify "
 "the internals of any BOBGUI+ application. Using it may cause the application to "
 "break or crash."
 msgstr ""
-<<<<<<< HEAD
 "’s e inneal dì-bhugachaidh eadar-ghnìomhach a tha san Sgrùdaire BOBGUI+ a "
 "leigeas leat na tha am broinn aplacaid BOBGUI+ sam bith a rùrachadh ’s "
 "atharrachadh. Dh’fhaoidte gun tuislich no gum bris thu an aplacaid leis."
 
 #: bobgui/bobguiwindow.c:12693
-=======
-"’s e inneal dì-bhugachaidh eadar-ghnìomhach a tha san Sgrùdaire GTK+ a "
-"leigeas leat na tha am broinn aplacaid GTK+ sam bith a rùrachadh ’s "
-"atharrachadh. Dh’fhaoidte gun tuislich no gum bris thu an aplacaid leis."
-
-#: gtk/gtkwindow.c:12693
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Don't show this message again"
 msgstr "Na seall an teachdaireachd seo a-rithist"
 
@@ -5171,7 +3938,6 @@ msgstr "An comas"
 msgid "Parameter Type"
 msgstr "Seòrsa a’ pharamadair"
 
-<<<<<<< HEAD
 #: bobgui/inspector/css-editor.c:112
 msgid "You can type here any CSS rule recognized by BOBGUI+."
 msgstr ""
@@ -5179,15 +3945,6 @@ msgstr ""
 "seo."
 
 #: bobgui/inspector/css-editor.c:113
-=======
-#: gtk/inspector/css-editor.c:112
-msgid "You can type here any CSS rule recognized by GTK+."
-msgstr ""
-"Faodaidh tu riaghailt CSS sam bith a dh’aithnicheas GTK+ a sgrìobhadh an-"
-"seo."
-
-#: gtk/inspector/css-editor.c:113
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid ""
 "You can temporarily disable this custom CSS by clicking on the “Pause” "
 "button above."
@@ -5195,20 +3952,12 @@ msgstr ""
 "’S urrainn dhut an CSS gnàthaichte seo a chur à comas gu sealach ’s tu a’ "
 "briogadh air a’ phutan “Pause” gu h-àrd."
 
-<<<<<<< HEAD
 #: bobgui/inspector/css-editor.c:114
-=======
-#: gtk/inspector/css-editor.c:114
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Changes are applied instantly and globally, for the whole application."
 msgstr ""
 "Thèid na dh’atharraich thu a chur an às sa bhad ’s air feadh na h-aplacaid."
 
-<<<<<<< HEAD
 #: bobgui/inspector/css-editor.c:162
-=======
-#: gtk/inspector/css-editor.c:162
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Saving CSS failed"
 msgstr "Dh’fhàillig le sàbhaladh a’ CSS"
@@ -5242,20 +3991,12 @@ msgstr "Luach"
 msgid "Show data"
 msgstr "Seall an dàta"
 
-<<<<<<< HEAD
 #: bobgui/inspector/general.c:309
-=======
-#: gtk/inspector/general.c:309
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "GL version"
 msgid "None"
 msgstr "Chan eil gin"
 
-<<<<<<< HEAD
 #: bobgui/inspector/general.c:310
-=======
-#: gtk/inspector/general.c:310
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "GL vendor"
 msgid "None"
 msgstr "Chan eil gin"
@@ -5626,7 +4367,6 @@ msgstr "Tionalach"
 msgid "Enable statistics with GOBJECT_DEBUG=instance-count"
 msgstr "Cuir stadastaireachd an comas le GOBJECT_DEBUG=instance-count"
 
-<<<<<<< HEAD
 #: bobgui/inspector/visual.c:406 bobgui/inspector/visual.c:421
 msgid "Theme is hardcoded by BOBGUI_THEME"
 msgstr "Chaidh an t-ùrlar a chòdachadh gu cruaidh le BOBGUI_THEME"
@@ -5640,21 +4380,6 @@ msgid "Setting is hardcoded by BOBGUI_TEST_TOUCHSCREEN"
 msgstr "Chaidh an roghainn a chòdachadh gu cruaidh le  BOBGUI_TEST_TOUCHSCREEN"
 
 #: bobgui/inspector/visual.c:791
-=======
-#: gtk/inspector/visual.c:406 gtk/inspector/visual.c:421
-msgid "Theme is hardcoded by GTK_THEME"
-msgstr "Chaidh an t-ùrlar a chòdachadh gu cruaidh le GTK_THEME"
-
-#: gtk/inspector/visual.c:631
-msgid "Backend does not support window scaling"
-msgstr "Cha chur a’ backend taic ri sgèileadh uinneige"
-
-#: gtk/inspector/visual.c:726
-msgid "Setting is hardcoded by GTK_TEST_TOUCHSCREEN"
-msgstr "Chaidh an roghainn a chòdachadh gu cruaidh le  GTK_TEST_TOUCHSCREEN"
-
-#: gtk/inspector/visual.c:791
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid ""
 "Not settable at runtime.\n"
 "Use GDK_GL=always or GDK_GL=disable instead"
@@ -5662,13 +4387,8 @@ msgstr ""
 "Cha ghabh seo a shuidheachadh aig àm ruith.\n"
 "Cleachd GDK_GL=always no GDK_GL=disable ’na àite"
 
-<<<<<<< HEAD
 #: bobgui/inspector/visual.c:805 bobgui/inspector/visual.c:806
 #: bobgui/inspector/visual.c:807
-=======
-#: gtk/inspector/visual.c:805 gtk/inspector/visual.c:806
-#: gtk/inspector/visual.c:807
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "GL rendering is disabled"
 msgstr "Cha reandaradh GL à comas"
 
@@ -5696,11 +4416,7 @@ msgstr "Ùrlar ìomhaigheige"
 msgid "Font"
 msgstr "Cruth-clò"
 
-<<<<<<< HEAD
 #: bobgui/inspector/visual.ui:263
-=======
-#: gtk/inspector/visual.ui:263
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Font Scale"
 msgstr "Sgèile a’ chrutha-chlò"
 
@@ -6802,19 +5518,11 @@ msgctxt "paper size"
 msgid "ROC 8k"
 msgstr "ROC 8k"
 
-<<<<<<< HEAD
 #: bobgui/ui/bobguiaboutdialog.ui:133
 msgid "About"
 msgstr "Mu dhèidhinn"
 
 #: bobgui/ui/bobguiaboutdialog.ui:173
-=======
-#: gtk/ui/gtkaboutdialog.ui:133
-msgid "About"
-msgstr "Mu dhèidhinn"
-
-#: gtk/ui/gtkaboutdialog.ui:173
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Credits"
 msgstr "Cliù"
 
@@ -6841,11 +5549,7 @@ msgid "Services"
 msgstr "Seirbheisean"
 
 #. used for the application menu on MacOS.  %s is replaced with the application name.
-<<<<<<< HEAD
 #: bobgui/ui/bobguiapplication-quartz.ui:29
-=======
-#: gtk/ui/gtkapplication-quartz.ui:29
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Hide %s"
 msgstr "Falaich %s"
@@ -6861,11 +5565,7 @@ msgid "Show All"
 msgstr "Seall na h-uile"
 
 #. used for the application menu on MacOS.  %s is replaced with the application name.
-<<<<<<< HEAD
 #: bobgui/ui/bobguiapplication-quartz.ui:49
-=======
-#: gtk/ui/gtkapplication-quartz.ui:49
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Quit %s"
 msgstr "Fàg %s"
@@ -6922,7 +5622,6 @@ msgstr "V"
 msgid "Saturation"
 msgstr "Sàthachd"
 
-<<<<<<< HEAD
 #: bobgui/ui/bobguiemojichooser.ui:52
 msgid "Smileys & People"
 msgstr "Samhlaidhean-gnùis ⁊ daoine"
@@ -6944,44 +5643,16 @@ msgid "Travel & Places"
 msgstr "Siubhal ⁊ àitichean"
 
 #: bobgui/ui/bobguiemojichooser.ui:127
-=======
-#: gtk/ui/gtkemojichooser.ui:52
-msgid "Smileys & People"
-msgstr "Samhlaidhean-gnùis ⁊ daoine"
-
-#: gtk/ui/gtkemojichooser.ui:67
-msgid "Body & Clothing"
-msgstr "Bodhaig ⁊ aodach"
-
-#: gtk/ui/gtkemojichooser.ui:82
-msgid "Animals & Nature"
-msgstr "Beathaichean ⁊ an nàdar"
-
-#: gtk/ui/gtkemojichooser.ui:97
-msgid "Food & Drink"
-msgstr "Biadh ⁊ deoch"
-
-#: gtk/ui/gtkemojichooser.ui:112
-msgid "Travel & Places"
-msgstr "Siubhal ⁊ àitichean"
-
-#: gtk/ui/gtkemojichooser.ui:127
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #| msgid "Activate"
 msgid "Activities"
 msgstr "Gnìomhachdan"
 
-<<<<<<< HEAD
 #: bobgui/ui/bobguiemojichooser.ui:142
-=======
-#: gtk/ui/gtkemojichooser.ui:142
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #| msgid "Objects"
 msgctxt "emoji category"
 msgid "Objects"
 msgstr "Nithean"
 
-<<<<<<< HEAD
 #: bobgui/ui/bobguiemojichooser.ui:157
 msgid "Symbols"
 msgstr "Samhlaidhean"
@@ -6991,17 +5662,6 @@ msgid "Flags"
 msgstr "Brataich"
 
 #: bobgui/ui/bobguifilechooserwidget.ui:69
-=======
-#: gtk/ui/gtkemojichooser.ui:157
-msgid "Symbols"
-msgstr "Samhlaidhean"
-
-#: gtk/ui/gtkemojichooser.ui:172
-msgid "Flags"
-msgstr "Brataich"
-
-#: gtk/ui/gtkfilechooserwidget.ui:69
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Create Folder"
 msgstr "Cruthaich pasgan"
 
@@ -7013,19 +5673,11 @@ msgstr "Faidhlichean"
 msgid "Remote location — only searching the current folder"
 msgstr "Ionad cèin — a’ lorg sa phasgan làithreach a-mhàin"
 
-<<<<<<< HEAD
 #: bobgui/ui/bobguifilechooserwidget.ui:433
 msgid "Folder Name"
 msgstr "Ainm a’ phasgain"
 
 #: bobgui/ui/bobguifilechooserwidget.ui:461
-=======
-#: gtk/ui/gtkfilechooserwidget.ui:433
-msgid "Folder Name"
-msgstr "Ainm a’ phasgain"
-
-#: gtk/ui/gtkfilechooserwidget.ui:461
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "_Create"
 msgstr "_Cruthaich"
 
@@ -7037,7 +5689,6 @@ msgstr "Tagh cruth-clò"
 msgid "Search font name"
 msgstr "Lorg ainm a’ chrutha-chlò"
 
-<<<<<<< HEAD
 #: bobgui/ui/bobguifontchooserwidget.ui:98
 msgid "Font Family"
 msgstr "Teaghlach a; chrutha-chlò"
@@ -7047,17 +5698,6 @@ msgid "Preview text"
 msgstr "Ro-sheall an teacsa"
 
 #: bobgui/ui/bobguifontchooserwidget.ui:187
-=======
-#: gtk/ui/gtkfontchooserwidget.ui:98
-msgid "Font Family"
-msgstr "Teaghlach a; chrutha-chlò"
-
-#: gtk/ui/gtkfontchooserwidget.ui:120
-msgid "Preview text"
-msgstr "Ro-sheall an teacsa"
-
-#: gtk/ui/gtkfontchooserwidget.ui:187
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "No Fonts Found"
 msgstr "Cha deach cruth-clò a lorg"
 
@@ -7097,11 +5737,7 @@ msgstr "An t-slighe sìos"
 msgid "Up Path"
 msgstr "An t-slighe suas"
 
-<<<<<<< HEAD
 #: bobgui/ui/bobguiplacesview.ui:30
-=======
-#: gtk/ui/gtkplacesview.ui:30
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Server Addresses"
 msgstr "Seòlaidhean frithealaiche"
 
@@ -7112,11 +5748,7 @@ msgstr ""
 "Tha ro-leasachan pròtacail agus seòladh air seòlaidhean frithealaiche. Mar "
 "eisimpleir:"
 
-<<<<<<< HEAD
 #: bobgui/ui/bobguiplacesview.ui:78
-=======
-#: gtk/ui/gtkplacesview.ui:78
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Available Protocols"
 msgstr "Pròtacalan ri am faighinn"
 
@@ -7128,11 +5760,7 @@ msgstr "AppleTalk"
 msgid "File Transfer Protocol"
 msgstr "File Transfer Protocol"
 
-<<<<<<< HEAD
 #: bobgui/ui/bobguiplacesview.ui:114
-=======
-#: gtk/ui/gtkplacesview.ui:114
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Network File System"
 msgstr "Network File System"
 
@@ -7158,11 +5786,7 @@ msgid "smb://"
 msgstr "smb://"
 
 #. Translators: do not translate sftp:// and ssh://
-<<<<<<< HEAD
 #: bobgui/ui/bobguiplacesview.ui:216
-=======
-#: gtk/ui/gtkplacesview.ui:216
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "sftp:// or ssh://"
 msgstr "sftp:// or ssh://"
 
@@ -7425,107 +6049,62 @@ msgstr "Lùghdaich àirde na fuaime"
 msgid "Decreases the volume"
 msgstr "Lùghdaichidh seo àirde na fuaime"
 
-<<<<<<< HEAD
 #: bobgui/updateiconcache.c:1388
-=======
-#: gtk/updateiconcache.c:1388
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Failed to write header\n"
 msgstr "Dh’fhàillig sgrìobhadh a’ bhann-chinn\n"
 
-<<<<<<< HEAD
 #: bobgui/updateiconcache.c:1394
-=======
-#: gtk/updateiconcache.c:1394
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Failed to write hash table\n"
 msgstr "Dh’fhàillig sgrìobhadh a’ hash table\n"
 
-<<<<<<< HEAD
 #: bobgui/updateiconcache.c:1400
-=======
-#: gtk/updateiconcache.c:1400
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Failed to write folder index\n"
 msgstr "Dh’fhàillig sgrìobhadh clàr-amais a’ phasgain\n"
 
-<<<<<<< HEAD
 #: bobgui/updateiconcache.c:1408
-=======
-#: gtk/updateiconcache.c:1408
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Failed to rewrite header\n"
 msgstr "Dh’fhàillig ath-sgrìobhadh a’ bhann-chinn\n"
 
-<<<<<<< HEAD
 #: bobgui/updateiconcache.c:1502
-=======
-#: gtk/updateiconcache.c:1502
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Failed to open file %s : %s\n"
 msgstr "Dh’fhàillig fosgladh an fhaidhle %s : %s\n"
 
-<<<<<<< HEAD
 #: bobgui/updateiconcache.c:1510 bobgui/updateiconcache.c:1540
-=======
-#: gtk/updateiconcache.c:1510 gtk/updateiconcache.c:1540
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Failed to write cache file: %s\n"
 msgstr "Dh’fhàillig sgrìobhadh faidhle an tasgadain: %s\n"
 
-<<<<<<< HEAD
 #: bobgui/updateiconcache.c:1550
-=======
-#: gtk/updateiconcache.c:1550
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "The generated cache was invalid.\n"
 msgstr "Bha an tasgadan a chaidh a ghintinn mì-dhligheach.\n"
 
-<<<<<<< HEAD
 #: bobgui/updateiconcache.c:1564
-=======
-#: gtk/updateiconcache.c:1564
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Could not rename %s to %s: %s, removing %s then.\n"
 msgstr "Cha b’ urrainn dhuinn %2s a thoirt air %1s: %3s, thoir air falbh %4s an "
 "uairsin.\n"
 
-<<<<<<< HEAD
 #: bobgui/updateiconcache.c:1578
-=======
-#: gtk/updateiconcache.c:1578
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Could not rename %s to %s: %s\n"
 msgstr "Cha b’ urrainn dhuinn %2s a thoirt air %1s: %3s\n"
 
-<<<<<<< HEAD
 #: bobgui/updateiconcache.c:1588
-=======
-#: gtk/updateiconcache.c:1588
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Could not rename %s back to %s: %s.\n"
 msgstr "Cha b’ urrainn dhuinn %2s a thoirt air %1s a-rithist: %3s.\n"
 
-<<<<<<< HEAD
 #: bobgui/updateiconcache.c:1615
-=======
-#: gtk/updateiconcache.c:1615
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Cache file created successfully.\n"
 msgstr "Chaidh faidhle an tasgadain a chruthachadh.\n"
 
-<<<<<<< HEAD
 #: bobgui/updateiconcache.c:1654
 msgid "Overwrite an existing cache, even if up to date"
 msgstr "Sgrìobh thairis air an tasgadan làithreach, fiù ma tha e ris an latha"
@@ -7555,64 +6134,21 @@ msgid "Validate existing icon cache"
 msgstr "Dearb tasgadan làithreach nan ìomhaigheagan"
 
 #: bobgui/updateiconcache.c:1727
-=======
-#: gtk/updateiconcache.c:1654
-msgid "Overwrite an existing cache, even if up to date"
-msgstr "Sgrìobh thairis air an tasgadan làithreach, fiù ma tha e ris an latha"
-
-#: gtk/updateiconcache.c:1655
-msgid "Don't check for the existence of index.theme"
-msgstr "Na thoir sùil a bheil index.theme ann"
-
-#: gtk/updateiconcache.c:1656
-msgid "Don't include image data in the cache"
-msgstr "Na gabh a-steach dàta deilbh san tasgadan"
-
-#: gtk/updateiconcache.c:1657
-msgid "Include image data in the cache"
-msgstr "Gabh a-steach dàta deilbh san tasgadan"
-
-#: gtk/updateiconcache.c:1658
-msgid "Output a C header file"
-msgstr "Às-chuir faidhle bann-cinn C"
-
-#: gtk/updateiconcache.c:1659
-msgid "Turn off verbose output"
-msgstr "Cuir dheth an t-às-chur briathrach"
-
-#: gtk/updateiconcache.c:1660
-msgid "Validate existing icon cache"
-msgstr "Dearb tasgadan làithreach nan ìomhaigheagan"
-
-#: gtk/updateiconcache.c:1727
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "File not found: %s\n"
 msgstr "Cha deach am faidhle a leanas a lorg: %s\n"
 
-<<<<<<< HEAD
 #: bobgui/updateiconcache.c:1733
-=======
-#: gtk/updateiconcache.c:1733
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Not a valid icon cache: %s\n"
 msgstr "Chan e tasgadan ìomhaigheagan dligheach a tha ann an: %s\n"
 
-<<<<<<< HEAD
 #: bobgui/updateiconcache.c:1746
-=======
-#: gtk/updateiconcache.c:1746
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "No theme index file.\n"
 msgstr "Chan eil faidhle clàr-amais an ùrlair ann.\n"
 
-<<<<<<< HEAD
 #: bobgui/updateiconcache.c:1750
-=======
-#: gtk/updateiconcache.c:1750
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid ""
 "No theme index file in '%s'.\n"
@@ -7735,7 +6271,6 @@ msgstr "’Na chadal"
 msgid "Pages per _sheet:"
 msgstr "Duilleag gach _siota:"
 
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:1106
 #: modules/printbackends/cups/bobguiprintbackendcups.c:1415
 msgid "Username:"
@@ -7748,152 +6283,85 @@ msgstr "Facal-faire:"
 
 #: modules/printbackends/cups/bobguiprintbackendcups.c:1146
 #: modules/printbackends/cups/bobguiprintbackendcups.c:1437
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:1106
-#: modules/printbackends/cups/gtkprintbackendcups.c:1415
-msgid "Username:"
-msgstr "Ainm-cleachdaiche:"
-
-#: modules/printbackends/cups/gtkprintbackendcups.c:1107
-#: modules/printbackends/cups/gtkprintbackendcups.c:1424
-msgid "Password:"
-msgstr "Facal-faire:"
-
-#: modules/printbackends/cups/gtkprintbackendcups.c:1146
-#: modules/printbackends/cups/gtkprintbackendcups.c:1437
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Authentication is required to print document “%s” on printer %s"
 msgstr ""
 "Feumaidh tu dearbhadh mus urrainn dhut an sgrìobhainn “%s” a chlò-bhualadh "
 "air a’ chlò-bhualadair %s"
 
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:1148
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:1148
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Authentication is required to print a document on %s"
 msgstr ""
 "Feumaidh tu dearbhadh mus urrainn dhut sgrìobhainn a chlò-bhualadh air %s"
 
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:1152
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:1152
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Authentication is required to get attributes of job “%s”"
 msgstr ""
 "Feumaidh tu dearbhadh mus urrainn dhut buadhan na h-obrach “%s” fhaighinn"
 
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:1154
 msgid "Authentication is required to get attributes of a job"
 msgstr "Feumaidh tu dearbhadh mus urrainn dhut buadhan obrach fhaighinn"
 
 #: modules/printbackends/cups/bobguiprintbackendcups.c:1158
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:1154
-msgid "Authentication is required to get attributes of a job"
-msgstr "Feumaidh tu dearbhadh mus urrainn dhut buadhan obrach fhaighinn"
-
-#: modules/printbackends/cups/gtkprintbackendcups.c:1158
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Authentication is required to get attributes of printer %s"
 msgstr ""
 "Feumaidh tu dearbhadh mus urrainn dhut buadhan a’ chlò-bhualadair “%s” "
 "fhaighinn"
 
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:1160
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:1160
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Authentication is required to get attributes of a printer"
 msgstr ""
 "Feumaidh tu dearbhadh mus urrainn dhut buadhan clò-bhualadair fhaighinn"
 
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:1163
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:1163
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Authentication is required to get default printer of %s"
 msgstr ""
 "Feumaidh tu dearbhadh mus urrainn dhut an clò-bhualadair bunaiteach aig “%s” "
 "fhaighinn"
 
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:1166
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:1166
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Authentication is required to get printers from %s"
 msgstr ""
 "Feumaidh tu dearbhadh mus urrainn dhut clò-bhualadairean fhaighinn o %s"
 
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:1171
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:1171
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Authentication is required to get a file from %s"
 msgstr "Feumaidh tu dearbhadh mus urrainn dhut faidhle fhaighinn o “%s”"
 
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:1173
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:1173
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Authentication is required on %s"
 msgstr "Feumaidh tu dearbhadh air “%s”"
 
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:1409
 msgid "Domain:"
 msgstr "Àrainn:"
 
 #: modules/printbackends/cups/bobguiprintbackendcups.c:1439
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:1409
-msgid "Domain:"
-msgstr "Àrainn:"
-
-#: modules/printbackends/cups/gtkprintbackendcups.c:1439
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Authentication is required to print document “%s”"
 msgstr ""
 "Feumaidh tu dearbhadh mus urrainn dhut an sgrìobhainn “%s” a chlò-bhualadh"
 
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:1444
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:1444
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Authentication is required to print this document on printer %s"
 msgstr ""
 "Feumaidh tu dearbhadh mus urrainn dhut an sgrìobhainn seo a chlò-bhualadh "
 "air a’ chlò-bhualadair air “%s”"
 
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:1446
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:1446
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Authentication is required to print this document"
 msgstr ""
 "Feumaidh tu dearbhadh mus urrainn dhut an sgrìobhainn seo a chlò-bhualadh"
 
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:2525
 #, c-format
 msgid "Printer “%s” is low on toner."
@@ -7931,16 +6399,9 @@ msgid "Printer “%s” is out of at least one marker supply."
 msgstr ""
 "Tha co-dhiù aon solar comharraiche ann nach eil gin air fhàgail dheth aig a’ "
 "chlò-bhualadair “%s”."
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:2525
-#, c-format
-msgid "Printer “%s” is low on toner."
-msgstr "Chan eil cus tònair air fhàgail aig a’ chlò-bhualadair “%s”."
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 
 #: modules/printbackends/cups/bobguiprintbackendcups.c:2553
 #, c-format
-<<<<<<< HEAD
 msgid "The cover is open on printer “%s”."
 msgstr "Tha mullach a’ chlò-bhualadair “%s” fosgailte."
 
@@ -7976,451 +6437,229 @@ msgstr "’Na stad; A’ diùltadh obraichean"
 
 #. Translators: this is a printer status.
 #: modules/printbackends/cups/bobguiprintbackendcups.c:2599
-=======
-msgid "Printer “%s” has no toner left."
-msgstr "Chan eil tònair air fhàgail aig a’ chlò-bhualadair “%s”."
-
-#. Translators: "Developer" like on photo development context
-#: modules/printbackends/cups/gtkprintbackendcups.c:2534
-#, c-format
-msgid "Printer “%s” is low on developer."
-msgstr "Chan eil cus leasaicheir air fhàgail aig a’ chlò-bhualadair “%s”."
-
-#. Translators: "Developer" like on photo development context
-#: modules/printbackends/cups/gtkprintbackendcups.c:2539
-#, c-format
-msgid "Printer “%s” is out of developer."
-msgstr "Chan eil leasaichear air fhàgail aig a’ chlò-bhualadair “%s”."
-
-#. Translators: "marker" is one color bin of the printer
-#: modules/printbackends/cups/gtkprintbackendcups.c:2544
-#, c-format
-msgid "Printer “%s” is low on at least one marker supply."
-msgstr ""
-"Tha co-dhiù aon solar comharraiche ann nach eil cus air fhàgail dheth aig a’ "
-"chlò-bhualadair “%s”."
-
-#. Translators: "marker" is one color bin of the printer
-#: modules/printbackends/cups/gtkprintbackendcups.c:2549
-#, c-format
-msgid "Printer “%s” is out of at least one marker supply."
-msgstr ""
-"Tha co-dhiù aon solar comharraiche ann nach eil gin air fhàgail dheth aig a’ "
-"chlò-bhualadair “%s”."
-
-#: modules/printbackends/cups/gtkprintbackendcups.c:2553
-#, c-format
-msgid "The cover is open on printer “%s”."
-msgstr "Tha mullach a’ chlò-bhualadair “%s” fosgailte."
-
-#: modules/printbackends/cups/gtkprintbackendcups.c:2557
-#, c-format
-msgid "The door is open on printer “%s”."
-msgstr "Tha doras a’ chlò-bhualadair “%s” fosgailte."
-
-#: modules/printbackends/cups/gtkprintbackendcups.c:2561
-#, c-format
-msgid "Printer “%s” is low on paper."
-msgstr "Chan eil cus pàipeir air fhàgail aig a’ chlò-bhualadair “%s”."
-
-#: modules/printbackends/cups/gtkprintbackendcups.c:2565
-#, c-format
-msgid "Printer “%s” is out of paper."
-msgstr "Chan eil pàipear air fhàgail aig a’ chlò-bhualadair “%s”."
-
-#: modules/printbackends/cups/gtkprintbackendcups.c:2569
-#, c-format
-msgid "Printer “%s” is currently offline."
-msgstr "Tha an clò-bhualadair “%s” far loidhne an-dràsta fhèin."
-
-#: modules/printbackends/cups/gtkprintbackendcups.c:2573
-#, c-format
-msgid "There is a problem on printer “%s”."
-msgstr "Tha duilgheadas aig a’ chlò-bhualadair “%s”."
-
-#. Translators: this is a printer status.
-#: modules/printbackends/cups/gtkprintbackendcups.c:2593
-msgid "Paused; Rejecting Jobs"
-msgstr "’Na stad; A’ diùltadh obraichean"
-
-#. Translators: this is a printer status.
-#: modules/printbackends/cups/gtkprintbackendcups.c:2599
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Rejecting Jobs"
 msgstr "A’ diùltadh obraichean"
 
 #. Translators: this string connects multiple printer states together.
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:2640
 msgid "; "
 msgstr "; "
 
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4380
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4447
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:2640
-msgid "; "
-msgstr "; "
-
-#: modules/printbackends/cups/gtkprintbackendcups.c:4380
-#: modules/printbackends/cups/gtkprintbackendcups.c:4447
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "printing option"
 msgid "Two Sided"
 msgstr "Dà-thaobhach"
 
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4381
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:4381
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "printing option"
 msgid "Paper Type"
 msgstr "Seòrsa a’ phàipeir"
 
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4382
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:4382
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "printing option"
 msgid "Paper Source"
 msgstr "Tùs a’ phàipeir"
 
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4383
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4448
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:4383
-#: modules/printbackends/cups/gtkprintbackendcups.c:4448
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "printing option"
 msgid "Output Tray"
 msgstr "Treidhe às-chur"
 
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4384
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:4384
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "printing option"
 msgid "Resolution"
 msgstr "Dùmhlachd-bhreacaidh"
 
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4385
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:4385
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "printing option"
 msgid "GhostScript pre-filtering"
 msgstr "Ro-chriathradh GhostScript"
 
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4394
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:4394
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "printing option value"
 msgid "One Sided"
 msgstr "Aon-taobhach"
 
 #. Translators: this is an option of "Two Sided"
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4396
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:4396
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "printing option value"
 msgid "Long Edge (Standard)"
 msgstr "Oir fhada (stannardach)"
 
 #. Translators: this is an option of "Two Sided"
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4398
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:4398
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "printing option value"
 msgid "Short Edge (Flip)"
 msgstr "Oir ghoirid (dèan flip)"
 
 #. Translators: this is an option of "Paper Source"
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4400
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4402
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4410
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:4400
-#: modules/printbackends/cups/gtkprintbackendcups.c:4402
-#: modules/printbackends/cups/gtkprintbackendcups.c:4410
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "printing option value"
 msgid "Auto Select"
 msgstr "Taghadh fèin-obrachail"
 
 #. Translators: this is an option of "Paper Source"
 #. Translators: this is an option of "Resolution"
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4404
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4406
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4408
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4412
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:4404
-#: modules/printbackends/cups/gtkprintbackendcups.c:4406
-#: modules/printbackends/cups/gtkprintbackendcups.c:4408
-#: modules/printbackends/cups/gtkprintbackendcups.c:4412
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "printing option value"
 msgid "Printer Default"
 msgstr "Bun-roghainnean a’ chlò-bhualadair"
 
 #. Translators: this is an option of "GhostScript"
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4414
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:4414
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "printing option value"
 msgid "Embed GhostScript fonts only"
 msgstr "Na leabaich ach cruthan-clò GhostScript"
 
 #. Translators: this is an option of "GhostScript"
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4416
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:4416
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "printing option value"
 msgid "Convert to PS level 1"
 msgstr "Iompaich ’na PS leibheil 1"
 
 #. Translators: this is an option of "GhostScript"
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4418
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:4418
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "printing option value"
 msgid "Convert to PS level 2"
 msgstr "Iompaich ’na PS leibheil 2"
 
 #. Translators: this is an option of "GhostScript"
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4420
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:4420
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "printing option value"
 msgid "No pre-filtering"
 msgstr "Gun ro-chriathradh"
 
 #. Translators: "Miscellaneous" is the label for a button, that opens
 #. up an extra panel of settings in a print dialog.
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4429
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:4429
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "printing option group"
 msgid "Miscellaneous"
 msgstr "Measgachadh"
 
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4456
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:4456
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "sides"
 msgid "One Sided"
 msgstr "Aon-taobhach"
 
 #. Translators: this is an option of "Two Sided"
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4458
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:4458
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "sides"
 msgid "Long Edge (Standard)"
 msgstr "Oir fhada (stannardach)"
 
 #. Translators: this is an option of "Two Sided"
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4460
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:4460
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "sides"
 msgid "Short Edge (Flip)"
 msgstr "Oir ghoirid (Flip)"
 
 #. Translators: Top output bin
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4463
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:4463
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "output-bin"
 msgid "Top Bin"
 msgstr "Biona a’ bharra"
 
 #. Translators: Middle output bin
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4465
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:4465
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "output-bin"
 msgid "Middle Bin"
 msgstr "Am biona meadhanach"
 
 #. Translators: Bottom output bin
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4467
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:4467
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "output-bin"
 msgid "Bottom Bin"
 msgstr "Biona a’ bhuinn"
 
 #. Translators: Side output bin
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4469
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:4469
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "output-bin"
 msgid "Side Bin"
 msgstr "Biona an taoibh"
 
 #. Translators: Left output bin
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4471
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:4471
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "output-bin"
 msgid "Left Bin"
 msgstr "Am biona clì"
 
 #. Translators: Right output bin
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4473
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:4473
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "output-bin"
 msgid "Right Bin"
 msgstr "Am biona deas"
 
 #. Translators: Center output bin
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4475
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:4475
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "output-bin"
 msgid "Center Bin"
 msgstr "Am biona meadhanach"
 
 #. Translators: Rear output bin
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4477
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:4477
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "output-bin"
 msgid "Rear Bin"
 msgstr "Biona a’ chùlaibh"
 
 #. Translators: Output bin where one sided output is oriented in the face-up position
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4479
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:4479
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "output-bin"
 msgid "Face Up Bin"
 msgstr "Biona aghaidh suas"
 
 #. Translators: Output bin where one sided output is oriented in the face-down position
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4481
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:4481
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "output-bin"
 msgid "Face Down Bin"
 msgstr "Biona beul fodha"
 
 #. Translators: Large capacity output bin
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4483
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:4483
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "output-bin"
 msgid "Large Capacity Bin"
 msgstr "Biona mòr-thomaid"
 
 #. Translators: Output stacker number %d
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4505
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:4505
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgctxt "output-bin"
 msgid "Stacker %d"
 msgstr "Stacair %d"
 
 #. Translators: Output mailbox number %d
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4509
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:4509
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgctxt "output-bin"
 msgid "Mailbox %d"
 msgstr "Bogsa-puist %d"
 
 #. Translators: Private mailbox
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4513
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:4513
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "output-bin"
 msgid "My Mailbox"
 msgstr "Am bogsa-puist agam"
 
 #. Translators: Output tray number %d
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4517
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:4517
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgctxt "output-bin"
 msgid "Tray %d"
 msgstr "Treidhe %d"
 
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:4988
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:4988
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Printer Default"
 msgstr "Bun-roghainnean a’ chlò-bhualadair"
 
 #. Translators: These strings name the possible values of the
 #. * job priority option in the print dialog
 #.
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:5429
 msgid "Urgent"
 msgstr "Èiginneach"
@@ -8434,105 +6673,54 @@ msgid "Medium"
 msgstr "Meadhanach"
 
 #: modules/printbackends/cups/bobguiprintbackendcups.c:5429
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:5429
-msgid "Urgent"
-msgstr "Èiginneach"
-
-#: modules/printbackends/cups/gtkprintbackendcups.c:5429
-msgid "High"
-msgstr "Àrd"
-
-#: modules/printbackends/cups/gtkprintbackendcups.c:5429
-msgid "Medium"
-msgstr "Meadhanach"
-
-#: modules/printbackends/cups/gtkprintbackendcups.c:5429
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Low"
 msgstr "Ìseal"
 
 #. Translators, this string is used to label the job priority option
 #. * in the print dialog
 #.
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:5459
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:5459
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Job Priority"
 msgstr "Prìomhachas na h-obrach"
 
 #. Translators, this string is used to label the billing info entry
 #. * in the print dialog
 #.
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:5470
 msgid "Billing Info"
 msgstr "Am fiosrachadh bileachaidh"
 
 #: modules/printbackends/cups/bobguiprintbackendcups.c:5494
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:5470
-msgid "Billing Info"
-msgstr "Am fiosrachadh bileachaidh"
-
-#: modules/printbackends/cups/gtkprintbackendcups.c:5494
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "cover page"
 msgid "None"
 msgstr "Chan eil gin"
 
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:5495
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:5495
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "cover page"
 msgid "Classified"
 msgstr "Dìomhair"
 
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:5496
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:5496
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "cover page"
 msgid "Confidential"
 msgstr "Fo rùn"
 
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:5497
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:5497
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "cover page"
 msgid "Secret"
 msgstr "Dìomhair"
 
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:5498
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:5498
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "cover page"
 msgid "Standard"
 msgstr "Stannardach"
 
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:5499
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:5499
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "cover page"
 msgid "Top Secret"
 msgstr "Fìor-dhìomhair"
 
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:5500
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:5500
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "cover page"
 msgid "Unclassified"
 msgstr "Chan ann dìomhair"
@@ -8540,11 +6728,7 @@ msgstr "Chan ann dìomhair"
 #. Translators, this string is used to label the pages-per-sheet option
 #. * in the print dialog
 #.
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:5512
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:5512
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "printer option"
 msgid "Pages per Sheet"
 msgstr "Duilleagan gach siota"
@@ -8552,11 +6736,7 @@ msgstr "Duilleagan gach siota"
 #. Translators, this string is used to label the option in the print
 #. * dialog that controls in what order multiple pages are arranged
 #.
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:5529
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:5529
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "printer option"
 msgid "Page Ordering"
 msgstr "Òrdugh nan duilleagan"
@@ -8564,11 +6744,7 @@ msgstr "Òrdugh nan duilleagan"
 #. Translators, this is the label used for the option in the print
 #. * dialog that controls the front cover page.
 #.
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:5571
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:5571
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "printer option"
 msgid "Before"
 msgstr "Roimhe"
@@ -8576,11 +6752,7 @@ msgstr "Roimhe"
 #. Translators, this is the label used for the option in the print
 #. * dialog that controls the back cover page.
 #.
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:5586
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:5586
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "printer option"
 msgid "After"
 msgstr "As a dhèidh"
@@ -8589,11 +6761,7 @@ msgstr "As a dhèidh"
 #. * a print job is printed. Possible values are 'now', a specified time,
 #. * or 'on hold'
 #.
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:5606
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:5606
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "printer option"
 msgid "Print at"
 msgstr "Clò-bhuail aig"
@@ -8601,11 +6769,7 @@ msgstr "Clò-bhuail aig"
 #. Translators: this is the name of the option that allows the user
 #. * to specify a time when a print job will be printed.
 #.
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:5617
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:5617
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "printer option"
 msgid "Print at time"
 msgstr "Clò-bhuail aig àm sònraichte"
@@ -8615,59 +6779,35 @@ msgstr "Clò-bhuail aig àm sònraichte"
 #. * the width and height in points. E.g: "Custom
 #. * 230.4x142.9"
 #.
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:5659
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:5659
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #, c-format
 msgid "Custom %s×%s"
 msgstr "Meud gnàthaichte %s×%s"
 
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:5768
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:5768
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "printer option"
 msgid "Printer Profile"
 msgstr "Pròifil a’ chlò-bhualadair"
 
 #. TRANSLATORS: this is when color profile information is unavailable
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintbackendcups.c:5775
-=======
-#: modules/printbackends/cups/gtkprintbackendcups.c:5775
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgctxt "printer option value"
 msgid "Unavailable"
 msgstr "Chan eil seo ri fhaighinn"
 
 #. TRANSLATORS: when we're running an old CUPS, and
 #. * it hasn't registered the device with colord
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintercups.c:269
-=======
-#: modules/printbackends/cups/gtkprintercups.c:269
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Color management unavailable"
 msgstr "Chan eil stiùireadh dhathan ri fhaighinn"
 
 #. TRANSLATORS: when there is no color profile available
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintercups.c:281
-=======
-#: modules/printbackends/cups/gtkprintercups.c:281
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "No profile available"
 msgstr "Chan eil pròifil ri fhaighinn"
 
 #. TRANSLATORS: when the color profile has no title
-<<<<<<< HEAD
 #: modules/printbackends/cups/bobguiprintercups.c:292
-=======
-#: modules/printbackends/cups/gtkprintercups.c:292
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 msgid "Unspecified profile"
 msgstr "Pròifil nach deach a shònrachadh"
 

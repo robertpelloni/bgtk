@@ -27,19 +27,6 @@ main (int argc,
   bobgui_widget_set_margin_start (widget, 10);
   bobgui_widget_set_margin_end (widget, 10);
   bobgui_grid_attach (BOBGUI_GRID (box), widget, 4, 4, 1, 1);
-  widget = gtk_label_new ("Some filler text just to avoid\nresizing of the window");
-  gtk_widget_set_margin_top (widget, 10);
-  gtk_widget_set_margin_bottom (widget, 10);
-  gtk_widget_set_margin_start (widget, 10);
-  gtk_widget_set_margin_end (widget, 10);
-  gtk_grid_attach (GTK_GRID (box), widget, 1, 1, 1, 1);
-
-  widget = gtk_label_new ("Some filler text just to avoid\nresizing of the window");
-  gtk_widget_set_margin_top (widget, 10);
-  gtk_widget_set_margin_bottom (widget, 10);
-  gtk_widget_set_margin_start (widget, 10);
-  gtk_widget_set_margin_end (widget, 10);
-  gtk_grid_attach (GTK_GRID (box), widget, 3, 3, 1, 1);
 
   widget = bobgui_toggle_button_new_with_label ("None");
   bobgui_grid_attach (BOBGUI_GRID (box), widget, 0, 0, 1, 1);

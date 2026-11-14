@@ -654,7 +654,7 @@ bobgui_gears_render (BobguiGLArea    *area,
 }
 
 static const char vertex_shader_gl[] =
-"#version 330\n"
+"#version 150\n"
 "\n"
 "in vec3 position;\n"
 "in vec3 normal;\n"
@@ -684,15 +684,13 @@ static const char vertex_shader_gl[] =
 "}";
 
 static const char fragment_shader_gl[] =
-"#version 330\n"
+"#version 150\n"
 "\n"
 "smooth in vec4 Color;\n"
 "\n"
-"out vec4 vertexColor;\n"
-"\n"
 "void main(void)\n"
 "{\n"
-"    vertexColor = Color;\n"
+"    gl_FragColor = Color;\n"
 "}";
 
 static const char vertex_shader_gles[] =

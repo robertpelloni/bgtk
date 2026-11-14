@@ -2,10 +2,8 @@
 
 #include <bobgui/bobgui.h>
 #include <math.h>
-#include <gtk/gtk.h>
 #include <string.h>
 
-#include "gtk/fallback-c89.c"
 #include "frame-stats.h"
 
 #define RADIUS 64

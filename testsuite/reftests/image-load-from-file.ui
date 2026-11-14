@@ -12,7 +12,6 @@
         </child>
         <child>
           <object class="BobguiPicture" id="image2">
-          <object class="GtkPicture" id="image2">
             <property name="paintable">marble.png</property>
           </object>
         </child>

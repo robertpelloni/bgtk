@@ -219,10 +219,6 @@ main (int argc, char **argv)
   bobgui_widget_set_hexpand (entry, TRUE);
   bobgui_grid_attach (BOBGUI_GRID (grid), entry, 1, 3, 1, 1);
 
-  gtk_entry_set_icon_tooltip_text (GTK_ENTRY (entry),
-                                   GTK_ENTRY_ICON_PRIMARY,
-                                   "The password is hidden for security");
-
   /* Name - Does not set any icons. */
   label = bobgui_label_new ("Name:");
   bobgui_grid_attach (BOBGUI_GRID (grid), label, 0, 4, 1, 1);

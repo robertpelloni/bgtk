@@ -1,0 +1,230 @@
+<interface>
+<<<<<<< HEAD
+  <object class="BobguiWindow" id="window">
+=======
+  <object class="GtkWindow" id="window">
+>>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
+    <property name="default-width">600</property>
+    <property name="default-height">400</property>
+    <property name="icon-name">preferences-desktop-font</property>
+    <child type="titlebar">
+<<<<<<< HEAD
+      <object class="BobguiStack" id="header_stack">
+        <child>
+          <object class="BobguiStackPage">
+            <property name="name">main</property>
+            <property name="child">
+              <object class="BobguiHeaderBar">
+                <child type="start">
+                  <object class="BobguiButton" id="new_btn">
+                    <property name="label">New</property>
+                    <property name="valign">center</property>
+                  </object>
+                </child>
+                <child type="title">
+                  <object class="BobguiStackSwitcher">
+                    <property name="stack">page_stack</property>
+                  </object>
+                </child>
+              </object>
+            </property>
+          </object>
+        </child>
+        <child>
+          <object class="BobguiStackPage">
+            <property name="name">secondary</property>
+            <property name="child">
+              <object class="BobguiHeaderBar">
+                <child type="start">
+                  <object class="BobguiButton" id="back_btn">
+                    <property name="icon-name">go-previous-symbolic</property>
+                    <property name="valign">center</property>
+                  </object>
+                </child>
+              </object>
+            </property>
+          </object>
+=======
+      <object class="GtkStack" id="header_stack">
+        <property name="visible">True</property>
+        <child>
+          <object class="GtkHeaderBar">
+            <property name="visible">True</property>
+            <child>
+              <object class="GtkButton">
+                <property name="visible">True</property>
+                <property name="label">New</property>
+                <property name="valign">center</property>
+                <signal name="clicked" handler="go_to_secondary"/>
+              </object>
+              <packing>
+                <property name="pack-type">start</property>
+              </packing>
+            </child>
+            <child type="title">
+              <object class="GtkStackSwitcher">
+                <property name="visible">True</property>
+                <property name="stack">page_stack</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="name">main</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkHeaderBar">
+            <property name="visible">True</property>
+            <child>
+              <object class="GtkButton">
+                <property name="visible">True</property>
+                <property name="label">&lt;</property>
+                <property name="valign">center</property>
+                <signal name="clicked" handler="back_to_main"/>
+              </object>
+              <packing>
+                <property name="pack-type">start</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="name">secondary</property>
+          </packing>
+>>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
+        </child>
+      </object>
+    </child>
+    <child>
+<<<<<<< HEAD
+      <object class="BobguiStack" id="page_stack">
+        <child>
+          <object class="BobguiStackPage">
+            <property name="name">page1</property>
+            <property name="title">Page 1</property>
+            <property name="child">
+              <object class="BobguiScrolledWindow">
+                <property name="hexpand">1</property>
+                <property name="vexpand">1</property>
+                <property name="hscrollbar-policy">always</property>
+                <property name="vscrollbar-policy">always</property>
+                <child>
+                  <object class="BobguiLabel">
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
+                    <property name="label">Page 1</property>
+                  </object>
+                </child>
+              </object>
+            </property>
+          </object>
+        </child>
+        <child>
+          <object class="BobguiStackPage">
+            <property name="name">page2</property>
+            <property name="title">Page 2</property>
+            <property name="child">
+              <object class="BobguiScrolledWindow">
+                <property name="hexpand">1</property>
+                <property name="vexpand">1</property>
+                <property name="hscrollbar-policy">always</property>
+                <property name="vscrollbar-policy">always</property>
+                <child>
+                  <object class="BobguiLabel">
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
+                    <property name="label">Page 2</property>
+                  </object>
+                </child>
+              </object>
+            </property>
+          </object>
+        </child>
+        <child>
+          <object class="BobguiStackPage">
+            <property name="name">secondary</property>
+            <property name="child">
+              <object class="BobguiScrolledWindow">
+                <property name="hexpand">1</property>
+                <property name="vexpand">1</property>
+                <property name="hscrollbar-policy">always</property>
+                <property name="vscrollbar-policy">always</property>
+                <child>
+                  <object class="BobguiLabel">
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
+                    <property name="label">Secondary</property>
+                  </object>
+                </child>
+              </object>
+            </property>
+          </object>
+=======
+      <object class="GtkStack" id="page_stack">
+        <property name="visible">True</property>
+        <child>
+          <object class="GtkScrolledWindow">
+            <property name="visible">True</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <property name="hscrollbar-policy">always</property>
+            <property name="vscrollbar-policy">always</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
+                <property name="label">Page 1</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="name">page1</property>
+            <property name="title">Page 1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow">
+            <property name="visible">True</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <property name="hscrollbar-policy">always</property>
+            <property name="vscrollbar-policy">always</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
+                <property name="label">Page 2</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="name">page2</property>
+            <property name="title">Page 2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow">
+            <property name="visible">True</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <property name="hscrollbar-policy">always</property>
+            <property name="vscrollbar-policy">always</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
+                <property name="label">Secondary</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="name">secondary</property>
+          </packing>
+>>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

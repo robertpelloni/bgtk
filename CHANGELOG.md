@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## [1.4.0] - 2026-11-13
+### Fixed
+- Restored 120 more spliced sources under `testsuite/`, `tests/`, `demos/`, `examples/`, `tools/`, `po/`, `docs/` from `ce1de57f61` (reftest snapshot header carried duplicate GTK3 declarations). Spliced copies archived in `scripts/archive/meson-spliced/`.
+- Compile progress: bobgui typebuiltins now generates and compiles (modules-enum exclusion with Windows path normalization); build advancing through bobgui objects.
+
 ## [1.3.0] - 2026-11-13
 ### Fixed
 - Restored 150 spliced C sources under `gdk/`, `gsk/`, `bobgui/` from the last clean bobgui commit (`ce1de57f61`) after GTK3-era headers (`gdkmain.h`, `gdkwindow.h`, …) broke GTK4 include paths; 175 post-clean additions (incl. `bobgui/cpp/` wrappers) kept untouched. Spliced copies archived in `scripts/archive/meson-spliced/`.

@@ -35,10 +35,6 @@
 # include <direct.h>
 #endif
 
-#ifdef G_OS_WIN32
-# include <direct.h>
-#endif
-
 typedef enum {
   SNAPSHOT_WINDOW,
   SNAPSHOT_DRAW
@@ -108,8 +104,6 @@ parse_command_line (int *argc, char ***argv)
     bobgui_widget_set_default_direction (BOBGUI_TEXT_DIR_LTR);
   else if (arg_direction != NULL)
     g_printerr ("Invalid argument passed to --direction argument. Valid arguments are 'ltr' and 'rtl'\n");
-
-  g_type_ensure (G_TYPE_THEMED_ICON);
 
   return TRUE;
 }

@@ -24,7 +24,5 @@ G_BEGIN_DECLS
 G_MODULE_EXPORT
 GdkTexture *            reftest_compare_textures        (GdkTexture             *texture1,
                                                          GdkTexture             *texture2);
-cairo_surface_t *       reftest_compare_surfaces        (cairo_surface_t        *surface1,
-                                                         cairo_surface_t        *surface2);
 
 G_END_DECLS

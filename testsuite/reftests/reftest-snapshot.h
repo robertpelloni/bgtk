@@ -23,6 +23,5 @@ G_BEGIN_DECLS
 
 G_MODULE_EXPORT
 GdkTexture *            reftest_snapshot_ui_file                (const char     *ui_file);
-cairo_surface_t *       reftest_snapshot_ui_file                (const char     *ui_file);
 
 G_END_DECLS

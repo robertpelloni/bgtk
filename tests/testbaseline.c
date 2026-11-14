@@ -122,14 +122,6 @@ main (int    argc,
 
       label = bobgui_label_new (aligns_names[j]);
       bobgui_box_append (BOBGUI_BOX (hbox), label);
-      char *aligns_names[] = { "FILL", "BASELINE" };
-      GtkAlign aligns[] = { GTK_ALIGN_FILL, GTK_ALIGN_BASELINE};
-
-      hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 10);
-      gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, FALSE, 5);
-
-      label = gtk_label_new (aligns_names[j]);
-      gtk_container_add (GTK_CONTAINER (hbox), label);
 
       for (i = 0; i < 3; i++) {
 	label = bobgui_label_new ("│XYyj,Ö...");

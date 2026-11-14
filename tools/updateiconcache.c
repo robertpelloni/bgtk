@@ -570,7 +570,7 @@ maybe_cache_icon_data (Image       *image,
 }
 
 /*
- * Finds all dir separators and replaces them with “/�.
+ * Finds all dir separators and replaces them with “/”.
  * This makes sure that only /-separated paths are written in cache files,
  * maintaining compatibility with theme index files that use slashes as
  * directory separators on all platforms.
@@ -629,7 +629,6 @@ scan_directory (const char *base_path,
       Image *image;
       char *basename, *dot;
 
-      name = iterator->data;
       path = g_build_filename (dir_path, name, NULL);
 
       retval = g_file_test (path, G_FILE_TEST_IS_DIR);
@@ -1757,7 +1756,7 @@ main (int argc, char **argv)
 	}
       else
 	{
-	  g_printerr (_("No theme index file in “%s�.\n"
+	  g_printerr (_("No theme index file in “%s”.\n"
 		    "If you really want to create an icon cache here, use --ignore-theme-index.\n"), path);
 	}
 

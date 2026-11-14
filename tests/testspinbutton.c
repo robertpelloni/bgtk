@@ -50,9 +50,6 @@ prepare_window_for_orientation (BobguiOrientation orientation)
   wrap_button = bobgui_toggle_button_new_with_label ("Wrap");
   bobgui_box_append (BOBGUI_BOX (mainbox), wrap_button);
 
-  wrap_button = gtk_toggle_button_new_with_label ("Wrap");
-  gtk_container_add (GTK_CONTAINER (mainbox), wrap_button);
-
   for (max = 9; max <= 999999999; max = max * 10 + 9)
     {
       BobguiAdjustment *adj = bobgui_adjustment_new (max,
@@ -70,16 +67,6 @@ prepare_window_for_orientation (BobguiOrientation orientation)
       BobguiWidget *hbox = bobgui_box_new (BOBGUI_ORIENTATION_HORIZONTAL, 4);
       bobgui_box_append (BOBGUI_BOX (hbox), spin);
       bobgui_box_append (BOBGUI_BOX (mainbox), hbox);
-      GtkWidget *spin = gtk_spin_button_new (adj, 1.0, 0);
-      GtkWidget *hbox;
-      gtk_orientable_set_orientation (GTK_ORIENTABLE (spin), orientation);
-      gtk_widget_set_halign (GTK_WIDGET (spin), GTK_ALIGN_CENTER);
-
-      g_object_bind_property (wrap_button, "active", spin, "wrap", G_BINDING_SYNC_CREATE);
-
-      hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 2);
-      gtk_box_pack_start (GTK_BOX (hbox), spin, FALSE, FALSE, 2);
-      gtk_container_add (GTK_CONTAINER (mainbox), hbox);
     }
 
   bobgui_window_present (BOBGUI_WINDOW (window));

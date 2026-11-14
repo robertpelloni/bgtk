@@ -363,16 +363,6 @@ activate_about (GSimpleAction *action,
                          "logo", logo,
                          "title", "About BOBGUI Widget Factory",
                          "system-information", s->str,
-  gtk_show_about_dialog (GTK_WINDOW (gtk_application_get_active_window (app)),
-                         "program-name", "GTK Widget Factory",
-                         "version", version,
-                         "copyright", "© 1997—2019 The GTK Team",
-                         "license-type", GTK_LICENSE_LGPL_2_1,
-                         "website", "http://www.gtk.org",
-                         "comments", "Program to demonstrate GTK themes and widgets",
-                         "authors", authors,
-                         "logo-icon-name", "gtk3-widget-factory",
-                         "title", "About GTK Widget Factory",
                          NULL);
   g_object_unref (logo);
   g_object_unref (logo_file);
@@ -428,12 +418,6 @@ static void
 activate_inspector (GSimpleAction *action,
                     GVariant      *parameter,
                     gpointer       user_data)
-{
-  gtk_window_set_interactive_debugging (TRUE);
-}
-
-static void
-spin_value_changed (GtkAdjustment *adjustment, GtkWidget *label)
 {
   bobgui_window_set_interactive_debugging (TRUE);
 }
@@ -2225,103 +2209,6 @@ builder_add_symbolic (BobguiBuilder *builder,
 }
 
 static void
-validate_more_details (GtkEntry   *entry,
-                       GParamSpec *pspec,
-                       GtkEntry   *details)
-{
-  if (strlen (gtk_entry_get_text (entry)) > 0 &&
-      strlen (gtk_entry_get_text (details)) == 0)
-    {
-      gtk_widget_set_tooltip_text (GTK_WIDGET (entry), "Must have details first");
-      gtk_style_context_add_class (gtk_widget_get_style_context (GTK_WIDGET (entry)), "error");
-    }
-  else
-    {
-      gtk_widget_set_tooltip_text (GTK_WIDGET (entry), "");
-      gtk_style_context_remove_class (gtk_widget_get_style_context (GTK_WIDGET (entry)), "error");
-    }
-}
-
-static gboolean
-mode_switch_state_set (GtkSwitch *sw, gboolean state)
-{
-  GtkWidget *dialog = gtk_widget_get_ancestor (GTK_WIDGET (sw), GTK_TYPE_DIALOG);
-  GtkWidget *scale = GTK_WIDGET (g_object_get_data (G_OBJECT (dialog), "level_scale"));
-  GtkWidget *label = GTK_WIDGET (g_object_get_data (G_OBJECT (dialog), "error_label"));
-
-  if (!state ||
-      (gtk_range_get_value (GTK_RANGE (scale)) > 50))
-    {
-      gtk_widget_hide (label);
-      gtk_switch_set_state (sw, state);
-    }
-  else
-    {
-      gtk_widget_show (label);
-    }
-
-  return TRUE;
-}
-
-static void
-level_scale_value_changed (GtkRange *range)
-{
-  GtkWidget *dialog = gtk_widget_get_ancestor (GTK_WIDGET (range), GTK_TYPE_DIALOG);
-  GtkWidget *sw = GTK_WIDGET (g_object_get_data (G_OBJECT (dialog), "mode_switch"));
-  GtkWidget *label = GTK_WIDGET (g_object_get_data (G_OBJECT (dialog), "error_label"));
-
-  if (gtk_switch_get_active (GTK_SWITCH (sw)) &&
-      !gtk_switch_get_state (GTK_SWITCH (sw)) &&
-      (gtk_range_get_value (range) > 50))
-    {
-      gtk_widget_hide (label);
-      gtk_switch_set_state (GTK_SWITCH (sw), TRUE);
-    }
-  else if (gtk_switch_get_state (GTK_SWITCH (sw)) &&
-          (gtk_range_get_value (range) <= 50))
-    {
-      gtk_switch_set_state (GTK_SWITCH (sw), FALSE);
-    }
-}
-
-static void
-cache_invalidation_test_first_init ()
-{
-  GdkDisplay    *display;
-  GtkIconTheme  *icon_theme;
-
-  display = gdk_display_get_default ();
-  icon_theme = gtk_icon_theme_get_for_display (display);
-
-  gtk_icon_theme_add_resource_path (icon_theme, "/org/gtk/WidgetFactory4/theme1");
-}
-
-static void
-on_cache_invalidation_test_toggled (GtkToggleButton *button,
-                                    gpointer         user_data)
-{
-  GdkDisplay    *display;
-  GtkIconTheme  *icon_theme;
-  char        ***icon_resource_path;
-  guint          length;
-  char         **theme_path;
-
-  display = gdk_display_get_default ();
-  icon_theme = gtk_icon_theme_get_for_display (display);
-  icon_resource_path = gtk_icon_theme_get_resource_path (icon_theme);
-  length = g_strv_length (icon_resource_path);
-  theme_path = icon_resource_path [length - 1];
-
-  if (g_strcmp0 (theme_path, "/org/gtk/WidgetFactory4/theme2") == 0)
-    theme_path = "/org/gtk/WidgetFactory4/theme1";
-  else
-    theme_path = "/org/gtk/WidgetFactory4/theme2";
-
-  icon_resource_path[length - 1] = theme_path;
-  gtk_icon_theme_set_resource_path (icon_theme, icon_resource_path);
-}
-
-static void
 activate (GApplication *app)
 {
   GList *list;
@@ -2418,31 +2305,6 @@ activate (GApplication *app)
   bobgui_builder_cscope_add_callback (scope, transition_speed_changed);
   bobgui_builder_cscope_add_callback (scope, reset_icon_size);
   bobgui_builder_set_scope (builder, scope);
-  provider = gtk_css_provider_new ();
-  gtk_css_provider_load_from_resource (provider, "/org/gtk/WidgetFactory/widget-factory.css");
-  gtk_style_context_add_provider_for_screen (gdk_screen_get_default (),
-                                             GTK_STYLE_PROVIDER (provider),
-                                             GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
-  g_object_unref (provider);
-
-  builder = gtk_builder_new_from_resource ("/org/gtk/WidgetFactory/widget-factory.ui");
-  gtk_builder_add_callback_symbol (builder, "on_entry_icon_release", (GCallback)on_entry_icon_release);
-  gtk_builder_add_callback_symbol (builder, "on_scale_button_value_changed", (GCallback)on_scale_button_value_changed);
-  gtk_builder_add_callback_symbol (builder, "on_scale_button_query_tooltip", (GCallback)on_scale_button_query_tooltip);
-  gtk_builder_add_callback_symbol (builder, "on_record_button_toggled", (GCallback)on_record_button_toggled);
-  gtk_builder_add_callback_symbol (builder, "on_page_combo_changed", (GCallback)on_page_combo_changed);
-  gtk_builder_add_callback_symbol (builder, "on_range_from_changed", (GCallback)on_range_from_changed);
-  gtk_builder_add_callback_symbol (builder, "on_range_to_changed", (GCallback)on_range_to_changed);
-  gtk_builder_add_callback_symbol (builder, "osd_frame_button_press", (GCallback)osd_frame_button_press);
-  gtk_builder_add_callback_symbol (builder, "tab_close_cb", (GCallback)tab_close_cb);
-  gtk_builder_add_callback_symbol (builder, "increase_icon_size", (GCallback)increase_icon_size);
-  gtk_builder_add_callback_symbol (builder, "decrease_icon_size", (GCallback)decrease_icon_size);
-  gtk_builder_add_callback_symbol (builder, "reset_icon_size", (GCallback)reset_icon_size);
-  gtk_builder_add_callback_symbol (builder, "scale_format_value", (GCallback)scale_format_value);
-  gtk_builder_add_callback_symbol (builder, "scale_format_value_blank", (GCallback)scale_format_value_blank);
-  gtk_builder_add_callback_symbol (builder, "validate_more_details", (GCallback)validate_more_details);
-  gtk_builder_add_callback_symbol (builder, "mode_switch_state_set", (GCallback)mode_switch_state_set);
-  gtk_builder_add_callback_symbol (builder, "level_scale_value_changed", (GCallback)level_scale_value_changed);
 
   builder_add_symbolic (builder, "open-menu-symbolic", "/org/bobgui/libbobgui/icons/open-menu-symbolic.svg");
   builder_add_symbolic (builder, "view-refresh-symbolic", "/org/bobgui/libbobgui/icons/view-refresh-symbolic.svg");
@@ -2616,14 +2478,6 @@ G_GNUC_END_IGNORE_DEPRECATIONS
   g_object_set_data (G_OBJECT (dialog), "error_label", widget);
 
   dialog = (BobguiWidget *)bobgui_builder_get_object (builder, "selection_dialog");
-  widget = (GtkWidget *)gtk_builder_get_object (builder, "level_scale");
-  g_object_set_data (G_OBJECT (dialog), "level_scale", widget);
-  widget = (GtkWidget *)gtk_builder_get_object (builder, "mode_switch");
-  g_object_set_data (G_OBJECT (dialog), "mode_switch", widget);
-  widget = (GtkWidget *)gtk_builder_get_object (builder, "error_label");
-  g_object_set_data (G_OBJECT (dialog), "error_label", widget);
-
-  dialog = (GtkWidget *)gtk_builder_get_object (builder, "selection_dialog");
   g_object_set_data (G_OBJECT (window), "selection_dialog", dialog);
   widget = (BobguiWidget *)bobgui_builder_get_object (builder, "text3");
   g_signal_connect (dialog, "response", G_CALLBACK (close_selection_dialog), widget);

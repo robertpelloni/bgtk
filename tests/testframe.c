@@ -54,15 +54,6 @@ quit_cb (BobguiWidget *widget,
   g_main_context_wakeup (NULL);
 }
 
-static void
-draw_border_cb (GtkToggleButton *toggle_button, GtkFrame *frame)
-{
-  GtkShadowType shadow_type = gtk_toggle_button_get_active (toggle_button)
-                              ? GTK_SHADOW_IN : GTK_SHADOW_NONE;
-
-  gtk_frame_set_shadow_type (frame, shadow_type);
-}
-
 int main (int argc, char **argv)
 {
   BobguiWidget *window, *widget;

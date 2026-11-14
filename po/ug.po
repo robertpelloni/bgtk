@@ -1850,29 +1850,8 @@ msgstr "يىلنامە:week_start:0"
 #.
 #: bobgui/bobguicalendar.c:844
 msgid "calendar:MY"
-msgstr "calendar:MY"
+msgstr "يىلنامە:MY"
 
-<<<<<<< HEAD
-=======
-#. Translate to calendar:week_start:0 if you want Sunday to be the
-#. * first day of the week to calendar:week_start:1 if you want Monday
-#. * to be the first day of the week, and so on.
-#.
-#: ../gtk/gtkcalendar.c:910
-msgid "calendar:week_start:0"
-msgstr "calendar:week_start:0"
-
-#. Translators:  This is a text measurement template.
-#. * Translate it to the widest year text
-#. *
-#. * If you don't understand this, leave it as "2000"
-#.
-#: ../gtk/gtkcalendar.c:1910
-msgctxt "year measurement template"
-msgid "2000"
-msgstr "2000"
-
->>>>>>> origin/1422-gtkentry-s-minimum-width-is-hardcoded-to-150px
 #. Translators: this defines whether the day numbers should use
 #. * localized digits or the ones used in English (0123...).
 #. *

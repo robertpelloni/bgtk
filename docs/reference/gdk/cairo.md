@@ -10,9 +10,6 @@ to draw on a [class@Gdk.Surface]. You can either use a
 [BobguiDrawingArea](../bobgui4/class.DrawingArea.html) widget or
 [bobgui_snapshot_append_cairo](../bobgui4/func.Snapshot.append_cairo.html)
 for drawing with cairo in a BOBGUI4 application.
-[GtkDrawingArea](../gtk4/class.DrawingArea.html) widget or
-[gtk_snapshot_append_cairo](../gtk4/func.Snapshot.append_cairo.html)
-for drawing with cairo in a GTK4 application.
 
 Additional functions allow use [struct@Gdk.Rectangle]s with Cairo
 and to use [struct@Gdk.RGBA], `GdkPixbuf`, and [class@Gdk.Surface]

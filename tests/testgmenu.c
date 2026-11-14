@@ -108,9 +108,6 @@ get_model (void)
   menu = G_MENU_MODEL (g_object_ref (bobgui_builder_get_object (builder, "edit-menu")));
 
   section = G_MENU_MODEL (g_object_ref (bobgui_builder_get_object (builder, "size-placeholder")));
-  menu = G_MENU_MODEL (g_object_ref (gtk_builder_get_object (builder, "edit-menu")));
-
-  section = G_MENU_MODEL (g_object_ref (gtk_builder_get_object (builder, "size-placeholder")));
   g_object_unref (builder);
 
   for (i = 0.5; i <= 2.0; i += 0.5)

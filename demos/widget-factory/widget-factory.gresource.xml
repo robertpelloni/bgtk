@@ -7,7 +7,6 @@
     <file>widget-factory.css</file>
   </gresource>
   <gresource prefix="/org/bobgui/WidgetFactory4/bobgui">
-  <gresource prefix="/org/gtk/WidgetFactory/gtk">
     <file preprocess="xml-stripblanks">help-overlay.ui</file>
   </gresource>
   <gresource prefix="/org/bobgui/WidgetFactory4">

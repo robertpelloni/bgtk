@@ -9,32 +9,6 @@ prepare (BobguiDragSource *source,
          BobguiWidget     *row)
 {
   return gdk_content_provider_new_typed (BOBGUI_TYPE_LIST_BOX_ROW, row);
-  GtkWidget *row;
-  GtkAllocation alloc;
-  cairo_surface_t *surface;
-  cairo_t *cr;
-  int x, y;
-  double sx, sy;
-
-  row = gtk_widget_get_ancestor (widget, GTK_TYPE_LIST_BOX_ROW);
-  gtk_widget_get_allocation (row, &alloc);
-  surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, alloc.width, alloc.height);
-  cr = cairo_create (surface);
-
-  gtk_style_context_add_class (gtk_widget_get_style_context (row), "drag-icon");
-  gtk_widget_draw (row, cr);
-  gtk_style_context_remove_class (gtk_widget_get_style_context (row), "drag-icon");
-
-  gtk_widget_translate_coordinates (widget, row, 0, 0, &x, &y);
-  cairo_surface_get_device_scale (surface, &sx, &sy);
-  cairo_surface_set_device_offset (surface, -x * sy, -y * sy);
-  gtk_drag_set_icon_surface (context, surface);
-
-  cairo_destroy (cr);
-  cairo_surface_destroy (surface);
-
-  g_object_set_data (G_OBJECT (gtk_widget_get_parent (row)), "drag-row", row);
-  gtk_style_context_add_class (gtk_widget_get_style_context (row), "drag-row");
 }
 
 static void
@@ -143,43 +117,6 @@ static const char *css =
   "  border: 1px solid black; "
   "}";
 
-static const char *css =
-  ".row:not(:first-child) { "
-  "  border-top: 1px solid alpha(gray,0.5); "
-  "  border-bottom: 1px solid transparent; "
-  "}"
-  ".row:first-child { "
-  "  border-top: 1px solid transparent; "
-  "  border-bottom: 1px solid transparent; "
-  "}"
-  ".row:last-child { "
-  "  border-top: 1px solid alpha(gray,0.5); "
-  "  border-bottom: 1px solid alpha(gray,0.5); "
-  "}"
-  ".row.drag-icon { "
-  "  background: white; "
-  "  border: 1px solid black; "
-  "}"
-  ".row.drag-row { "
-  "  color: gray; "
-  "  background: alpha(gray,0.2); "
-  "}"
-  ".row.drag-row.drag-hover { "
-  "  border-top: 1px solid #4e9a06; "
-  "  border-bottom: 1px solid #4e9a06; "
-  "}"
-  ".row.drag-hover image, "
-  ".row.drag-hover label { "
-  "  color: #4e9a06; "
-  "}"
-  ".row.drag-hover-top {"
-  "  border-top: 1px solid #4e9a06; "
-  "}"
-  ".row.drag-hover-bottom {"
-  "  border-bottom: 1px solid #4e9a06; "
-  "}"
-;
-
 int
 main (int argc, char *argv[])
 {
@@ -208,11 +145,6 @@ main (int argc, char *argv[])
 
   list = bobgui_list_box_new ();
   bobgui_list_box_set_selection_mode (BOBGUI_LIST_BOX (list), BOBGUI_SELECTION_NONE);
-
-  gtk_drag_dest_set (list, GTK_DEST_DEFAULT_MOTION | GTK_DEST_DEFAULT_DROP, entries, 1, GDK_ACTION_MOVE);
-  g_signal_connect (list, "drag-data-received", G_CALLBACK (drag_data_received), NULL);
-  g_signal_connect (list, "drag-motion", G_CALLBACK (drag_motion), NULL);
-  g_signal_connect (list, "drag-leave", G_CALLBACK (drag_leave), NULL);
 
   g_signal_connect (list, "row-activated", G_CALLBACK (on_row_activated), NULL);
   g_signal_connect (list, "selected-rows-changed", G_CALLBACK (on_selected_children_changed), NULL);

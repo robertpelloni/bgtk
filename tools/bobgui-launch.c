@@ -21,9 +21,7 @@
 #include <config.h>
 
 #include <stdio.h>
-#ifdef HAVE_UNISTD_H
 #include <unistd.h>
-#endif
 #include <locale.h>
 #include <errno.h>
 
@@ -89,7 +87,7 @@ main (int argc, char *argv[])
     {
       g_printerr (_("Error parsing commandline options: %s\n"), error->message);
       g_printerr ("\n");
-      g_printerr (_("Try “%s --help� for more information."), g_get_prgname ());
+      g_printerr (_("Try “%s --help” for more information."), g_get_prgname ());
       g_printerr ("\n");
       g_error_free (error);
       return 1;
@@ -110,7 +108,7 @@ main (int argc, char *argv[])
       /* means the user is calling bobgui-launch without any argument.  */
       g_printerr (_("%s: missing application name"), g_get_prgname ());
       g_printerr ("\n");
-      g_printerr (_("Try “%s --help� for more information."), g_get_prgname ());
+      g_printerr (_("Try “%s --help” for more information."), g_get_prgname ());
       g_printerr ("\n");
       return 1;
     }

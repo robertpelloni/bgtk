@@ -381,9 +381,6 @@ parse_node_file (GFile *file, const char *generate)
   if (gdk_surface_get_scale (surface) != 1.0)
     {
       g_print ("Offload tests don't work with scale != 1.0\n");
-  if (gdk_surface_get_scale (surface) != 1.0)
-    {
-      g_print ("Offload tests don't work with fractional scales");
       exit (77);
     }
 

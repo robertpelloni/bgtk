@@ -61,7 +61,10 @@ relabel_image (const char      *filename,
 
   texture = gdk_memory_texture_builder_build (builder);
 
-  save_texture (texture, output);
+  if (g_str_has_suffix (output, ".tiff"))
+    gdk_texture_save_to_tiff (texture, output);
+  else
+    gdk_texture_save_to_png (texture, output);
 
   g_object_unref (texture);
   g_bytes_unref (bytes);

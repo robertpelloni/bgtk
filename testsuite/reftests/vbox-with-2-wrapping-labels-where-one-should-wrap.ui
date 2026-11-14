@@ -9,7 +9,6 @@
             <property name="orientation">1</property>
             <child>
               <object class="BobguiLabel">
-              <object class="GtkLabel">
                 <property name="label">perfectly cromulent</property>
                 <property name="wrap">1</property>
                 <property name="max-width-chars">1</property>

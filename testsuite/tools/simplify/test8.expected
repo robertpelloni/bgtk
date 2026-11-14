@@ -6,12 +6,5 @@
         <property name="label">start</property>
       </object>
     </property>
-  <object class="GtkBox">
-    <child>
-      <object class="GtkLabel"/>
-      <packing>
-        <property name="expand">1</property>
-      </packing>
-    </child>
   </object>
 </interface>

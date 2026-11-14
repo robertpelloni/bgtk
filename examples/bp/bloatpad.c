@@ -583,7 +583,6 @@ bloat_pad_startup (GApplication *application)
     { "win.justify::center", { "<Control>m", NULL } },
     { "win.justify::right", { "<Control>r", NULL } }
   };
-  const gchar *new_accels[] = { "<Primary>n", "<Primary>t", NULL };
 
   G_APPLICATION_CLASS (bloat_pad_parent_class)
     ->startup (application);
@@ -653,7 +652,6 @@ bloat_pad_startup (GApplication *application)
 
   const char *new_accels[] = { "<Control>n", "<Control>t", NULL };
   bobgui_application_set_accels_for_action (BOBGUI_APPLICATION (application), "app.new", new_accels);
-  gtk_application_set_accels_for_action (GTK_APPLICATION (application), "app.new", new_accels);
 
   dump_accels (BOBGUI_APPLICATION (application));
   //bobgui_application_set_menubar (BOBGUI_APPLICATION (application), G_MENU_MODEL (bobgui_builder_get_object (builder, "app-menu")));
