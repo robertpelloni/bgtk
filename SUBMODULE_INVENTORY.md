@@ -22,5 +22,7 @@ These dependencies are heavily used by the backend C build logic (Meson).
 - **C/C++**: The foundation of the framework using GObject architecture and modern C++ abstractions.
 - **Go 1.24.3**: Targeted for the new high-level architectural port.
 
-## Status note (2026-11-13)
-- Verified on disk: submodules/juce dirty pin (25531a05-dirty vs recorded d60b7a78), submodules/ultimatepp untracked. Wrap damage assessment is blocked behind the root meson.build splice repair (TODO.md). Dashboard represents JUCE/Ultimate++ honestly as Native/Planned, never as running.
+## Status note (2026-11-13, updated 2026-11-14)
+- Verified on disk: submodules/juce dirty pin (25531a05-dirty vs recorded d60b7a78), submodules/ultimatepp untracked. Dashboard represents JUCE/Ultimate++ honestly as Native/Planned, never as running.
+- JUCE detail (2026-11-14): HEAD is 25531a0596 ("X11: Add XInput multitouch support", JUCE 8.0.14); working tree contains **unresolved merge conflicts** (`UU examples/DemoRunner/Builds/LinuxMakefile/Makefile`, `extras/AudioPluginHost/...`, `extras/NetworkGraphicsDemo/...`, `extras/UnitTestRunner/...`) plus modifications (BREAKING_CHANGES.md, juce_opengl.cpp). Do not commit the superproject pin until the JUCE merge is resolved or the tree is reset to a clean tag (8.0.x) — owner decision.
+- Ultimate++ detail: has its own git history (HEAD e3546f5bc "chore: auto checkpoint before sync") but the superproject has no gitlink for it (`.gitmodules` entry exists, index does not). Add as proper submodule at a recorded commit or remove the `.gitmodules` stanza — owner decision.
