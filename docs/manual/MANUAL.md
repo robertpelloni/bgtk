@@ -43,6 +43,17 @@ powershell -File scripts/build.ps1 -Native      # also Meson C++ (currently bloc
 
 Heavy builds run at BelowNormal priority by default so the laptop stays responsive.
 
+## Native CLI tools (verified 2026-11-14)
+
+After the native build, run tools inside the build environment so DLLs resolve (`meson devenv -C _build --dump` gives the PATH; tools fail with `STATUS_DLL_NOT_FOUND` without it):
+
+```powershell
+& _build/tools/bobgui4-builder-tool.exe validate examples/builder.ui   # exits 0
+& _build/tools/bobgui4-image-tool.exe --help
+& _build/tools/bobgui4-path-tool.exe --help
+& _build/tools/bobgui4-query-settings.exe   # prints live settings values
+```
+
 ## Troubleshooting
 
 - **Port busy:** start on another port, e.g. `go run . -serve -addr :8485`.
