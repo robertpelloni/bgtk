@@ -110,9 +110,46 @@ main (int argc, char **argv)
     shell->enable_menubar (true);
     shell->enable_toolbar (true);
 
+    // Register server controller with System Tray
+    auto &tray = shell->system_tray ();
+    tray.set_tooltip ("bgtk Dashboard - Servers Active");
+    auto server_ctrl = tray.server_controller ();
+
+    server_ctrl->register_server ("broadway.server", "Broadway Server", "HTML5 Broadway Web Display Server", 8085, [&] () {
+      std::cout << "[Broadway Server] Clean shutdown requested." << std::endl;
+      shell->set_status ("Broadway server stopped");
+    });
+
+    server_ctrl->register_server ("ipc.server", "Local IPC Daemon", "High-performance UNIX domain socket IPC", 9090, [&] () {
+      std::cout << "[IPC Server] Clean shutdown requested." << std::endl;
+      shell->set_status ("IPC server stopped");
+    });
+
+    // Populate system tray context menu
+    tray.add_menu_item ("Show Dashboard", "Bring main window to front", [&] () {
+      shell->present ();
+    });
+    tray.add_menu_item ("Stop Broadway Server", "Gracefully terminate broadway daemon", [&, server_ctrl] () {
+      server_ctrl->stop_server ("broadway.server");
+    });
+    tray.add_menu_item ("Stop All Servers", "Stop all running background servers", [&, server_ctrl] () {
+      server_ctrl->stop_all_servers ();
+    });
+    tray.add_separator ();
+    tray.add_menu_item ("Quit Dashboard & Servers", "Stop servers and exit application", [&, shell_ptr = shell.get ()] () {
+      std::cout << "[System Tray] Quitting application and terminating all servers..." << std::endl;
+      shell_ptr->system_tray ().quit_application ();
+      g_application_quit (G_APPLICATION (application.native ()));
+    });
+
+    tray.set_quit_handler ([&] () {
+      std::cout << "[System Tray Handler] Exit hook finalized." << std::endl;
+    });
+
     {
       std::string status = "Dashboard shell ready: " + std::to_string (shell->dashboard_action_count ()) +
-                           " dashboard actions";
+                           " dashboard actions, " + std::to_string (server_ctrl->running_server_count ()) +
+                           " servers monitored";
       shell->set_status (status.c_str ());
     }
 

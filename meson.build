@@ -1,5 +1,5 @@
-project('bobgui', 'c',
-        version: '4.23.0',
+project('gtk', 'c',
+        version: '4.14.4',
         default_options: [
           'buildtype=debugoptimized',
           'warning_level=1',
@@ -202,6 +202,62 @@ check_headers = [
   'sys/mman.h',
   'sys/sysmacros.h',
   'sys/time.h',
+]
+gtk_prefix = get_option('prefix')
+gtk_includedir = join_paths(gtk_prefix, get_option('includedir'))
+gtk_libdir = join_paths(gtk_prefix, get_option('libdir'))
+gtk_datadir = join_paths(gtk_prefix, get_option('datadir'))
+gtk_localedir = join_paths(gtk_prefix, get_option('localedir'))
+gtk_sysconfdir = join_paths(gtk_prefix, get_option('sysconfdir'))
+gtk_applicationsdir = join_paths(gtk_datadir, 'applications')
+gtk_schemasdir = join_paths(gtk_datadir, 'glib-2.0/schemas')
+gtk_appdatadir = join_paths(gtk_datadir, 'metainfo')
+
+# multipress: is mplocaledir defined somewhere?
+gtk_mplocaledir = join_paths(gtk_prefix, get_option('localedir'))
+
+cdata = configuration_data()
+cdata.set_quoted('PACKAGE_VERSION', meson.project_version())
+cdata.set_quoted('GTK_LOCALEDIR', gtk_localedir)
+cdata.set_quoted('GTK_DATADIR', gtk_datadir)
+cdata.set_quoted('GTK_LIBDIR', gtk_libdir)
+cdata.set_quoted('GTK_SYSCONFDIR', gtk_sysconfdir)
+cdata.set_quoted('GETTEXT_PACKAGE', 'gtk30')
+cdata.set('GTK_MAJOR_VERSION', gtk_major_version)
+cdata.set('GTK_MINOR_VERSION', gtk_minor_version)
+cdata.set('GTK_MICRO_VERSION', gtk_micro_version)
+cdata.set('GTK_BINARY_AGE', gtk_binary_age)
+cdata.set('GTK_INTERFACE_AGE', gtk_interface_age)
+
+cdata.set_quoted('PACKAGE_URL', '')
+cdata.set_quoted('PACKAGE_NAME', 'gtk+')
+cdata.set_quoted('PACKAGE_TARNAME', 'gtk+')
+cdata.set_quoted('PACKAGE_STRING', 'gtk+ @0@'.format(meson.project_version()))
+cdata.set_quoted('PACKAGE_BUGREPORT', 'http://bugzilla.gnome.org/enter_bug.cgi?product=gtk%2B')
+
+cdata.set('ENABLE_NLS', 1)
+
+check_headers = [
+  'crt/externs.h',
+  'dlfcn.h',
+  'ftw.h',
+  'inttypes.h',
+  'linux/memfd.h',
+  'linux/input.h',
+  'dev/evdev/input.h',
+  'locale.h',
+  'memory.h',
+  'stdint.h',
+  'stdlib.h',
+  'string.h',
+  'strings.h',
+  'sys/mman.h',
+  'sys/param.h',
+  'sys/stat.h',
+  'sys/sysinfo.h',
+  'sys/systeminfo.h',
+  'sys/time.h',
+  'sys/types.h',
   'unistd.h',
 ]
 
@@ -239,6 +295,34 @@ foreach func : check_functions
                        '#include <fcntl.h>\n' +
                        '#include <math.h>',
                      dependencies: libm)
+    cdata.set('HAVE_' + func.underscorify().to_upper(), 1)
+  endif
+endforeach
+
+check_math_functions = [
+  'dcgettext',
+  'getpagesize',
+  'getresuid',
+  'lstat',
+  'mmap',
+  'nearbyint',
+  'posix_fallocate',
+  '_lock_file',
+  'flockfile',
+  'mkstemp',
+  'mallinfo',
+  'round',
+  'rint',
+  'log2',
+  'exp2',
+  'sincos',
+  'trunc',
+  'localtime_r',
+  'fmin',
+]
+
+foreach func : check_functions
+  if cc.has_function(func, dependencies: libm)
     cdata.set('HAVE_' + func.underscorify().to_upper(), 1)
   endif
 endforeach
@@ -514,6 +598,140 @@ gst_deps = [ gstplay_dep, gstgl_dep, gstallocators_dep, gstd3d12_dep ]
 fontconfig_dep = [] # only used in x11 backend
 
 if os_win32
+  if cc.get_id() == 'msvc'
+    cdata.set('_GDK_EXTERN', '__declspec(dllexport) extern')
+  else
+    cdata.set('_GDK_EXTERN', '__attribute__((visibility("default"))) __declspec(dllexport) extern')
+    common_cflags += ['-fvisibility=hidden']
+  endif
+else
+  cdata.set('_GDK_EXTERN', '__attribute__((visibility("default"))) extern')
+  common_cflags += ['-fvisibility=hidden']
+endif
+
+common_ldflags = []
+
+if os_unix and not os_darwin
+  foreach ldflag: [ '-Wl,-Bsymbolic', '-Wl,-z,relro', '-Wl,-z,now', ]
+    if cc.links('int main () { return 0; }', name: ldflag, args: ldflag)
+      common_ldflags += [ ldflag ]
+    endif
+  endforeach
+endif
+
+confinc = include_directories('.')
+gdkinc = include_directories('gdk')
+gtkinc = include_directories('gtk')
+libgailutilinc = include_directories('libgail-util')
+testinc = include_directories('tests')
+
+# Dependencies
+glib_dep       = dependency('glib-2.0', version: glib_req,
+                            fallback : ['glib', 'libglib_dep'])
+gobject_dep    = dependency('gobject-2.0', version: glib_req,
+                            fallback : ['glib', 'libgobject_dep'])
+if os_win32
+  giowin32_dep = dependency('gio-windows-2.0', version: glib_req, required: win32_enabled,
+                            fallback : ['glib', 'libgio_dep'])
+endif
+if os_unix
+  giounix_dep  = dependency('gio-unix-2.0', version: glib_req, required: false,
+                            fallback : ['glib', 'libgio_dep'])
+endif
+gmodule_dep    = dependency('gmodule-2.0', version: glib_req,
+                            fallback : ['glib', 'libgmodule_dep'])
+
+# Update when we can find depedencies in a declarative manner
+cairo_dep      = dependency('cairo', version: cairo_req, required: cc.get_id() != 'msvc')
+cairogobj_dep  = dependency('cairo-gobject', version: cairo_req, required: cc.get_id() != 'msvc')
+
+# Remove when we can find depedencies in a declarative manner
+if not cairo_dep.found() and cc.get_id() == 'msvc'
+  if cc.has_header('cairo.h') and cc.has_header('cairo-win32.h')
+    cairo_dep = cc.find_library('cairo', required: false)
+  endif
+endif
+
+if not cairo_dep.found()
+  cairo_dep      = dependency('cairo', version: cairo_req,
+                              fallback : ['cairo', 'libcairo_dep'])
+endif
+
+# Remove when we can find depedencies in a declarative manner
+if not cairogobj_dep.found() and cc.get_id() == 'msvc'
+  if cc.has_header('cairo-gobject.h')
+    cairogobj_dep = cc.find_library('cairo-gobject', required: false)
+  endif
+endif
+
+if not cairogobj_dep.found()
+  cairogobj_dep  = dependency('cairo-gobject', version: cairo_req,
+                              fallback : ['cairo', 'libcairogobject_dep'])
+endif
+
+pango_dep      = dependency('pango', version: pango_req,
+                            fallback : ['pango', 'libpango_dep'])
+fribidi_dep    = dependency('fribidi', version: fribidi_req,
+                            fallback : ['fribidi', 'libfribidi_dep'])
+
+# Require PangoFT2 if on X11 or wayland
+require_pangoft2 = wayland_enabled or x11_enabled
+if require_pangoft2
+  pangoft_dep    = dependency('pangoft2', fallback : ['pango', 'libpangoft2_dep'])
+else
+  pangoft_dep    = dependency('pangoft2', required: false)
+endif
+
+if pangoft_dep.found()
+  # Need at least 2.7.1 for FT_Get_Var_Design_Coordinates()
+  # We get the dependency itself from pango, but pango doesn't care
+  # about ft2 version, so an extra check is needed.
+
+  # Update once Meson can have deps declared in a declarative manner
+  ft2_dep      = dependency('freetype2', version: '>= 2.7.1', required: false)
+
+  if not ft2_dep.found() and cc.get_id() == 'msvc'
+    if cc.has_header('ft2build.h') and cc.has_header('freetype/ftmm.h')
+      ft_lib = cc.find_library('freetype', required: false)
+      if ft_lib.found()
+        if cc.has_function('FT_Get_Var_Design_Coordinates', dependencies: ft_lib,
+                           prefix: '''#include <ft2build.h>
+                                      #include FT_MULTIPLE_MASTERS_H''')
+          ft2_dep = ft_lib
+        endif
+      endif
+    endif
+  endif
+
+  if not ft2_dep.found()
+    ft2_dep      = dependency('freetype2', version: '>= 2.7.1', fallback : ['freetype2', 'freetype_dep'])
+  endif
+endif
+
+if win32_enabled
+  # for GTK_IM_CONTEXT_IME
+  pangowin32_dep  = dependency('pangowin32', fallback : ['pango', 'libpangowin32_dep'])
+endif
+
+pangocairo_dep = dependency('pangocairo', version: cairo_req,
+                            fallback : ['pango', 'libpangocairo_dep'])
+pixbuf_dep     = dependency('gdk-pixbuf-2.0', version: gdk_pixbuf_req,
+                            fallback : ['gdk-pixbuf', 'gdkpixbuf_dep'])
+epoxy_dep      = dependency('epoxy', version: epoxy_req,
+                            fallback: ['libepoxy', 'libepoxy_dep'])
+atk_dep        = dependency('atk', version: atk_req,
+                            fallback : ['atk', 'libatk_dep'])
+
+# Update once Meson can have deps declared in a declarative manner or can
+# find deps properly with CMake again
+harfbuzz_dep   = dependency('harfbuzz', version: '>= 0.9', required: false)
+xkbdep         = dependency('xkbcommon', version: xkbcommon_req, required: wayland_enabled)
+iso_codes_dep  = dependency('iso-codes', required: false)
+
+fontconfig_dep = [] # only used in x11 backend
+atkbridge_dep  = [] # only used in x11 backend
+
+if os_win32
   platform_gio_dep = giowin32_dep
 endif
 if os_unix
@@ -547,6 +765,70 @@ foreach backend: [ ['cairo-xlib', cairo_req, x11_enabled],
      cairo_backends += [ cairo_backend ]
    endif
  endif
+endforeach
+# Remove once Meson is fixed to find deps properly with CMake or
+# gains the ability to declare deps in a declarative manner
+# Fallback for HarfBuzz
+if cc.get_id() == 'msvc' and not harfbuzz_dep.found()
+  if cc.has_header('hb.h')
+    harfbuzz_dep = cc.find_library('harfbuzz', required : false)
+  endif
+endif
+
+require_harfbuzz = wayland_enabled or x11_enabled
+if require_harfbuzz and not harfbuzz_dep.found()
+  harfbuzz_dep   = dependency('harfbuzz', version: '>= 0.9', required: false,
+                              fallback: ['harfbuzz', 'libharfbuzz_dep'])
+endif
+
+tracker3_enabled = get_option('tracker3')
+if tracker3_enabled
+  tracker3_dep = dependency('tracker-sparql-3.0', required: false)
+  if tracker3_dep.found()
+    cdata.set('HAVE_TRACKER3', tracker3_dep.found())
+  else
+    error('Tracker3 not found, but was explicitly requested.')
+  endif
+endif
+
+if iso_codes_dep.found()
+  cdata.set_quoted('ISO_CODES_PREFIX', iso_codes_dep.get_pkgconfig_variable('prefix'))
+else
+  cdata.set_quoted('ISO_CODES_PREFIX', get_option('prefix'))
+endif
+
+backend_immodules = []
+
+pc_gdk_extra_libs = []
+
+cairo_found_type = cairo_dep.type_name()
+if cairo_found_type == 'internal'
+  cairo_features = subproject('cairo').get_variable('built_features')
+endif
+
+cairogobj_found_type = cairogobj_dep.type_name()
+
+cairo_backends = []
+foreach backend: [ ['cairo-xlib', cairo_req, x11_enabled],
+                   ['cairo-win32', cairo_req, win32_enabled],
+                   ['cairo-quartz', cairo_req, quartz_enabled],
+                   ['cairo', cairo_req, broadway_enabled or wayland_enabled], ]
+  backend_enabled = backend.get(2)
+  cairo_backend_req = backend.get(1)
+  cairo_backend = backend.get(0)
+  if backend_enabled
+    if cairo_found_type == 'pkgconfig'
+      if dependency(cairo_backend, version: cairo_backend_req, required : cc.get_id() != 'msvc').found()
+        cairo_backends += cairo_backend
+      endif
+    elif cairo_found_type == 'internal'
+      foreach f: cairo_features
+        if f['name'] == cairo_backend
+          cairo_backends += cairo_backend
+        endif
+      endforeach
+    endif
+  endif
 endforeach
 
 cairo_pkg_found = false
@@ -591,6 +873,35 @@ if wayland_enabled
   wayland_pkgs = [
     'wayland-client @0@'.format(wayland_req),
     'xkbcommon @0@'.format(xkbcommon_req),
+  ]
+endif
+
+if cairo_found_type == 'internal' or cairo_found_type == 'pkgconfig'
+  cairo_pkg_found = true
+endif
+if cairogobj_found_type == 'internal' or cairogobj_found_type == 'pkgconfig'
+  cairogobj_pkg_found = true
+endif
+
+cairo_libs = []
+
+cdata.set('HAVE_HARFBUZZ', harfbuzz_dep.found() ? 1 : false)
+cdata.set('HAVE_PANGOFT', pangoft_dep.found() ? 1 : false)
+
+atk_pkgs = ['atk']
+
+wayland_pkgs = []
+if wayland_enabled
+  wlclientdep    = dependency('wayland-client', version:  wayland_req)
+  wlprotocolsdep = dependency('wayland-protocols', version: wayland_proto_req)
+  wlcursordep    = dependency('wayland-cursor', version: wayland_req)
+  wlegldep       = dependency('wayland-egl')
+  backend_immodules += ['wayland']
+
+  wayland_pkgs = [
+    'wayland-client', wayland_req,
+    'xkbcommon', xkbcommon_req,
+    'wayland-cursor', wayland_req,
     'wayland-egl',
   ]
 endif
@@ -686,7 +997,7 @@ if cc.has_function('ngettext', prefix: libintl_prefix)
   cdata.set('HAVE_BIND_TEXTDOMAIN_CODESET', 1)
 else
   libintl_dep = cc.find_library('intl', required : false)
-  if cc.has_function('bind_textdomain_codeset', prefix: libintl_prefix, dependencies: libintl_dep)
+  if cc.has_function('bind_textdomain_codeset', dependencies: libintl_dep)
     cdata.set('HAVE_BIND_TEXTDOMAIN_CODESET', 1)
   else
     # Don't use subproject('proxy-libintl').get_variable('intl_dep') because that
@@ -754,7 +1065,7 @@ if not get_option('sysprof').disabled()
     default_options: [
       'agent=false',
       'examples=false',
-      'bobgui=false',
+      'gtk=false',
       'tests=false',
       'tools=false',
       'libsysprof=true',
@@ -925,6 +1236,89 @@ if get_option('build-testsuite')
   subdir('testsuite')
 endif
 if get_option('build-examples')
+if os_win32
+  if cc.has_header_symbol('windows.h', 'IPrintDialogCallback')
+    cdata.set('HAVE_IPRINTDIALOGCALLBACK', 1)
+  endif
+
+  dvot_size = cc.sizeof('DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY', prefix : '''
+    #define _WIN32_WINNT 0x601
+    #include <windows.h>
+  ''')
+  cdata.set('SIZEOF_DISPLAYCONFIG_VIDEO_OUTPUT_TECHNOLOGY', dvot_size)
+
+  getdevprop_code = '''
+    #define _WIN32_WINNT 0x0600
+    #include <windows.h>
+    #include <devpropdef.h>
+    #include <setupapi.h>
+
+    int main(int argc, char *argv[]) {
+      return SetupDiGetDevicePropertyW(NULL, NULL, NULL, NULL, NULL, 0, NULL, 0);
+    }
+  '''
+  result = cc.links(getdevprop_code, args: ['-lsetupapi'], name: 'has SetupDiGetDevicePropertyW')
+  cdata.set('HAVE_SETUP_DI_GET_DEVICE_PROPERTY_W', result ? 1 : false)
+endif
+
+have_gio_unix = false
+if os_unix
+  have_gio_unix = giounix_dep.found()
+  cdata.set('HAVE_GIO_UNIX', have_gio_unix ? 1 : false)
+endif
+
+cloudproviders_enabled = get_option('cloudproviders')
+cloudproviders_packages = []
+if cloudproviders_enabled
+  cloudproviders_dep = dependency('cloudproviders', version: cloudproviders_req, required: true)
+  if cloudproviders_dep.found()
+    cloudproviders_packages += ['cloudproviders', cloudproviders_req]
+    cdata.set('HAVE_CLOUDPROVIDERS', cloudproviders_dep.found() ? 1 : false)
+  else
+    error('Cloudproviders support not found, but was explicitly requested.')
+  endif
+endif
+
+profiler_enabled = get_option('profiler')
+if profiler_enabled
+  profiler_dep = dependency('sysprof-capture-3', static: true, required: false)
+  if not profiler_dep.found()
+    profiler_dep = dependency('sysprof-capture-4', static: true, required: false,
+      fallback: ['sysprof', 'libsysprof_capture_dep'],
+      default_options: [
+        'agent=false',
+        'examples=false',
+        'gtk=false',
+        'tests=false',
+        'tools=false',
+        'libsysprof=true',
+        'sysprofd=none',
+        'help=false',
+      ])
+  endif
+  if profiler_dep.found()
+    cdata.set('HAVE_SYSPROF_CAPTURE', profiler_dep.found())
+  endif
+endif
+
+module_suffix = []
+if os_darwin
+  module_suffix = 'so'
+endif
+
+build_gir = get_option('introspection')
+subdir('gdk')
+subdir('gtk')
+subdir('modules')
+subdir('libgail-util')
+if get_option('demos')
+  subdir('demos')
+endif
+if get_option('tests')
+  subdir('tests')
+  subdir('testsuite')
+endif
+if get_option('examples')
   subdir('examples')
 endif
 

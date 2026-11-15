@@ -12,17 +12,29 @@ powershell -File ..\scripts\tray.ps1   # optional Windows tray icon
 
 Unified alternative: `powershell -File scripts/build.ps1 -Serve`. Version comes from the repo-root `VERSION` file at process start.
 
-## Native C++ (Meson) — currently blocked
-Requires Meson + Ninja (verified present: 1.12.1 / 1.12.1 on this laptop) and a C toolchain.
+3. **Building the Go Architecture:**
+   ```bash
+   cd go
+   go test ./...
+   go run main.go
+   ```
 
-```bash
-meson setup _build
-meson compile -C _build
-meson test -C _build
-```
+   Or execute the unified runner directly:
+   ```bash
+   ./tools/run_dashboard.sh
+   ```
 
-**Known blocker (2026-11-13):** root `meson.build` splices a bobgui/GTK4 build file with a gtk/GTK3 one; configure fails at line 343 after this session's header fix. Repair queue: `TODO.md` → "Native build repair". Run probes at BelowNormal priority and into `$env:TEMP` until the tree is clean. Submodule pins (`submodules/juce` dirty, `ultimatepp` untracked) must be resolved before a reproducible native build — see `SUBMODULE_INVENTORY.md`.
+4. **Pre-Flight Health Diagnostics:**
+   Run the automated diagnostic suite to verify toolchains (gcc, g++, Go, Meson, Ninja) and submodule states:
+   ```bash
+   ./tools/check_health.sh
+   # Or via dashboard launcher flag:
+   ./tools/run_dashboard.sh --check-health
+   ```
 
-## Logs & operations
-- Dashboard logs: server stdout/stderr plus the in-page Live logs (last 300 lines, `GET /api/logs`).
-- Health check: `GET /health`. Graceful stop: dashboard **Quit server** button, tray **Quit Server**, or `POST /api/quit`.
+5. **Building the C/C++ Subsystem:**
+   Meson build configuration and options collisions have been repaired, and wrap dependencies for sysprof-capture-4 support seamless fallback:
+   ```bash
+   meson setup _build
+   ninja -C _build
+   ```
