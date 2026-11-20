@@ -1,3 +1,13 @@
+> **FROZEN — 2026-11-19 — Robert's call**
+>
+> This project is frozen for now. No new features, no upstream rebases or syncs, no version bumps.
+>
+> All three toolkit projects — bcs/BTK, bgtk/BOBGUI, and bqt/BQt — are frozen together. No canonical replacement has been picked. Kept as reference / port source only.
+>
+> Any revival requires Robert naming one canonical toolkit first in the "bcs bgtk and bqt main" chat.
+>
+> ---
+
 # bgtk — a renamed copy of the GTK 4 tree ("Bobgtk" / "BOBGUI")
 
 This repository is a copy of the **GTK 4** source tree (the `gtk/`, `gdk/`,
@@ -40,9 +50,4 @@ Whether the renamed `bobgui/` copy compiles as-is is unverified.
 
 ## Status
 
-Dormant experiment. Upstream content dates to ~October 2024; the only
-2026 activity is an agent checkpoint commit (2026-10-19), a README
-rewrite (2026-10-22), and a submodule re-pin (2026-11-09, JUCE
-submodule re-pinned to master). If you want GTK, use GTK — this repo
-is a renaming playground around it, kept for the BQt/BobUI line of
-experiments (see also the `bqt` repo).
+Frozen experiment (2026-11-19). Upstream content dates to ~October 2024; 2026 activity was an agent checkpoint commit (2026-10-19), a README rewrite (2026-10-22), a submodule re-pin (2026-11-09, JUCE submodule re-pinned to master), and Protocol #300 sync merges to v1.8.0 (2026-11-15) — no renamed-build verification. If you want GTK, use GTK — this repo is a renaming playground around it, kept as reference for the BQt/BobUI line of experiments (see also the `bqt` repo).
